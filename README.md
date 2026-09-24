@@ -1,6 +1,10 @@
 # Sarang.md
 
-A grayscale, static-hostable IB Mathematics AA HL Markdown reader with a private local-notes mode and an original sequences-and-series question bank. Built with Vite, React, TypeScript, Tailwind, React Markdown/KaTeX, Fuse.js, and Zustand. No app server or account is needed.
+An IB Mathematics Analysis and Approaches (AA) Higher Level (HL) grayscale, static-hostable Markdown reader and study app with a private local-notes mode and an original sequences-and-series question bank. Built with Vite, React, TypeScript, Tailwind CSS, React Markdown/KaTeX, Fuse.js, and Zustand. No app server or account is needed.
+
+## Topics
+
+`ib-mathematics`, `ib-math-aa`, `ib-math-aa-hl`, `mathematics`, `markdown-reader`, `study-tool`, `sequences-and-series`, `vite`, `react`, `typescript`, `tailwind-css`, `github-pages`
 
 ## Run and build
 
