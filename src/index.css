@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --canvas: 255 255 255;
+  --surface: 250 250 250;
+  --raised: 243 243 243;
+  --ink: 22 22 22;
+  --muted: 107 107 107;
+  --faint: 153 153 153;
+  --line: 226 226 226;
+  --accent: 23 23 23;
+  --accent-ink: 255 255 255;
+}
+
+.dark {
+  color-scheme: dark;
+  --canvas: 11 11 11;
+  --surface: 20 20 20;
+  --raised: 31 31 31;
+  --ink: 243 243 243;
+  --muted: 165 165 165;
+  --faint: 111 111 111;
+  --line: 54 54 54;
+  --accent: 244 244 244;
+  --accent-ink: 17 17 17;
+}
+
+html { scroll-behavior: smooth; }
+body { @apply m-0 min-w-[320px] bg-canvas font-sans text-ink antialiased; }
+body, header, aside, main, footer { transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease; }
+::selection { background: rgb(var(--ink) / 0.16); color: rgb(var(--ink)); }
+:focus-visible { outline: 2px solid rgb(var(--ink)); outline-offset: 3px; }
+/* Search-field focus is shown on the whole pill instead of on the inner text box. */
+input:focus-visible { outline: none; }
+input[type="search"]::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; }
+
+@layer components {
+  .section-label { @apply font-mono text-[10px] font-semibold uppercase tracking-[0.17em] text-muted; }
+}
+
+/* Markdown has its own carefully limited typographic scope. No syntax palette. */
+.markdown { font-size: 16px; line-height: 1.8; color: rgb(var(--ink)); overflow-wrap: break-word; }
+.markdown h1, .markdown h2, .markdown h3, .markdown h4 { line-height: 1.2; color: rgb(var(--ink)); }
+.markdown h1 { margin: 0 0 1.7rem; font-size: clamp(2.7rem, 5vw, 3.85rem); font-weight: 650; line-height: 1.09; letter-spacing: -.06em; }
+.markdown h2 { margin: 3.7rem 0 1.2rem; padding-bottom: .9rem; border-bottom: 1px solid rgb(var(--line)); font-size: 1.65rem; font-weight: 650; letter-spacing: -.04em; }
+.markdown h3 { margin: 2.5rem 0 .8rem; font-size: 1.25rem; font-weight: 650; letter-spacing: -.025em; }
+.markdown h4 { margin: 2rem 0 .6rem; font-size: 1.05rem; font-weight: 650; }
+.markdown p { margin: .9rem 0 1.4rem; }
+.markdown strong { font-weight: 680; }
+.markdown a { color: rgb(var(--ink)); text-decoration: underline; text-decoration-color: rgb(var(--muted)); text-underline-offset: 4px; transition: opacity 150ms ease; }
+.markdown a:hover { opacity: .62; }
+.markdown ul, .markdown ol { margin: .85rem 0 1.7rem; padding-left: 1.6rem; }
+.markdown ul { list-style-type: disc; }
+.markdown ol { list-style-type: decimal; }
+.markdown li { margin: .4rem 0; padding-left: .15rem; }
+.markdown li::marker { color: rgb(var(--muted)); }
+.markdown li > p { margin: .2rem 0; }
+.markdown blockquote { margin: 2rem 0; border-left: 2px solid rgb(var(--ink)); padding: .1rem 0 .1rem 1.25rem; color: rgb(var(--muted)); }
+.markdown blockquote p { margin: .6rem 0; }
+.markdown hr { margin: 3rem 0; border: 0; border-top: 1px solid rgb(var(--line)); }
+.markdown :not(pre) > code { border: 1px solid rgb(var(--line)); border-radius: 5px; background: rgb(var(--surface)); padding: .16rem .35rem; font: .85em/1.5 SFMono-Regular, Consolas, 'Liberation Mono', monospace; color: rgb(var(--ink)); }
+.markdown pre { margin: 1.8rem 0; overflow-x: auto; border: 1px solid rgb(var(--line)); border-radius: 10px; background: rgb(var(--surface)); padding: 1.15rem 1.3rem; font: 13px/1.65 SFMono-Regular, Consolas, 'Liberation Mono', monospace; color: rgb(var(--ink)); }
+.markdown pre code { border: 0; background: none; padding: 0; color: inherit; font: inherit; }
+.markdown .table-wrap { margin: 1.9rem 0; overflow-x: auto; border: 1px solid rgb(var(--line)); border-radius: 10px; }
+.markdown table { width: 100%; min-width: 420px; border-collapse: collapse; font-size: 14px; line-height: 1.55; }
+.markdown th, .markdown td { padding: .85rem 1rem; border-bottom: 1px solid rgb(var(--line)); text-align: left; vertical-align: top; }
+.markdown tr:last-child td { border-bottom: 0; }
+.markdown th { background: rgb(var(--surface)); font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+.markdown tbody tr:nth-child(even) { background: rgb(var(--surface) / .55); }
+.markdown .katex { color: inherit; font-size: 1.05em; }
+.markdown .katex-display { margin: 1.9rem 0; overflow-x: auto; overflow-y: hidden; padding: .65rem .1rem .85rem; }
+.markdown .katex-error { color: inherit !important; }
+
+/* Smaller, still readable math and Markdown inside practice cards / marking rows. */
+.markdown-compact { min-width: 0; max-width: 100%; font-size: 14px; line-height: 1.75; }
+.markdown-compact p { margin: .5rem 0 1rem; }
+.markdown-compact p:last-child { margin-bottom: 0; }
+.markdown-compact h1 { font-size: 1.45rem; }
+.markdown-compact h2 { margin: 1.5rem 0 .75rem; font-size: 1.2rem; }
+.markdown-compact .katex-display { margin: 1rem 0; }
+.markdown-scheme { overflow-x: auto; font-size: 13px; line-height: 1.65; }
+.markdown-scheme p { margin: 0; }
+.markdown-scheme .katex-display { max-width: 100%; }
+
+@media (max-width: 640px) {
+  .markdown { font-size: 15px; line-height: 1.78; }
+  .markdown h1 { font-size: 2.65rem; }
+  .markdown h2 { font-size: 1.45rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}

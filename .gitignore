@@ -1,0 +1,12 @@
+node_modules/
+dist/
+*.local
+.DS_Store
+.env
+.env.*
+!.env.example
+*.tsbuildinfo
+
+# Your own drop-in notes stay private by default. See README before publishing.
+/Unit */*.md
+/public/content/local/
