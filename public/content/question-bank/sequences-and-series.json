@@ -1,0 +1,617 @@
+[
+  {
+    "id": "SS-01",
+    "strand": "Arithmetic",
+    "topic": "Arithmetic sequences",
+    "level": "Core",
+    "marks": 6,
+    "prompt": "The first three terms of an arithmetic sequence are \\(7, 11, 15\\).\n\n**(a)** Find the twentieth term. **[2]**\n\n**(b)** Find the sum of the first twenty terms. **[2]**\n\n**(c)** Find the smallest value of \\(n\\) for which \\(u_n>100\\). **[2]**",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "Identify the common difference \\(d=11-7=4\\) and use \\(u_n=u_1+(n-1)d\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "\\(u_{20}=7+19(4)=\\boxed{83}\\).",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "Use \\(S_{20}=\\frac{20}{2}(u_1+u_{20})\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "\\(S_{20}=10(7+83)=\\boxed{900}\\).",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "Solve \\(7+4(n-1)>100\\), giving \\(n>24.25\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "The first integer satisfying the inequality is \\(\\boxed{n=25}\\) (with \\(u_{25}=103\\)).",
+        "marks": 1
+      }
+    ]
+  },
+  {
+    "id": "SS-02",
+    "strand": "Arithmetic",
+    "topic": "Unknown first term",
+    "level": "Stretch",
+    "marks": 6,
+    "prompt": "An arithmetic sequence satisfies \\(u_3=10\\) and \\(u_9=34\\).\n\n**(a)** Find the first term \\(u_1\\) and common difference \\(d\\). **[4]**\n\n**(b)** Hence find \\(u_{15}\\) and \\(S_{15}\\). **[2]**",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "Write \\(u_1+2d=10\\) and \\(u_1+8d=34\\).",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "Subtract the equations to obtain \\(6d=24\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "\\(\\boxed{d=4}\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "\\(u_1=10-2(4)=\\boxed{2}\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "\\(u_{15}=2+14(4)=\\boxed{58}\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "\\(S_{15}=\\frac{15}{2}(2+58)=\\boxed{450}\\).",
+        "marks": 1
+      }
+    ]
+  },
+  {
+    "id": "SS-03",
+    "strand": "Arithmetic",
+    "topic": "Rows in an auditorium",
+    "level": "Core",
+    "marks": 5,
+    "prompt": "An auditorium has 25 rows. The first row has 12 seats, and each successive row has 4 more seats than the previous row.\n\n**(a)** Find the number of seats in the final row. **[2]**\n\n**(b)** Find the total number of seats in the auditorium. **[3]**",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "Model the rows as an arithmetic sequence with \\(u_1=12\\) and \\(d=4\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "\\(u_{25}=12+24(4)=\\boxed{108}\\) seats.",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "Use \\(S_{25}=\\frac{25}{2}(u_1+u_{25})\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "Substitute \\(\\frac{25}{2}(12+108)\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "Total \\(=\\boxed{1500}\\) seats.",
+        "marks": 1
+      }
+    ]
+  },
+  {
+    "id": "SS-04",
+    "strand": "Arithmetic",
+    "topic": "Odd numbers and a threshold",
+    "level": "Stretch",
+    "marks": 5,
+    "prompt": "The first \\(n\\) positive odd numbers form the series \\(1+3+5+\\cdots+(2n-1)\\).\n\n**(a)** Use an arithmetic-series formula to show that its sum is \\(n^2\\). **[3]**\n\n**(b)** Find the smallest integer \\(n\\) for which the sum is **strictly greater** than 400. **[2]**",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "Use \\(S_n=\\frac{n}{2}(u_1+u_n)\\) with \\(u_1=1\\) and \\(u_n=2n-1\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "\\(S_n=\\frac{n}{2}(1+2n-1)\\).",
+        "marks": 1
+      },
+      {
+        "code": "R1",
+        "text": "Simplify to \\(\\boxed{S_n=n^2}\\) for all positive integers \\(n\\).",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "From \\(n^2>400\\) with \\(n>0\\), conclude \\(n>20\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "\\(\\boxed{n=21}\\). At \\(n=20\\) the sum is exactly 400, which is not enough.",
+        "marks": 1
+      }
+    ]
+  },
+  {
+    "id": "SS-05",
+    "strand": "Geometric",
+    "topic": "A growing geometric sequence",
+    "level": "Core",
+    "marks": 5,
+    "prompt": "A geometric sequence begins \\(5, 15, 45,\\ldots\\).\n\n**(a)** Find the sixth term. **[2]**\n\n**(b)** Find the sum of the first six terms. **[3]**",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "Identify \\(u_1=5\\), \\(r=3\\), and use \\(u_n=u_1r^{n-1}\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "\\(u_6=5(3^5)=\\boxed{1215}\\).",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "Use \\(S_n=u_1\\frac{r^n-1}{r-1}\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "\\(S_6=5\\frac{3^6-1}{3-1}\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "\\(S_6=5(364)=\\boxed{1820}\\).",
+        "marks": 1
+      }
+    ]
+  },
+  {
+    "id": "SS-06",
+    "strand": "Geometric",
+    "topic": "Recover the common ratio",
+    "level": "Stretch",
+    "marks": 6,
+    "prompt": "A geometric sequence has \\(u_2=12\\) and \\(u_5=96\\). Its common ratio is positive.\n\n**(a)** Find the first term and common ratio. **[4]**\n\n**(b)** Find the sum of the first five terms. **[2]**",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "Divide \\(u_5\\) by \\(u_2\\): \\(r^3=96/12=8\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "Since \\(r>0\\), \\(\\boxed{r=2}\\).",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "Use \\(u_2=u_1r=12\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "\\(\\boxed{u_1=6}\\).",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "Use \\(S_5=u_1\\frac{r^5-1}{r-1}\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "\\(S_5=6(2^5-1)=\\boxed{186}\\).",
+        "marks": 1
+      }
+    ]
+  },
+  {
+    "id": "SS-07",
+    "strand": "Infinite series",
+    "topic": "Alternating infinite series",
+    "level": "Core",
+    "marks": 6,
+    "prompt": "Consider the infinite geometric series \\(18-6+2-\\frac23+\\cdots\\).\n\n**(a)** Explain why the infinite sum exists, and find it. **[3]**\n\n**(b)** Find the sum of the first four terms and hence the remainder after four terms. **[3]**",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "Find the ratio \\(r=-6/18=-\\frac13\\).",
+        "marks": 1
+      },
+      {
+        "code": "R1",
+        "text": "Because \\(|r|=\\frac13<1\\), the infinite sum exists.",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "\\(S_\\infty=\\frac{18}{1-(-1/3)}=\\boxed{\\frac{27}{2}}\\).",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "Add the first four terms or use the finite geometric-sum formula.",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "\\(S_4=18-6+2-\\frac23=\\boxed{\\frac{40}{3}}\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "Remainder \\(S_\\infty-S_4=\\frac{27}{2}-\\frac{40}{3}=\\boxed{\\frac16}\\).",
+        "marks": 1
+      }
+    ]
+  },
+  {
+    "id": "SS-08",
+    "strand": "Infinite series",
+    "topic": "Reverse-engineer an infinite sum",
+    "level": "Stretch",
+    "marks": 6,
+    "prompt": "A geometric series has positive first term and ratio \\(0<r<1\\). Its infinite sum is 30, while the sum of its first three terms is 26.25.\n\n**(a)** Find the common ratio and first term. **[5]**\n\n**(b)** Find the fifth term. **[1]**",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "Use \\(S_3=S_\\infty(1-r^3)\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "\\(26.25=30(1-r^3)\\), so \\(r^3=\\frac18\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "Because \\(0<r<1\\), \\(\\boxed{r=\\frac12}\\).",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "From \\(S_\\infty=u_1/(1-r)\\), obtain \\(u_1=30(1-r)\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "\\(\\boxed{u_1=15}\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "\\(u_5=15(\\frac12)^4=\\boxed{\\frac{15}{16}}\\).",
+        "marks": 1
+      }
+    ]
+  },
+  {
+    "id": "SS-09",
+    "strand": "Series & sigma",
+    "topic": "A sum with a shifted index",
+    "level": "Core",
+    "marks": 5,
+    "prompt": "Consider \\(\\displaystyle\\sum_{k=3}^{12}(4k-1)\\).\n\n**(a)** Write out the first three terms of this sum. **[2]**\n\n**(b)** Evaluate the sum exactly. **[3]**",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "Substitute \\(k=3,4,5\\) into \\(4k-1\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "The first three terms are \\(\\boxed{11+15+19}\\).",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "\\(\\sum_{k=3}^{12}k=\\frac{12(13)}{2}-(1+2)=75\\).",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "There are \\(12-3+1=10\\) copies of the constant \\(-1\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "The sum is \\(4(75)-10=\\boxed{290}\\).",
+        "marks": 1
+      }
+    ]
+  },
+  {
+    "id": "SS-10",
+    "strand": "Series & sigma",
+    "topic": "Find the number of terms",
+    "level": "Stretch",
+    "marks": 6,
+    "prompt": "Let \\(S_n=\\displaystyle\\sum_{k=1}^{n}(3k+2)\\).\n\n**(a)** Show that \\(S_n=\\frac{3n^2+7n}{2}\\). **[3]**\n\n**(b)** Find the positive integer \\(n\\) for which \\(S_n=153\\). **[3]**",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "Write \\(S_n=3\\sum_{k=1}^{n}k+2\\sum_{k=1}^{n}1\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "Use \\(\\sum k=n(n+1)/2\\) and \\(\\sum 1=n\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "\\(S_n=\\frac{3n(n+1)}2+2n=\\boxed{\\frac{3n^2+7n}{2}}\\).",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "Set \\(\\frac{3n^2+7n}{2}=153\\), giving \\(3n^2+7n-306=0\\).",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "Factor \\((n-9)(3n+34)=0\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "\\(\\boxed{n=9}\\); discard \\(n=-\\frac{34}{3}\\) since \\(n\\) is a positive integer.",
+        "marks": 1
+      }
+    ]
+  },
+  {
+    "id": "SS-11",
+    "strand": "Series & sigma",
+    "topic": "From recurrence to explicit rule",
+    "level": "Stretch",
+    "marks": 5,
+    "prompt": "A sequence is defined by \\(u_1=4\\) and \\(u_{n+1}=u_n+2n\\) for \\(n\\ge1\\).\n\n**(a)** Write the first four terms. **[2]**\n\n**(b)** Find an explicit formula for \\(u_n\\). **[2]**\n\n**(c)** Hence calculate \\(u_{10}\\). **[1]**",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "Apply the update rule successively with \\(n=1,2,3\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "\\(\\boxed{4,6,10,16}\\).",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "\\(u_n=4+2\\sum_{k=1}^{n-1}k\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "\\(\\boxed{u_n=4+n(n-1)}\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "\\(u_{10}=4+10(9)=\\boxed{94}\\).",
+        "marks": 1
+      }
+    ]
+  },
+  {
+    "id": "SS-12",
+    "strand": "Applications",
+    "topic": "Compound interest",
+    "level": "Core",
+    "marks": 5,
+    "prompt": "A deposit of €1500 earns 4% compound interest at the end of each year. No further deposits or withdrawals are made.\n\n**(a)** Write a formula for its value after \\(n\\) years. **[2]**\n\n**(b)** Find its value after eight years, correct to the nearest cent. **[2]**\n\n**(c)** How much interest has been earned by then? **[1]**",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "Use a geometric growth factor \\(1+0.04=1.04\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "\\(\\boxed{A_n=1500(1.04)^n}\\).",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "Substitute \\(n=8\\) without rounding intermediate powers.",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "\\(A_8=1500(1.04)^8\\approx\\boxed{\\text{€}2052.85}\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "Interest earned \\(=2052.85-1500=\\boxed{\\text{€}552.85}\\).",
+        "marks": 1
+      }
+    ]
+  },
+  {
+    "id": "SS-13",
+    "strand": "Applications",
+    "topic": "Depreciation and logarithms",
+    "level": "Stretch",
+    "marks": 6,
+    "prompt": "A piece of equipment costs €8000. Its value decreases by 15% each year.\n\n**(a)** Find its value after four years, to the nearest cent. **[2]**\n\n**(b)** Find the first whole number of years after which its value is **below** €3000. **[4]**",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "The yearly multiplier is \\(1-0.15=0.85\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "\\(V_4=8000(0.85)^4=\\boxed{\\text{€}4176.05}\\).",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "Set up \\(8000(0.85)^n<3000\\).",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "Using logarithms and noting \\(\\ln(0.85)<0\\), obtain \\(n>\\frac{\\ln(3000/8000)}{\\ln(0.85)}\\approx6.035\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "The first whole number is \\(\\boxed{n=7}\\).",
+        "marks": 1
+      },
+      {
+        "code": "R1",
+        "text": "Check: \\(V_6\\approx\\text{€}3017.20>3000\\), while \\(V_7\\approx\\text{€}2564.62<3000\\).",
+        "marks": 1
+      }
+    ]
+  },
+  {
+    "id": "SS-14",
+    "strand": "Applications",
+    "topic": "Monthly savings",
+    "level": "Stretch",
+    "marks": 6,
+    "prompt": "A student deposits €200 at the **end** of each month into an account paying 0.5% interest per month. Interest is added monthly. Assume the rate stays fixed.\n\n**(a)** Express the balance immediately after the 24th deposit as a geometric series. **[2]**\n\n**(b)** Find the balance at that point, to the nearest cent. **[2]**\n\n**(c)** Find the interest earned, to the nearest cent. **[2]**",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "The last payment earns no interest yet; the first earns interest for 23 months.",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "Balance \\(=200\\bigl(1+1.005+\\cdots+1.005^{23}\\bigr)\\).",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "Use the finite geometric-series formula: \\(B=200\\frac{1.005^{24}-1}{1.005-1}\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "\\(B\\approx\\boxed{\\text{€}5086.39}\\).",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "Total paid in is \\(24(200)=\\text{€}4800\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "Interest \\(=5086.39-4800=\\boxed{\\text{€}286.39}\\).",
+        "marks": 1
+      }
+    ]
+  },
+  {
+    "id": "SS-15",
+    "strand": "Series & sigma",
+    "topic": "A telescoping series",
+    "level": "Stretch",
+    "marks": 7,
+    "prompt": "Define \\(S_n=\\displaystyle\\sum_{k=1}^{n}\\frac{1}{k(k+1)}\\).\n\n**(a)** Write \\(\\frac{1}{k(k+1)}\\) as a difference of two fractions. **[1]**\n\n**(b)** Hence find a formula for \\(S_n\\). **[2]**\n\n**(c)** Find \\(\\lim_{n\\to\\infty}S_n\\). **[1]**\n\n**(d)** Find the smallest positive integer \\(n\\) such that the remainder after \\(n\\) terms is strictly less than 0.01. **[3]**",
+    "scheme": [
+      {
+        "code": "A1",
+        "text": "\\(\\frac{1}{k(k+1)}=\\frac1k-\\frac{1}{k+1}\\).",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "Expand \\((1-\\frac12)+(\\frac12-\\frac13)+\\cdots+(\\frac1n-\\frac1{n+1})\\) and cancel intermediate terms.",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "\\(S_n=1-\\frac{1}{n+1}=\\boxed{\\frac{n}{n+1}}\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "\\(\\lim_{n\\to\\infty}S_n=\\boxed{1}\\).",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "The remainder is \\(S_\\infty-S_n=\\frac{1}{n+1}\\).",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "Solve \\(\\frac{1}{n+1}<0.01\\), so \\(n+1>100\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "\\(\\boxed{n=100}\\). For \\(n=99\\), the remainder is exactly 0.01, not less.",
+        "marks": 1
+      }
+    ]
+  },
+  {
+    "id": "SS-16",
+    "strand": "Synthesis",
+    "topic": "A race between two patterns",
+    "level": "Stretch",
+    "marks": 6,
+    "prompt": "Two sequences start at 4. Sequence A is arithmetic with common difference 3; sequence B is geometric with common ratio \\(\\frac32\\).\n\n**(a)** Write explicit formulas for \\(a_n\\) and \\(b_n\\). **[4]**\n\n**(b)** Find the smallest integer \\(n>1\\) for which \\(b_n>a_n\\). Show that no smaller \\(n>1\\) works. **[2]**",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "Use the arithmetic form \\(a_n=4+(n-1)3\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "\\(\\boxed{a_n=3n+1}\\).",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "Use the geometric form \\(b_n=4r^{n-1}\\) with \\(r=\\frac32\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "\\(\\boxed{b_n=4(\\frac32)^{n-1}}\\).",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "Compare \\(n=2\\): \\(6<7\\); \\(n=3\\): \\(9<10\\); \\(n=4\\): \\(13.5>13\\).",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "The first qualifying integer is \\(\\boxed{n=4}\\).",
+        "marks": 1
+      }
+    ]
+  }
+]

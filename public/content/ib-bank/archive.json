@@ -1,0 +1,2253 @@
+[
+  {
+    "id": "IB-1-01",
+    "sourceQuestion": 1,
+    "sourceFile": "Paper 1 - Questions and Examination Sessions.md",
+    "paper": "P1",
+    "topic": "Binomial Expansion",
+    "marks": 4,
+    "session": "May 2019",
+    "timeZone": "TZ1",
+    "code": "M19/5/MATHL/HP1/ENG/TZ1/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Determine the first three terms of \\((1 - 2x)^{11}\\) in ascending powers of \\(x\\), giving each term in its simplest form.",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "Use the first three binomial terms: \\(\\binom{11}{j}(-2x)^j\\) for \\(j=0,1,2\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "Simplify to \\(\\boxed{1-22x+220x^2}\\).",
+        "marks": 2
+      }
+    ],
+    "checks": [
+      {
+        "label": "Coefficient of x",
+        "value": -22
+      },
+      {
+        "label": "Coefficient of x²",
+        "value": 220
+      }
+    ],
+    "notices": []
+  },
+  {
+    "id": "IB-1-02",
+    "sourceQuestion": 2,
+    "sourceFile": "Paper 1 - Questions and Examination Sessions.md",
+    "paper": "P1",
+    "topic": "Arithmetic Sequences",
+    "marks": 5,
+    "session": "May 2021",
+    "timeZone": "TZ1",
+    "code": "M21/5/MATHL/HP1/ENG/TZ1/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Consider an arithmetic sequence where \\(u_8 = S_8 = 8\\). Find the value of the first term, \\(u_1\\), and the value of the common difference, \\(d\\).",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "Write \\(a+7d=8\\) and \\(S_8=4(2a+7d)=8\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "Solve \\(2a+7d=2\\): \\(\\boxed{a=-6,\\ d=2}\\).",
+        "marks": 2
+      },
+      {
+        "code": "R",
+        "text": "Check \\(u_8=-6+7(2)=8\\) and \\(S_8=4(-12+14)=8\\).",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "First term a",
+        "value": -6
+      },
+      {
+        "label": "Common difference d",
+        "value": 2
+      }
+    ],
+    "notices": []
+  },
+  {
+    "id": "IB-1-03",
+    "sourceQuestion": 3,
+    "sourceFile": "Paper 1 - Questions and Examination Sessions.md",
+    "paper": "P1",
+    "topic": "Geometric Sequences",
+    "marks": 4,
+    "session": "May 2019",
+    "timeZone": "TZ1",
+    "code": "M19/5/MATHL/HP1/ENG/TZ1/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "The first two terms of an infinite geometric sequence are 2 and \\(-\\frac{2}{3}\\).\n(a) Find the common ratio. [2]\n(b) Find the sum to infinity. [2]",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "Divide consecutive terms: \\(r=(-2/3)/2=\\boxed{-1/3}\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "Since \\(|r|<1\\), \\(S_\\infty=2/(1+1/3)=\\boxed{3/2}\\).",
+        "marks": 2
+      }
+    ],
+    "checks": [
+      {
+        "label": "Part (a): common ratio",
+        "value": -0.3333333333333333
+      },
+      {
+        "label": "Part (b): infinite sum",
+        "value": 1.5
+      }
+    ],
+    "notices": []
+  },
+  {
+    "id": "IB-1-04",
+    "sourceQuestion": 4,
+    "sourceFile": "Paper 1 - Questions and Examination Sessions.md",
+    "paper": "P1",
+    "topic": "Binomial Expansion",
+    "marks": 5,
+    "session": "May 2017",
+    "timeZone": "TZ2",
+    "code": "M17/5/MATHL/HP1/ENG/TZ2/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Find the term independent of \\(x\\) in the binomial expansion of \\(\\left(2x^2 + \\frac{1}{2x^3}\\right)^{10}\\).",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "Choosing \\(j\\) reciprocal terms gives exponent \\(2(10-j)-3j=20-5j\\); set it to zero, so \\(j=4\\).",
+        "marks": 2
+      },
+      {
+        "code": "M",
+        "text": "Form the constant coefficient \\(\\binom{10}{4}2^6(1/2)^4\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "The term independent of \\(x\\) is \\(\\boxed{840}\\).",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "Constant term",
+        "value": 840
+      }
+    ],
+    "notices": []
+  },
+  {
+    "id": "IB-1-05",
+    "sourceQuestion": 5,
+    "sourceFile": "Paper 1 - Questions and Examination Sessions.md",
+    "paper": "P1",
+    "topic": "Arithmetic Sequences",
+    "marks": 6,
+    "session": "November 2024",
+    "timeZone": "TZ0",
+    "code": "N24/5/MATHX/HP1/ENG/TZ0/XX/M",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "For a particular arithmetic sequence, \\(u_{10} = 16\\) and \\(S_{25} = 100\\). Find the value of \\(k\\) such that \\(u_k = 0\\).",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "Use \\(a+9d=16\\) and \\(S_{25}=25(a+12d)=100\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "Solve for \\(a=52\\) and \\(d=-4\\).",
+        "marks": 2
+      },
+      {
+        "code": "M",
+        "text": "Set \\(u_k=52-4(k-1)=0\\).",
+        "marks": 1
+      },
+      {
+        "code": "A",
+        "text": "Therefore \\(\\boxed{k=14}\\).",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "Index k",
+        "value": 14
+      }
+    ],
+    "notices": []
+  },
+  {
+    "id": "IB-1-06",
+    "sourceQuestion": 6,
+    "sourceFile": "Paper 1 - Questions and Examination Sessions.md",
+    "paper": "P1",
+    "topic": "Geometric Sequences",
+    "marks": 6,
+    "session": "May 2022",
+    "timeZone": "TZ1",
+    "code": "2226-5015",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Consider a geometric sequence, \\(u_n\\), with common ratio \\(r\\), where each term in the sequence is positive.\nIt is given that \\(u_6 = 1.6 \\times 10^5\\) and \\(u_8 = 6.4 \\times 10^5\\).\n(a) Find the value of \\(r\\). [3]\n(b) Find the value of \\(u_1\\), giving your answer in the form \\(a \\times 10^k\\), where \\(1 \\leq a < 10\\) and \\(k \\in \\mathbb{Z}\\). [3]",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "Divide the terms to get \\(r^2=u_8/u_6=4\\); positivity rules out a negative ratio.",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "\\(\\boxed{r=2}\\).",
+        "marks": 1
+      },
+      {
+        "code": "M",
+        "text": "Back-substitute \\(u_1=u_6/r^5=(1.6\\times10^5)/32\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "\\(\\boxed{u_1=5\\times10^3}\\).",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "Part (a): ratio r",
+        "value": 2
+      },
+      {
+        "label": "Part (b): first term",
+        "value": 5000
+      }
+    ],
+    "notices": [
+      "The supplied code also appears with different session or paper metadata at IB-2-23. Please verify against an original source."
+    ]
+  },
+  {
+    "id": "IB-1-07",
+    "sourceQuestion": 7,
+    "sourceFile": "Paper 1 - Questions and Examination Sessions.md",
+    "paper": "P1",
+    "topic": "Binomial Expansion",
+    "marks": 5,
+    "session": "May 2021",
+    "timeZone": "TZ2",
+    "code": "M21/5/MATHX/HP1/ENG/TZ2/XX/M",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "In the expansion of \\((x + k)^7\\), where \\(k \\in \\mathbb{R}\\), the coefficient of the term in \\(x^5\\) is 63. Find the possible values of \\(k\\).",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "The coefficient of \\(x^5\\) in \\((x+k)^7\\) is \\(\\binom{7}{2}k^2=21k^2\\).",
+        "marks": 2
+      },
+      {
+        "code": "M",
+        "text": "Equate \\(21k^2=63\\), so \\(k^2=3\\).",
+        "marks": 1
+      },
+      {
+        "code": "A",
+        "text": "Both real solutions are needed: \\(\\boxed{k=\\pm\\sqrt3}\\).",
+        "marks": 2
+      }
+    ],
+    "checks": [
+      {
+        "label": "Positive value of k",
+        "value": 1.7320508075688772
+      },
+      {
+        "label": "Negative value of k",
+        "value": -1.7320508075688772
+      }
+    ],
+    "notices": []
+  },
+  {
+    "id": "IB-1-08",
+    "sourceQuestion": 8,
+    "sourceFile": "Paper 1 - Questions and Examination Sessions.md",
+    "paper": "P1",
+    "topic": "Arithmetic Sequences",
+    "marks": 5,
+    "session": "May 2025",
+    "timeZone": "TZ1",
+    "code": "May 2025 P1 TZ1",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Bob invests 1000 dinar in an account which pays a nominal annual interest rate of 4% compounded **quarterly**.\nThe amount of money in the account after one complete year can be written as \\(1000(1 + k)^4\\) where \\(k \\in \\mathbb{Q}\\).\n(a) Write down the value of \\(k\\). [1]\n(b) Expand and simplify \\((1 + x)^4\\). [2]\n(c) Hence or otherwise, find the amount of money in the account after one complete year, giving your answer correct to the nearest dinar. [4]",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "The quarterly rate is \\(k=0.04/4=\\boxed{1/100}\\).",
+        "marks": 1
+      },
+      {
+        "code": "A",
+        "text": "\\((1+x)^4=1+4x+6x^2+4x^3+x^4\\).",
+        "marks": 1
+      },
+      {
+        "code": "M",
+        "text": "Use \\(1000(1.01)^4=1040.60401\\).",
+        "marks": 1
+      },
+      {
+        "code": "A",
+        "text": "To the nearest dinar, \\(\\boxed{1041}\\).",
+        "marks": 2
+      }
+    ],
+    "checks": [
+      {
+        "label": "Part (a): quarterly rate k",
+        "value": 0.01
+      },
+      {
+        "label": "Part (c): nearest dinar",
+        "value": 1041
+      }
+    ],
+    "notices": [
+      "The supplied part labels total 7 marks, while the supplied question header says 5. This guide uses the header total; neither allocation is verified.",
+      "The supplied topic says Arithmetic Sequences, but the prompt is about compound interest and binomial expansion."
+    ]
+  },
+  {
+    "id": "IB-1-09",
+    "sourceQuestion": 9,
+    "sourceFile": "Paper 1 - Questions and Examination Sessions.md",
+    "paper": "P1",
+    "topic": "Geometric Sequences",
+    "marks": 7,
+    "session": "May 2013",
+    "timeZone": "TZ2",
+    "code": "M13/5/MATHL/HP1/ENG/TZ2/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "A geometric sequence has first term \\(a\\), common ratio \\(r\\) and sum to infinity 76. A second geometric sequence has first term \\(a\\), common ratio \\(r^3\\) and sum to infinity 36. Find \\(r\\).",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "Write \\(a=76(1-r)=36(1-r^3)\\) using both infinite-sum formulas.",
+        "marks": 2
+      },
+      {
+        "code": "M",
+        "text": "As \\(|r|<1\\), divide by \\(1-r\\): \\(76=36(1+r+r^2)\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "Solving gives \\(r=2/3\\) or \\(r=-5/3\\).",
+        "marks": 2
+      },
+      {
+        "code": "R",
+        "text": "Only \\(\\boxed{r=2/3}\\) has \\(|r|<1\\) and thus admits a sum to infinity.",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "Convergent ratio r",
+        "value": 0.6666666666666666
+      }
+    ],
+    "notices": []
+  },
+  {
+    "id": "IB-1-10",
+    "sourceQuestion": 10,
+    "sourceFile": "Paper 1 - Questions and Examination Sessions.md",
+    "paper": "P1",
+    "topic": "Arithmetic Sequences",
+    "marks": 7,
+    "session": "November 2023",
+    "timeZone": "TZ0",
+    "code": "N23/5/MATHX/HP1/ENG/TZ0/XX/M",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "The sum of the first \\(n\\) terms of an arithmetic sequence is given by \\(S_n = pn^2 - qn\\), where \\(p\\) and \\(q\\) are positive constants. It is given that \\(S_4 = 40\\) and \\(S_5 = 65\\).\n(a) Find the value of \\(p\\) and the value of \\(q\\). [5]\n(b) Find the value of \\(u_5\\). [2]",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "Substitute \\(n=4,5\\): \\(16p-4q=40\\) and \\(25p-5q=65\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "\\(\\boxed{p=3,\\ q=2}\\).",
+        "marks": 3
+      },
+      {
+        "code": "M",
+        "text": "Use \\(u_5=S_5-S_4\\).",
+        "marks": 1
+      },
+      {
+        "code": "A",
+        "text": "\\(\\boxed{u_5=65-40=25}\\).",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "Part (a): p",
+        "value": 3
+      },
+      {
+        "label": "Part (a): q",
+        "value": 2
+      },
+      {
+        "label": "Part (b): fifth term",
+        "value": 25
+      }
+    ],
+    "notices": []
+  },
+  {
+    "id": "IB-1-11",
+    "sourceQuestion": 11,
+    "sourceFile": "Paper 1 - Questions and Examination Sessions.md",
+    "paper": "P1",
+    "topic": "Binomial Expansion",
+    "marks": 5,
+    "session": "November 2023",
+    "timeZone": "TZ0",
+    "code": "N23/5/MATHX/HP1/ENG/TZ0/XX/M",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "The binomial expansion of \\((1 + kx)^n\\) is given by \\(1 + 12x + 28k^2x^2 + \\dots + k^n x^n\\) where \\(n \\in \\mathbb{Z}^+\\) and \\(k \\in \\mathbb{Q}\\). Find the value of \\(n\\) and the value of \\(k\\).",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "Compare the \\(x^2\\) coefficients: \\(\\binom n2 k^2=28k^2\\). As \\(nk=12\\), \\(k\\ne0\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "\\(\\binom n2=28\\) gives \\(\\boxed{n=8}\\).",
+        "marks": 1
+      },
+      {
+        "code": "M",
+        "text": "From the linear coefficient, \\(nk=12\\).",
+        "marks": 1
+      },
+      {
+        "code": "A",
+        "text": "\\(\\boxed{k=3/2}\\).",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "Exponent n",
+        "value": 8
+      },
+      {
+        "label": "Constant k",
+        "value": 1.5
+      }
+    ],
+    "notices": []
+  },
+  {
+    "id": "IB-1-12",
+    "sourceQuestion": 12,
+    "sourceFile": "Paper 1 - Questions and Examination Sessions.md",
+    "paper": "P1",
+    "topic": "Binomial Expansion",
+    "marks": 5,
+    "session": "May 2012",
+    "timeZone": "TZ2",
+    "code": "M12/5/MATHL/HP1/ENG/TZ2/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "(a) Expand and simplify \\(\\left(x - \\frac{2}{x}\\right)^4\\). [3]\n(b) Hence determine the constant term in the expansion \\((2x^2 + 1)\\left(x - \\frac{2}{x}\\right)^4\\). [2]",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "Expand with the binomial theorem and combine powers of \\(x\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "\\((x-2/x)^4=x^4-8x^2+24-32x^{-2}+16x^{-4}\\).",
+        "marks": 1
+      },
+      {
+        "code": "M",
+        "text": "In \\((2x^2+1)\\) times this expansion, the constant contributions are \\(2x^2(-32x^{-2})\\) and \\(1(24)\\).",
+        "marks": 1
+      },
+      {
+        "code": "A",
+        "text": "Constant term \\(\\boxed{-40}\\).",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "Part (b): constant term",
+        "value": -40
+      }
+    ],
+    "notices": []
+  },
+  {
+    "id": "IB-1-13",
+    "sourceQuestion": 13,
+    "sourceFile": "Paper 1 - Questions and Examination Sessions.md",
+    "paper": "P1",
+    "topic": "Geometric Sequences",
+    "marks": 6,
+    "session": "May 2022",
+    "timeZone": "TZ1",
+    "code": "2226-5025",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Consider an infinite convergent geometric sequence, with first three terms \\(u_1, u_2, u_3\\). The sum of the first \\(k\\) terms of this sequence is equal to half of the sum of the infinite geometric sequence. It is given that \\(u_{k+1} = \\frac{1}{16}\\).\n(a) Show that \\(u_1 = \\frac{1}{8}\\). [4]\n(b) Find \\(u_{2k+1}\\). [2]",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "Use \\(S_k/S_\\infty=1-r^k=1/2\\), giving \\(r^k=1/2\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "Since \\(u_{k+1}=u_1r^k=1/16\\), \\(\\boxed{u_1=1/8}\\).",
+        "marks": 2
+      },
+      {
+        "code": "M",
+        "text": "\\(u_{2k+1}=u_1r^{2k}=u_1(r^k)^2\\).",
+        "marks": 1
+      },
+      {
+        "code": "A",
+        "text": "\\(\\boxed{u_{2k+1}=1/32}\\).",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "Part (a): first term",
+        "value": 0.125
+      },
+      {
+        "label": "Part (b): term",
+        "value": 0.03125
+      }
+    ],
+    "notices": [
+      "The supplied code also appears with different session or paper metadata at IB-2-28. Please verify against an original source."
+    ]
+  },
+  {
+    "id": "IB-1-14",
+    "sourceQuestion": 14,
+    "sourceFile": "Paper 1 - Questions and Examination Sessions.md",
+    "paper": "P1",
+    "topic": "Binomial Expansion",
+    "marks": 6,
+    "session": "May 2016",
+    "timeZone": "TZ2",
+    "code": "M16/5/MATHL/HP1/ENG/TZ2/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Consider the expansion of \\((1 + x)^n\\) in ascending powers of \\(x\\), where \\(n \\geq 3\\).\n(a) Write down the first four terms of the expansion. [2]\nThe coefficients of the second, third and fourth terms of the expansion are consecutive terms of an arithmetic sequence.\n(b) (i) Show that \\(n^3 - 9n^2 + 14n = 0\\).\n(ii) Hence find the value of \\(n\\). [6]",
+    "scheme": [
+      {
+        "code": "A",
+        "text": "First four terms: \\(1+nx+\\frac{n(n-1)}2x^2+\\frac{n(n-1)(n-2)}6x^3\\).",
+        "marks": 1
+      },
+      {
+        "code": "M",
+        "text": "Consecutive arithmetic coefficients satisfy \\(n+\\binom n3=2\\binom n2\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "Rearrange to \\(n(n^2-9n+14)=n(n-7)(n-2)=0\\).",
+        "marks": 2
+      },
+      {
+        "code": "R",
+        "text": "With \\(n\\ge3\\), conclude \\(\\boxed{n=7}\\).",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "Part (b): exponent n",
+        "value": 7
+      }
+    ],
+    "notices": [
+      "The supplied part labels total 8 marks, while the supplied question header says 6. This guide uses the header total; neither allocation is verified."
+    ]
+  },
+  {
+    "id": "IB-1-15",
+    "sourceQuestion": 15,
+    "sourceFile": "Paper 1 - Questions and Examination Sessions.md",
+    "paper": "P1",
+    "topic": "Binomial Expansion",
+    "marks": 7,
+    "session": "November 2015",
+    "timeZone": "TZ0",
+    "code": "N15/5/MATHL/HP1/ENG/TZ0/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "(a) Write down and simplify the expansion of \\((2 + x)^4\\) in ascending powers of \\(x\\). [3]\n(b) Hence find the exact value of \\((2.1)^4\\). [3]",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "Use \\(\\binom4j 2^{4-j}x^j\\), for \\(j=0,\\ldots,4\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "\\((2+x)^4=16+32x+24x^2+8x^3+x^4\\).",
+        "marks": 2
+      },
+      {
+        "code": "M",
+        "text": "Take \\(x=0.1\\), or equivalently compute \\(21^4/10^4\\).",
+        "marks": 1
+      },
+      {
+        "code": "A",
+        "text": "\\(\\boxed{(2.1)^4=19.4481}\\).",
+        "marks": 2
+      }
+    ],
+    "checks": [
+      {
+        "label": "Part (b): (2.1)^4",
+        "value": 19.4481,
+        "tolerance": 0.00001
+      }
+    ],
+    "notices": [
+      "The supplied part labels total 6 marks, while the supplied question header says 7. This guide uses the header total; neither allocation is verified."
+    ]
+  },
+  {
+    "id": "IB-1-16",
+    "sourceQuestion": 16,
+    "sourceFile": "Paper 1 - Questions and Examination Sessions.md",
+    "paper": "P1",
+    "topic": "Geometric Sequences",
+    "marks": 7,
+    "session": "May 2011",
+    "timeZone": "TZ1",
+    "code": "M11/5/MATHL/HP1/ENG/TZ1/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "A geometric sequence \\(u_1, u_2, u_3, \\dots\\) has \\(u_1 = 27\\) and a sum to infinity of \\(\\frac{81}{2}\\).\n(a) Find the common ratio of the geometric sequence. [2]\nAn arithmetic sequence \\(v_1, v_2, v_3, \\dots\\) is such that \\(v_2 = u_2\\) and \\(v_4 = u_4\\).\n(b) Find the greatest value of \\(N\\) such that \\(\\sum_{n=1}^{N} v_n > 0\\). [5]",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "From \\(27/(1-r)=81/2\\), obtain \\(1-r=2/3\\).",
+        "marks": 1
+      },
+      {
+        "code": "A",
+        "text": "\\(\\boxed{r=1/3}\\).",
+        "marks": 1
+      },
+      {
+        "code": "M",
+        "text": "Now \\(u_2=9\\) and \\(u_4=1\\). Hence \\(v_1=13\\), \\(d=(1-9)/2=-4\\).",
+        "marks": 2
+      },
+      {
+        "code": "M",
+        "text": "\\(\\sum_{n=1}^{N}v_n=\\frac N2(26-4(N-1))=N(15-2N)>0\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "The largest positive integer satisfying \\(N<7.5\\) is \\(\\boxed{N=7}\\).",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "Part (a): ratio",
+        "value": 0.3333333333333333
+      },
+      {
+        "label": "Part (b): greatest N",
+        "value": 7
+      }
+    ],
+    "notices": []
+  },
+  {
+    "id": "IB-1-17",
+    "sourceQuestion": 17,
+    "sourceFile": "Paper 1 - Questions and Examination Sessions.md",
+    "paper": "P1",
+    "topic": "Binomial Expansion",
+    "marks": 17,
+    "session": "May 2025",
+    "timeZone": "TZ2",
+    "code": "May 2025 P1 TZ2",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "(a) Find the first four terms in the binomial expansion of \\(\\sqrt{1 + 5x}\\) in ascending powers of \\(x\\). [4]\nConsider the expression \\((1 + px)(1 + qx)^{-1}\\), where \\(p, q \\in \\mathbb{Q}\\).\n(b) Find the expansion of \\((1 + px)(1 + qx)^{-1}\\) in ascending powers of \\(x\\), up to and including the term in \\(x^2\\). [3]\nThe expansions found in parts (a) and (b) are identical up to the first three terms, for a value of \\(p\\) and a value of \\(q\\).\n(c) Show that \\(q = \\frac{5}{4}\\). [4]\n(d) The expression \\(\\frac{1 + px}{1 + qx}\\), with \\(p = \\frac{15}{4}\\) and \\(q = \\frac{5}{4}\\), can be used as an approximation for \\(\\sqrt{1 + 5x}\\) where \\(|x| < \\frac{1}{5}\\).\n(i) Hence, by finding a suitable value for \\(x\\), find the approximation for \\(\\sqrt{1.2}\\) in the form \\(\\frac{m}{n}\\), where \\(m, n \\in \\mathbb{Z}\\).\n(ii) Now consider the approximation for \\(\\frac{\\sqrt{5}}{2}\\). Explain why the approximation for \\(\\frac{\\sqrt{5}}{2}\\) is not as accurate as the approximation for \\(\\sqrt{1.2}\\). [6]",
+    "scheme": [
+      {
+        "code": "Part a",
+        "text": "Generalized binomial expansion: \\(\\sqrt{1+5x}=1+\\frac52x-\\frac{25}8x^2+\\frac{125}{16}x^3+\\cdots\\), valid for \\(|5x|<1\\).",
+        "marks": 4
+      },
+      {
+        "code": "Part b",
+        "text": "Multiply \\((1+px)(1-qx+q^2x^2+\\cdots)\\) to obtain \\(1+(p-q)x+(q^2-pq)x^2+\\cdots\\).",
+        "marks": 3
+      },
+      {
+        "code": "Part c",
+        "text": "Match \\(p-q=5/2\\) and \\(-q(p-q)=-25/8\\), so \\(\\boxed{q=5/4}\\) and \\(\\boxed{p=15/4}\\).",
+        "marks": 4
+      },
+      {
+        "code": "Part d",
+        "text": "For \\(\\sqrt{1.2}\\), take \\(x=1/25\\): \\(\\boxed{23/21}\\). For \\(\\sqrt5/2=\\sqrt{5/4}\\), take \\(x=1/20\\): \\(19/17\\). The latter has larger \\(|x|\\), so truncation and rational approximation error are larger.",
+        "marks": 6
+      }
+    ],
+    "checks": [
+      {
+        "label": "Part (c): q",
+        "value": 1.25
+      },
+      {
+        "label": "Part (c): p",
+        "value": 3.75
+      },
+      {
+        "label": "Part (d)(i): rational approximation",
+        "value": 1.0952380952380953,
+        "tolerance": 0.00001
+      }
+    ],
+    "notices": []
+  },
+  {
+    "id": "IB-2-01",
+    "sourceQuestion": 1,
+    "sourceFile": "Paper 2 - Questions and Examination Sessions.md",
+    "paper": "P2",
+    "topic": "Binomial Expansion",
+    "marks": 5,
+    "session": "November 2016",
+    "timeZone": "TZ0",
+    "code": "N16/5/MATHL/HP2/ENG/TZ0/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Find the constant term in the expansion of \\(\\left(4x^2 - \\frac{3}{2x}\\right)^{12}\\).",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "Selecting \\(j\\) reciprocal terms gives \\(x^{24-3j}\\). For a constant set \\(j=8\\).",
+        "marks": 2
+      },
+      {
+        "code": "M",
+        "text": "Evaluate \\(\\binom{12}{8}4^4(-3/2)^8\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "Constant term \\(\\boxed{3\\,247\\,695}\\).",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "Constant term",
+        "value": 3247695
+      }
+    ],
+    "notices": []
+  },
+  {
+    "id": "IB-2-02",
+    "sourceQuestion": 2,
+    "sourceFile": "Paper 2 - Questions and Examination Sessions.md",
+    "paper": "P1",
+    "topic": "Binomial Expansion",
+    "marks": 4,
+    "session": "May 2005",
+    "timeZone": "TZ1",
+    "code": "M05/5/MATHL/HP1/ENG/TZ1/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Find the coefficient of \\(x\\) in the expansion of \\(\\left(3x - \\frac{2}{x}\\right)^5\\).",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "A term with \\(j\\) reciprocal factors has power \\(x^{5-2j}\\); set \\(5-2j=1\\) to get \\(j=2\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "Coefficient \\(\\binom52 3^3(-2)^2=\\boxed{1080}\\).",
+        "marks": 2
+      }
+    ],
+    "checks": [
+      {
+        "label": "Coefficient of x",
+        "value": 1080
+      }
+    ],
+    "notices": [
+      "Filed under Paper 2 in the supplied document, but its own metadata says P1. Shown under P1."
+    ]
+  },
+  {
+    "id": "IB-2-03",
+    "sourceQuestion": 3,
+    "sourceFile": "Paper 2 - Questions and Examination Sessions.md",
+    "paper": "P1",
+    "topic": "Binomial Expansion",
+    "marks": 6,
+    "session": "November 2007",
+    "timeZone": "TZ0",
+    "code": "N07/5/MATHL/HP1/ENG/TZ0/XX+",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Find the coefficient of the \\(x^3\\) term in the expansion of \\(\\left(2 - \\frac{3x}{2}\\right)^6\\).",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "Take the \\(j=3\\) binomial term: \\(\\binom63 2^3(-3x/2)^3\\).",
+        "marks": 2
+      },
+      {
+        "code": "M",
+        "text": "Compute its signed numerical coefficient before multiplying by \\(x^3\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "Coefficient of \\(x^3\\) is \\(\\boxed{-540}\\).",
+        "marks": 2
+      }
+    ],
+    "checks": [
+      {
+        "label": "Coefficient of x³",
+        "value": -540
+      }
+    ],
+    "notices": [
+      "Filed under Paper 2 in the supplied document, but its own metadata says P1. Shown under P1."
+    ]
+  },
+  {
+    "id": "IB-2-04",
+    "sourceQuestion": 4,
+    "sourceFile": "Paper 2 - Questions and Examination Sessions.md",
+    "paper": "P2",
+    "topic": "Geometric Sequences",
+    "marks": 5,
+    "session": "Specimen Paper",
+    "timeZone": "TZ0",
+    "code": "SPEC/5/MATHL/HP2/ENG/TZ0/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "The first term and the common ratio of a geometric series are denoted, respectively, by \\(a\\) and \\(r\\) where \\(a, r \\in \\mathbb{Q}\\). Given that the third term is 9 and the sum to infinity is 64, find the value of \\(a\\) and the value of \\(r\\).",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "Use \\(ar^2=9\\), \\(a/(1-r)=64\\) and \\(|r|<1\\); substitute \\(a=64(1-r)\\).",
+        "marks": 2
+      },
+      {
+        "code": "M",
+        "text": "Factor \\(64r^2(1-r)-9=-(4r-3)(16r^2-4r-3)=0\\). The quadratic roots are irrational and \\(r\\in\\mathbb Q\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "Thus \\(\\boxed{r=3/4,\\ a=16}\\); check \\(16(3/4)^2=9\\).",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "Common ratio r",
+        "value": 0.75
+      },
+      {
+        "label": "First term a",
+        "value": 16
+      }
+    ],
+    "notices": []
+  },
+  {
+    "id": "IB-2-05",
+    "sourceQuestion": 5,
+    "sourceFile": "Paper 2 - Questions and Examination Sessions.md",
+    "paper": "P2",
+    "topic": "Arithmetic Sequences",
+    "marks": 6,
+    "session": "November 2012",
+    "timeZone": "TZ0",
+    "code": "N12/5/MATHL/HP2/ENG/TZ0/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Find the sum of all the multiples of 3 between 100 and 500.",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "First and last multiples strictly between 100 and 500 are \\(102\\) and \\(498\\).",
+        "marks": 2
+      },
+      {
+        "code": "M",
+        "text": "There are \\(n=(498-102)/3+1=133\\) terms.",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "\\(S=133(102+498)/2=\\boxed{39900}\\).",
+        "marks": 2
+      }
+    ],
+    "checks": [
+      {
+        "label": "Sum",
+        "value": 39900
+      }
+    ],
+    "notices": []
+  },
+  {
+    "id": "IB-2-06",
+    "sourceQuestion": 6,
+    "sourceFile": "Paper 2 - Questions and Examination Sessions.md",
+    "paper": "P2",
+    "topic": "Arithmetic Sequences",
+    "marks": 6,
+    "session": "May 2014",
+    "timeZone": "TZ2",
+    "code": "M14/5/MATHL/HP2/ENG/TZ2/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "(a) (i) Find the sum of all integers, between 10 and 200, which are divisible by 7.\n(ii) Express the above sum using sigma notation. [4]\nAn arithmetic sequence has first term 1000 and common difference of \\(-6\\). The sum of the first \\(n\\) terms of this sequence is negative.\n(b) Find the least value of \\(n\\). [2]",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "Multiples of 7 are \\(14,21,\\ldots,196\\), a total of \\(27\\) terms.",
+        "marks": 1
+      },
+      {
+        "code": "A",
+        "text": "\\(S=27(14+196)/2=\\boxed{2835}\\).",
+        "marks": 1
+      },
+      {
+        "code": "R",
+        "text": "Equivalent sigma form: \\(\\displaystyle\\sum_{k=2}^{28}7k\\).",
+        "marks": 2
+      },
+      {
+        "code": "M",
+        "text": "For the second sequence \\(S_n=\\frac n2[2000-6(n-1)]=n(1003-3n)<0\\) requires \\(n>1003/3\\).",
+        "marks": 1
+      },
+      {
+        "code": "A",
+        "text": "Least integer \\(\\boxed{n=335}\\).",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "Part (a)(i): sum",
+        "value": 2835
+      },
+      {
+        "label": "Part (b): least n",
+        "value": 335
+      }
+    ],
+    "notices": []
+  },
+  {
+    "id": "IB-2-07",
+    "sourceQuestion": 7,
+    "sourceFile": "Paper 2 - Questions and Examination Sessions.md",
+    "paper": "P2",
+    "topic": "Binomial Expansion",
+    "marks": 6,
+    "session": "November 2019",
+    "timeZone": "TZ0",
+    "code": "N19/5/MATHL/HP2/ENG/TZ0/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Consider the expansion of \\((2 + x)^n\\), where \\(n \\geq 3\\) and \\(n \\in \\mathbb{Z}\\).\nThe coefficient of \\(x^3\\) is four times the coefficient of \\(x^2\\). Find the value of \\(n\\).",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "Coefficients are \\(\\binom n3 2^{n-3}\\) and \\(\\binom n2 2^{n-2}\\).",
+        "marks": 2
+      },
+      {
+        "code": "M",
+        "text": "Their ratio is \\((n-2)/6\\); set \\((n-2)/6=4\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "\\(\\boxed{n=26}\\).",
+        "marks": 2
+      }
+    ],
+    "checks": [
+      {
+        "label": "Exponent n",
+        "value": 26
+      }
+    ],
+    "notices": []
+  },
+  {
+    "id": "IB-2-08",
+    "sourceQuestion": 8,
+    "sourceFile": "Paper 2 - Questions and Examination Sessions.md",
+    "paper": "P2",
+    "topic": "Binomial Expansion",
+    "marks": 5,
+    "session": "November 2018",
+    "timeZone": "TZ0",
+    "code": "N18/5/MATHL/HP2/ENG/TZ0/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Find the value of the constant term in the expansion of \\(x^4\\left(x + \\frac{3}{x^2}\\right)^5\\).",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "With \\(j\\) reciprocal factors, the overall exponent is \\(4+5-3j=9-3j\\), so \\(j=3\\).",
+        "marks": 2
+      },
+      {
+        "code": "M",
+        "text": "Constant coefficient \\(\\binom53 3^3\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "\\(\\boxed{270}\\).",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "Constant term",
+        "value": 270
+      }
+    ],
+    "notices": []
+  },
+  {
+    "id": "IB-2-09",
+    "sourceQuestion": 9,
+    "sourceFile": "Paper 2 - Questions and Examination Sessions.md",
+    "paper": "P2",
+    "topic": "Geometric Sequences",
+    "marks": 6,
+    "session": "May 2016",
+    "timeZone": "TZ2",
+    "code": "M16/5/MATHL/HP2/ENG/TZ2/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "The sum of the second and third terms of a geometric sequence is 96.\nThe sum to infinity of this sequence is 500.\nFind the possible values for the common ratio, \\(r\\).",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "Use \\(ar(1+r)=96\\) and \\(a=500(1-r)\\), with \\(|r|<1\\).",
+        "marks": 2
+      },
+      {
+        "code": "M",
+        "text": "Obtain \\(500r(1-r^2)=96\\), or \\((5r-1)(25r^2+5r-24)=0\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "The valid ratios are \\(\\boxed{r=1/5}\\) and \\(\\boxed{r=(\\sqrt{97}-1)/10}\\). The third root is less than \\(-1\\) and does not converge.",
+        "marks": 2
+      }
+    ],
+    "checks": [
+      {
+        "label": "First valid ratio r",
+        "value": 0.2
+      },
+      {
+        "label": "Second valid ratio r",
+        "value": 0.8848857801796104
+      }
+    ],
+    "notices": []
+  },
+  {
+    "id": "IB-2-10",
+    "sourceQuestion": 10,
+    "sourceFile": "Paper 2 - Questions and Examination Sessions.md",
+    "paper": "P2",
+    "topic": "Arithmetic Sequences",
+    "marks": 5,
+    "session": "November 2022",
+    "timeZone": "TZ0",
+    "code": "N22/5/MATHX/HP2/ENG/TZ0/XX/M",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "A geometric sequence has a first term of 50 and a fourth term of 86.4.\nThe sum of the first \\(n\\) terms of the sequence is \\(S_n\\).\nFind the smallest value of \\(n\\) such that \\(S_n > 33\\,500\\).",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "From \\(50r^3=86.4\\), obtain \\(r=1.2\\).",
+        "marks": 2
+      },
+      {
+        "code": "M",
+        "text": "Use \\(S_n=50(1.2^n-1)/0.2=250(1.2^n-1)\\).",
+        "marks": 1
+      },
+      {
+        "code": "A",
+        "text": "Solve \\(1.2^n>135\\); \\(n>26.904\\ldots\\), so least \\(\\boxed{n=27}\\).",
+        "marks": 2
+      }
+    ],
+    "checks": [
+      {
+        "label": "Smallest n",
+        "value": 27
+      }
+    ],
+    "notices": [
+      "The supplied topic says Arithmetic Sequences, but the prompt explicitly describes a geometric sequence."
+    ]
+  },
+  {
+    "id": "IB-2-11",
+    "sourceQuestion": 11,
+    "sourceFile": "Paper 2 - Questions and Examination Sessions.md",
+    "paper": "P2",
+    "topic": "Binomial Expansion",
+    "marks": 6,
+    "session": "November 2022",
+    "timeZone": "TZ0",
+    "code": "N22/5/MATHX/HP2/ENG/TZ0/XX/M",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Consider the expansion of \\(\\frac{(ax + 1)^9}{21x^2}\\), where \\(a \\neq 0\\). The coefficient of the term in \\(x^4\\) is \\(\\frac{8}{7}a^5\\).\nFind the value of \\(a\\).",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "An \\(x^4\\) term after division by \\(x^2\\) comes from \\(x^6\\) in \\((1+ax)^9\\), giving \\(\\binom96a^6/21=4a^6\\).",
+        "marks": 2
+      },
+      {
+        "code": "M",
+        "text": "Equate \\(4a^6=(8/7)a^5\\); since \\(a\\ne0\\), divide by \\(a^5\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "\\(\\boxed{a=2/7}\\).",
+        "marks": 2
+      }
+    ],
+    "checks": [
+      {
+        "label": "Constant a",
+        "value": 0.2857142857142857
+      }
+    ],
+    "notices": []
+  },
+  {
+    "id": "IB-2-12",
+    "sourceQuestion": 12,
+    "sourceFile": "Paper 2 - Questions and Examination Sessions.md",
+    "paper": "P2",
+    "topic": "Binomial Expansion",
+    "marks": 6,
+    "session": "May 2014",
+    "timeZone": "TZ2",
+    "code": "M14/5/MATHL/HP2/ENG/TZ2/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Find the coefficient of \\(x^{-2}\\) in the expansion of \\((x - 1)^3\\left(\\frac{1}{x} + 2x\\right)^6\\).",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "To make \\(x^{-2}\\), pair \\(-1\\) in \\((x-1)^3\\) with \\(x^{-2}\\), or pair \\(-3x^2\\) with \\(x^{-4}\\) in the other factor.",
+        "marks": 2
+      },
+      {
+        "code": "M",
+        "text": "The contributions are \\(-\\binom62 2^2=-60\\) and \\(-3\\binom61 2=-36\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "Total coefficient \\(\\boxed{-96}\\).",
+        "marks": 2
+      }
+    ],
+    "checks": [
+      {
+        "label": "Coefficient of x⁻²",
+        "value": -96
+      }
+    ],
+    "notices": []
+  },
+  {
+    "id": "IB-2-13",
+    "sourceQuestion": 13,
+    "sourceFile": "Paper 2 - Questions and Examination Sessions.md",
+    "paper": "P2",
+    "topic": "Arithmetic Sequences",
+    "marks": 7,
+    "session": "November 2013",
+    "timeZone": "TZ0",
+    "code": "N13/5/MATHL/HP2/ENG/TZ0/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "The fourth term in an arithmetic sequence is 34 and the tenth term is 76.\n(a) Find the first term and the common difference. [3]\n(b) The sum of the first \\(n\\) terms exceeds 5000. Find the least possible value of \\(n\\). [4]",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "Use \\(a+3d=34\\) and \\(a+9d=76\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "\\(\\boxed{a=13,\\ d=7}\\).",
+        "marks": 1
+      },
+      {
+        "code": "M",
+        "text": "\\(S_n=\\frac n2(26+7(n-1))=n(7n+19)/2>5000\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "The least integer above the positive threshold \\(36.46\\ldots\\) is \\(\\boxed{n=37}\\).",
+        "marks": 2
+      }
+    ],
+    "checks": [
+      {
+        "label": "Part (a): first term",
+        "value": 13
+      },
+      {
+        "label": "Part (a): difference",
+        "value": 7
+      },
+      {
+        "label": "Part (b): least n",
+        "value": 37
+      }
+    ],
+    "notices": []
+  },
+  {
+    "id": "IB-2-14",
+    "sourceQuestion": 14,
+    "sourceFile": "Paper 2 - Questions and Examination Sessions.md",
+    "paper": "P2",
+    "topic": "Arithmetic and Geometric Sequences",
+    "marks": 6,
+    "session": "May 2013",
+    "timeZone": "TZ2",
+    "code": "M13/5/MATHL/HP2/ENG/TZ2/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "The arithmetic sequence \\(\\{u_n : n \\in \\mathbb{Z}^+\\}\\) has first term \\(u_1 = 1.6\\) and common difference \\(d = 1.5\\). The geometric sequence \\(\\{v_n : n \\in \\mathbb{Z}^+\\}\\) has first term \\(v_1 = 3\\) and common ratio \\(r = 1.2\\).\n(a) Find an expression for \\(u_n - v_n\\) in terms of \\(n\\). [2]\n(b) Determine the set of values of \\(n\\) for which \\(u_n > v_n\\). [3]\n(c) Determine the greatest value of \\(u_n - v_n\\). Give your answer correct to four significant figures. [1]",
+    "scheme": [
+      {
+        "code": "A",
+        "text": "\\(u_n-v_n=1.6+1.5(n-1)-3(1.2)^{n-1}\\).",
+        "marks": 1
+      },
+      {
+        "code": "M",
+        "text": "Compare integer values or solve numerically. \\(u_2-v_2<0\\), \\(u_3-v_3>0\\), \\(u_9-v_9>0\\), and \\(u_{10}-v_{10}<0\\).",
+        "marks": 2
+      },
+      {
+        "code": "M",
+        "text": "The difference peaks at integer \\(n=7\\); neighboring values at \\(n=6,8\\) are smaller.",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "\\(\\boxed{u_n>v_n\\text{ for }n=3,4,\\ldots,9}\\); greatest difference \\(\\boxed{1.642}\\) (4 s.f.).",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "Part (b): first n",
+        "value": 3
+      },
+      {
+        "label": "Part (b): last n",
+        "value": 9
+      },
+      {
+        "label": "Part (c): maximum",
+        "value": 1.642,
+        "tolerance": 0.0005
+      }
+    ],
+    "notices": []
+  },
+  {
+    "id": "IB-2-15",
+    "sourceQuestion": 15,
+    "sourceFile": "Paper 2 - Questions and Examination Sessions.md",
+    "paper": "P2",
+    "topic": "Combinatorics",
+    "marks": 6,
+    "session": "May 2015",
+    "timeZone": "TZ2",
+    "code": "M15/5/MATHL/HP2/ENG/TZ2/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "From a group of five males and six females, four people are chosen.\n(a) Determine how many possible groups can be chosen. [2]\n(b) Determine how many groups can be formed consisting of two males and two females. [2]\n(c) Determine how many groups can be formed consisting of at least one female. [2]",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "For all groups use \\(\\binom{11}{4}\\).",
+        "marks": 1
+      },
+      {
+        "code": "A",
+        "text": "\\(\\boxed{330}\\).",
+        "marks": 1
+      },
+      {
+        "code": "M",
+        "text": "For two of each use \\(\\binom52\\binom62\\).",
+        "marks": 1
+      },
+      {
+        "code": "A",
+        "text": "\\(\\boxed{150}\\).",
+        "marks": 1
+      },
+      {
+        "code": "M",
+        "text": "At least one female is the complement of an all-male group: \\(\\binom{11}{4}-\\binom54\\).",
+        "marks": 1
+      },
+      {
+        "code": "A",
+        "text": "\\(\\boxed{325}\\).",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "Part (a): all groups",
+        "value": 330
+      },
+      {
+        "label": "Part (b): two and two",
+        "value": 150
+      },
+      {
+        "label": "Part (c): at least one female",
+        "value": 325
+      }
+    ],
+    "notices": []
+  },
+  {
+    "id": "IB-2-16",
+    "sourceQuestion": 16,
+    "sourceFile": "Paper 2 - Questions and Examination Sessions.md",
+    "paper": "P2",
+    "topic": "Arithmetic Sequences",
+    "marks": 5,
+    "session": "May 2010",
+    "timeZone": "TZ1",
+    "code": "M10/5/MATHL/HP2/ENG/TZ1/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Find the sum of all three-digit natural numbers that are not exactly divisible by 3.",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "Sum all integers from 100 to 999: \\(900(100+999)/2=494550\\).",
+        "marks": 2
+      },
+      {
+        "code": "M",
+        "text": "Subtract the 300 multiples of 3 from 102 to 999: \\(300(102+999)/2=165150\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "\\(\\boxed{329400}\\).",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "Sum",
+        "value": 329400
+      }
+    ],
+    "notices": []
+  },
+  {
+    "id": "IB-2-17",
+    "sourceQuestion": 17,
+    "sourceFile": "Paper 2 - Questions and Examination Sessions.md",
+    "paper": "P2",
+    "topic": "Combinatorics",
+    "marks": 7,
+    "session": "May 2012",
+    "timeZone": "TZ1",
+    "code": "M12/5/MATHL/HP2/ENG/TZ1/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "A team of 6 players is to be selected from 10 volleyball players, of whom 8 are boys and 2 are girls.\n(a) In how many ways can the team be selected? [2]\n(b) In how many of these selections is exactly one girl in the team? [3]\n(c) If the selection of the team is made at random, find the probability that exactly one girl is in the team. [2]",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "All possible teams: \\(\\binom{10}{6}\\).",
+        "marks": 1
+      },
+      {
+        "code": "A",
+        "text": "\\(\\boxed{210}\\).",
+        "marks": 1
+      },
+      {
+        "code": "M",
+        "text": "Exactly one girl: \\(\\binom21\\binom85\\).",
+        "marks": 1
+      },
+      {
+        "code": "A",
+        "text": "\\(\\boxed{112}\\).",
+        "marks": 1
+      },
+      {
+        "code": "M",
+        "text": "Divide favorable selections by all selections.",
+        "marks": 1
+      },
+      {
+        "code": "A",
+        "text": "\\(\\boxed{112/210=8/15}\\).",
+        "marks": 2
+      }
+    ],
+    "checks": [
+      {
+        "label": "Part (a): all teams",
+        "value": 210
+      },
+      {
+        "label": "Part (b): one girl",
+        "value": 112
+      },
+      {
+        "label": "Part (c): probability",
+        "value": 0.5333333333333333
+      }
+    ],
+    "notices": []
+  },
+  {
+    "id": "IB-2-18",
+    "sourceQuestion": 18,
+    "sourceFile": "Paper 2 - Questions and Examination Sessions.md",
+    "paper": "P2",
+    "topic": "Geometric Sequences",
+    "marks": 8,
+    "session": "May 2012",
+    "timeZone": "TZ2",
+    "code": "M12/5/MATHL/HP2/ENG/TZ2/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Each time a ball bounces, it reaches 95% of the height reached on the previous bounce. Initially, it is dropped from a height of 4 metres.\n(a) What height does the ball reach after its fourth bounce? [2]\n(b) How many times does the ball bounce before it no longer reaches a height of 1 metre? [3]\n(c) What is the total distance travelled by the ball? [3]",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "After the fourth bounce the height is \\(4(0.95)^4\\) m.",
+        "marks": 1
+      },
+      {
+        "code": "A",
+        "text": "\\(\\boxed{3.258025\\text{ m}}\\).",
+        "marks": 1
+      },
+      {
+        "code": "M",
+        "text": "Solve \\(4(0.95)^n\\ge1\\): \\(n\\le27.026\\ldots\\).",
+        "marks": 1
+      },
+      {
+        "code": "A",
+        "text": "The first \\(\\boxed{27}\\) bounces reach at least 1 m; the 28th does not.",
+        "marks": 2
+      },
+      {
+        "code": "M",
+        "text": "Count the first 4 m drop once and each rebound twice: \\(4+2\\sum_{n=1}^{\\infty}4(0.95)^n\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "The limiting distance is \\(\\boxed{156\\text{ m}}\\).",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "Part (a): height in metres",
+        "value": 3.258025,
+        "tolerance": 0.0001
+      },
+      {
+        "label": "Part (b): bounces at least 1 m",
+        "value": 27
+      },
+      {
+        "label": "Part (c): total distance in metres",
+        "value": 156
+      }
+    ],
+    "notices": []
+  },
+  {
+    "id": "IB-2-19",
+    "sourceQuestion": 19,
+    "sourceFile": "Paper 2 - Questions and Examination Sessions.md",
+    "paper": "P2",
+    "topic": "Combinatorics",
+    "marks": 6,
+    "session": "November 2023",
+    "timeZone": "TZ0",
+    "code": "N23/5/MATHX/HP2/ENG/TZ0/XX/M",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "A junior baseball team consists of six boys and three girls.\nThe team members are to be placed in a line to have their photograph taken.\n(a) In how many ways can the team members be placed if\n(i) there are no restrictions;\n(ii) the girls must be placed next to each other. [3]\n(b) Five members of the team are selected to attend a baseball summer camp. Find the number of possible selections that contain at least two girls. [3]",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "All 9 distinct players: \\(9!\\).",
+        "marks": 1
+      },
+      {
+        "code": "A",
+        "text": "\\(\\boxed{362880}\\).",
+        "marks": 1
+      },
+      {
+        "code": "M",
+        "text": "Treat the three girls as a block: \\(7!3!\\).",
+        "marks": 1
+      },
+      {
+        "code": "A",
+        "text": "\\(\\boxed{30240}\\).",
+        "marks": 1
+      },
+      {
+        "code": "M",
+        "text": "Choose 2 or 3 girls: \\(\\binom32\\binom63+\\binom33\\binom62\\).",
+        "marks": 1
+      },
+      {
+        "code": "A",
+        "text": "\\(\\boxed{75}\\).",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "Part (a)(i): no restrictions",
+        "value": 362880
+      },
+      {
+        "label": "Part (a)(ii): girls together",
+        "value": 30240
+      },
+      {
+        "label": "Part (b): camp selections",
+        "value": 75
+      }
+    ],
+    "notices": []
+  },
+  {
+    "id": "IB-2-20",
+    "sourceQuestion": 20,
+    "sourceFile": "Paper 2 - Questions and Examination Sessions.md",
+    "paper": "P2",
+    "topic": "Combinatorics",
+    "marks": 4,
+    "session": "May 2022",
+    "timeZone": "TZ2",
+    "code": "M22/5/MATHX/HP2/ENG/TZ2/XX/M",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Consider the set of six-digit positive integers that can be formed from the digits 0, 1, 2, 3, 4, 5, 6, 7, 8 and 9.\nFind the total number of six-digit positive integers that can be formed such that\n(a) the digits are distinct; [2]\n(b) the digits are distinct and are in increasing order. [2]",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "First digit has 9 choices, then \\(9\\cdot8\\cdot7\\cdot6\\cdot5\\) choices for the remaining digits.",
+        "marks": 1
+      },
+      {
+        "code": "A",
+        "text": "Distinct six-digit numbers: \\(\\boxed{136080}\\).",
+        "marks": 1
+      },
+      {
+        "code": "M",
+        "text": "An increasing sequence cannot include zero as its first digit. Choose any six from digits 1 through 9; their order is fixed.",
+        "marks": 1
+      },
+      {
+        "code": "A",
+        "text": "\\(\\binom96=\\boxed{84}\\).",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "Part (a): distinct digits",
+        "value": 136080
+      },
+      {
+        "label": "Part (b): increasing digits",
+        "value": 84
+      }
+    ],
+    "notices": []
+  },
+  {
+    "id": "IB-2-21",
+    "sourceQuestion": 21,
+    "sourceFile": "Paper 2 - Questions and Examination Sessions.md",
+    "paper": "P2",
+    "topic": "Combinatorics",
+    "marks": 8,
+    "session": "November 2019",
+    "timeZone": "TZ0",
+    "code": "N19/5/MATHL/HP2/ENG/TZ0/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Eight boys and two girls sit on a bench. Determine the number of possible arrangements, given that\n(a) the girls do not sit together; [3]\n(b) the girls do not sit on either end; [2]\n(c) the girls do not sit on either end and do not sit together. [3]",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "For non-adjacent girls subtract the adjacent block arrangements: \\(10!-9!2!\\).",
+        "marks": 1
+      },
+      {
+        "code": "A",
+        "text": "\\(\\boxed{2903040}\\).",
+        "marks": 1
+      },
+      {
+        "code": "M",
+        "text": "For neither at an end choose two of 8 interior seats, then permute both girls and 8 boys: \\(\\binom82 2!8!\\).",
+        "marks": 1
+      },
+      {
+        "code": "A",
+        "text": "\\(\\boxed{2257920}\\).",
+        "marks": 1
+      },
+      {
+        "code": "M",
+        "text": "Of the interior seat pairs, \\(7\\) are adjacent. Choose \\(\\binom82-7=21\\) allowed pairs and arrange the people.",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "\\(21\\cdot2!\\cdot8!=\\boxed{1693440}\\).",
+        "marks": 2
+      }
+    ],
+    "checks": [
+      {
+        "label": "Part (a): apart",
+        "value": 2903040
+      },
+      {
+        "label": "Part (b): interior",
+        "value": 2257920
+      },
+      {
+        "label": "Part (c): interior and apart",
+        "value": 1693440
+      }
+    ],
+    "notices": []
+  },
+  {
+    "id": "IB-2-22",
+    "sourceQuestion": 22,
+    "sourceFile": "Paper 2 - Questions and Examination Sessions.md",
+    "paper": "P2",
+    "topic": "Combinatorics",
+    "marks": 7,
+    "session": "November 2025",
+    "timeZone": "TZ3",
+    "code": "Nov 2025 P2 TZ3",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Malik owns 15 recipe books which he bought while travelling.\n(a) Find the number of different ways of arranging the books in a line on a shelf. [1]\nMalik's books were bought in three continents.\nSix books are from Asia, five from Europe and four from Africa.\nMalik decides to arrange the books on the shelf so that the books from each of the continents are grouped together.\n(b) Determine the number of different ways that Malik can do this. [3]\nMalik chooses four books, all from the same continent.\n(c) Determine the number of different choices Malik could make. [3]",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "All distinct books can be ordered in \\(15!\\) ways.",
+        "marks": 1
+      },
+      {
+        "code": "M",
+        "text": "For continent blocks, order the three blocks and permute within each: \\(3!6!5!4!\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "Grouped arrangements: \\(\\boxed{12441600}\\).",
+        "marks": 1
+      },
+      {
+        "code": "M",
+        "text": "Four from the same continent: \\(\\binom64+\\binom54+\\binom44\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "\\(\\boxed{21}\\).",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "Part (a): all arrangements",
+        "value": 1307674368000
+      },
+      {
+        "label": "Part (b): grouped",
+        "value": 12441600
+      },
+      {
+        "label": "Part (c): choices",
+        "value": 21
+      }
+    ],
+    "notices": []
+  },
+  {
+    "id": "IB-2-23",
+    "sourceQuestion": 23,
+    "sourceFile": "Paper 2 - Questions and Examination Sessions.md",
+    "paper": "P2",
+    "topic": "Geometric Sequences",
+    "marks": 7,
+    "session": "May 2026",
+    "timeZone": "TZ1",
+    "code": "2226-5015",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "A geometric sequence has first term 80 and fourth term 0.74088.\n(a) Find the second term. [3]\nThe first two terms of this geometric sequence are also the first term and eleventh term respectively, of an arithmetic sequence.\nLet \\(S_n\\) denote the sum of the first \\(n\\) terms of the arithmetic sequence.\n(b) Find the greatest value of \\(S_n\\), giving your answer to two decimal places. [4]",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "From \\(80r^3=0.74088\\), \\(r^3=0.009261\\) so \\(r=0.21\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "Second term \\(\\boxed{u_2=80(0.21)=16.8}\\).",
+        "marks": 1
+      },
+      {
+        "code": "M",
+        "text": "For the arithmetic sequence \\(a=80\\) and \\(d=(16.8-80)/10=-6.32\\).",
+        "marks": 2
+      },
+      {
+        "code": "M",
+        "text": "\\(S_n=n[160-6.32(n-1)]/2\\) is maximized over positive integers at \\(n=13\\).",
+        "marks": 1
+      },
+      {
+        "code": "A",
+        "text": "\\(\\boxed{S_{13}=547.04}\\) to two decimal places.",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "Part (a): second term",
+        "value": 16.8
+      },
+      {
+        "label": "Part (b): greatest sum",
+        "value": 547.04,
+        "tolerance": 0.005
+      }
+    ],
+    "notices": [
+      "The supplied code also appears with different session or paper metadata at IB-1-06. Please verify against an original source."
+    ]
+  },
+  {
+    "id": "IB-2-24",
+    "sourceQuestion": 24,
+    "sourceFile": "Paper 2 - Questions and Examination Sessions.md",
+    "paper": "P2",
+    "topic": "Arithmetic and Geometric Sequences",
+    "marks": 9,
+    "session": "November 2014",
+    "timeZone": "TZ0",
+    "code": "N14/5/MATHL/HP2/ENG/TZ0/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "The seventh, third and first terms of an arithmetic sequence form the first three terms of a geometric sequence.\nThe arithmetic sequence has first term \\(a\\) and non-zero common difference \\(d\\).\n(a) Show that \\(d = \\frac{a}{2}\\). [3]\nThe seventh term of the arithmetic sequence is 3. The sum of the first \\(n\\) terms in the arithmetic sequence exceeds the sum of the first \\(n\\) terms in the geometric sequence by at least 200.\n(b) Find the least value of \\(n\\) for which this occurs. [6]",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "The geometric-condition equation is \\((a+2d)^2=a(a+6d)\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "With \\(d\\ne0\\), simplify \\(4d^2=2ad\\) to \\(\\boxed{d=a/2}\\).",
+        "marks": 1
+      },
+      {
+        "code": "M",
+        "text": "From \\(a+6d=3\\), deduce \\(a=3/4\\) and \\(d=3/8\\).",
+        "marks": 1
+      },
+      {
+        "code": "M",
+        "text": "The corresponding geometric sequence has first term 3 and ratio \\(1/2\\).",
+        "marks": 1
+      },
+      {
+        "code": "M",
+        "text": "Compare \\(S_{n,\\mathrm A}=n[2(3/4)+(n-1)(3/8)]/2\\) with \\(S_{n,\\mathrm G}=6(1-2^{-n})\\).",
+        "marks": 2
+      },
+      {
+        "code": "M",
+        "text": "The difference is less than 200 at \\(n=31\\) and at least 200 at \\(n=32\\).",
+        "marks": 1
+      },
+      {
+        "code": "A",
+        "text": "Least value \\(\\boxed{n=32}\\).",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "Part (b): least n",
+        "value": 32
+      }
+    ],
+    "notices": []
+  },
+  {
+    "id": "IB-2-25",
+    "sourceQuestion": 25,
+    "sourceFile": "Paper 2 - Questions and Examination Sessions.md",
+    "paper": "P2",
+    "topic": "Binomial Expansion",
+    "marks": 7,
+    "session": "May 2023",
+    "timeZone": "TZ1",
+    "code": "M23/5/MATHX/HP2/ENG/TZ1/XX/M",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "The coefficient of \\(x^6\\) in the expansion of \\((ax^3 + b)^8\\) is 448.\nThe coefficient of \\(x^6\\) in the expansion of \\((ax^3 + b)^{10}\\) is 2880.\nFind the value of \\(a\\) and the value of \\(b\\), where \\(a, b > 0\\).",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "An \\(x^6\\) term uses two \\(ax^3\\) factors. Set \\(28a^2b^6=448\\) and \\(45a^2b^8=2880\\).",
+        "marks": 2
+      },
+      {
+        "code": "M",
+        "text": "Divide the equations to get \\(b^2=4\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "Since \\(b>0\\), \\(\\boxed{b=2}\\).",
+        "marks": 1
+      },
+      {
+        "code": "M",
+        "text": "Back-substitute to obtain \\(a^2=1/4\\).",
+        "marks": 1
+      },
+      {
+        "code": "A",
+        "text": "Since \\(a>0\\), \\(\\boxed{a=1/2}\\).",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "a",
+        "value": 0.5
+      },
+      {
+        "label": "b",
+        "value": 2
+      }
+    ],
+    "notices": []
+  },
+  {
+    "id": "IB-2-26",
+    "sourceQuestion": 26,
+    "sourceFile": "Paper 2 - Questions and Examination Sessions.md",
+    "paper": "P2",
+    "topic": "Geometric Sequences",
+    "marks": 6,
+    "session": "Specimen Paper",
+    "timeZone": "TZ0",
+    "code": "SPEC/5/MATAA/HP2/ENG/TZ0/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "On 1st January 2020, Laurie invests \\(\\$P\\) in an account that pays a nominal annual interest rate of 5.5%, compounded **quarterly**.\nThe amount of money in Laurie's account at the end of each year follows a geometric sequence with common ratio, \\(r\\).\n(a) Find the value of \\(r\\), giving your answer to four significant figures. [3]\nLaurie makes no further deposits to or withdrawals from the account.\n(b) Find the year in which the amount of money in Laurie's account will become double the amount she invested. [3]",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "Quarterly multiplier is \\(1+0.055/4=1.01375\\); annual ratio is its fourth power.",
+        "marks": 1
+      },
+      {
+        "code": "A",
+        "text": "\\(r=1.0561448\\ldots=\\boxed{1.056}\\) (4 s.f.).",
+        "marks": 2
+      },
+      {
+        "code": "M",
+        "text": "Solve \\(P(1.01375)^{4n}\\ge2P\\), giving \\(n\\ge12.689\\ldots\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "At the end of the 13th year after 1 January 2020, in \\(\\boxed{2032}\\), the amount first doubles.",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "Part (a): annual ratio",
+        "value": 1.056,
+        "tolerance": 0.0005
+      },
+      {
+        "label": "Part (b): calendar year",
+        "value": 2032
+      }
+    ],
+    "notices": []
+  },
+  {
+    "id": "IB-2-27",
+    "sourceQuestion": 27,
+    "sourceFile": "Paper 2 - Questions and Examination Sessions.md",
+    "paper": "P1",
+    "topic": "Geometric Sequences",
+    "marks": 6,
+    "session": "November 2006",
+    "timeZone": "TZ0",
+    "code": "N06/5/MATHL/HP1/ENG/TZ0/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "The sum to infinity of a geometric series is 32. The sum of the first four terms is 30 and all the terms are positive.\nFind the difference between the sum to infinity and the sum of the first eight terms.",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "After four terms the remaining sum is \\(S_\\infty-S_4=2=32r^4\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "Positive terms imply \\(\\boxed{r=1/2}\\).",
+        "marks": 1
+      },
+      {
+        "code": "M",
+        "text": "The difference \\(S_\\infty-S_8=32r^8\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "\\(\\boxed{1/8}\\).",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "Remaining amount after eight terms",
+        "value": 0.125
+      }
+    ],
+    "notices": [
+      "Filed under Paper 2 in the supplied document, but its own metadata says P1. Shown under P1."
+    ]
+  },
+  {
+    "id": "IB-2-28",
+    "sourceQuestion": 28,
+    "sourceFile": "Paper 2 - Questions and Examination Sessions.md",
+    "paper": "P2",
+    "topic": "Binomial Expansion",
+    "marks": 7,
+    "session": "May 2026",
+    "timeZone": "TZ3",
+    "code": "2226-5025",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "In the expansion of \\(\\frac{1}{\\sqrt{q - x^2}}\\), where \\(q \\in \\mathbb{Q}^+\\), the coefficient of \\(x^6\\) is 5120.\nFind the value of \\(q\\).",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "Rewrite as \\(q^{-1/2}(1-x^2/q)^{-1/2}\\).",
+        "marks": 2
+      },
+      {
+        "code": "M",
+        "text": "The fourth term of the generalized binomial series gives the coefficient of \\(x^6\\) as \\(5/(16q^{7/2})\\).",
+        "marks": 2
+      },
+      {
+        "code": "M",
+        "text": "Set \\(5/(16q^{7/2})=5120\\), hence \\(q^{-7/2}=16384=2^{14}\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "\\(\\boxed{q=1/16}\\).",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "q",
+        "value": 0.0625
+      }
+    ],
+    "notices": [
+      "The supplied code also appears with different session or paper metadata at IB-1-13. Please verify against an original source."
+    ]
+  },
+  {
+    "id": "IB-2-29",
+    "sourceQuestion": 29,
+    "sourceFile": "Paper 2 - Questions and Examination Sessions.md",
+    "paper": "P2",
+    "topic": "Binomial Expansion",
+    "marks": 4,
+    "session": "November 2024",
+    "timeZone": "TZ0",
+    "code": "N24/5/MATHX/HP2/ENG/TZ0/XX/M",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Find the coefficient of \\(x^6\\) in the expansion of \\((2x - 5)^9\\).",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "For \\(x^6\\), choose six \\(2x\\) factors and three \\(-5\\) factors: \\(\\binom96 2^6(-5)^3\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "\\(\\boxed{-672000}\\).",
+        "marks": 2
+      }
+    ],
+    "checks": [
+      {
+        "label": "Coefficient of x⁶",
+        "value": -672000
+      }
+    ],
+    "notices": []
+  },
+  {
+    "id": "IB-2-30",
+    "sourceQuestion": 30,
+    "sourceFile": "Paper 2 - Questions and Examination Sessions.md",
+    "paper": "P2",
+    "topic": "Binomial Expansion",
+    "marks": 6,
+    "session": "November 2020",
+    "timeZone": "TZ0",
+    "code": "N20/5/MATHL/HP2/ENG/TZ0/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Find the term independent of \\(x\\) in the expansion of \\(\\frac{1}{x^3}\\left(\\frac{1}{3x^2} - \\frac{x}{2}\\right)^9\\).",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "Taking \\(j\\) copies of \\(-x/2\\) gives power \\(x^{-3-2(9-j)+j}=x^{3j-21}\\), so \\(j=7\\).",
+        "marks": 2
+      },
+      {
+        "code": "M",
+        "text": "The constant term is \\(\\binom97(1/3)^2(-1/2)^7\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "\\(\\boxed{-1/32}\\).",
+        "marks": 2
+      }
+    ],
+    "checks": [
+      {
+        "label": "Constant term",
+        "value": -0.03125
+      }
+    ],
+    "notices": []
+  },
+  {
+    "id": "IB-2-31",
+    "sourceQuestion": 31,
+    "sourceFile": "Paper 2 - Questions and Examination Sessions.md",
+    "paper": "P2",
+    "topic": "Binomial Expansion",
+    "marks": 6,
+    "session": "May 2017",
+    "timeZone": "TZ1",
+    "code": "M17/5/MATHL/HP2/ENG/TZ1/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "The coefficient of \\(x^2\\) in the expansion of \\(\\left(\\frac{1}{x} + 5x\\right)^8\\) is equal to the coefficient of \\(x^4\\) in the expansion of \\((a + 5x)^7\\), \\(a \\in \\mathbb{R}\\). Find the value of \\(a\\).",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "For \\(x^2\\) in \\((x^{-1}+5x)^8\\), take five \\(5x\\) factors: coefficient \\(\\binom85 5^5=175000\\).",
+        "marks": 2
+      },
+      {
+        "code": "M",
+        "text": "For \\(x^4\\) in \\((a+5x)^7\\), coefficient is \\(\\binom74 a^3 5^4=21875a^3\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "Equate coefficients: \\(a^3=8\\), so the real value is \\(\\boxed{a=2}\\).",
+        "marks": 2
+      }
+    ],
+    "checks": [
+      {
+        "label": "a",
+        "value": 2
+      }
+    ],
+    "notices": []
+  },
+  {
+    "id": "IB-2-32",
+    "sourceQuestion": 32,
+    "sourceFile": "Paper 2 - Questions and Examination Sessions.md",
+    "paper": "P2",
+    "topic": "Arithmetic Sequences",
+    "marks": 7,
+    "session": "May 2018",
+    "timeZone": "TZ1",
+    "code": "M18/5/MATHL/HP2/ENG/TZ1/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "The 3rd term of an arithmetic sequence is 1407 and the 10th term is 1183.\n(a) Find the first term and the common difference of the sequence. [4]\n(b) Calculate the number of positive terms in the sequence. [3]",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "Subtract \\(a+2d=1407\\) from \\(a+9d=1183\\): \\(7d=-224\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "\\(\\boxed{d=-32,\\ a=1471}\\).",
+        "marks": 2
+      },
+      {
+        "code": "M",
+        "text": "Require \\(1471-32(n-1)>0\\), or \\(n<46.96875\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "There are \\(\\boxed{46}\\) positive terms; term 47 is negative.",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "Part (a): first term",
+        "value": 1471
+      },
+      {
+        "label": "Part (a): difference",
+        "value": -32
+      },
+      {
+        "label": "Part (b): positive terms",
+        "value": 46
+      }
+    ],
+    "notices": []
+  },
+  {
+    "id": "IB-2-33",
+    "sourceQuestion": 33,
+    "sourceFile": "Paper 2 - Questions and Examination Sessions.md",
+    "paper": "P2",
+    "topic": "Binomial Expansion",
+    "marks": 7,
+    "session": "May 2023",
+    "timeZone": "TZ2",
+    "code": "M23/5/MATHX/HP2/ENG/TZ2/XX/M",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "The expansion of \\((x + h)^8\\), where \\(h \\in \\mathbb{Q}^+\\), can be written as \\(x^8 + ax^7 + bx^6 + cx^5 + dx^4 + \\dots + h^8\\), where \\(a, b, c, d, \\dots \\in \\mathbb{R}\\).\nGiven that the coefficients, \\(a, b\\) and \\(d\\), are the first three terms of a geometric sequence, find the value of \\(h\\).",
+    "scheme": [
+      {
+        "code": "M",
+        "text": "The coefficients are \\(a=8h\\), \\(b=28h^2\\), and \\(d=70h^4\\).",
+        "marks": 2
+      },
+      {
+        "code": "M",
+        "text": "Three consecutive geometric terms satisfy \\(b^2=ad\\).",
+        "marks": 2
+      },
+      {
+        "code": "M",
+        "text": "Thus \\(784h^4=560h^5\\); divide by \\(h^4\\) since \\(h>0\\).",
+        "marks": 2
+      },
+      {
+        "code": "A",
+        "text": "\\(\\boxed{h=7/5}\\).",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "h",
+        "value": 1.4
+      }
+    ],
+    "notices": []
+  }
+]
