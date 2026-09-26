@@ -1,0 +1,2212 @@
+{
+  "version": 1,
+  "outlineSubtopics": 83,
+  "outlineQuestionCountsAreNotIncluded": true,
+  "units": [
+    {
+      "slug": "number-and-algebra",
+      "directory": "Unit 1 Number and Algebra",
+      "topics": [
+        {
+          "id": "MASTER",
+          "file": "Master_Guide.md",
+          "title": "Number & Algebra master guide",
+          "category": "Strand master guide",
+          "tags": [
+            "number & algebra",
+            "master",
+            "guide",
+            "aa hl",
+            "aa sl"
+          ],
+          "order": 0,
+          "prev": null,
+          "next": "AA_SL_1_1_standard_form.md",
+          "collection": "guide"
+        },
+        {
+          "id": "SL 1.1",
+          "file": "AA_SL_1_1_standard_form.md",
+          "title": "Standard form",
+          "category": "SL foundations",
+          "tags": [
+            "number & algebra",
+            "standard",
+            "form",
+            "sl 1.1"
+          ],
+          "order": 1,
+          "prev": "Master_Guide.md",
+          "next": "AA_SL_1_2_arithmetic_sequences_and_series.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 1.2",
+          "file": "AA_SL_1_2_arithmetic_sequences_and_series.md",
+          "title": "Arithmetic sequences and series",
+          "category": "SL foundations",
+          "tags": [
+            "number & algebra",
+            "arithmetic",
+            "sequences",
+            "series",
+            "sl 1.2"
+          ],
+          "order": 2,
+          "prev": "AA_SL_1_1_standard_form.md",
+          "next": "AA_SL_1_3_geometric_sequences_and_series.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 1.3",
+          "file": "AA_SL_1_3_geometric_sequences_and_series.md",
+          "title": "Geometric sequences and series",
+          "category": "SL foundations",
+          "tags": [
+            "number & algebra",
+            "geometric",
+            "sequences",
+            "series",
+            "sl 1.3"
+          ],
+          "order": 3,
+          "prev": "AA_SL_1_2_arithmetic_sequences_and_series.md",
+          "next": "AA_SL_1_4_compound_interest_and_depreciation.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 1.4",
+          "file": "AA_SL_1_4_compound_interest_and_depreciation.md",
+          "title": "Compound interest and depreciation",
+          "category": "SL foundations",
+          "tags": [
+            "number & algebra",
+            "compound",
+            "interest",
+            "depreciation",
+            "sl 1.4"
+          ],
+          "order": 4,
+          "prev": "AA_SL_1_3_geometric_sequences_and_series.md",
+          "next": "AA_SL_1_5_introduction_to_logarithms.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 1.5",
+          "file": "AA_SL_1_5_introduction_to_logarithms.md",
+          "title": "Introduction to logarithms",
+          "category": "SL foundations",
+          "tags": [
+            "number & algebra",
+            "introduction",
+            "logarithms",
+            "sl 1.5"
+          ],
+          "order": 5,
+          "prev": "AA_SL_1_4_compound_interest_and_depreciation.md",
+          "next": "AA_SL_1_6_simple_proof.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 1.6",
+          "file": "AA_SL_1_6_simple_proof.md",
+          "title": "Simple proof",
+          "category": "SL foundations",
+          "tags": [
+            "number & algebra",
+            "simple",
+            "proof",
+            "sl 1.6"
+          ],
+          "order": 6,
+          "prev": "AA_SL_1_5_introduction_to_logarithms.md",
+          "next": "AA_SL_1_7_laws_of_exponents_and_logarithms.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 1.7",
+          "file": "AA_SL_1_7_laws_of_exponents_and_logarithms.md",
+          "title": "Laws of exponents and logarithms",
+          "category": "SL foundations",
+          "tags": [
+            "number & algebra",
+            "laws",
+            "exponents",
+            "logarithms",
+            "sl 1.7"
+          ],
+          "order": 7,
+          "prev": "AA_SL_1_6_simple_proof.md",
+          "next": "AA_SL_1_8_infinite_geometric_series.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 1.8",
+          "file": "AA_SL_1_8_infinite_geometric_series.md",
+          "title": "Infinite geometric series",
+          "category": "SL foundations",
+          "tags": [
+            "number & algebra",
+            "infinite",
+            "geometric",
+            "series",
+            "sl 1.8"
+          ],
+          "order": 8,
+          "prev": "AA_SL_1_7_laws_of_exponents_and_logarithms.md",
+          "next": "AA_SL_1_9_binomial_theorem_nonnegative_integer_index.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 1.9",
+          "file": "AA_SL_1_9_binomial_theorem_nonnegative_integer_index.md",
+          "title": "Binomial theorem: nonnegative integer index",
+          "category": "SL foundations",
+          "tags": [
+            "number & algebra",
+            "binomial",
+            "theorem",
+            "nonnegative",
+            "integer",
+            "index",
+            "sl 1.9"
+          ],
+          "order": 9,
+          "prev": "AA_SL_1_8_infinite_geometric_series.md",
+          "next": "AA_AHL_1_10_counting_and_generalized_binomial_series.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "AHL 1.10",
+          "file": "AA_AHL_1_10_counting_and_generalized_binomial_series.md",
+          "title": "Counting and generalized binomial series",
+          "category": "AA HL extension",
+          "tags": [
+            "number & algebra",
+            "counting",
+            "generalized",
+            "binomial",
+            "series",
+            "ahl 1.10"
+          ],
+          "order": 10,
+          "prev": "AA_SL_1_9_binomial_theorem_nonnegative_integer_index.md",
+          "next": "AA_AHL_1_11_partial_fractions.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "AHL 1.11",
+          "file": "AA_AHL_1_11_partial_fractions.md",
+          "title": "Partial fractions",
+          "category": "AA HL extension",
+          "tags": [
+            "number & algebra",
+            "partial",
+            "fractions",
+            "ahl 1.11"
+          ],
+          "order": 11,
+          "prev": "AA_AHL_1_10_counting_and_generalized_binomial_series.md",
+          "next": "AA_AHL_1_12_complex_numbers_in_cartesian_form.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "AHL 1.12",
+          "file": "AA_AHL_1_12_complex_numbers_in_cartesian_form.md",
+          "title": "Complex numbers in Cartesian form",
+          "category": "AA HL extension",
+          "tags": [
+            "number & algebra",
+            "complex",
+            "numbers",
+            "cartesian",
+            "form",
+            "ahl 1.12"
+          ],
+          "order": 12,
+          "prev": "AA_AHL_1_11_partial_fractions.md",
+          "next": "AA_AHL_1_13_polar_and_euler_form.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "AHL 1.13",
+          "file": "AA_AHL_1_13_polar_and_euler_form.md",
+          "title": "Polar and Euler form",
+          "category": "AA HL extension",
+          "tags": [
+            "number & algebra",
+            "polar",
+            "euler",
+            "form",
+            "ahl 1.13"
+          ],
+          "order": 13,
+          "prev": "AA_AHL_1_12_complex_numbers_in_cartesian_form.md",
+          "next": "AA_AHL_1_14_complex_roots_and_conjugate_pairs.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "AHL 1.14",
+          "file": "AA_AHL_1_14_complex_roots_and_conjugate_pairs.md",
+          "title": "Complex roots and conjugate pairs",
+          "category": "AA HL extension",
+          "tags": [
+            "number & algebra",
+            "complex",
+            "roots",
+            "conjugate",
+            "pairs",
+            "ahl 1.14"
+          ],
+          "order": 14,
+          "prev": "AA_AHL_1_13_polar_and_euler_form.md",
+          "next": "AA_AHL_1_15_induction_contradiction_and_counterexample.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "AHL 1.15",
+          "file": "AA_AHL_1_15_induction_contradiction_and_counterexample.md",
+          "title": "Induction, contradiction and counterexample",
+          "category": "AA HL extension",
+          "tags": [
+            "number & algebra",
+            "induction",
+            "contradiction",
+            "counterexample",
+            "ahl 1.15"
+          ],
+          "order": 15,
+          "prev": "AA_AHL_1_14_complex_roots_and_conjugate_pairs.md",
+          "next": "AA_AHL_1_16_systems_of_linear_equations.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "AHL 1.16",
+          "file": "AA_AHL_1_16_systems_of_linear_equations.md",
+          "title": "Systems of linear equations",
+          "category": "AA HL extension",
+          "tags": [
+            "number & algebra",
+            "systems",
+            "linear",
+            "equations",
+            "ahl 1.16"
+          ],
+          "order": 16,
+          "prev": "AA_AHL_1_15_induction_contradiction_and_counterexample.md",
+          "next": "00_Master_Index_And_Exam_Strategy.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "00",
+          "file": "00_Master_Index_And_Exam_Strategy.md",
+          "title": "Master Index & Exam Strategy",
+          "category": "Original 20 notes · Foundations",
+          "tags": [
+            "overview",
+            "strategy",
+            "exam"
+          ],
+          "order": 17,
+          "prev": "AA_AHL_1_16_systems_of_linear_equations.md",
+          "next": "01_GDC_Essential_Skills.md",
+          "collection": "original-note"
+        },
+        {
+          "id": "01",
+          "file": "01_GDC_Essential_Skills.md",
+          "title": "GDC Essential Skills",
+          "category": "Original 20 notes · Foundations",
+          "tags": [
+            "gdc",
+            "calculator",
+            "tables",
+            "exam"
+          ],
+          "order": 18,
+          "prev": "00_Master_Index_And_Exam_Strategy.md",
+          "next": "02_Arithmetic_Sequences_And_Series.md",
+          "collection": "original-note"
+        },
+        {
+          "id": "02",
+          "file": "02_Arithmetic_Sequences_And_Series.md",
+          "title": "Arithmetic Sequences & Series",
+          "category": "Original 20 notes · Sequences & Series",
+          "tags": [
+            "arithmetic",
+            "sequence",
+            "series",
+            "common difference"
+          ],
+          "order": 19,
+          "prev": "01_GDC_Essential_Skills.md",
+          "next": "03_Geometric_Sequences_And_Series.md",
+          "collection": "original-note"
+        },
+        {
+          "id": "03",
+          "file": "03_Geometric_Sequences_And_Series.md",
+          "title": "Geometric Sequences & Series",
+          "category": "Original 20 notes · Sequences & Series",
+          "tags": [
+            "geometric",
+            "sequence",
+            "series",
+            "common ratio"
+          ],
+          "order": 20,
+          "prev": "02_Arithmetic_Sequences_And_Series.md",
+          "next": "04_Sigma_Notation_And_Summations.md",
+          "collection": "original-note"
+        },
+        {
+          "id": "04",
+          "file": "04_Sigma_Notation_And_Summations.md",
+          "title": "Sigma Notation & Summations",
+          "category": "Original 20 notes · Sequences & Series",
+          "tags": [
+            "sigma",
+            "summation",
+            "series",
+            "notation"
+          ],
+          "order": 21,
+          "prev": "03_Geometric_Sequences_And_Series.md",
+          "next": "05_Recursive_Sequences.md",
+          "collection": "original-note"
+        },
+        {
+          "id": "05",
+          "file": "05_Recursive_Sequences.md",
+          "title": "Recursive Sequences",
+          "category": "Original 20 notes · Sequences & Series",
+          "tags": [
+            "recursion",
+            "sequence",
+            "explicit rule",
+            "pattern"
+          ],
+          "order": 22,
+          "prev": "04_Sigma_Notation_And_Summations.md",
+          "next": "06_Infinite_Geometric_Series.md",
+          "collection": "original-note"
+        },
+        {
+          "id": "06",
+          "file": "06_Infinite_Geometric_Series.md",
+          "title": "Infinite Geometric Series",
+          "category": "Original 20 notes · Sequences & Series",
+          "tags": [
+            "geometric",
+            "infinite series",
+            "convergence",
+            "sum"
+          ],
+          "order": 23,
+          "prev": "05_Recursive_Sequences.md",
+          "next": "07_Convergence_And_Limits.md",
+          "collection": "original-note"
+        },
+        {
+          "id": "07",
+          "file": "07_Convergence_And_Limits.md",
+          "title": "Convergence & Limits",
+          "category": "Original 20 notes · Sequences & Series",
+          "tags": [
+            "limits",
+            "convergence",
+            "sequence",
+            "infinity"
+          ],
+          "order": 24,
+          "prev": "06_Infinite_Geometric_Series.md",
+          "next": "08_Applications_Of_Sequences_And_Series.md",
+          "collection": "original-note"
+        },
+        {
+          "id": "08",
+          "file": "08_Applications_Of_Sequences_And_Series.md",
+          "title": "Applications of Sequences & Series",
+          "category": "Original 20 notes · Sequences & Series",
+          "tags": [
+            "applications",
+            "compound interest",
+            "growth",
+            "modelling"
+          ],
+          "order": 25,
+          "prev": "07_Convergence_And_Limits.md",
+          "next": "09_Proof_By_Deduction.md",
+          "collection": "original-note"
+        },
+        {
+          "id": "09",
+          "file": "09_Proof_By_Deduction.md",
+          "title": "Proof by Deduction",
+          "category": "Original 20 notes · Proof",
+          "tags": [
+            "proof",
+            "deduction",
+            "algebra",
+            "integers"
+          ],
+          "order": 26,
+          "prev": "08_Applications_Of_Sequences_And_Series.md",
+          "next": "10_Proof_By_Contradiction.md",
+          "collection": "original-note"
+        },
+        {
+          "id": "10",
+          "file": "10_Proof_By_Contradiction.md",
+          "title": "Proof by Contradiction",
+          "category": "Original 20 notes · Proof",
+          "tags": [
+            "proof",
+            "contradiction",
+            "irrational",
+            "logic"
+          ],
+          "order": 27,
+          "prev": "09_Proof_By_Deduction.md",
+          "next": "11_Mathematical_Induction.md",
+          "collection": "original-note"
+        },
+        {
+          "id": "11",
+          "file": "11_Mathematical_Induction.md",
+          "title": "Mathematical Induction",
+          "category": "Original 20 notes · Proof",
+          "tags": [
+            "induction",
+            "proof",
+            "sums",
+            "integers"
+          ],
+          "order": 28,
+          "prev": "10_Proof_By_Contradiction.md",
+          "next": "12_Induction_And_Divisibility.md",
+          "collection": "original-note"
+        },
+        {
+          "id": "12",
+          "file": "12_Induction_And_Divisibility.md",
+          "title": "Induction & Divisibility",
+          "category": "Original 20 notes · Proof",
+          "tags": [
+            "induction",
+            "divisibility",
+            "proof",
+            "number theory"
+          ],
+          "order": 29,
+          "prev": "11_Mathematical_Induction.md",
+          "next": "13_Fundamental_Counting_Principle.md",
+          "collection": "original-note"
+        },
+        {
+          "id": "13",
+          "file": "13_Fundamental_Counting_Principle.md",
+          "title": "Fundamental Counting Principle",
+          "category": "Original 20 notes · Counting",
+          "tags": [
+            "counting",
+            "multiplication principle",
+            "choices",
+            "probability"
+          ],
+          "order": 30,
+          "prev": "12_Induction_And_Divisibility.md",
+          "next": "14_Permutations_And_Arrangements.md",
+          "collection": "original-note"
+        },
+        {
+          "id": "14",
+          "file": "14_Permutations_And_Arrangements.md",
+          "title": "Permutations & Arrangements",
+          "category": "Original 20 notes · Counting",
+          "tags": [
+            "permutations",
+            "arrangements",
+            "factorial",
+            "order"
+          ],
+          "order": 31,
+          "prev": "13_Fundamental_Counting_Principle.md",
+          "next": "15_Combinations_And_Binomial_Coefficients.md",
+          "collection": "original-note"
+        },
+        {
+          "id": "15",
+          "file": "15_Combinations_And_Binomial_Coefficients.md",
+          "title": "Combinations & Binomial Coefficients",
+          "category": "Original 20 notes · Counting",
+          "tags": [
+            "combinations",
+            "choose",
+            "binomial coefficient",
+            "counting"
+          ],
+          "order": 32,
+          "prev": "14_Permutations_And_Arrangements.md",
+          "next": "16_Binomial_Theorem_Positive_Integers.md",
+          "collection": "original-note"
+        },
+        {
+          "id": "16",
+          "file": "16_Binomial_Theorem_Positive_Integers.md",
+          "title": "Binomial Theorem: Positive Integers",
+          "category": "Original 20 notes · Binomial Theorem",
+          "tags": [
+            "binomial theorem",
+            "expansion",
+            "coefficients",
+            "positive integers"
+          ],
+          "order": 33,
+          "prev": "15_Combinations_And_Binomial_Coefficients.md",
+          "next": "17_General_Binomial_Expansion.md",
+          "collection": "original-note"
+        },
+        {
+          "id": "17",
+          "file": "17_General_Binomial_Expansion.md",
+          "title": "General Binomial Expansion",
+          "category": "Original 20 notes · Binomial Theorem",
+          "tags": [
+            "binomial series",
+            "fractional powers",
+            "negative powers",
+            "convergence"
+          ],
+          "order": 34,
+          "prev": "16_Binomial_Theorem_Positive_Integers.md",
+          "next": "18_Binomial_Applications_And_Approximations.md",
+          "collection": "original-note"
+        },
+        {
+          "id": "18",
+          "file": "18_Binomial_Applications_And_Approximations.md",
+          "title": "Binomial Approximations & Applications",
+          "category": "Original 20 notes · Binomial Theorem",
+          "tags": [
+            "approximation",
+            "binomial series",
+            "error",
+            "applications"
+          ],
+          "order": 35,
+          "prev": "17_General_Binomial_Expansion.md",
+          "next": "19_Synthesis_And_Exam_Practice.md",
+          "collection": "original-note"
+        },
+        {
+          "id": "19",
+          "file": "19_Synthesis_And_Exam_Practice.md",
+          "title": "Synthesis & Exam Practice",
+          "category": "Original 20 notes · Synthesis",
+          "tags": [
+            "synthesis",
+            "practice",
+            "exam",
+            "review"
+          ],
+          "order": 36,
+          "prev": "18_Binomial_Applications_And_Approximations.md",
+          "next": "00_Master_Index_And_Exam_Strategy (2).md",
+          "collection": "original-note"
+        },
+        {
+          "id": "U01",
+          "file": "00_Master_Index_And_Exam_Strategy (2).md",
+          "title": "Master Index & Exam Strategy",
+          "category": "Your supplied Unit 1 notes",
+          "tags": [
+            "00_master_index_and_exam_strategy (2).md",
+            "uploaded",
+            "unit 1"
+          ],
+          "order": 37,
+          "prev": "19_Synthesis_And_Exam_Practice.md",
+          "next": "01_GDC_Essential_Skills (2).md",
+          "collection": "uploaded-note"
+        },
+        {
+          "id": "U02",
+          "file": "01_GDC_Essential_Skills (2).md",
+          "title": "Key GDC Skills",
+          "category": "Your supplied Unit 1 notes",
+          "tags": [
+            "01_gdc_essential_skills (2).md",
+            "uploaded",
+            "unit 1"
+          ],
+          "order": 38,
+          "prev": "00_Master_Index_And_Exam_Strategy (2).md",
+          "next": "02_Arithmetic_Sequences (2).md",
+          "collection": "uploaded-note"
+        },
+        {
+          "id": "U03",
+          "file": "02_Arithmetic_Sequences (2).md",
+          "title": "Arithmetic Sequences",
+          "category": "Your supplied Unit 1 notes",
+          "tags": [
+            "02_arithmetic_sequences (2).md",
+            "uploaded",
+            "unit 1"
+          ],
+          "order": 39,
+          "prev": "01_GDC_Essential_Skills (2).md",
+          "next": "03_Geometric_Sequences (2).md",
+          "collection": "uploaded-note"
+        },
+        {
+          "id": "U04",
+          "file": "03_Geometric_Sequences (2).md",
+          "title": "Geometric Sequences",
+          "category": "Your supplied Unit 1 notes",
+          "tags": [
+            "03_geometric_sequences (2).md",
+            "uploaded",
+            "unit 1"
+          ],
+          "order": 40,
+          "prev": "02_Arithmetic_Sequences (2).md",
+          "next": "04_Series_And_Sigma_Notation (2).md",
+          "collection": "uploaded-note"
+        },
+        {
+          "id": "U05",
+          "file": "04_Series_And_Sigma_Notation (2).md",
+          "title": "Series & Sigma Notation",
+          "category": "Your supplied Unit 1 notes",
+          "tags": [
+            "04_series_and_sigma_notation (2).md",
+            "uploaded",
+            "unit 1"
+          ],
+          "order": 41,
+          "prev": "03_Geometric_Sequences (2).md",
+          "next": "05_Sum_Of_Arithmetic_Series (2).md",
+          "collection": "uploaded-note"
+        },
+        {
+          "id": "U06",
+          "file": "05_Sum_Of_Arithmetic_Series (2).md",
+          "title": "Sum of an Arithmetic Series",
+          "category": "Your supplied Unit 1 notes",
+          "tags": [
+            "05_sum_of_arithmetic_series (2).md",
+            "uploaded",
+            "unit 1"
+          ],
+          "order": 42,
+          "prev": "04_Series_And_Sigma_Notation (2).md",
+          "next": "06_Sum_Of_Geometric_Series (2).md",
+          "collection": "uploaded-note"
+        },
+        {
+          "id": "U07",
+          "file": "06_Sum_Of_Geometric_Series (2).md",
+          "title": "Sum of a Geometric Series",
+          "category": "Your supplied Unit 1 notes",
+          "tags": [
+            "06_sum_of_geometric_series (2).md",
+            "uploaded",
+            "unit 1"
+          ],
+          "order": 43,
+          "prev": "05_Sum_Of_Arithmetic_Series (2).md",
+          "next": "07_Infinite_Geometric_Series (2).md",
+          "collection": "uploaded-note"
+        },
+        {
+          "id": "U08",
+          "file": "07_Infinite_Geometric_Series (2).md",
+          "title": "Infinite Geometric Series",
+          "category": "Your supplied Unit 1 notes",
+          "tags": [
+            "07_infinite_geometric_series (2).md",
+            "uploaded",
+            "unit 1"
+          ],
+          "order": 44,
+          "prev": "06_Sum_Of_Geometric_Series (2).md",
+          "next": "08_Financial_Applications_Compound_Interest_Depreciation (2).md",
+          "collection": "uploaded-note"
+        },
+        {
+          "id": "U09",
+          "file": "08_Financial_Applications_Compound_Interest_Depreciation (2).md",
+          "title": "Financial Applications",
+          "category": "Your supplied Unit 1 notes",
+          "tags": [
+            "08_financial_applications_compound_interest_depreciation (2).md",
+            "uploaded",
+            "unit 1"
+          ],
+          "order": 45,
+          "prev": "07_Infinite_Geometric_Series (2).md",
+          "next": "09_Proof_Deductive_And_LHS_RHS (2).md",
+          "collection": "uploaded-note"
+        },
+        {
+          "id": "U10",
+          "file": "09_Proof_Deductive_And_LHS_RHS (2).md",
+          "title": "Deductive Proof & LHS-RHS",
+          "category": "Your supplied Unit 1 notes",
+          "tags": [
+            "09_proof_deductive_and_lhs_rhs (2).md",
+            "uploaded",
+            "unit 1"
+          ],
+          "order": 46,
+          "prev": "08_Financial_Applications_Compound_Interest_Depreciation (2).md",
+          "next": "10_Proof_By_Mathematical_Induction (2).md",
+          "collection": "uploaded-note"
+        },
+        {
+          "id": "U11",
+          "file": "10_Proof_By_Mathematical_Induction (2).md",
+          "title": "Proof by Mathematical Induction",
+          "category": "Your supplied Unit 1 notes",
+          "tags": [
+            "10_proof_by_mathematical_induction (2).md",
+            "uploaded",
+            "unit 1"
+          ],
+          "order": 47,
+          "prev": "09_Proof_Deductive_And_LHS_RHS (2).md",
+          "next": "11_Proof_By_Counterexample (2).md",
+          "collection": "uploaded-note"
+        },
+        {
+          "id": "U12",
+          "file": "11_Proof_By_Counterexample (2).md",
+          "title": "Disproof by Counterexample",
+          "category": "Your supplied Unit 1 notes",
+          "tags": [
+            "11_proof_by_counterexample (2).md",
+            "uploaded",
+            "unit 1"
+          ],
+          "order": 48,
+          "prev": "10_Proof_By_Mathematical_Induction (2).md",
+          "next": "12_Proof_By_Contradiction (2).md",
+          "collection": "uploaded-note"
+        },
+        {
+          "id": "U13",
+          "file": "12_Proof_By_Contradiction (2).md",
+          "title": "Proof by Contradiction",
+          "category": "Your supplied Unit 1 notes",
+          "tags": [
+            "12_proof_by_contradiction (2).md",
+            "uploaded",
+            "unit 1"
+          ],
+          "order": 49,
+          "prev": "11_Proof_By_Counterexample (2).md",
+          "next": "13_Counting_Fundamental_Principle_And_Factorials (2).md",
+          "collection": "uploaded-note"
+        },
+        {
+          "id": "U14",
+          "file": "13_Counting_Fundamental_Principle_And_Factorials (2).md",
+          "title": "Counting Principles & Factorials",
+          "category": "Your supplied Unit 1 notes",
+          "tags": [
+            "13_counting_fundamental_principle_and_factorials (2).md",
+            "uploaded",
+            "unit 1"
+          ],
+          "order": 50,
+          "prev": "12_Proof_By_Contradiction (2).md",
+          "next": "14_Permutations (2).md",
+          "collection": "uploaded-note"
+        },
+        {
+          "id": "U15",
+          "file": "14_Permutations (2).md",
+          "title": "Permutations",
+          "category": "Your supplied Unit 1 notes",
+          "tags": [
+            "14_permutations (2).md",
+            "uploaded",
+            "unit 1"
+          ],
+          "order": 51,
+          "prev": "13_Counting_Fundamental_Principle_And_Factorials (2).md",
+          "next": "15_Combinations (2).md",
+          "collection": "uploaded-note"
+        },
+        {
+          "id": "U16",
+          "file": "15_Combinations (2).md",
+          "title": "Combinations",
+          "category": "Your supplied Unit 1 notes",
+          "tags": [
+            "15_combinations (2).md",
+            "uploaded",
+            "unit 1"
+          ],
+          "order": 52,
+          "prev": "14_Permutations (2).md",
+          "next": "16_Pascals_Triangle.md",
+          "collection": "uploaded-note"
+        },
+        {
+          "id": "U17",
+          "file": "16_Pascals_Triangle.md",
+          "title": "Pascal's Triangle",
+          "category": "Your supplied Unit 1 notes",
+          "tags": [
+            "16_pascals_triangle.md",
+            "uploaded",
+            "unit 1"
+          ],
+          "order": 53,
+          "prev": "15_Combinations (2).md",
+          "next": "17_Binomial_Theorem_Positive_Integer_n.md",
+          "collection": "uploaded-note"
+        },
+        {
+          "id": "U18",
+          "file": "17_Binomial_Theorem_Positive_Integer_n.md",
+          "title": "Binomial Theorem (Positive Integer n)",
+          "category": "Your supplied Unit 1 notes",
+          "tags": [
+            "17_binomial_theorem_positive_integer_n.md",
+            "uploaded",
+            "unit 1"
+          ],
+          "order": 54,
+          "prev": "16_Pascals_Triangle.md",
+          "next": "18_Binomial_Theorem_Rational_n_Extension.md",
+          "collection": "uploaded-note"
+        },
+        {
+          "id": "U19",
+          "file": "18_Binomial_Theorem_Rational_n_Extension.md",
+          "title": "Binomial Theorem (Rational n Extension)",
+          "category": "Your supplied Unit 1 notes",
+          "tags": [
+            "18_binomial_theorem_rational_n_extension.md",
+            "uploaded",
+            "unit 1"
+          ],
+          "order": 55,
+          "prev": "17_Binomial_Theorem_Positive_Integer_n.md",
+          "next": "19_Master_Formula_Sheet_And_Old_Test_Strategy.md",
+          "collection": "uploaded-note"
+        },
+        {
+          "id": "U20",
+          "file": "19_Master_Formula_Sheet_And_Old_Test_Strategy.md",
+          "title": "Master Formula Sheet & Old-Test Strategy",
+          "category": "Your supplied Unit 1 notes",
+          "tags": [
+            "19_master_formula_sheet_and_old_test_strategy.md",
+            "uploaded",
+            "unit 1"
+          ],
+          "order": 56,
+          "prev": "18_Binomial_Theorem_Rational_n_Extension.md",
+          "next": "Countdown_Schedule_Thu_to_Mon.md",
+          "collection": "uploaded-note"
+        },
+        {
+          "id": "U21",
+          "file": "Countdown_Schedule_Thu_to_Mon.md",
+          "title": "Countdown Plan — Thursday 6PM → Monday Paper 2",
+          "category": "Your supplied Unit 1 notes",
+          "tags": [
+            "countdown_schedule_thu_to_mon.md",
+            "uploaded",
+            "unit 1"
+          ],
+          "order": 57,
+          "prev": "19_Master_Formula_Sheet_And_Old_Test_Strategy.md",
+          "next": "IB_AAHL_SequencesSeriesCountingBinomial_MasterGuide.md",
+          "collection": "uploaded-note"
+        },
+        {
+          "id": "U22",
+          "file": "IB_AAHL_SequencesSeriesCountingBinomial_MasterGuide.md",
+          "title": "IB AA HL — Master Guide: Sequences & Series, Counting, Binomial Expansion",
+          "category": "Your supplied Unit 1 notes",
+          "tags": [
+            "ib_aahl_sequencesseriescountingbinomial_masterguide.md",
+            "uploaded",
+            "unit 1"
+          ],
+          "order": 58,
+          "prev": "Countdown_Schedule_Thu_to_Mon.md",
+          "next": "Content_Writing_Guide.md",
+          "collection": "uploaded-note"
+        },
+        {
+          "id": "GUIDE",
+          "file": "Content_Writing_Guide.md",
+          "title": "Course writing and verification guide",
+          "category": "Editorial guide",
+          "tags": [
+            "writing",
+            "guide",
+            "sources",
+            "verification"
+          ],
+          "order": 59,
+          "prev": "IB_AAHL_SequencesSeriesCountingBinomial_MasterGuide.md",
+          "next": "FORMULA_BOOKLET_AUDIT.md",
+          "collection": "guide"
+        },
+        {
+          "id": "BOOKLET",
+          "file": "FORMULA_BOOKLET_AUDIT.md",
+          "title": "Supplied 2023 HL formula booklet cross-check",
+          "category": "Editorial guide",
+          "tags": [
+            "booklet",
+            "2023",
+            "version 1.0",
+            "printed pages",
+            "verification"
+          ],
+          "order": 60,
+          "prev": "Content_Writing_Guide.md",
+          "next": null,
+          "collection": "guide"
+        }
+      ]
+    },
+    {
+      "slug": "functions",
+      "directory": "Unit 2 Functions",
+      "topics": [
+        {
+          "id": "MASTER",
+          "file": "Master_Guide.md",
+          "title": "Functions master guide",
+          "category": "Strand master guide",
+          "tags": [
+            "functions",
+            "master",
+            "guide",
+            "aa hl",
+            "aa sl"
+          ],
+          "order": 0,
+          "prev": null,
+          "next": "AA_SL_2_1_straight_lines_and_gradients.md",
+          "collection": "guide"
+        },
+        {
+          "id": "SL 2.1",
+          "file": "AA_SL_2_1_straight_lines_and_gradients.md",
+          "title": "Straight lines and gradients",
+          "category": "SL foundations",
+          "tags": [
+            "functions",
+            "straight",
+            "lines",
+            "gradients",
+            "sl 2.1"
+          ],
+          "order": 1,
+          "prev": "Master_Guide.md",
+          "next": "AA_SL_2_2_functions_domains_ranges_and_inverses.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 2.2",
+          "file": "AA_SL_2_2_functions_domains_ranges_and_inverses.md",
+          "title": "Functions, domains, ranges and inverses",
+          "category": "SL foundations",
+          "tags": [
+            "functions",
+            "domains",
+            "ranges",
+            "inverses",
+            "sl 2.2"
+          ],
+          "order": 2,
+          "prev": "AA_SL_2_1_straight_lines_and_gradients.md",
+          "next": "AA_SL_2_3_graphing_functions.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 2.3",
+          "file": "AA_SL_2_3_graphing_functions.md",
+          "title": "Graphing functions",
+          "category": "SL foundations",
+          "tags": [
+            "functions",
+            "graphing",
+            "sl 2.3"
+          ],
+          "order": 3,
+          "prev": "AA_SL_2_2_functions_domains_ranges_and_inverses.md",
+          "next": "AA_SL_2_4_graph_features_and_intersections.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 2.4",
+          "file": "AA_SL_2_4_graph_features_and_intersections.md",
+          "title": "Graph features and intersections",
+          "category": "SL foundations",
+          "tags": [
+            "functions",
+            "graph",
+            "features",
+            "intersections",
+            "sl 2.4"
+          ],
+          "order": 4,
+          "prev": "AA_SL_2_3_graphing_functions.md",
+          "next": "AA_SL_2_5_composite_and_inverse_functions.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 2.5",
+          "file": "AA_SL_2_5_composite_and_inverse_functions.md",
+          "title": "Composite and inverse functions",
+          "category": "SL foundations",
+          "tags": [
+            "functions",
+            "composite",
+            "inverse",
+            "sl 2.5"
+          ],
+          "order": 5,
+          "prev": "AA_SL_2_4_graph_features_and_intersections.md",
+          "next": "AA_SL_2_6_quadratic_functions.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 2.6",
+          "file": "AA_SL_2_6_quadratic_functions.md",
+          "title": "Quadratic functions",
+          "category": "SL foundations",
+          "tags": [
+            "functions",
+            "quadratic",
+            "sl 2.6"
+          ],
+          "order": 6,
+          "prev": "AA_SL_2_5_composite_and_inverse_functions.md",
+          "next": "AA_SL_2_7_quadratic_equations_and_inequalities.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 2.7",
+          "file": "AA_SL_2_7_quadratic_equations_and_inequalities.md",
+          "title": "Quadratic equations and inequalities",
+          "category": "SL foundations",
+          "tags": [
+            "functions",
+            "quadratic",
+            "equations",
+            "inequalities",
+            "sl 2.7"
+          ],
+          "order": 7,
+          "prev": "AA_SL_2_6_quadratic_functions.md",
+          "next": "AA_SL_2_8_reciprocal_and_simple_rational_functions.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 2.8",
+          "file": "AA_SL_2_8_reciprocal_and_simple_rational_functions.md",
+          "title": "Reciprocal and simple rational functions",
+          "category": "SL foundations",
+          "tags": [
+            "functions",
+            "reciprocal",
+            "simple",
+            "rational",
+            "sl 2.8"
+          ],
+          "order": 8,
+          "prev": "AA_SL_2_7_quadratic_equations_and_inequalities.md",
+          "next": "AA_SL_2_9_exponential_and_logarithmic_functions.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 2.9",
+          "file": "AA_SL_2_9_exponential_and_logarithmic_functions.md",
+          "title": "Exponential and logarithmic functions",
+          "category": "SL foundations",
+          "tags": [
+            "functions",
+            "exponential",
+            "logarithmic",
+            "sl 2.9"
+          ],
+          "order": 9,
+          "prev": "AA_SL_2_8_reciprocal_and_simple_rational_functions.md",
+          "next": "AA_SL_2_10_solving_equations_graphically_and_analytically.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 2.10",
+          "file": "AA_SL_2_10_solving_equations_graphically_and_analytically.md",
+          "title": "Solving equations graphically and analytically",
+          "category": "SL foundations",
+          "tags": [
+            "functions",
+            "solving",
+            "equations",
+            "graphically",
+            "analytically",
+            "sl 2.10"
+          ],
+          "order": 10,
+          "prev": "AA_SL_2_9_exponential_and_logarithmic_functions.md",
+          "next": "AA_SL_2_11_transformations_of_functions.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 2.11",
+          "file": "AA_SL_2_11_transformations_of_functions.md",
+          "title": "Transformations of functions",
+          "category": "SL foundations",
+          "tags": [
+            "functions",
+            "transformations",
+            "sl 2.11"
+          ],
+          "order": 11,
+          "prev": "AA_SL_2_10_solving_equations_graphically_and_analytically.md",
+          "next": "AA_AHL_2_12_factor_remainder_and_root_relations.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "AHL 2.12",
+          "file": "AA_AHL_2_12_factor_remainder_and_root_relations.md",
+          "title": "Factor, remainder and root relations",
+          "category": "AA HL extension",
+          "tags": [
+            "functions",
+            "factor",
+            "remainder",
+            "root",
+            "relations",
+            "ahl 2.12"
+          ],
+          "order": 12,
+          "prev": "AA_SL_2_11_transformations_of_functions.md",
+          "next": "AA_AHL_2_13_rational_functions_and_discontinuities.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "AHL 2.13",
+          "file": "AA_AHL_2_13_rational_functions_and_discontinuities.md",
+          "title": "Rational functions and discontinuities",
+          "category": "AA HL extension",
+          "tags": [
+            "functions",
+            "rational",
+            "discontinuities",
+            "ahl 2.13"
+          ],
+          "order": 13,
+          "prev": "AA_AHL_2_12_factor_remainder_and_root_relations.md",
+          "next": "AA_AHL_2_14_odd_even_and_self_inverse_functions.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "AHL 2.14",
+          "file": "AA_AHL_2_14_odd_even_and_self_inverse_functions.md",
+          "title": "Odd, even and self-inverse functions",
+          "category": "AA HL extension",
+          "tags": [
+            "functions",
+            "even",
+            "self",
+            "inverse",
+            "ahl 2.14"
+          ],
+          "order": 14,
+          "prev": "AA_AHL_2_13_rational_functions_and_discontinuities.md",
+          "next": "AA_AHL_2_15_rational_and_other_inequalities.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "AHL 2.15",
+          "file": "AA_AHL_2_15_rational_and_other_inequalities.md",
+          "title": "Rational and other inequalities",
+          "category": "AA HL extension",
+          "tags": [
+            "functions",
+            "rational",
+            "other",
+            "inequalities",
+            "ahl 2.15"
+          ],
+          "order": 15,
+          "prev": "AA_AHL_2_14_odd_even_and_self_inverse_functions.md",
+          "next": "AA_AHL_2_16_modulus_equations_and_inequalities.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "AHL 2.16",
+          "file": "AA_AHL_2_16_modulus_equations_and_inequalities.md",
+          "title": "Modulus equations and inequalities",
+          "category": "AA HL extension",
+          "tags": [
+            "functions",
+            "modulus",
+            "equations",
+            "inequalities",
+            "ahl 2.16"
+          ],
+          "order": 16,
+          "prev": "AA_AHL_2_15_rational_and_other_inequalities.md",
+          "next": null,
+          "collection": "syllabus"
+        }
+      ]
+    },
+    {
+      "slug": "geometry-and-trigonometry",
+      "directory": "Unit 3 Geometry and Trigonometry",
+      "topics": [
+        {
+          "id": "MASTER",
+          "file": "Master_Guide.md",
+          "title": "Geometry & Trigonometry master guide",
+          "category": "Strand master guide",
+          "tags": [
+            "geometry & trigonometry",
+            "master",
+            "guide",
+            "aa hl",
+            "aa sl"
+          ],
+          "order": 0,
+          "prev": null,
+          "next": "AA_SL_3_1_three_dimensional_geometry.md",
+          "collection": "guide"
+        },
+        {
+          "id": "SL 3.1",
+          "file": "AA_SL_3_1_three_dimensional_geometry.md",
+          "title": "Three-dimensional geometry",
+          "category": "SL foundations",
+          "tags": [
+            "geometry & trigonometry",
+            "three",
+            "dimensional",
+            "geometry",
+            "sl 3.1"
+          ],
+          "order": 1,
+          "prev": "Master_Guide.md",
+          "next": "AA_SL_3_2_trigonometric_ratios.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 3.2",
+          "file": "AA_SL_3_2_trigonometric_ratios.md",
+          "title": "Trigonometric ratios",
+          "category": "SL foundations",
+          "tags": [
+            "geometry & trigonometry",
+            "trigonometric",
+            "ratios",
+            "sl 3.2"
+          ],
+          "order": 2,
+          "prev": "AA_SL_3_1_three_dimensional_geometry.md",
+          "next": "AA_SL_3_3_applications_of_trigonometry.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 3.3",
+          "file": "AA_SL_3_3_applications_of_trigonometry.md",
+          "title": "Applications of trigonometry",
+          "category": "SL foundations",
+          "tags": [
+            "geometry & trigonometry",
+            "applications",
+            "trigonometry",
+            "sl 3.3"
+          ],
+          "order": 3,
+          "prev": "AA_SL_3_2_trigonometric_ratios.md",
+          "next": "AA_SL_3_4_circles_radians_and_sectors.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 3.4",
+          "file": "AA_SL_3_4_circles_radians_and_sectors.md",
+          "title": "Circles, radians and sectors",
+          "category": "SL foundations",
+          "tags": [
+            "geometry & trigonometry",
+            "circles",
+            "radians",
+            "sectors",
+            "sl 3.4"
+          ],
+          "order": 4,
+          "prev": "AA_SL_3_3_applications_of_trigonometry.md",
+          "next": "AA_SL_3_5_the_unit_circle.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 3.5",
+          "file": "AA_SL_3_5_the_unit_circle.md",
+          "title": "The unit circle",
+          "category": "SL foundations",
+          "tags": [
+            "geometry & trigonometry",
+            "unit",
+            "circle",
+            "sl 3.5"
+          ],
+          "order": 5,
+          "prev": "AA_SL_3_4_circles_radians_and_sectors.md",
+          "next": "AA_SL_3_6_trigonometric_identities.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 3.6",
+          "file": "AA_SL_3_6_trigonometric_identities.md",
+          "title": "Trigonometric identities",
+          "category": "SL foundations",
+          "tags": [
+            "geometry & trigonometry",
+            "trigonometric",
+            "identities",
+            "sl 3.6"
+          ],
+          "order": 6,
+          "prev": "AA_SL_3_5_the_unit_circle.md",
+          "next": "AA_SL_3_7_trigonometric_functions_and_graphs.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 3.7",
+          "file": "AA_SL_3_7_trigonometric_functions_and_graphs.md",
+          "title": "Trigonometric functions and graphs",
+          "category": "SL foundations",
+          "tags": [
+            "geometry & trigonometry",
+            "trigonometric",
+            "functions",
+            "graphs",
+            "sl 3.7"
+          ],
+          "order": 7,
+          "prev": "AA_SL_3_6_trigonometric_identities.md",
+          "next": "AA_SL_3_8_trigonometric_equations.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 3.8",
+          "file": "AA_SL_3_8_trigonometric_equations.md",
+          "title": "Trigonometric equations",
+          "category": "SL foundations",
+          "tags": [
+            "geometry & trigonometry",
+            "trigonometric",
+            "equations",
+            "sl 3.8"
+          ],
+          "order": 8,
+          "prev": "AA_SL_3_7_trigonometric_functions_and_graphs.md",
+          "next": "AA_AHL_3_9_reciprocal_ratios_and_identities.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "AHL 3.9",
+          "file": "AA_AHL_3_9_reciprocal_ratios_and_identities.md",
+          "title": "Reciprocal ratios and identities",
+          "category": "AA HL extension",
+          "tags": [
+            "geometry & trigonometry",
+            "reciprocal",
+            "ratios",
+            "identities",
+            "ahl 3.9"
+          ],
+          "order": 9,
+          "prev": "AA_SL_3_8_trigonometric_equations.md",
+          "next": "AA_AHL_3_10_compound_angle_identities.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "AHL 3.10",
+          "file": "AA_AHL_3_10_compound_angle_identities.md",
+          "title": "Compound-angle identities",
+          "category": "AA HL extension",
+          "tags": [
+            "geometry & trigonometry",
+            "compound",
+            "angle",
+            "identities",
+            "ahl 3.10"
+          ],
+          "order": 10,
+          "prev": "AA_AHL_3_9_reciprocal_ratios_and_identities.md",
+          "next": "AA_AHL_3_11_relationships_among_trigonometric_functions.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "AHL 3.11",
+          "file": "AA_AHL_3_11_relationships_among_trigonometric_functions.md",
+          "title": "Relationships among trigonometric functions",
+          "category": "AA HL extension",
+          "tags": [
+            "geometry & trigonometry",
+            "relationships",
+            "among",
+            "trigonometric",
+            "functions",
+            "ahl 3.11"
+          ],
+          "order": 11,
+          "prev": "AA_AHL_3_10_compound_angle_identities.md",
+          "next": "AA_AHL_3_12_vector_concepts_in_two_and_three_dimensions.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "AHL 3.12",
+          "file": "AA_AHL_3_12_vector_concepts_in_two_and_three_dimensions.md",
+          "title": "Vector concepts in two and three dimensions",
+          "category": "AA HL extension",
+          "tags": [
+            "geometry & trigonometry",
+            "vector",
+            "concepts",
+            "three",
+            "dimensions",
+            "ahl 3.12"
+          ],
+          "order": 12,
+          "prev": "AA_AHL_3_11_relationships_among_trigonometric_functions.md",
+          "next": "AA_AHL_3_13_scalar_product_and_angles.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "AHL 3.13",
+          "file": "AA_AHL_3_13_scalar_product_and_angles.md",
+          "title": "Scalar product and angles",
+          "category": "AA HL extension",
+          "tags": [
+            "geometry & trigonometry",
+            "scalar",
+            "product",
+            "angles",
+            "ahl 3.13"
+          ],
+          "order": 13,
+          "prev": "AA_AHL_3_12_vector_concepts_in_two_and_three_dimensions.md",
+          "next": "AA_AHL_3_14_vector_equations_of_lines.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "AHL 3.14",
+          "file": "AA_AHL_3_14_vector_equations_of_lines.md",
+          "title": "Vector equations of lines",
+          "category": "AA HL extension",
+          "tags": [
+            "geometry & trigonometry",
+            "vector",
+            "equations",
+            "lines",
+            "ahl 3.14"
+          ],
+          "order": 14,
+          "prev": "AA_AHL_3_13_scalar_product_and_angles.md",
+          "next": "AA_AHL_3_15_coincident_parallel_intersecting_and_skew_lines.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "AHL 3.15",
+          "file": "AA_AHL_3_15_coincident_parallel_intersecting_and_skew_lines.md",
+          "title": "Coincident, parallel, intersecting and skew lines",
+          "category": "AA HL extension",
+          "tags": [
+            "geometry & trigonometry",
+            "coincident",
+            "parallel",
+            "intersecting",
+            "skew",
+            "lines",
+            "ahl 3.15"
+          ],
+          "order": 15,
+          "prev": "AA_AHL_3_14_vector_equations_of_lines.md",
+          "next": "AA_AHL_3_16_vector_product.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "AHL 3.16",
+          "file": "AA_AHL_3_16_vector_product.md",
+          "title": "Vector product",
+          "category": "AA HL extension",
+          "tags": [
+            "geometry & trigonometry",
+            "vector",
+            "product",
+            "ahl 3.16"
+          ],
+          "order": 16,
+          "prev": "AA_AHL_3_15_coincident_parallel_intersecting_and_skew_lines.md",
+          "next": "AA_AHL_3_17_vector_equations_of_planes.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "AHL 3.17",
+          "file": "AA_AHL_3_17_vector_equations_of_planes.md",
+          "title": "Vector equations of planes",
+          "category": "AA HL extension",
+          "tags": [
+            "geometry & trigonometry",
+            "vector",
+            "equations",
+            "planes",
+            "ahl 3.17"
+          ],
+          "order": 17,
+          "prev": "AA_AHL_3_16_vector_product.md",
+          "next": "AA_AHL_3_18_intersections_of_lines_and_planes.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "AHL 3.18",
+          "file": "AA_AHL_3_18_intersections_of_lines_and_planes.md",
+          "title": "Intersections of lines and planes",
+          "category": "AA HL extension",
+          "tags": [
+            "geometry & trigonometry",
+            "intersections",
+            "lines",
+            "planes",
+            "ahl 3.18"
+          ],
+          "order": 18,
+          "prev": "AA_AHL_3_17_vector_equations_of_planes.md",
+          "next": null,
+          "collection": "syllabus"
+        }
+      ]
+    },
+    {
+      "slug": "statistics-and-probability",
+      "directory": "Unit 4 Statistics and Probability",
+      "topics": [
+        {
+          "id": "MASTER",
+          "file": "Master_Guide.md",
+          "title": "Statistics & Probability master guide",
+          "category": "Strand master guide",
+          "tags": [
+            "statistics & probability",
+            "master",
+            "guide",
+            "aa hl",
+            "aa sl"
+          ],
+          "order": 0,
+          "prev": null,
+          "next": "AA_SL_4_1_data_reliability_and_sampling.md",
+          "collection": "guide"
+        },
+        {
+          "id": "SL 4.1",
+          "file": "AA_SL_4_1_data_reliability_and_sampling.md",
+          "title": "Data reliability and sampling",
+          "category": "SL foundations",
+          "tags": [
+            "statistics & probability",
+            "data",
+            "reliability",
+            "sampling",
+            "sl 4.1"
+          ],
+          "order": 1,
+          "prev": "Master_Guide.md",
+          "next": "AA_SL_4_2_histograms_cumulative_frequency_and_box_plots.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 4.2",
+          "file": "AA_SL_4_2_histograms_cumulative_frequency_and_box_plots.md",
+          "title": "Histograms, cumulative frequency and box plots",
+          "category": "SL foundations",
+          "tags": [
+            "statistics & probability",
+            "histograms",
+            "cumulative",
+            "frequency",
+            "plots",
+            "sl 4.2"
+          ],
+          "order": 2,
+          "prev": "AA_SL_4_1_data_reliability_and_sampling.md",
+          "next": "AA_SL_4_3_averages_grouped_estimates_and_standard_deviation.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 4.3",
+          "file": "AA_SL_4_3_averages_grouped_estimates_and_standard_deviation.md",
+          "title": "Averages, grouped estimates and standard deviation",
+          "category": "SL foundations",
+          "tags": [
+            "statistics & probability",
+            "averages",
+            "grouped",
+            "estimates",
+            "standard",
+            "deviation",
+            "sl 4.3"
+          ],
+          "order": 3,
+          "prev": "AA_SL_4_2_histograms_cumulative_frequency_and_box_plots.md",
+          "next": "AA_SL_4_4_pearson_correlation_and_regression_of_y_on_x.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 4.4",
+          "file": "AA_SL_4_4_pearson_correlation_and_regression_of_y_on_x.md",
+          "title": "Pearson correlation and regression of y on x",
+          "category": "SL foundations",
+          "tags": [
+            "statistics & probability",
+            "pearson",
+            "correlation",
+            "regression",
+            "sl 4.4"
+          ],
+          "order": 4,
+          "prev": "AA_SL_4_3_averages_grouped_estimates_and_standard_deviation.md",
+          "next": "AA_SL_4_5_probability_concepts_and_expected_counts.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 4.5",
+          "file": "AA_SL_4_5_probability_concepts_and_expected_counts.md",
+          "title": "Probability concepts and expected counts",
+          "category": "SL foundations",
+          "tags": [
+            "statistics & probability",
+            "probability",
+            "concepts",
+            "expected",
+            "counts",
+            "sl 4.5"
+          ],
+          "order": 5,
+          "prev": "AA_SL_4_4_pearson_correlation_and_regression_of_y_on_x.md",
+          "next": "AA_SL_4_6_combined_conditional_and_independent_events.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 4.6",
+          "file": "AA_SL_4_6_combined_conditional_and_independent_events.md",
+          "title": "Combined, conditional and independent events",
+          "category": "SL foundations",
+          "tags": [
+            "statistics & probability",
+            "combined",
+            "conditional",
+            "independent",
+            "events",
+            "sl 4.6"
+          ],
+          "order": 6,
+          "prev": "AA_SL_4_5_probability_concepts_and_expected_counts.md",
+          "next": "AA_SL_4_7_discrete_random_variables.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 4.7",
+          "file": "AA_SL_4_7_discrete_random_variables.md",
+          "title": "Discrete random variables",
+          "category": "SL foundations",
+          "tags": [
+            "statistics & probability",
+            "discrete",
+            "random",
+            "variables",
+            "sl 4.7"
+          ],
+          "order": 7,
+          "prev": "AA_SL_4_6_combined_conditional_and_independent_events.md",
+          "next": "AA_SL_4_8_binomial_distribution.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 4.8",
+          "file": "AA_SL_4_8_binomial_distribution.md",
+          "title": "Binomial distribution",
+          "category": "SL foundations",
+          "tags": [
+            "statistics & probability",
+            "binomial",
+            "distribution",
+            "sl 4.8"
+          ],
+          "order": 8,
+          "prev": "AA_SL_4_7_discrete_random_variables.md",
+          "next": "AA_SL_4_9_normal_distribution.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 4.9",
+          "file": "AA_SL_4_9_normal_distribution.md",
+          "title": "Normal distribution",
+          "category": "SL foundations",
+          "tags": [
+            "statistics & probability",
+            "normal",
+            "distribution",
+            "sl 4.9"
+          ],
+          "order": 9,
+          "prev": "AA_SL_4_8_binomial_distribution.md",
+          "next": "AA_SL_4_10_regression_of_x_on_y.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 4.10",
+          "file": "AA_SL_4_10_regression_of_x_on_y.md",
+          "title": "Regression of x on y",
+          "category": "SL foundations",
+          "tags": [
+            "statistics & probability",
+            "regression",
+            "sl 4.10"
+          ],
+          "order": 10,
+          "prev": "AA_SL_4_9_normal_distribution.md",
+          "next": "AA_SL_4_11_conditional_probabilities_and_independence_tests.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 4.11",
+          "file": "AA_SL_4_11_conditional_probabilities_and_independence_tests.md",
+          "title": "Conditional probabilities and independence tests",
+          "category": "SL foundations",
+          "tags": [
+            "statistics & probability",
+            "conditional",
+            "probabilities",
+            "independence",
+            "tests",
+            "sl 4.11"
+          ],
+          "order": 11,
+          "prev": "AA_SL_4_10_regression_of_x_on_y.md",
+          "next": "AA_SL_4_12_z_scores_and_inverse_normal_calculations.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 4.12",
+          "file": "AA_SL_4_12_z_scores_and_inverse_normal_calculations.md",
+          "title": "Z-scores and inverse normal calculations",
+          "category": "SL foundations",
+          "tags": [
+            "statistics & probability",
+            "scores",
+            "inverse",
+            "normal",
+            "calculations",
+            "sl 4.12"
+          ],
+          "order": 12,
+          "prev": "AA_SL_4_11_conditional_probabilities_and_independence_tests.md",
+          "next": "AA_AHL_4_13_bayes_theorem.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "AHL 4.13",
+          "file": "AA_AHL_4_13_bayes_theorem.md",
+          "title": "Bayes theorem",
+          "category": "AA HL extension",
+          "tags": [
+            "statistics & probability",
+            "bayes",
+            "theorem",
+            "ahl 4.13"
+          ],
+          "order": 13,
+          "prev": "AA_SL_4_12_z_scores_and_inverse_normal_calculations.md",
+          "next": "AA_AHL_4_14_properties_of_random_variables.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "AHL 4.14",
+          "file": "AA_AHL_4_14_properties_of_random_variables.md",
+          "title": "Properties of random variables",
+          "category": "AA HL extension",
+          "tags": [
+            "statistics & probability",
+            "properties",
+            "random",
+            "variables",
+            "ahl 4.14"
+          ],
+          "order": 14,
+          "prev": "AA_AHL_4_13_bayes_theorem.md",
+          "next": null,
+          "collection": "syllabus"
+        }
+      ]
+    },
+    {
+      "slug": "calculus",
+      "directory": "Unit 5 Calculus",
+      "topics": [
+        {
+          "id": "MASTER",
+          "file": "Master_Guide.md",
+          "title": "Calculus master guide",
+          "category": "Strand master guide",
+          "tags": [
+            "calculus",
+            "master",
+            "guide",
+            "aa hl",
+            "aa sl"
+          ],
+          "order": 0,
+          "prev": null,
+          "next": "AA_SL_5_1_introduction_to_differential_calculus.md",
+          "collection": "guide"
+        },
+        {
+          "id": "SL 5.1",
+          "file": "AA_SL_5_1_introduction_to_differential_calculus.md",
+          "title": "Introduction to differential calculus",
+          "category": "SL foundations",
+          "tags": [
+            "calculus",
+            "introduction",
+            "differential",
+            "sl 5.1"
+          ],
+          "order": 1,
+          "prev": "Master_Guide.md",
+          "next": "AA_SL_5_2_increasing_and_decreasing_functions.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 5.2",
+          "file": "AA_SL_5_2_increasing_and_decreasing_functions.md",
+          "title": "Increasing and decreasing functions",
+          "category": "SL foundations",
+          "tags": [
+            "calculus",
+            "increasing",
+            "decreasing",
+            "functions",
+            "sl 5.2"
+          ],
+          "order": 2,
+          "prev": "AA_SL_5_1_introduction_to_differential_calculus.md",
+          "next": "AA_SL_5_3_differentiating_integer_powers.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 5.3",
+          "file": "AA_SL_5_3_differentiating_integer_powers.md",
+          "title": "Differentiating integer powers",
+          "category": "SL foundations",
+          "tags": [
+            "calculus",
+            "differentiating",
+            "integer",
+            "powers",
+            "sl 5.3"
+          ],
+          "order": 3,
+          "prev": "AA_SL_5_2_increasing_and_decreasing_functions.md",
+          "next": "AA_SL_5_4_tangents_and_normals.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 5.4",
+          "file": "AA_SL_5_4_tangents_and_normals.md",
+          "title": "Tangents and normals",
+          "category": "SL foundations",
+          "tags": [
+            "calculus",
+            "tangents",
+            "normals",
+            "sl 5.4"
+          ],
+          "order": 4,
+          "prev": "AA_SL_5_3_differentiating_integer_powers.md",
+          "next": "AA_SL_5_5_integration_and_area_from_a_graph.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 5.5",
+          "file": "AA_SL_5_5_integration_and_area_from_a_graph.md",
+          "title": "Integration and area from a graph",
+          "category": "SL foundations",
+          "tags": [
+            "calculus",
+            "integration",
+            "area",
+            "from",
+            "graph",
+            "sl 5.5"
+          ],
+          "order": 5,
+          "prev": "AA_SL_5_4_tangents_and_normals.md",
+          "next": "AA_SL_5_6_chain_product_and_quotient_rules.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 5.6",
+          "file": "AA_SL_5_6_chain_product_and_quotient_rules.md",
+          "title": "Chain, product and quotient rules",
+          "category": "SL foundations",
+          "tags": [
+            "calculus",
+            "chain",
+            "product",
+            "quotient",
+            "rules",
+            "sl 5.6"
+          ],
+          "order": 6,
+          "prev": "AA_SL_5_5_integration_and_area_from_a_graph.md",
+          "next": "AA_SL_5_7_the_second_derivative.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 5.7",
+          "file": "AA_SL_5_7_the_second_derivative.md",
+          "title": "The second derivative",
+          "category": "SL foundations",
+          "tags": [
+            "calculus",
+            "second",
+            "derivative",
+            "sl 5.7"
+          ],
+          "order": 7,
+          "prev": "AA_SL_5_6_chain_product_and_quotient_rules.md",
+          "next": "AA_SL_5_8_optimization_and_points_of_inflection.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 5.8",
+          "file": "AA_SL_5_8_optimization_and_points_of_inflection.md",
+          "title": "Optimization and points of inflection",
+          "category": "SL foundations",
+          "tags": [
+            "calculus",
+            "optimization",
+            "points",
+            "inflection",
+            "sl 5.8"
+          ],
+          "order": 8,
+          "prev": "AA_SL_5_7_the_second_derivative.md",
+          "next": "AA_SL_5_9_kinematics_with_calculus.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 5.9",
+          "file": "AA_SL_5_9_kinematics_with_calculus.md",
+          "title": "Kinematics with calculus",
+          "category": "SL foundations",
+          "tags": [
+            "calculus",
+            "kinematics",
+            "with",
+            "sl 5.9"
+          ],
+          "order": 9,
+          "prev": "AA_SL_5_8_optimization_and_points_of_inflection.md",
+          "next": "AA_SL_5_10_indefinite_integrals_and_substitution.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 5.10",
+          "file": "AA_SL_5_10_indefinite_integrals_and_substitution.md",
+          "title": "Indefinite integrals and substitution",
+          "category": "SL foundations",
+          "tags": [
+            "calculus",
+            "indefinite",
+            "integrals",
+            "substitution",
+            "sl 5.10"
+          ],
+          "order": 10,
+          "prev": "AA_SL_5_9_kinematics_with_calculus.md",
+          "next": "AA_SL_5_11_definite_integrals_and_areas.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "SL 5.11",
+          "file": "AA_SL_5_11_definite_integrals_and_areas.md",
+          "title": "Definite integrals and areas",
+          "category": "SL foundations",
+          "tags": [
+            "calculus",
+            "definite",
+            "integrals",
+            "areas",
+            "sl 5.11"
+          ],
+          "order": 11,
+          "prev": "AA_SL_5_10_indefinite_integrals_and_substitution.md",
+          "next": "AA_AHL_5_12_first_principles_and_higher_derivatives.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "AHL 5.12",
+          "file": "AA_AHL_5_12_first_principles_and_higher_derivatives.md",
+          "title": "First principles and higher derivatives",
+          "category": "AA HL extension",
+          "tags": [
+            "calculus",
+            "first",
+            "principles",
+            "higher",
+            "derivatives",
+            "ahl 5.12"
+          ],
+          "order": 12,
+          "prev": "AA_SL_5_11_definite_integrals_and_areas.md",
+          "next": "AA_AHL_5_13_limits_and_l_h_pital_s_rule.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "AHL 5.13",
+          "file": "AA_AHL_5_13_limits_and_l_h_pital_s_rule.md",
+          "title": "Limits and L’Hôpital’s rule",
+          "category": "AA HL extension",
+          "tags": [
+            "calculus",
+            "limits",
+            "pital",
+            "rule",
+            "ahl 5.13"
+          ],
+          "order": 13,
+          "prev": "AA_AHL_5_12_first_principles_and_higher_derivatives.md",
+          "next": "AA_AHL_5_14_implicit_differentiation_and_related_rates.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "AHL 5.14",
+          "file": "AA_AHL_5_14_implicit_differentiation_and_related_rates.md",
+          "title": "Implicit differentiation and related rates",
+          "category": "AA HL extension",
+          "tags": [
+            "calculus",
+            "implicit",
+            "differentiation",
+            "related",
+            "rates",
+            "ahl 5.14"
+          ],
+          "order": 14,
+          "prev": "AA_AHL_5_13_limits_and_l_h_pital_s_rule.md",
+          "next": "AA_AHL_5_15_further_differentiation_and_antiderivatives.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "AHL 5.15",
+          "file": "AA_AHL_5_15_further_differentiation_and_antiderivatives.md",
+          "title": "Further differentiation and antiderivatives",
+          "category": "AA HL extension",
+          "tags": [
+            "calculus",
+            "further",
+            "differentiation",
+            "antiderivatives",
+            "ahl 5.15"
+          ],
+          "order": 15,
+          "prev": "AA_AHL_5_14_implicit_differentiation_and_related_rates.md",
+          "next": "AA_AHL_5_16_integration_by_substitution_and_parts.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "AHL 5.16",
+          "file": "AA_AHL_5_16_integration_by_substitution_and_parts.md",
+          "title": "Integration by substitution and parts",
+          "category": "AA HL extension",
+          "tags": [
+            "calculus",
+            "integration",
+            "substitution",
+            "parts",
+            "ahl 5.16"
+          ],
+          "order": 16,
+          "prev": "AA_AHL_5_15_further_differentiation_and_antiderivatives.md",
+          "next": "AA_AHL_5_17_areas_with_respect_to_y_and_volumes.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "AHL 5.17",
+          "file": "AA_AHL_5_17_areas_with_respect_to_y_and_volumes.md",
+          "title": "Areas with respect to y and volumes",
+          "category": "AA HL extension",
+          "tags": [
+            "calculus",
+            "areas",
+            "with",
+            "respect",
+            "volumes",
+            "ahl 5.17"
+          ],
+          "order": 17,
+          "prev": "AA_AHL_5_16_integration_by_substitution_and_parts.md",
+          "next": "AA_AHL_5_18_first_order_differential_equations_and_euler_s_method.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "AHL 5.18",
+          "file": "AA_AHL_5_18_first_order_differential_equations_and_euler_s_method.md",
+          "title": "First-order differential equations and Euler’s method",
+          "category": "AA HL extension",
+          "tags": [
+            "calculus",
+            "first",
+            "order",
+            "differential",
+            "equations",
+            "euler",
+            "method",
+            "ahl 5.18"
+          ],
+          "order": 18,
+          "prev": "AA_AHL_5_17_areas_with_respect_to_y_and_volumes.md",
+          "next": "AA_AHL_5_19_maclaurin_series.md",
+          "collection": "syllabus"
+        },
+        {
+          "id": "AHL 5.19",
+          "file": "AA_AHL_5_19_maclaurin_series.md",
+          "title": "Maclaurin series",
+          "category": "AA HL extension",
+          "tags": [
+            "calculus",
+            "maclaurin",
+            "series",
+            "ahl 5.19"
+          ],
+          "order": 19,
+          "prev": "AA_AHL_5_18_first_order_differential_equations_and_euler_s_method.md",
+          "next": null,
+          "collection": "syllabus"
+        }
+      ]
+    }
+  ]
+}

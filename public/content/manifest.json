@@ -1,0 +1,301 @@
+[
+  {
+    "id": "00",
+    "file": "00_Master_Index_And_Exam_Strategy.md",
+    "title": "Master Index & Exam Strategy",
+    "category": "Foundations",
+    "tags": [
+      "overview",
+      "strategy",
+      "exam"
+    ],
+    "order": 0,
+    "prev": null,
+    "next": "01_GDC_Essential_Skills.md"
+  },
+  {
+    "id": "01",
+    "file": "01_GDC_Essential_Skills.md",
+    "title": "GDC Essential Skills",
+    "category": "Foundations",
+    "tags": [
+      "gdc",
+      "calculator",
+      "tables",
+      "exam"
+    ],
+    "order": 1,
+    "prev": "00_Master_Index_And_Exam_Strategy.md",
+    "next": "02_Arithmetic_Sequences_And_Series.md"
+  },
+  {
+    "id": "02",
+    "file": "02_Arithmetic_Sequences_And_Series.md",
+    "title": "Arithmetic Sequences & Series",
+    "category": "Sequences & Series",
+    "tags": [
+      "arithmetic",
+      "sequence",
+      "series",
+      "common difference"
+    ],
+    "order": 2,
+    "prev": "01_GDC_Essential_Skills.md",
+    "next": "03_Geometric_Sequences_And_Series.md"
+  },
+  {
+    "id": "03",
+    "file": "03_Geometric_Sequences_And_Series.md",
+    "title": "Geometric Sequences & Series",
+    "category": "Sequences & Series",
+    "tags": [
+      "geometric",
+      "sequence",
+      "series",
+      "common ratio"
+    ],
+    "order": 3,
+    "prev": "02_Arithmetic_Sequences_And_Series.md",
+    "next": "04_Sigma_Notation_And_Summations.md"
+  },
+  {
+    "id": "04",
+    "file": "04_Sigma_Notation_And_Summations.md",
+    "title": "Sigma Notation & Summations",
+    "category": "Sequences & Series",
+    "tags": [
+      "sigma",
+      "summation",
+      "series",
+      "notation"
+    ],
+    "order": 4,
+    "prev": "03_Geometric_Sequences_And_Series.md",
+    "next": "05_Recursive_Sequences.md"
+  },
+  {
+    "id": "05",
+    "file": "05_Recursive_Sequences.md",
+    "title": "Recursive Sequences",
+    "category": "Sequences & Series",
+    "tags": [
+      "recursion",
+      "sequence",
+      "explicit rule",
+      "pattern"
+    ],
+    "order": 5,
+    "prev": "04_Sigma_Notation_And_Summations.md",
+    "next": "06_Infinite_Geometric_Series.md"
+  },
+  {
+    "id": "06",
+    "file": "06_Infinite_Geometric_Series.md",
+    "title": "Infinite Geometric Series",
+    "category": "Sequences & Series",
+    "tags": [
+      "geometric",
+      "infinite series",
+      "convergence",
+      "sum"
+    ],
+    "order": 6,
+    "prev": "05_Recursive_Sequences.md",
+    "next": "07_Convergence_And_Limits.md"
+  },
+  {
+    "id": "07",
+    "file": "07_Convergence_And_Limits.md",
+    "title": "Convergence & Limits",
+    "category": "Sequences & Series",
+    "tags": [
+      "limits",
+      "convergence",
+      "sequence",
+      "infinity"
+    ],
+    "order": 7,
+    "prev": "06_Infinite_Geometric_Series.md",
+    "next": "08_Applications_Of_Sequences_And_Series.md"
+  },
+  {
+    "id": "08",
+    "file": "08_Applications_Of_Sequences_And_Series.md",
+    "title": "Applications of Sequences & Series",
+    "category": "Sequences & Series",
+    "tags": [
+      "applications",
+      "compound interest",
+      "growth",
+      "modelling"
+    ],
+    "order": 8,
+    "prev": "07_Convergence_And_Limits.md",
+    "next": "09_Proof_By_Deduction.md"
+  },
+  {
+    "id": "09",
+    "file": "09_Proof_By_Deduction.md",
+    "title": "Proof by Deduction",
+    "category": "Proof",
+    "tags": [
+      "proof",
+      "deduction",
+      "algebra",
+      "integers"
+    ],
+    "order": 9,
+    "prev": "08_Applications_Of_Sequences_And_Series.md",
+    "next": "10_Proof_By_Contradiction.md"
+  },
+  {
+    "id": "10",
+    "file": "10_Proof_By_Contradiction.md",
+    "title": "Proof by Contradiction",
+    "category": "Proof",
+    "tags": [
+      "proof",
+      "contradiction",
+      "irrational",
+      "logic"
+    ],
+    "order": 10,
+    "prev": "09_Proof_By_Deduction.md",
+    "next": "11_Mathematical_Induction.md"
+  },
+  {
+    "id": "11",
+    "file": "11_Mathematical_Induction.md",
+    "title": "Mathematical Induction",
+    "category": "Proof",
+    "tags": [
+      "induction",
+      "proof",
+      "sums",
+      "integers"
+    ],
+    "order": 11,
+    "prev": "10_Proof_By_Contradiction.md",
+    "next": "12_Induction_And_Divisibility.md"
+  },
+  {
+    "id": "12",
+    "file": "12_Induction_And_Divisibility.md",
+    "title": "Induction & Divisibility",
+    "category": "Proof",
+    "tags": [
+      "induction",
+      "divisibility",
+      "proof",
+      "number theory"
+    ],
+    "order": 12,
+    "prev": "11_Mathematical_Induction.md",
+    "next": "13_Fundamental_Counting_Principle.md"
+  },
+  {
+    "id": "13",
+    "file": "13_Fundamental_Counting_Principle.md",
+    "title": "Fundamental Counting Principle",
+    "category": "Counting",
+    "tags": [
+      "counting",
+      "multiplication principle",
+      "choices",
+      "probability"
+    ],
+    "order": 13,
+    "prev": "12_Induction_And_Divisibility.md",
+    "next": "14_Permutations_And_Arrangements.md"
+  },
+  {
+    "id": "14",
+    "file": "14_Permutations_And_Arrangements.md",
+    "title": "Permutations & Arrangements",
+    "category": "Counting",
+    "tags": [
+      "permutations",
+      "arrangements",
+      "factorial",
+      "order"
+    ],
+    "order": 14,
+    "prev": "13_Fundamental_Counting_Principle.md",
+    "next": "15_Combinations_And_Binomial_Coefficients.md"
+  },
+  {
+    "id": "15",
+    "file": "15_Combinations_And_Binomial_Coefficients.md",
+    "title": "Combinations & Binomial Coefficients",
+    "category": "Counting",
+    "tags": [
+      "combinations",
+      "choose",
+      "binomial coefficient",
+      "counting"
+    ],
+    "order": 15,
+    "prev": "14_Permutations_And_Arrangements.md",
+    "next": "16_Binomial_Theorem_Positive_Integers.md"
+  },
+  {
+    "id": "16",
+    "file": "16_Binomial_Theorem_Positive_Integers.md",
+    "title": "Binomial Theorem: Positive Integers",
+    "category": "Binomial Theorem",
+    "tags": [
+      "binomial theorem",
+      "expansion",
+      "coefficients",
+      "positive integers"
+    ],
+    "order": 16,
+    "prev": "15_Combinations_And_Binomial_Coefficients.md",
+    "next": "17_General_Binomial_Expansion.md"
+  },
+  {
+    "id": "17",
+    "file": "17_General_Binomial_Expansion.md",
+    "title": "General Binomial Expansion",
+    "category": "Binomial Theorem",
+    "tags": [
+      "binomial series",
+      "fractional powers",
+      "negative powers",
+      "convergence"
+    ],
+    "order": 17,
+    "prev": "16_Binomial_Theorem_Positive_Integers.md",
+    "next": "18_Binomial_Applications_And_Approximations.md"
+  },
+  {
+    "id": "18",
+    "file": "18_Binomial_Applications_And_Approximations.md",
+    "title": "Binomial Approximations & Applications",
+    "category": "Binomial Theorem",
+    "tags": [
+      "approximation",
+      "binomial series",
+      "error",
+      "applications"
+    ],
+    "order": 18,
+    "prev": "17_General_Binomial_Expansion.md",
+    "next": "19_Synthesis_And_Exam_Practice.md"
+  },
+  {
+    "id": "19",
+    "file": "19_Synthesis_And_Exam_Practice.md",
+    "title": "Synthesis & Exam Practice",
+    "category": "Synthesis",
+    "tags": [
+      "synthesis",
+      "practice",
+      "exam",
+      "review"
+    ],
+    "order": 19,
+    "prev": "18_Binomial_Applications_And_Approximations.md",
+    "next": null
+  }
+]

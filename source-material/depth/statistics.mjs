@@ -1,0 +1,86 @@
+export const depth = {
+  'SL 4.1': {
+    skills: ['Identify population, sampling frame, sample and target variable.', 'Contrast simple random, stratified, systematic and convenience sampling.', 'Diagnose selection bias, measurement error and poor question wording.'],
+    why: 'A large sample reduces random variation but cannot cure a biased selection method. Random selection means every member has a known chance under the intended design; a social-media poll usually misses people who never see it. Stratification deliberately represents meaningful groups, whereas convenience sampling chooses what is easy to reach. Reliability of a measure and validity of its interpretation are separate questions.',
+    edge: 'If a school has $600$ first-year and $400$ second-year students, a proportional stratified sample of $100$ uses $60$ and $40$ respectively. Within each group select at random. Taking the first $60$ and $40$ to arrive is not random within strata and may overrepresent early commuters.',
+    connection: 'Before calculating a summary statistic, ask who could appear in the data and who could not. A repeated measurement may be consistent yet systematically miscalibrated. Describe a plausible bias without claiming its exact size.',
+  },
+  'SL 4.2': {
+    skills: ['Convert frequency to density when class widths differ.', 'Read cumulative-frequency graphs for medians and quartiles.', 'Compare box plots through center, spread and possible skew.'],
+    why: 'In a histogram, bar area represents frequency, so bar height must be frequency divided by class width. Simply plotting frequency as height distorts comparisons when bins vary. A cumulative-frequency curve accumulates counts; to locate the median of $n$ observations, read at approximately $n/2$ on the vertical axis and then across to the measurement scale.',
+    edge: 'A class of width $5$ with frequency $20$ has density $4$, while a class of width $10$ with frequency $30$ has density $3$. Although the second class contains more observations, its histogram bar is shorter. In a box plot, quartiles mark the central half; the gap $Q_3-Q_1$ measures its spread.',
+    connection: 'Grouped-data quartiles are estimates when individual observations are hidden. For comparisons, describe both typical value and variability rather than treating one tall bar as a complete story. Label all histogram axes with density units and explain which intervals include their boundary values.',
+  },
+  'SL 4.3': {
+    skills: ['Compute mean, median and mode for raw observations.', 'Estimate a grouped-data mean from class midpoints.', 'Compare population standard deviation and outlier sensitivity.'],
+    why: 'The mean balances the total data, so every observation affects it; the median depends mainly on ordering. For grouped values, midpoint weighting is an approximation because the true positions inside classes are unknown. Standard deviation measures typical squared deviation around the mean before taking the square root; adding a distant value often changes it substantially.',
+    edge: 'For $2,3,3,4$, the mean is $3$, median $3$, and mode $3$. Replacing $4$ with $20$ changes the mean to $7$ but leaves the median at $3$. The first list has population variance $[(2-3)^2+0+0+(4-3)^2]/4=1/2$, illustrating how spread differs from center.',
+    connection: 'A sample standard deviation on a calculator may use a denominator $n-1$, while population standard deviation uses $n$. Specify which statistic the question requests. Do not round class midpoints or intermediate sums before calculating a grouped estimate, and keep units on the final answer.',
+  },
+  'SL 4.4': {
+    skills: ['Interpret direction and strength of a Pearson correlation.', 'Form a least-squares regression line of $y$ on $x$.', 'Predict within the observed range and identify extrapolation risks.'],
+    why: 'Correlation standardizes covariance and takes values between $-1$ and $1$; it measures linear association, not causal influence. A regression of $y$ on $x$ minimizes vertical squared residuals. Swapping the variable roles gives a different line in general, so the phrase “of $y$ on $x$” determines which quantity is predicted.',
+    edge: 'If a fitted line is $\\hat y=2x+1$ for observed $x$ between $1$ and $5$, then $x=3$ predicts $\\hat y=7$. A measurement at $x=3$ need not equal $7$ because a regression line summarizes rather than interpolates every point. Predicting at $x=100$ is extrapolation and could ignore a change in relationship.',
+    connection: 'Use a scatter plot to inspect curvature and outliers before reporting a high $r$ as a good model. Express slopes with output units per input unit, and distinguish a prediction from the observed response. A strong correlation can also arise from a shared hidden variable.',
+  },
+  'SL 4.5': {
+    skills: ['Define a sample space and count favorable equally likely outcomes.', 'Use complements to handle “at least one” events.', 'Convert event probability into expected count over repeated comparable trials.'],
+    why: 'The favorable-over-total rule assumes elementary outcomes are equally likely; it cannot be used unchanged for a biased device. A complement is useful when the event describes many overlapping ways to occur. An expected count $np$ across $n$ trials is an average over repetitions, not a promise that exactly $np$ successes occur.',
+    edge: 'If a fair die is rolled twice, the chance of at least one six is $1-(5/6)^2=11/36$. Counting “first is six” and “second is six” separately without subtracting their intersection would overcount the double six. Across $36$ independent pairs, the expected number of pairs with a six is $36(11/36)=11$, but observed counts may differ.',
+    connection: 'Use a tree or two-way table when outcomes have unequal likelihood or conditional structure. An event and its complement always sum to one, providing a quick check. Distinguish count, probability and percentage in final reporting, and round only after an exact fraction is established.',
+  },
+  'SL 4.6': {
+    skills: ['Calculate unions without double-counting intersections.', 'Use the correct conditioning event in $P(A\\mid B)$.', 'Test independence separately from mutual exclusivity.'],
+    why: 'The union includes everything in either event, with the overlap subtracted once. Conditioning on $B$ restricts the sample space to $B$, giving $P(A\\cap B)/P(B)$ only when $P(B)>0$. Independence means knowing one event does not change the other probability; mutually exclusive nonempty events instead cannot happen together and are normally dependent.',
+    edge: 'If $P(A)=0.6$, $P(B)=0.5$ and $P(A\\cap B)=0.3$, the union is $0.8$ and $P(A\\mid B)=0.3/0.5=0.6$. Since $P(A)P(B)=0.3$, these events are independent despite overlapping. Calling them mutually exclusive would require intersection zero and contradict the given data.',
+    connection: 'A probability tree displays products along branches and sums across disjoint endings. State the condition event before inserting numbers. When using a table, row and column totals should agree with the whole population; wrong denominators are a common source of plausible but incorrect conditional percentages.',
+  },
+  'SL 4.7': {
+    skills: ['Check that a probability mass function is valid.', 'Compute $E(X)$ and interpret the mean of a distribution.', 'Calculate variance from $E(X^2)-E(X)^2$ when appropriate.'],
+    why: 'A discrete random variable maps possible outcomes to numerical values with nonnegative probabilities summing to one. Its expected value is a probability-weighted mean and need not be a value the variable can actually take. Variance averages squared deviations and cannot be negative, even if rounding intermediate steps momentarily produces a tiny negative approximation.',
+    edge: 'If $P(X=0)=1/4$, $P(X=1)=1/2$ and $P(X=2)=1/4$, then $E(X)=1$ and $E(X^2)=0+1/2+1=3/2$. Therefore $\\operatorname{Var}(X)=3/2-1=1/2$. The probabilities sum to one and the variance is positive, giving two separate plausibility checks.',
+    connection: 'In a game, expected monetary profit is a long-run average, not a guaranteed outcome on one play. If probabilities depend on an unknown constant, normalize first before computing moments. Show the table of values and probabilities so that a missing outcome is visible to a reader.',
+  },
+  'SL 4.8': {
+    skills: ['Verify fixed trials, independent outcomes and constant success probability.', 'Use binomial coefficients to calculate exact event probabilities.', 'Find a cumulative or complementary probability and mean or variance.'],
+    why: 'The binomial model counts successes, not their particular order. For exactly $k$ successes in $n$ trials, $\\binom nk$ counts positions, $p^k$ gives successful branches and $(1-p)^{n-k}$ gives failures. If trials share a changing chance or are sampled without replacement from a small group, the independence assumption may fail.',
+    edge: 'For four independent trials with $p=1/2$, exactly two successes have probability $\\binom42(1/2)^4=6/16=3/8$. At least one success has probability $1-(1/2)^4=15/16$. The mean count is $np=2$ and variance $np(1-p)=1$; neither says exactly two successes occur every time.',
+    connection: 'For a cumulative event, write the included integer values before pressing a calculator distribution key. Some software returns $P(X\\leq k)$, not $P(X<k)$, and that one-step difference changes an answer. State the distribution parameters and units of the count.',
+  },
+  'SL 4.9': {
+    skills: ['Standardize a normal observation relative to mean and deviation.', 'Use symmetry and an appropriate calculator cumulative function.', 'Interpret a probability as area, not as the height of the density curve.'],
+    why: 'The normal distribution is continuous: a single point has probability zero, while intervals have positive area. Converting $x$ to $z=(x-\\mu)/\\sigma$ measures signed distance in standard deviations when $\\sigma>0$. A symmetric density gives $P(X>\\mu)=1/2$ regardless of scale. Numerical tail areas normally require technology.',
+    edge: 'For $X\\sim N(50,10^2)$, $x=60$ is one standard deviation above the mean. Thus $P(X<60)=P(Z<1)\\approx0.8413$ and $P(X>60)\\approx0.1587$. The values add to one. The value of the density at $60$ is not either probability; integration or a normal-CDF tool gives areas.',
+    connection: 'Specify whether the second parameter in a given notation is variance or standard deviation; textbooks differ in notation. When a question asks for counts above a threshold, multiply the tail probability by the total only after computing the probability. Avoid presenting a model approximation as a measured frequency.',
+  },
+  'SL 4.10': {
+    skills: ['Identify $x$ as the variable predicted by a regression of $x$ on $y$.', 'Calculate a slope using $S_{xy}/S_{yy}$.', 'Explain why the two regression lines are not generally inverses.'],
+    why: 'Ordinary least squares minimizes errors in the response variable. In the regression of $x$ on $y$, the errors are horizontal if drawn on an ordinary $x$-$y$ plot. Simply rearranging a fitted $y$-on-$x$ line does not usually produce the $x$-on-$y$ regression; the two slopes multiply to $r^2$ when both variances are nonzero.',
+    edge: 'For points $(1,1),(2,2),(3,4),(4,5)$, the means are $\\bar x=2.5$, $\\bar y=3$, and the centered sums are $S_{xx}=5$, $S_{yy}=10$, $S_{xy}=7$. Hence $\\hat x=2.5+0.7(y-3)$. By contrast the $y$-on-$x$ slope is $7/5=1.4$; its reciprocal is not $0.7$.',
+    connection: 'Both fitted lines pass through the centroid, so substitute the sample means as a quick check. Choose the appropriate line from the direction of prediction, not from which variable letter happens to appear first. A prediction far beyond the observed $y$ range remains an extrapolation.',
+  },
+  'SL 4.11': {
+    skills: ['Compute conditional probabilities from a two-way table.', 'Test independence with a product or equivalent conditional equality.', 'Distinguish a zero intersection from a zero probability of the conditioning event.'],
+    why: 'A fraction obtained from a table needs the population defined by its denominator. If the condition is “given $B$,” the denominator counts only $B$ outcomes. Independence can be assessed with $P(A\\cap B)=P(A)P(B)$ without dividing by a probability that might be zero. Mutually exclusive positive-probability events instead have zero intersection.',
+    edge: 'In a group of $100$, suppose $40$ study chemistry, $25$ study physics and $10$ study both. Then $P(\\text{chemistry}\\mid\\text{physics})=10/25=0.4$, while $P(\\text{physics}\\mid\\text{chemistry})=10/40=0.25$. Since $0.4(0.25)=0.10=10/100$, these events are independent in this table despite the different conditional directions.',
+    connection: 'A table can express frequencies rather than probabilities; divide by the appropriate total only after choosing the event. Check that all cells are nonnegative and totals are consistent. If two events both have positive probability, they cannot be simultaneously independent and mutually exclusive.',
+  },
+  'SL 4.12': {
+    skills: ['Compute a z-score from a raw observation.', 'Find an observation corresponding to a given normal percentile.', 'Solve for an unknown mean or standard deviation from percentile conditions.'],
+    why: 'A z-score is a signed standardized distance; it is not itself a probability. To move back to raw units, use $x=\\mu+z\\sigma$ with $\\sigma>0$. An inverse-normal tool returns a boundary associated with a specified lower-tail area by convention; if a question gives an upper-tail area, convert it first.',
+    edge: 'If $X$ has mean $80$ and standard deviation $5$, the value at $z=1.5$ is $x=80+1.5(5)=87.5$. For a lower-tail probability near $0.8413$, use $z\\approx1$, so the raw threshold is $85$. A lower-tail percentile and an upper-tail percentile of the same number have complementary areas.',
+    connection: 'For two given percentiles with distinct z-scores, write $x_1=\\mu+z_1\\sigma$ and $x_2=\\mu+z_2\\sigma$ before eliminating. Technology may approximate $z$, so report the implied model parameters to suitable precision. Check that the larger percentile gives the larger raw cutoff.',
+  },
+  'AHL 4.13': {
+    skills: ['Create prior, likelihood and evidence branches for a test.', 'Normalize a desired branch against all ways to obtain the evidence.', 'Examine how a low base rate changes a positive-test posterior.'],
+    why: 'Bayes theorem reverses a conditional probability, but $P(A\\mid B)$ is not generally $P(B\\mid A)$. The numerator is the probability of the joint path, and the denominator is the total probability of the evidence from every partition branch. Even a sensitive test can yield a modest posterior when false positives are common relative to a rare condition.',
+    edge: 'If $1\\%$ have a condition, sensitivity is $90\\%$ and specificity is $90\\%$, the joint true-positive probability is $0.01(0.90)=0.009$. False positives occur with probability $0.99(0.10)=0.099$. Thus a positive result has posterior $0.009/(0.009+0.099)=1/12\\approx0.0833$, not $0.90$.',
+    connection: 'A probability tree with normalized branch endpoints checks that you included every way evidence can happen. Define exactly which event a test result denotes; confusing specificity with false-positive rate changes the denominator. Round at the end, especially when an event is rare.',
+  },
+  'AHL 4.14': {
+    skills: ['Transform expectations and variances under $aX+b$.', 'Normalize and integrate a simple continuous density.', 'Compare $E(X^2)-E(X)^2$ with direct variance calculations.'],
+    why: 'Adding a constant shifts every observation but does not change spread. Multiplication by $a$ scales expected value by $a$ and variance by $a^2$, so a negative scale reverses order without creating negative variance. A density must be nonnegative and integrate to one; probabilities are areas, not the density value at a single point.',
+    edge: 'If $E(X)=3$ and $\\operatorname{Var}(X)=4$, then $Y=2X-5$ has $E(Y)=1$ and variance $16$. For a uniform density on $0<x<2$, $f(x)=1/2$, so $E(X)=\\int_0^2x/2\\,dx=1$. The probability at a single exact point remains zero despite positive density.',
+    connection: 'In a discrete table, calculate $E(X^2)$ by squaring each value before applying its probability, not by squaring $E(X)$ first. For a continuous model specify its support alongside the formula. When a result has squared units, check that it is a variance rather than a standard deviation.',
+  },
+};

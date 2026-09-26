@@ -1,0 +1,31 @@
+node_modules/
+dist/
+*.local
+.DS_Store
+.env
+.env.*
+!.env.example
+*.tsbuildinfo
+
+# Your own drop-in notes stay private by default. See README before publishing.
+/Unit */*.md
+/public/content/local/
+
+/Sarang.md-project.zip
+
+# Never commit exported encrypted profiles or readable study summaries.
+/sarang-profile-*.json
+/sarang-profile-*.data
+/sarang-profile-*.txt
+/sarang-progress-*.txt
+
+# Archive artifacts belong outside Git, including earlier project ZIP names.
+*.zip
+*.tar.gz
+*.tgz
+
+# Workspace scratch files and supplied attachments are not project source.
+/.cache/
+/.npm/
+/.sudo_as_admin_successful
+/uploads/

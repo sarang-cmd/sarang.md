@@ -1,0 +1,55 @@
+# What you need to set up or decide personally
+
+**Scope:** These steps need your accounts, credentials, original documents, publishing permission or real-device approval. I can write code and instructions in the workspace, but I cannot safely authenticate as you, approve distribution of your materials, deploy into your Supabase dashboard, test as two real account holders, or automatically insert your supplied booklet into the browser tutor. The app's local reading and practice work without completing the optional cloud or tutor steps.
+
+Use [REQUESTS_VS_IMPLEMENTATION.md](REQUESTS_VS_IMPLEMENTATION.md) for the feature comparison and [NEXT_STEPS_AND_IDEAS.md](NEXT_STEPS_AND_IDEAS.md) for engineering work that an agent or developer *can* do.
+
+## A. Before making any site public
+
+- [ ] **Choose the destination and visibility.** Confirm which GitHub repository and branch you control, whether GitHub Pages, Vercel or another host will serve it, and the final HTTPS URL. The five addresses on the Mirrors page are references, not proof of deployment or ownership. No deployment was performed here.
+- [ ] **Review rights and privacy of every bundled source.** The source tree and static build include the old 20 notes, the supplied 22 Unit 1 notes and the separate 50 transcriptions. The root `Unit 1 Number and Algebra/` notes are tracked in this workspace despite the ignore rule. The published `public/content/` files are accessible to site visitors. Decide whether you have permission to distribute each supplied document and whether it contains personal, school or copyrighted information. Do not publish material you are not allowed to share. Newly authored paper-style tasks are separate; the supplied transcriptions are not authenticated or licensed by this app.
+- [ ] **Inspect configuration before publication.** `.env.example` and `src/lib/supabaseClient.ts` contain a **public publishable** Supabase project identifier/key. That is not a service-role secret. Do not commit or share a service-role key, database password, tutor-provider token, local vault password, exported decrypted summary, or full encrypted backup together with its password. A private `.env.local` is for your machine only.
+
+## B. Connect GitHub and actually publish the code
+
+- [ ] **Authenticate to GitHub on a machine you control.** The previous `git push` failed because this environment could not obtain GitHub credentials. Do not paste an access token or password into this chat. Use your own Git credential manager, SSH setup or `gh auth login` locally.
+- [ ] **Restore or verify the remote.** Run `git remote -v` in a Git checkout. If no remote exists, add `origin` pointing to `https://github.com/sarang-cmd/sarang.md`; if it points elsewhere, investigate before changing it. This workspace can lose `.git/config` between snapshots, so a blank `git remote -v` does not prove the GitHub project vanished.
+- [ ] **Fetch, compare and push safely.** Run `git fetch origin master` and check that the remote tip is an ancestor of your local `master` before `git push origin master`. If the remote advanced, review and integrate its changes rather than force pushing. Run `git log -1 --oneline` to find the current local tip. The current ZIP contains sources but no Git history. A downloaded source ZIP has **no `.git` history**; clone the repository and bring its files into a branch before committing if you use the ZIP instead of the shared workspace.
+- [ ] **Turn on the actual Pages deployment.** In repository Settings, choose **Pages → Build and deployment → GitHub Actions** if GitHub Pages is the intended host. `.github/workflows/deploy.yml` installs dependencies, builds and publishes `dist/` on pushes to `master`. Check the workflow result and load the deployed site under its true project path. If using Vercel or a custom domain, configure it in that account instead. A passed local build is not a deployment.
+
+A safe sequence in an existing Git checkout is:
+
+```bash
+git remote -v
+# Only if origin is missing:
+git remote add origin https://github.com/sarang-cmd/sarang.md
+# Authenticate on your own machine using your preferred GitHub method.
+git fetch origin master
+git merge-base --is-ancestor origin/master master && git push origin master
+```
+
+If the ancestor check fails, stop and inspect the histories. Do not use `--force` as a shortcut.
+
+## C. Make optional Supabase Auth and cloud backup real
+
+This section is **required only if you want working cloud accounts and encrypted cloud backups**. Your claim that email, Google and GitHub providers are already enabled is recorded, but their current dashboard settings and end-to-end returns have not been checked here. Follow [CLOUD_SETUP.md](CLOUD_SETUP.md) as the technical reference.
+
+- [ ] **Confirm the correct Supabase project.** Compare its URL and public publishable key with `.env.example`; use an untracked `.env.local` if you intentionally use another project. Never put a private service-role key in any `VITE_` variable. Decide your project's email confirmation and sign-up policy. The app has email/password creation and sign-in; the email link deliberately requests an *existing* account.
+- [ ] **Configure all actual redirect origins and paths.** In Supabase Auth, set the production Site URL and add allowed Redirect URLs for the final Pages or other HTTPS deployment, including the `/#/profile` return under its base path. Add local development URLs only if you need them. A possible Pages return, **only if that is your actual deployment**, is `https://sarang-cmd.github.io/sarang.md/#/profile`. Inspect the URL requested by your own deployed site rather than assuming a sample matches.
+- [ ] **Check Google and GitHub provider dashboards.** Confirm each OAuth app/client is configured to call `https://<your-project-ref>.supabase.co/auth/v1/callback`, that its client secret is stored privately in Supabase, and that its consent settings let your intended testers sign in. Provider activation alone does not establish working redirects from the deployed app.
+- [ ] **Configure and test email delivery.** Check confirmation emails and existing-account sign-in links in real inboxes, including spam, expiration, return URLs and Supabase email sending limits or a custom SMTP provider if needed. Use an existing account for the sign-in-link test because the client sets `shouldCreateUser: false`.
+- [ ] **Install the database migration as a privileged project owner.** Execute `supabase/migrations/202609250001_private_vaults.sql` in the intended project's SQL editor or trusted migration workflow. The browser's public key cannot create tables or grant RLS privileges. The migration proposes an encrypted-envelope-only table, a user-owned SELECT policy and a definer-owned, revision-checked write RPC. It has **not** been applied or live-tested from this workspace.
+- [ ] **Perform real two-account security tests before relying on backup.** In separate browser profiles, sign in as A and B, upload only ciphertext, and confirm B cannot read A's row. Confirm anonymous SELECT/RPC calls cannot access a vault; authenticated direct table INSERT/UPDATE/DELETE are denied, even on one's own row; the RPC can save only `auth.uid()`; and a stale revision cannot replace a newer upload. Test wrong-password/tampered restore and verify an empty account has no cloud copy. If any test fails, stop using cloud backup until the policy is fixed.
+- [ ] **Test the complete human flow on the deployed host.** Verify password sign-in, existing-account email link, Google and GitHub return to `/#/profile`, manual encrypted upload, restore on a second device with the *local vault password*, and a fresh offline encrypted export. Cloud account password reset does **not** recover the local vault password. Sync is manual, not automatic merging.
+
+## D. Supply personal study resources and choose privacy settings
+
+- [x] **Supply the exact mathematics formula booklet for lesson annotation.** You supplied the IBO 2023 Version 1.0 AA HL PDF. The new lessons now identify checked direct rows and printed pages; [the booklet audit](FORMULA_BOOKLET_AUDIT.md) documents the extraction limits and corrections. The PDF itself is not copied into the public ZIP.
+- [ ] **Load the booklet in your browser if you want your live tutor to consult the PDF itself.** Choose the PDF in Tutor settings, or import it into the encrypted Profile private library and select it after unlocking. The chat attachment does not automatically appear in browser storage. Verify extracted equations visually before relying on a specific quoted line.
+- [ ] **Decide whether to provide school tests or additional licensed study files.** The supplied 50 transcriptions have uncertain exam/session metadata and may need comparison with originals you are entitled to access. If you want more first-hand old-test analysis, share only files you have rights to use. The app must not present them as official papers or republish protected mark schemes without permission.
+- [ ] **Create and protect your local vault password.** Use a strong password of at least 12 characters and keep it separate from the Supabase account password. Make an encrypted export before replacing, importing, deleting or restoring a vault. Keep backups in a safe location, away from their password. There is no developer-accessible password recovery, and browsers can erase site data.
+- [ ] **Choose your tutor provider only if you want live AI.** Obtain your own model account, a restricted API key, a current model ID and a browser-compatible HTTPS endpoint. In Tutor settings, configure and test the connection, review costs/CORS and the provider's data policy, then optionally save it inside an unlocked encrypted profile. Without your key, the tutor provides fixed offline questions, not live AI. Never put a private model key in source code or send it in chat.
+- [ ] **Decide what to store outside the vault.** Browser-imported course Markdown is kept unencrypted in IndexedDB; theme, sound levels, video URLs and Supabase Auth's own session use separate browser storage. These are not part of the encrypted profile backup. Avoid putting confidential material there, and clear the separate stores yourself if a device changes hands.
+- [ ] **Verify media on your own devices and network.** Open the default unlisted playlist from the deployed site, check that its videos still allow embedding and that you are entitled to view them, and try the controls on desktop and mobile. Click to start audio; autoplay or automatically advancing unmuted video can be blocked. Assess synthetic sound quality and comfortable volume with real headphones. Neither media mode has a demonstrated productivity or medical benefit in this app.
+
+**You do not need to do the agent's remaining engineering work yourself.** Expanding individual lessons, reviewing authored math, writing automated browser tests, improving performance and implementing optional features are described in [NEXT_STEPS_AND_IDEAS.md](NEXT_STEPS_AND_IDEAS.md).

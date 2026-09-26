@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="description" content="Sarang.md - a quieter place to study IB Mathematics AA HL." />
+    <link rel="icon" type="image/svg+xml" href="%BASE_URL%favicon.svg" />
+    <title>Sarang.md - A quieter way to study</title>
+    <script>
+      // Set the first paint's theme before React/CSS load, avoiding a light-mode flash.
+      try {
+        const saved = localStorage.getItem('sarang-vault-theme');
+        const dark = saved === 'dark' || (!saved && matchMedia('(prefers-color-scheme: dark)').matches);
+        if (dark) document.documentElement.classList.add('dark');
+        document.querySelector('meta[name="theme-color"]').content = dark ? '#0b0b0b' : '#ffffff';
+      } catch (_) {}
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

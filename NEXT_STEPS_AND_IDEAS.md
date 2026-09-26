@@ -1,0 +1,60 @@
+# Sarang.md: remaining work, next steps and possible additions
+
+**Planning date:** 26 September 2026. This separates what is still outstanding from the requests already made, what needs validation rather than new code, and genuinely optional additions. Priorities are for a safe release, not a prediction of examination topics. Read [REQUESTS_VS_IMPLEMENTATION.md](REQUESTS_VS_IMPLEMENTATION.md) for the detailed comparison and [OWNER_SETUP_CHECKLIST.md](OWNER_SETUP_CHECKLIST.md) for actions requiring your accounts or documents.
+
+## Release note: a real packaging problem was found
+
+The earlier `Sarang.md-project.zip` and a fresh Git checkout contained the generated course but **not** `uploads/`, because that directory is deliberately ignored. At that time `scripts/build-course.mjs` and `scripts/check-course.mjs` still read `uploads/Full_Course_Outline.md` and 22 files under `uploads/`. An extracted earlier ZIP failed immediately with `ENOENT` for the outline, and the same dependency would have broken the Pages workflow's `npm run build` on a clean checkout.
+
+**Fixed and checked in the current workspace:** exact user-supplied source copies now live under `source-material/Full_Course_Outline.md` and `source-material/supplied-unit1/`. The build and course checker read those versioned files; the ignored `uploads/` folder is no longer required. A source-only rebuild with no `uploads/` preserved a sampled note byte-for-byte. An earlier replacement ZIP was regenerated, extracted into a clean directory with no `uploads/`, and passed `npm ci`, data/profile/sound checks and `npm run build`. The current expanded release is `Sarang-md-AAHL-Booklet-1003-2026-09-26.zip`; extract it into a fresh folder rather than using or merging the older downloads. The original issue was a build reproducibility error, not evidence that the live site was updated.
+
+## Priority 0: establish a safe, real release
+
+| Next action | Who can do it | Completion test |
+| --- | --- | --- |
+| Authenticate and push the reviewed code to the intended `master`, without rewriting new remote changes. | Repository owner | A commit containing the audit and build fix appears on `https://github.com/sarang-cmd/sarang.md`; `git status` and the remote tip agree. The old push failed for lack of credentials. |
+| Enable the chosen static host and inspect its actual HTTPS URL. | Hosting/repository owner | GitHub Pages workflow or equivalent deploy succeeds, and new course, practice, Focus, profile and the documentation load under the deployed base path. Mirrors require separate setup. |
+| Install and test the Supabase migration **before calling cloud backup operational**. | Supabase project owner | Two real accounts cannot read each other's ciphertext; anonymous access and direct table writes are denied; only the authenticated RPC writes; stale revisions fail; upload/restore works with the local vault password. |
+| Run real deployed sign-in tests for email/password, an existing-account email link, Google and GitHub. | Project owner with provider access | All four paths return to the deployed `/#/profile`, produce the intended user session, and leave the local vault locked until its separate password is entered. |
+| Review public content rights and personal information. | Owner/content rights holder | Only material you have permission to publish remains in the public repository and `dist/`. Existing supplied transcriptions stay explicitly unverified. |
+
+## Remaining from the requests, even though the app has a first implementation
+
+1. **Deepen beyond the supplied outline, if the learner wants more.** All 83 code-specific lessons now have approximately 400 to 500 prose words, three or more smaller skills and a second route. The 913 new skill variations plus the 90 retained longer tasks reach 1,003 original practice items. These are based on the 83 supplied headings, not a claim to reproduce every line of a complete official teaching guide. More proofs, applications and differentiated levels can be added after topic-by-topic editorial review; do not replace the 20 or 22 preserved notes.
+2. **Continue fine-grained booklet and tutor checking.** The learner supplied the IBO 2023 Version 1.0 AA HL PDF, and direct rows now cite checked printed/PDF pages in lessons. Review each formula use against a visible original page during future edits, especially when PDF text extraction drops symbols. The chat attachment does not automatically populate the browser tutor, so load it there separately if desired. See `FORMULA_BOOKLET_AUDIT.md`.
+3. **Independent mathematical review.** Scripts check structure, word counts, KaTeX rendering, exact per-code inventory, mark totals and independent numerical samples from 106 generated variations across 34 skill families. They do **not** prove every worked answer in all 83 lessons, five guides, 1,003 original practice items or 50 independent suggested guides. Have a separate reviewer check prompts, working, boundaries, numeric rounding, paper suitability and answer keys. Add regression assertions for corrected errors.
+4. **Supplied-source accuracy and rights.** The 50 transcriptions have unverified exam metadata; some labels and part marks conflict and are flagged in the app. The preserved Unit 1 financial note has example numbers known to be wrong; `CONTENT_WRITING_GUIDE.md` records the errata without changing the original. If original documents can lawfully be consulted, reconcile and annotate discrepancies. Do not silently rewrite supplied source or claim an independent guide is official.
+5. **Live cloud security and OAuth.** The application has Auth controls and an opt-in ciphertext upload path, but their return flows, database permissions and cross-device behavior remain unverified until owner configuration and two-account testing. Security-sensitive migrations deserve a database review and real token-level tests, not only a UI smoke test.
+6. **Publication.** A local commit and downloadable project do not update the user's GitHub repository or websites. The earlier push attempt returned a missing-credentials error. Verify the new remote tip and deployed bundle after an authenticated push.
+
+**Already delivered, so do not confuse these with missing work:** all five AA strands have routes; Paper 3 has ten original investigative tasks; the original 16-question bank remains; the 50 supplied transcriptions are separate; short seeded mocks, profile export/import, five tutor subject choices, movable panels, the ten-video queue and ten procedural sound layers exist. The outline's 3,981 count was never an included inventory. A full-length official paper, official mark scheme or verified examiner grade was not created and must not be advertised.
+
+## Priority 1: stronger testing and product quality
+
+- **Automate browser regressions.** Add a checked-in Playwright suite to CI for navigation and theme, desktop and mobile layout, sidebar/Focus/sound-window drag and keyboard positioning, context menu and tooltips, tutor hint/reveal separation, practice filters/mocks/printing, encrypted profile flows, and local-file switching. Earlier Playwright probes were ad hoc and intercepted external network responses.
+- **Exercise real media conditions.** Keep the mocked YouTube command test, then manually test each default embed and its consent, mute, loop, end-of-video and unavailable-video behavior on the deployed origin. Listen to all ten synthetic layers through speakers/headphones, including low-end devices and simultaneous mixes. Prior browser checks confirmed nonzero audio samples, not perceptual quality or reliable autoplay.
+- **Test security and data boundaries.** Threat-review the privileged Supabase write function, Auth session storage, local vault password handling, backup replacement, privacy notices, CSV/text export if added, and what is left behind when a user deletes their vault. A saved IndexedDB import is separate from vault deletion. Ensure no private credential ends up in URLs, generated static assets or logs.
+- **Accessibility and browsers.** Test with keyboard-only navigation, screen readers, reduced motion, zoom and high contrast on current Chrome, Firefox and Safari where available. Check long KaTeX formulas and pop-out windows at 320 px and with enlarged text. Avoid claiming all assistive-technology interactions are verified based on visual smoke tests.
+- **Performance and offline behavior.** The production build passes but reports a non-fatal chunk-size warning. Inspect JS splitting, KaTeX font loading and the large PDF worker on slow mobile devices. Reading after a page is loaded can work without an account; full offline install is not currently a PWA feature.
+- **Keep session-specific exam advice current.** The older AA HL subject brief and later examination schedule can disagree on Paper 3 duration. Confirm the learner's actual examination session, current specification and permitted technology before showing timed practice guidance. Never imply that the 15:15:10 study mock predicts an official paper.
+
+## Possible additions, not promises or unfinished required features
+
+| Optional addition | Why it could help | Guardrail |
+| --- | --- | --- |
+| Full-length **original** Paper 1/2/3 timed sets, with printable cover pages and adaptive review. | Extends the existing short mocks for exam endurance. | Write new tasks; do not republish protected papers, promise forecasts or label self-marked totals official grades. |
+| Spaced review and a weakness queue based on *deliberately* marked work. | Helps a learner revisit topics without treating a page view as mastery. | Keep actions reversible, accessible and private in the vault. |
+| More detailed learning content for Chemistry HL, Physics HL, English A SL and German A SL. | Turns the existing five tutor subject choices into source-backed study areas. | Obtain rights-cleared materials and subject-specific editorial review; do not fabricate sources. |
+| Explicit cross-device conflict review or version history for cloud backups. | Improves manual backup across multiple devices. | Never silently merge or overwrite encrypted data that the server cannot decrypt. Design recovery and deletion with user consent. |
+| Offline-capable PWA for bundled notes and practice. | Useful during travel or weak connectivity. | Do not cache private provider responses or promise offline YouTube, Supabase or live tutor access. |
+| More original procedural sound controls, stereo spatial design or an optional recording export. | Could improve user preference and mixing flexibility. | No copied A Soft Murmur assets, unsafe loudness defaults or unsupported focus/brainwave claims. |
+| A small, explicitly consented feedback route for corrections. | Makes it easier to report a math error or uncertain transcription. | Never collect uploaded private notes, scores or provider keys without informed consent and secure storage. |
+
+## Definition of done for a future release
+
+- [x] The current `Sarang-md-AAHL-Booklet-1003-2026-09-26.zip` builds from a clean extraction without ignored workspace inputs; data, profile and sound checks and typecheck/build pass. Repeat after future source changes.
+- [x] The supplied booklet's edition, direct row labels and printed/PDF page locations are documented in `FORMULA_BOOKLET_AUDIT.md`; any additional equation-level claims still need careful visual checking.
+- A reviewer has checked the authored question/guide mathematics beyond structural tests and logged corrections without altering preserved source text.
+- Two real Auth accounts pass the cloud RLS/write-conflict tests; email, Google and GitHub return on the *actual* deployed URL. Otherwise cloud backup remains visibly unverified.
+- The repository push and chosen hosting deployment are verified independently; the download archive matches the intended source revision.
+- Documentation and UI keep privacy boundaries, sound/video limitations, self-reported grading, and source status explicit. No em dashes are added to newly written user-facing text.
