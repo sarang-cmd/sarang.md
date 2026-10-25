@@ -1,6 +1,8 @@
 import { create } from 'zustand';
 import type { MarkStep } from '../types';
 import type { Subject } from '../lib/tutorApi';
+import { useSettingsStore } from './useSettingsStore';
+import { isExamActive, useExamStore } from './useExamStore';
 
 export interface StudyContext {
   key: string;
@@ -26,12 +28,13 @@ interface TutorState {
   openFor: (context: StudyContext) => void;
 }
 
+const permitted = () => useSettingsStore.getState().aiEnabled && !isExamActive(useExamStore.getState().attempt);
 export const useTutorStore = create<TutorState>((set) => ({
   open: false, minimized: false, docked: false, context: null,
-  openTutor: () => set({ open: true, minimized: false }),
+  openTutor: () => { if (permitted()) set({ open: true, minimized: false }); },
   closeTutor: () => set({ open: false, minimized: false }),
   minimizeTutor: () => set({ open: true, minimized: true }),
   setDocked: (docked) => set({ docked }),
   setContext: (context) => set({ context }),
-  openFor: (context) => set({ context, open: true, minimized: false }),
+  openFor: (context) => { if (permitted()) set({ context, open: true, minimized: false }); },
 }));

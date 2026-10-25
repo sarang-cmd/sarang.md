@@ -47,3 +47,12 @@ export function availableUnits(units: CourseUnit[]): CourseUnit[] {
 export function unitForTopic(units: CourseUnit[], topic: Topic): CourseUnit | undefined {
   return units.find((entry) => entry.slug === (topic.unitSlug ?? unit.slug));
 }
+
+/** Course lessons follow the 83-code outline across unit boundaries. Older,
+ * supplied and browser-imported notes keep their existing unit-local order. */
+export function readingSequence(units: CourseUnit[], topic: Topic): Topic[] {
+  const structured = topic.collection === 'syllabus' || (topic.collection === 'guide' && topic.file === 'Master_Guide.md');
+  if (structured) return availableUnits(units).flatMap((entry) => entry.topics.filter((item) =>
+    item.collection === 'syllabus' || (item.collection === 'guide' && item.file === 'Master_Guide.md')));
+  return unitForTopic(units, topic)?.topics ?? [];
+}

@@ -54,4 +54,6 @@ $(x-2)(x+2)\geq0$ for $x\leq-2$ or $x\geq2$.
 
 ---
 
-[Functions master guide](/units/functions/master-guide) · [Course writing and verification guide](/units/number-and-algebra/content-writing-guide) · [Booklet cross-check](/units/number-and-algebra/formula-booklet-audit) · [Browse original paper practice](/practice)
+Verify conditions and your final value independently.
+
+[Functions master guide](/units/functions/master-guide) · [View formula booklet](/formula-booklet) · [Browse original paper practice](/practice)

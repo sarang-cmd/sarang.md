@@ -54,4 +54,6 @@ $3x+1=2(x+1)+1(x-1)$, giving $2/(x-1)+1/(x+1)$, $x\neq\pm1$.
 
 ---
 
-[Number & Algebra master guide](/units/number-and-algebra/master-guide) · [Course writing and verification guide](/units/number-and-algebra/content-writing-guide) · [Booklet cross-check](/units/number-and-algebra/formula-booklet-audit) · [Browse original paper practice](/practice)
+Verify conditions and your final value independently.
+
+[Number & Algebra master guide](/units/number-and-algebra/master-guide) · [View formula booklet](/formula-booklet) · [Browse original paper practice](/practice)

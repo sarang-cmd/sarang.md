@@ -54,4 +54,6 @@ Set $5-r=3$, giving $r=2$; the coefficient is $\binom52=10$.
 
 ---
 
-[Number & Algebra master guide](/units/number-and-algebra/master-guide) · [Course writing and verification guide](/units/number-and-algebra/content-writing-guide) · [Booklet cross-check](/units/number-and-algebra/formula-booklet-audit) · [Browse original paper practice](/practice)
+Verify conditions and your final value independently.
+
+[Number & Algebra master guide](/units/number-and-algebra/master-guide) · [View formula booklet](/formula-booklet) · [Browse original paper practice](/practice)

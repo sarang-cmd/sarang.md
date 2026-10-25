@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
-import { ArrowUpRight, ChevronDown, FileQuestion, FolderOpen, Grip, Maximize2, NotebookPen, Pin, UserRound, Waves } from 'lucide-react';
+import { ArrowUpRight, BookOpen, ChevronDown, ClipboardCheck, FolderOpen, Grip, Maximize2, NotebookPen, Pin, Settings2, UserRound, Waves } from 'lucide-react';
+import { ExamModeControl } from './ExamControls';
+import { mainBank } from '../data/practiceInventory';
 import { Link, useLocation } from 'react-router-dom';
 import { useCatalog } from '../context/CatalogContext';
 import { availableUnits, groupTopics, topicPath, topicSlug } from '../lib/catalog';
@@ -9,11 +11,12 @@ import { useMovableWindow } from '../hooks/useMovableWindow';
 const quickLinks = [
   { label: 'Home', to: '/' },
   { label: 'All Units', to: '/units' },
-  { label: 'Original paper practice', to: '/practice' },
-  { label: 'Classic Unit 1 bank', to: '/question-bank' },
-  { label: 'Supplied transcriptions', to: '/ib-papers' },
+  { label: 'Question Bank', to: '/practice' },
+  { label: 'Review all answers', to: '/review' },
+  { label: 'Formula booklet', to: '/formula-booklet' },
   { label: 'Focus studio', to: '/focus' },
   { label: 'Profile', to: '/profile' },
+  { label: 'Settings', to: '/settings' },
   { label: 'Mirrors', to: '/mirrors' },
   { label: 'Search', to: '/search' },
 ];
@@ -91,13 +94,14 @@ export function Sidebar() {
             <p className="text-[12px] leading-relaxed text-muted">{mode === 'local' ? 'Your own Markdown, in reading order.' : 'A quiet way through the syllabus.'}</p>
           </div>
           <Link to="/practice" onClick={navigateFromDrawer} className="group mb-2 flex items-center justify-between gap-3 rounded-lg border border-line bg-surface px-3 py-3 transition-colors hover:border-muted hover:bg-raised">
-            <span className="flex items-center gap-2.5"><NotebookPen size={16} strokeWidth={1.7} aria-hidden="true" /><span className="text-[12px] font-semibold">Original paper practice</span></span><ArrowUpRight size={14} className="text-muted transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
+            <span className="flex items-start gap-2.5"><NotebookPen size={16} strokeWidth={1.7} className="mt-0.5 shrink-0" aria-hidden="true" /><span><span className="block text-[12px] font-semibold">Question Bank</span><span className="mt-1 block text-[10px] leading-relaxed text-muted">Main {mainBank.questions} · Classic 16 · Supplied 50</span></span></span><ArrowUpRight size={14} className="text-muted transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
           </Link>
-
-          <Link to="/question-bank" onClick={navigateFromDrawer} className="group mb-2 flex items-center justify-between gap-3 rounded-lg border border-line px-3 py-3 transition-colors hover:border-muted hover:bg-surface"><span className="flex items-center gap-2.5"><FileQuestion size={16} strokeWidth={1.7} aria-hidden="true" /><span className="text-[12px] font-semibold">Classic 16-question bank</span></span><ArrowUpRight size={14} className="text-muted" aria-hidden="true" /></Link>
-          <Link to="/ib-papers" onClick={navigateFromDrawer} className="group mb-2 flex items-center justify-between gap-3 rounded-lg border border-line px-3 py-3 transition-colors hover:border-muted hover:bg-surface"><span className="flex items-center gap-2.5"><FileQuestion size={16} strokeWidth={1.7} aria-hidden="true" /><span className="text-[12px] font-semibold">Supplied paper transcriptions</span></span><ArrowUpRight size={14} className="text-muted" aria-hidden="true" /></Link>
+          <ExamModeControl />
+          <Link to="/review" onClick={navigateFromDrawer} className="group mb-2 flex items-center justify-between gap-3 rounded-lg border border-line px-3 py-3 transition-colors hover:border-muted hover:bg-surface"><span className="flex items-center gap-2.5"><ClipboardCheck size={16} strokeWidth={1.7} aria-hidden="true" /><span className="text-[12px] font-semibold">Review all answers</span></span><ArrowUpRight size={14} className="text-muted" aria-hidden="true" /></Link>
+          <Link to="/formula-booklet" onClick={navigateFromDrawer} className="group mb-2 flex items-center justify-between gap-3 rounded-lg border border-line px-3 py-3 transition-colors hover:border-muted hover:bg-surface"><span className="flex items-center gap-2.5"><BookOpen size={16} strokeWidth={1.7} aria-hidden="true" /><span className="text-[12px] font-semibold">Formula booklet</span></span><ArrowUpRight size={14} className="text-muted" aria-hidden="true" /></Link>
           <Link to="/focus" onClick={navigateFromDrawer} className="group mb-2 flex items-center justify-between gap-3 rounded-lg border border-line px-3 py-3 transition-colors hover:border-muted hover:bg-surface"><span className="flex items-center gap-2.5"><Waves size={16} strokeWidth={1.7} aria-hidden="true" /><span className="text-[12px] font-semibold">Focus studio</span></span><ArrowUpRight size={14} className="text-muted" aria-hidden="true" /></Link>
-          <Link to="/profile" onClick={navigateFromDrawer} className="group mb-7 flex items-center justify-between gap-3 rounded-lg border border-line px-3 py-3 transition-colors hover:border-muted hover:bg-surface"><span className="flex items-center gap-2.5"><UserRound size={16} strokeWidth={1.7} aria-hidden="true" /><span className="text-[12px] font-semibold">Your profile</span></span><ArrowUpRight size={14} className="text-muted" aria-hidden="true" /></Link>
+          <Link to="/profile" onClick={navigateFromDrawer} className="group mb-2 flex items-center justify-between gap-3 rounded-lg border border-line px-3 py-3 transition-colors hover:border-muted hover:bg-surface"><span className="flex items-center gap-2.5"><UserRound size={16} strokeWidth={1.7} aria-hidden="true" /><span className="text-[12px] font-semibold">Your profile</span></span><ArrowUpRight size={14} className="text-muted" aria-hidden="true" /></Link>
+          <Link to="/settings" onClick={navigateFromDrawer} className="group mb-7 flex items-center justify-between gap-3 rounded-lg border border-line px-3 py-3 transition-colors hover:border-muted hover:bg-surface"><span className="flex items-center gap-2.5"><Settings2 size={16} strokeWidth={1.7} aria-hidden="true" /><span className="text-[12px] font-semibold">Settings · AI & interface</span></span><ArrowUpRight size={14} className="text-muted" aria-hidden="true" /></Link>
 
           {status === 'loading' && <p className="px-2 py-3 text-[12px] text-muted">Loading outline…</p>}
           <nav aria-label="Course topics">

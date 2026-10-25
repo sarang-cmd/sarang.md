@@ -5,6 +5,7 @@ import { ArrowRight, Check, FileText, FolderOpen, HardDrive, Library, LockKeyhol
 import { useCatalog } from '../context/CatalogContext';
 import { useVaultStore } from '../store/useVaultStore';
 import type { ImportReport } from '../types';
+import { notify } from './ui/toast';
 
 export function LocalFilesDialog() {
   const open = useVaultStore((state) => state.localDialogOpen);
@@ -59,9 +60,12 @@ export function LocalFilesDialog() {
     setError('');
     setReport(null);
     try {
-      setReport(await importLocalFiles(files, input === fileInput.current));
+      const result = await importLocalFiles(files, input === fileInput.current);
+      setReport(result);
+      notify({ title: result.persisted ? 'Local notes imported' : 'Notes available this session', message: `${result.files} notes added across ${result.units} units${result.skipped ? `, ${result.skipped} skipped` : ''}.`, variant: result.persisted ? 'success' : 'warning', id: 'local-files' });
     } catch (problem) {
       setError(problem instanceof Error ? problem.message : 'Could not import these files.');
+      notify({ title: 'Import failed', message: 'Check the files and try again.', variant: 'error', id: 'local-files' });
     } finally {
       input.value = '';
       setBusy(false);
@@ -70,8 +74,8 @@ export function LocalFilesDialog() {
 
   async function removeImport() {
     if (!window.confirm('Remove the Markdown files stored in this browser? Your original files and project folders will not be deleted.')) return;
-    try { await removeImportedFiles(); setReport(null); setError(''); }
-    catch { setError('Could not remove the saved import. Try again after reloading.'); }
+    try { await removeImportedFiles(); setReport(null); setError(''); notify({ title: 'Browser import removed', message: 'Project files and your original folders are unchanged.', variant: 'success', id: 'local-files' }); }
+    catch { setError('Could not remove the saved import. Try again after reloading.'); notify({ title: 'Removal failed', message: 'Reload and try again.', variant: 'error', id: 'local-files' }); }
   }
 
   if (!open) return null;
@@ -91,11 +95,11 @@ export function LocalFilesDialog() {
         <div className="overflow-y-auto px-6 pb-7 pt-6 sm:px-8 sm:pb-8">
           <p className="section-label mb-3">Currently reading</p>
           <div className="grid gap-2.5 sm:grid-cols-2">
-            <button type="button" onClick={() => { setMode('library'); setOpen(false); }} className={`group flex min-h-[140px] flex-col items-start justify-between rounded-xl border p-4 text-left transition-colors duration-150 ${mode === 'library' ? 'border-ink bg-surface' : 'border-line hover:border-muted hover:bg-surface'}`}>
+            <button type="button" onClick={() => { if (mode !== 'library') { setMode('library'); notify({ title: 'Included library selected', message: 'Your local notes remain available whenever you switch back.', variant: 'success', id: 'content-source' }); } setOpen(false); }} className={`group flex min-h-[140px] flex-col items-start justify-between rounded-xl border p-4 text-left transition-colors duration-150 ${mode === 'library' ? 'border-ink bg-surface' : 'border-line hover:border-muted hover:bg-surface'}`}>
               <span className="flex w-full items-center justify-between"><Library size={19} strokeWidth={1.7} aria-hidden="true" /><span className={`flex h-5 w-5 items-center justify-center rounded-full border ${mode === 'library' ? 'border-ink bg-ink text-canvas' : 'border-line text-transparent'}`}><Check size={12} aria-hidden="true" /></span></span>
               <span><strong className="block text-[14px] font-semibold">Included library</strong><span className="mt-1 block text-[12px] text-muted">{bundledCount} included lessons and notes · always available</span></span>
             </button>
-            <button type="button" disabled={!hasLocal} onClick={() => { setMode('local'); setOpen(false); }} className={`group flex min-h-[140px] flex-col items-start justify-between rounded-xl border p-4 text-left transition-colors duration-150 ${mode === 'local' ? 'border-ink bg-surface' : 'border-line hover:border-muted hover:bg-surface'} ${!hasLocal ? 'cursor-not-allowed opacity-55' : ''}`}>
+            <button type="button" disabled={!hasLocal} onClick={() => { if (mode !== 'local') { setMode('local'); notify({ title: 'Local Files selected', message: 'Reading your local Markdown collection.', variant: 'success', id: 'content-source' }); } setOpen(false); }} className={`group flex min-h-[140px] flex-col items-start justify-between rounded-xl border p-4 text-left transition-colors duration-150 ${mode === 'local' ? 'border-ink bg-surface' : 'border-line hover:border-muted hover:bg-surface'} ${!hasLocal ? 'cursor-not-allowed opacity-55' : ''}`}>
               <span className="flex w-full items-center justify-between"><HardDrive size={19} strokeWidth={1.7} aria-hidden="true" /><span className={`flex h-5 w-5 items-center justify-center rounded-full border ${mode === 'local' ? 'border-ink bg-ink text-canvas' : 'border-line text-transparent'}`}><Check size={12} aria-hidden="true" /></span></span>
               <span><strong className="block text-[14px] font-semibold">Local Files</strong><span className="mt-1 block text-[12px] text-muted">{hasLocal ? `${localCount} notes · ${localUnits.length} unit${localUnits.length === 1 ? '' : 's'}` : 'Import a folder to get started'}</span></span>
             </button>

@@ -1,7 +1,7 @@
 {
   "name": "sarang-md",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
   "scripts": {
     "sync:local": "node scripts/sync-local.mjs",
@@ -14,12 +14,17 @@
     "sync:ib": "node scripts/build-ib-bank.mjs",
     "sync:course": "node scripts/build-course.mjs",
     "sync:practice": "node scripts/build-practice.mjs",
-    "check:data": "node scripts/check-ib-bank.mjs && node scripts/check-course.mjs && node scripts/check-expanded-numerics.mjs",
+    "check:data": "node scripts/check-ib-bank.mjs && node scripts/check-course.mjs && node scripts/check-expanded-numerics.mjs && node scripts/check-inventory.mjs && node scripts/check-sql.mjs",
     "test:profile": "node --test scripts/test-profile.mjs",
+    "test:tutor": "node --test scripts/test-tutor.mjs",
     "test:sounds": "node scripts/test-sounds.mjs"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.3.3",
     "@supabase/supabase-js": "^2.109.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "framer-motion": "^13.4.4",
     "fuse.js": "^7.1.0",
     "katex": "^0.16.21",
     "lucide-react": "^0.468.0",
@@ -31,6 +36,8 @@
     "rehype-katex": "^7.0.1",
     "remark-gfm": "^4.0.0",
     "remark-math": "^6.0.0",
+    "sonner": "^2.0.8",
+    "tailwind-merge": "^3.7.0",
     "yaml": "^2.7.0",
     "zustand": "^5.0.3"
   },

@@ -54,4 +54,6 @@ $m=(7-3)/2=2$ and the intercept is $3$, so $y=2x+3$.
 
 ---
 
-[Functions master guide](/units/functions/master-guide) · [Course writing and verification guide](/units/number-and-algebra/content-writing-guide) · [Booklet cross-check](/units/number-and-algebra/formula-booklet-audit) · [Browse original paper practice](/practice)
+Verify conditions and your final value independently.
+
+[Functions master guide](/units/functions/master-guide) · [View formula booklet](/formula-booklet) · [Browse original paper practice](/practice)

@@ -1,7 +1,7 @@
 import { Atom, BookText, FlaskConical, Languages, Sigma } from 'lucide-react';
 import type { Subject } from '../lib/tutorApi';
 
-/** Each of the five supported subjects has its own icon, with a text label beside it. */
+/** Historical icon values are retained for older encrypted chat records. New tutoring is math-only. */
 export function TutorSubjectIcon({ subject, size = 17 }: { subject: Subject; size?: number }) {
   switch (subject) {
     case 'Mathematics AA HL': return <Sigma size={size} aria-hidden="true" />;
