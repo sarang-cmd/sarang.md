@@ -1,4 +1,4 @@
-import { copyFile, mkdir, readFile, writeFile } from 'node:fs/promises';
+import { copyFile, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { lessons as number } from '../source-material/lessons/number.mjs';
@@ -59,7 +59,7 @@ for (const definition of definitions) {
     const extra = depth[code];
     if (!extra || extra.skills.length < 3 || !extra.why || !extra.edge || !extra.connection) throw new Error(`Missing expanded lesson pathways for ${code}`);
     const pathways = extra.skills.map((skill, index) => `${index + 1}. ${skill}`).join('\n');
-    const markdown = `# ${title}\n\n> **${code} · ${level}** · Original Sarang.md course lesson, not an IB publication.\n\n## Understand the idea\n\n${idea}\n\n## Formula, meaning and conditions\n\n${formula}\n\n${bookletNote(code)}\n\n## Worked example\n\n${worked}\n\n## Smaller skills within this topic\n\nPractise each skill separately, then combine them in problems:\n\n${pathways}\n\n## Why the method works\n\n${extra.why}\n\n## A contrasting worked route\n\n${extra.edge}\n\n## Transfer and validation\n\n${extra.connection}\n\n## Exam lens\n\n${exam} This is a practice lens, not a prediction of an examination question.\n\n## A mistake worth catching\n\n${mistake}\n\n## Try it yourself\n\n${check}\n\n## Checked answer\n\n${answer}\n\n---\n\n[${definition.name} master guide](/units/${definition.slug}/master-guide) · [Course writing and verification guide](/units/number-and-algebra/content-writing-guide) · [Booklet cross-check](/units/number-and-algebra/formula-booklet-audit) · [Browse original paper practice](/practice)\n`;
+    const markdown = `# ${title}\n\n> **${code} · ${level}** · Original Sarang.md course lesson, not an IB publication.\n\n## Understand the idea\n\n${idea}\n\n## Formula, meaning and conditions\n\n${formula}\n\n${bookletNote(code)}\n\n## Worked example\n\n${worked}\n\n## Smaller skills within this topic\n\nPractise each skill separately, then combine them in problems:\n\n${pathways}\n\n## Why the method works\n\n${extra.why}\n\n## A contrasting worked route\n\n${extra.edge}\n\n## Transfer and validation\n\n${extra.connection}\n\n## Exam lens\n\n${exam} This is a practice lens, not a prediction of an examination question.\n\n## A mistake worth catching\n\n${mistake}\n\n## Try it yourself\n\n${check}\n\n## Checked answer\n\n${answer}\n\n---\n\nVerify conditions and your final value independently.\n\n[${definition.name} master guide](/units/${definition.slug}/master-guide) · [View formula booklet](/formula-booklet) · [Browse original paper practice](/practice)\n`;
     if (markdown.includes('—')) throw new Error(`New lesson contains an em dash: ${code}`);
     await writeFile(path.join(folder, file), markdown);
     topics.push({ id: code, file, title, category: code.startsWith('AHL') ? 'AA HL extension' : 'SL foundations',
@@ -78,18 +78,13 @@ for (const definition of definitions) {
       topics.push({ id: `U${String(index + 1).padStart(2, '0')}`, file, title: frontmatterTitle(source, file), category: 'Your supplied Unit 1 notes',
         tags: [file.toLowerCase(), 'uploaded', 'unit 1'], order: 0, prev: null, next: null, collection: 'uploaded-note' });
     }
-    const guideFile = 'Content_Writing_Guide.md';
-    await copyFile(path.join(root, 'CONTENT_WRITING_GUIDE.md'), path.join(folder, guideFile));
-    topics.push({ id: 'GUIDE', file: guideFile, title: 'Course writing and verification guide', category: 'Editorial guide',
-      tags: ['writing', 'guide', 'sources', 'verification'], order: 0, prev: null, next: null, collection: 'guide' });
-    const bookletFile = 'FORMULA_BOOKLET_AUDIT.md';
-    await copyFile(path.join(root, bookletFile), path.join(folder, bookletFile));
-    topics.push({ id: 'BOOKLET', file: bookletFile, title: 'Supplied 2023 HL formula booklet cross-check', category: 'Editorial guide',
-      tags: ['booklet', '2023', 'version 1.0', 'printed pages', 'verification'], order: 0, prev: null, next: null, collection: 'guide' });
+    // Editorial and setup notes live only in the source archive, not the learner catalog.
+    await rm(path.join(folder, 'Content_Writing_Guide.md'), { force: true });
+    await rm(path.join(folder, 'FORMULA_BOOKLET_AUDIT.md'), { force: true });
   }
   const ordered = topics.map((topic, index) => ({ ...topic, order: index,
     prev: topics[index - 1]?.file ?? null, next: topics[index + 1]?.file ?? null }));
   catalog.units.push({ slug: definition.slug, directory: definition.directory, topics: ordered });
 }
 await writeFile(path.join(contentRoot, 'course-catalog.json'), JSON.stringify(catalog, null, 2) + '\n');
-console.log(`Included AA syllabus: ${all.length} distinct lessons plus ${definitions.length} original strand master guides; preserved 20 original + 22 uploaded notes + editorial guide. Outline's ${codes.reduce((sum, entry) => sum + entry.referencedCount, 0)} quoted questions are NOT bundled.`);
+console.log(`Included AA syllabus: ${all.length} distinct lessons plus ${definitions.length} original strand master guides; preserved 20 original + 22 uploaded notes. Internal editorial notes are excluded from the published catalog. Outline's ${codes.reduce((sum, entry) => sum + entry.referencedCount, 0)} quoted questions are NOT bundled.`);

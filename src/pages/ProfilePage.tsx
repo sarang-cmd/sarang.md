@@ -6,9 +6,13 @@ import { MAX_DOCUMENTS, MAX_PROFILE_LENGTH, validateProfile } from '../lib/profi
 import type { PrivateDocument } from '../lib/profileVault';
 import { useProfileStore } from '../store/useProfileStore';
 import { useTutorStore } from '../store/useTutorStore';
+import { useSettingsStore } from '../store/useSettingsStore';
+import { isExamActive, useExamStore } from '../store/useExamStore';
 import { MarkdownArticle } from '../components/MarkdownArticle';
 import { CloudProfile } from '../components/CloudProfile';
-import { earnedPracticeMarks, studyStreak } from '../lib/studyStats';
+import { notify } from '../components/ui/toast';
+import { selfMarkSummary, studyStreak } from '../lib/studyStats';
+import { StudyActivity } from '../components/StudyActivity';
 import { originalExamQuestions } from '../data/originalExam';
 import { useCatalog } from '../context/CatalogContext';
 import type { AssessmentRecord } from '../lib/profileVault';
@@ -49,6 +53,9 @@ async function localAvatar(file: File): Promise<string> {
 
 export function ProfilePage() {
   const vault = useProfileStore();
+  const aiEnabled = useSettingsStore((state) => state.aiEnabled);
+  const examActive = useExamStore((state) => isExamActive(state.attempt));
+  const setAiEnabled = useSettingsStore((state) => state.setAiEnabled);
   const { bundledCount } = useCatalog();
   const [school, setSchool] = useState('');
   const [assessmentName, setAssessmentName] = useState('');
@@ -64,7 +71,13 @@ export function ProfilePage() {
   const [migratedPassword, setMigratedPassword] = useState('');
   const [migratedConfirm, setMigratedConfirm] = useState('');
   const [busy, setBusy] = useState(false);
-  const [notice, setNotice] = useState('');
+  const [notice, setNoticeState] = useState('');
+  function setNotice(value: string) {
+    setNoticeState(value);
+    if (!value) return;
+    const failed = /^(?:Could not|Unable|Cannot|Invalid|Incorrect|Passwords? (?:do not|must)|Enter |Choose |Your (?:password|browser)|Unlock |No (?:backup|file)|A (?:name|password)|The (?:file|password))/i.test(value) || /(?:failed|unavailable|too large|too short|does not match|do not match|out of range|must be|error)/i.test(value);
+    notify({ title: failed ? 'Action not completed' : 'Profile updated', message: value.slice(0, 200), variant: failed ? 'error' : 'success', id: 'profile-action' });
+  }
   const [backup, setBackup] = useState<File | null>(null);
   const [backupPassword, setBackupPassword] = useState('');
   const [backupBusy, setBackupBusy] = useState(false);
@@ -79,7 +92,10 @@ export function ProfilePage() {
   const profile = vault.profile;
   useEffect(() => { setSchool(profile?.school ?? ''); }, [profile?.school]);
   const streak = studyStreak(profile);
-  const practiceMarks = earnedPracticeMarks(profile);
+  const selfMarks = selfMarkSummary(profile);
+  const practiceMarks = selfMarks.best;
+  const recentSelfMarks = Object.values(profile?.questions ?? {}).filter((entry) => entry.lastMarks !== undefined)
+    .sort((a, b) => (b.markedAt ?? '').localeCompare(a.markedAt ?? '')).slice(0, 8);
   const assessmentMarks = profile?.assessments.reduce((sum, entry) => sum + entry.earned, 0) ?? 0;
   const paperPracticeAttempted = Object.values(profile?.questions ?? {}).filter((entry) => entry.id.startsWith('aa-') && entry.attempts > 0).length;
   const classicAttempted = Object.values(profile?.questions ?? {}).filter((entry) => entry.id.startsWith('original:') && (entry.attempts > 0 || entry.lastAnswers.some(Boolean))).length;
@@ -202,8 +218,10 @@ export function ProfilePage() {
       <div className="profile-hero">
         <div><p className="eyebrow">YOUR SPACE / PRIVATE BY DESIGN</p><h1>Study profile<span className="period">.</span></h1>
           <p>Your reading, scores, focus time and tutor settings in one place. Encrypted on this device; optional cloud backup uploads ciphertext only when you choose.</p><button type="button" className="secondary-button mt-5" onClick={() => document.getElementById('cloud-profile-heading')?.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' })}>Email, Google or GitHub sign-in ↓</button></div>
-        <div className="profile-seal" aria-label={active ? 'Encrypted profile unlocked' : 'Profile locked'}><span>{active ? '◈' : '◇'}</span><small>{active ? 'UNLOCKED' : 'PRIVATE'}</small></div>
+        <div className="profile-seal" aria-label={active ? 'Encrypted profile unlocked' : 'Profile locked'}>{active && profile.avatar ? <img src={profile.avatar} alt="" className="h-[52px] w-[52px] rounded-full object-cover grayscale" /> : <span>{active ? '◈' : '◇'}</span>}<small>{active ? 'UNLOCKED' : 'PRIVATE'}</small></div>
       </div>
+
+      <section className="profile-card mt-5" aria-label="AI and interface preferences"><div className="flex flex-wrap items-center justify-between gap-4"><div><p className="eyebrow">SETTINGS / YOUR CONTROL</p><h2>AI and interface</h2><p>AI can be disabled completely, including the tutor and optional feedback. You can switch Old or New UI across the app and fine-tune each area, even while this vault is locked.</p></div><div className="flex flex-wrap items-center gap-2"><button type="button" role="switch" aria-checked={aiEnabled} onClick={() => { const enabled = !aiEnabled; setAiEnabled(enabled); notify({ title: enabled ? 'AI enabled' : 'AI disabled', message: enabled ? 'The tutor is available when you choose to ask.' : 'Tutor and optional AI feedback are blocked.', variant: enabled ? 'success' : 'warning', id: 'ai-choice' }); }} className="secondary-button">AI {aiEnabled ? 'on' : 'off'} · {aiEnabled ? 'Disable' : 'Enable'}</button><Link to="/settings" className="studio-button">Open Settings</Link></div></div></section>
 
       {(notice || vault.error) && <div className="profile-notice" role="status">{notice || vault.error}{vault.error && <button type="button" className="text-button" onClick={vault.clearError}>Dismiss</button>}</div>}
 
@@ -253,7 +271,7 @@ export function ProfilePage() {
 
       {active && <>
         <div className="profile-welcome"><div><p className="eyebrow">GOOD TO HAVE YOU HERE</p>
-          {editingName ? <form className="profile-name-edit" onSubmit={(event) => { event.preventDefault(); vault.rename(name); setEditingName(false); }}>
+          {editingName ? <form className="profile-name-edit" onSubmit={(event) => { event.preventDefault(); vault.rename(name); setEditingName(false); setNotice('Profile name saved in your encrypted profile.'); }}>
             <label htmlFor="profile-name" className="sr-only">Profile name</label><input id="profile-name" value={name} onChange={(event) => setName(event.target.value)} maxLength={80} autoFocus />
             <button type="submit">Save</button><button type="button" onClick={() => setEditingName(false)}>Cancel</button>
           </form> : <h2>{profile.displayName} <button type="button" className="profile-edit-trigger" onClick={() => { setName(profile.displayName); setEditingName(true); }}>Edit name</button></h2>}
@@ -268,15 +286,23 @@ export function ProfilePage() {
           <div><strong>{totalMinutes}<small> min</small></strong><span>focus time</span></div>
           <div><strong>{streak}<small> days</small></strong><span>study streak (marked work or focus)</span></div>
           <div><strong>{practiceMarks}<small> pts</small></strong><span>best self-marked practice points</span></div>
+          <div><strong>{selfMarks.latest}<small>/{selfMarks.available}</small></strong><span>latest saved self-marks / possible</span></div>
+          <div><strong>{selfMarks.questions}</strong><span>questions with saved self-marks</span></div>
         </div>
+        <StudyActivity profile={profile} />
         <div className="profile-grid">
           <section className="profile-card"><p className="eyebrow">IDENTITY / ONLY IN YOUR VAULT</p><h2>School and avatar</h2><p>These stay encrypted locally. If you opt in to a cloud copy, only their ciphertext is uploaded.</p>
-            <div className="mt-5 flex flex-wrap items-center gap-5"><div className="flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-full border border-line bg-surface text-[25px] font-semibold">{profile.avatar ? <img src={profile.avatar} alt="Your profile avatar" className="h-full w-full object-cover grayscale" /> : profile.displayName.slice(0, 1).toUpperCase()}</div><div className="min-w-[180px] flex-1"><label className="block text-[11px] font-semibold">Choose a photo<input type="file" accept="image/png,image/jpeg,image/webp" className="mt-2 block w-full text-[11px]" onChange={(event) => { const file = event.currentTarget.files?.[0]; event.currentTarget.value = ''; if (file) void localAvatar(file).then((value) => { vault.setAvatar(value); setNotice('Avatar resized and saved in your encrypted profile.'); }, (error: unknown) => setNotice(message(error))); }} /></label>{profile.avatar && <button type="button" onClick={() => vault.setAvatar('')} className="text-button mt-2">Remove avatar</button>}</div></div>
+            <div className="mt-5 flex flex-wrap items-center gap-5"><div className="flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-full border border-line bg-surface text-[25px] font-semibold">{profile.avatar ? <img src={profile.avatar} alt="Your profile avatar" className="h-full w-full object-cover grayscale" /> : profile.displayName.slice(0, 1).toUpperCase()}</div><div className="min-w-[180px] flex-1"><label className="block text-[11px] font-semibold">Choose a photo<input type="file" accept="image/png,image/jpeg,image/webp" className="mt-2 block w-full text-[11px]" onChange={(event) => { const file = event.currentTarget.files?.[0]; event.currentTarget.value = ''; if (file) void localAvatar(file).then((value) => { vault.setAvatar(value); setNotice('Avatar resized and saved in your encrypted profile.'); }, (error: unknown) => setNotice(message(error))); }} /></label>{profile.avatar && <button type="button" onClick={() => { vault.setAvatar(''); setNotice('Avatar removed from your encrypted profile.'); }} className="text-button mt-2">Remove avatar</button>}</div></div>
             <form className="profile-form" onSubmit={(event) => { event.preventDefault(); vault.setSchool(school); setNotice('School saved in your encrypted profile.'); }}><label>School name (optional)<input value={school} onChange={(event) => setSchool(event.target.value)} maxLength={120} placeholder="Your school" /></label><button type="submit" className="secondary-button">Save school</button></form>
           </section>
-          <section className="profile-card"><p className="eyebrow">ASSESSMENTS / SELF-REPORTED</p><h2>Your marked work</h2><p>{profile.assessments.length} recorded assessments · {assessmentMarks} earned marks across them. This total excludes question best-points to avoid counting a mock twice. These are not official IB grades.</p>
+          <section className="profile-card"><p className="eyebrow">ASSESSMENTS / SELF-REPORTED</p><h2>Your marked work</h2><p>{profile.assessments.length} recorded assessments · {assessmentMarks} earned marks across them. Assessments stay separate from question self-marks to avoid counting a mock twice. These are not official IB grades.</p>
+            <div className="mt-5 rounded-xl border border-line bg-surface p-4"><h3 className="!mb-1 !text-[16px]">Saved question self-marks</h3>
+              <p className="!mt-1">{selfMarks.questions} marked question{selfMarks.questions === 1 ? '' : 's'} · latest scores {selfMarks.latest}/{selfMarks.available} possible · best scores {selfMarks.best} points. Re-marking a question updates its latest score; the best score is kept separately. Timed attempts have their own records.</p>
+              {recentSelfMarks.length ? <ul className="mt-3 divide-y divide-line">{recentSelfMarks.map((entry) => <li key={entry.id} className="flex items-center justify-between gap-2 py-2 text-[11px]"><Link to={entry.route} className="min-w-0 truncate font-semibold underline underline-offset-2">{entry.title}</Link><span className="shrink-0 font-mono">{entry.lastMarks}/{entry.maximumMarks}</span></li>)}</ul> : <p className="!mt-2 text-muted">No saved self-marks yet. Open Review and award marks to your own work.</p>}
+              <Link to="/review" className="mt-3 inline-block text-[11px] font-semibold underline underline-offset-2">Review all saved answers</Link>
+            </div>
             <form className="profile-form" onSubmit={saveAssessment}><label>Assessment name<input value={assessmentName} onChange={(event) => setAssessmentName(event.target.value)} maxLength={120} placeholder="Unit test or past practice" required /></label><div className="grid w-full grid-cols-3 gap-2"><label className="text-[11px] font-semibold">Type<select value={assessmentPaper} onChange={(event) => setAssessmentPaper(event.target.value as AssessmentRecord['paper'])} className="mt-2 h-11 w-full rounded-lg border border-line bg-surface px-2"><option value="P1">Paper 1</option><option value="P2">Paper 2</option><option value="P3">Paper 3</option><option value="mixed">Mixed</option><option value="IA">Exploration / IA</option></select></label><label className="text-[11px] font-semibold">Earned<input type="number" min="0" max="500" required value={assessmentEarned} onChange={(event) => setAssessmentEarned(event.target.value)} className="mt-2 h-11 w-full rounded-lg border border-line bg-surface px-2" /></label><label className="text-[11px] font-semibold">Available<input type="number" min="1" max="500" required value={assessmentAvailable} onChange={(event) => setAssessmentAvailable(event.target.value)} className="mt-2 h-11 w-full rounded-lg border border-line bg-surface px-2" /></label></div><button type="submit" className="secondary-button">Record assessment</button></form>
-            {profile.assessments.length ? <ul className="mt-5 divide-y divide-line border-t border-line">{profile.assessments.slice(0, 15).map((entry) => <li key={entry.id} className="flex flex-wrap items-center justify-between gap-2 py-3 text-[12px]"><span><strong>{entry.name}</strong><small className="mt-1 block text-muted">{entry.paper} · {entry.source === 'mock' ? 'Original practice mock' : 'Manual entry'} · {datetime(entry.completedAt)}</small></span><span className="font-mono">{entry.earned}/{entry.available} <button type="button" onClick={() => { if (window.confirm(`Remove ${entry.name}?`)) vault.removeAssessment(entry.id); }} className="ml-2 text-[10px] text-muted underline">Remove</button></span></li>)}</ul> : <p className="profile-empty">No marked assessments recorded yet.</p>}
+            {profile.assessments.length ? <ul className="mt-5 divide-y divide-line border-t border-line">{profile.assessments.slice(0, 15).map((entry) => <li key={entry.id} className="flex flex-wrap items-center justify-between gap-2 py-3 text-[12px]"><span><strong>{entry.name}</strong><small className="mt-1 block text-muted">{entry.paper} · {entry.source === 'mock' ? 'Original practice mock' : 'Manual entry'} · {datetime(entry.completedAt)}</small></span><span className="font-mono">{entry.earned}/{entry.available} <button type="button" onClick={() => { if (window.confirm(`Remove ${entry.name}?`)) { vault.removeAssessment(entry.id); setNotice('Assessment removed from your encrypted profile.'); } }} className="ml-2 text-[10px] text-muted underline">Remove</button></span></li>)}</ul> : <p className="profile-empty">No marked assessments recorded yet.</p>}
           </section>
         </div>
         <div className="profile-grid">
@@ -316,7 +342,7 @@ export function ProfilePage() {
                 <button type="button" className="text-button" onClick={() => {
                   useTutorStore.getState().openFor({ key: `private:${document.id}`, route: '/profile', title: document.name, text: document.pages.map((page) => page.text).join('\n\n').slice(0, 6000), subject: 'Mathematics AA HL', sourceStatus: 'Your private imported document; sent to a provider only if you send a tutor message' });
                 }}>Ask tutor</button>
-                <button type="button" className="text-button danger" onClick={() => { if (window.confirm(`Remove ${document.name} from this encrypted profile?`)) vault.removeDocument(document.id); }}>Remove</button></div>
+                <button type="button" className="text-button danger" onClick={() => { if (window.confirm(`Remove ${document.name} from this encrypted profile?`)) { vault.removeDocument(document.id); setNotice('Document removed from your encrypted profile.'); } }}>Remove</button></div>
               {openDocument === document.id && <div className="profile-document-preview"><MarkdownArticle source={document.pages.map((page) => `### Page ${page.number}\n\n${page.text}`).join('\n\n')} /></div>}
             </div>)}</div>
         </section>
@@ -326,16 +352,16 @@ export function ProfilePage() {
           <section className="profile-card"><h3>Saved connections</h3><p>Provider keys and settings live inside the encrypted vault. Configure them from the tutor’s settings.</p>
             {Object.entries(profile.providers).length === 0 ? <p className="profile-empty">No provider configured yet.</p> : <ul className="profile-connection-list">
               {Object.entries(profile.providers).map(([provider, config]) => <li key={provider}><strong>{provider}</strong><span>{config.model || 'No model'} · {config.apiKey ? 'Key saved' : 'No key saved'}</span></li>)}</ul>}
-            <button type="button" className="secondary-button" onClick={() => useTutorStore.getState().openFor({ key: 'profile:tutor', route: '/profile', title: 'Your study space', text: 'Help me plan my next study step.', subject: 'Mathematics AA HL' })}>Open tutor</button>
+            {aiEnabled && !examActive && <button type="button" className="secondary-button" onClick={() => useTutorStore.getState().openFor({ key: 'profile:tutor', route: '/profile', title: 'Your study space', text: 'Help me plan my next study step.', subject: 'Mathematics AA HL' })}>Open tutor</button>}
             <p className="profile-fine">A browser-based request sends your prompt and API key to your selected provider. Some providers block direct browser calls with CORS. Use a trusted proxy if needed; no keys are shipped with the site.</p>
           </section>
           <section className="profile-card"><h3>Tutor conversations</h3><p>Recent questions and replies are saved here only while your vault is unlocked.</p>
-            {!profile.chats.length ? <p className="profile-empty">Your tutor history will appear here after a conversation.</p> : <>
+            {examActive ? <p className="profile-empty">Tutor history is hidden until you submit your timed exam.</p> : !profile.chats.length ? <p className="profile-empty">Your tutor history will appear here after a conversation.</p> : <>
               <div className="profile-chat-list">{profile.chats.slice(0, 12).map((chat) => <div key={chat.id} className="profile-chat">
                 <button type="button" onClick={() => setOpenChat(openChat === chat.id ? null : chat.id)}>{chat.title} <small>{chat.subject} · {datetime(chat.updatedAt)}</small></button>
                 {openChat === chat.id && <div className="profile-chat-messages">{chat.messages.map((item, index) => <div key={index}><small>{item.role === 'user' ? 'YOU' : 'TUTOR'}</small><MarkdownArticle source={item.content} /></div>)}</div>}
               </div>)}</div>
-              <button type="button" className="text-button danger" onClick={() => { if (window.confirm('Clear all saved tutor conversations?')) vault.clearChats(); }}>Clear chat history</button></>}
+              <button type="button" className="text-button danger" onClick={() => { if (window.confirm('Clear all saved tutor conversations?')) { vault.clearChats(); setNotice('Tutor conversation history cleared from your encrypted profile.'); } }}>Clear chat history</button></>}
           </section>
         </div>
 
@@ -349,7 +375,7 @@ export function ProfilePage() {
             <p className="profile-fine">All three formats contain the same encrypted backup. A plain-text editor can inspect the envelope, not the secret contents.</p>
           </section>
           <section className="profile-card"><h3>Readable progress summary</h3><p>Export a plain text overview of notes, practice, and focus time. It deliberately excludes API keys, private files, and chat messages.</p>
-            <button type="button" className="secondary-button" onClick={() => download(`sarang-progress-${new Date().toISOString().slice(0, 10)}.txt`, vault.exportSummary(), 'text/plain')}>Download progress .txt</button>
+            <button type="button" className="secondary-button" onClick={() => { download(`sarang-progress-${new Date().toISOString().slice(0, 10)}.txt`, vault.exportSummary(), 'text/plain'); setNotice('Progress summary downloaded as a text file.'); }}>Download progress .txt</button>
             <p className="profile-fine">Readable summaries cannot be imported as profiles. Use an encrypted backup to move your full profile.</p>
           </section>
         </div>
@@ -360,7 +386,7 @@ export function ProfilePage() {
             <label>Confirm new password<input type="password" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} required autoComplete="new-password" /></label>
             <button type="submit" className="secondary-button" disabled={busy}>Change password</button></form></div>
             <div><h3>Clean slate</h3><p>Clearing progress keeps your keys, private documents, and tutor history. Deleting the profile removes all encrypted profile data in this browser. Neither action affects exported backups or separately stored local notes and theme settings.</p>
-              <button type="button" className="text-button danger" onClick={() => { if (window.confirm('Clear all saved note, question, and focus progress? This cannot be undone.')) vault.resetProgress(); }}>Clear study progress</button><br />
+              <button type="button" className="text-button danger" onClick={() => { if (window.confirm('Clear all saved note, question, and focus progress? This cannot be undone.')) { vault.resetProgress(); setNotice('Study progress cleared from your encrypted profile.'); } }}>Clear study progress</button><br />
               <button type="button" className="text-button danger" onClick={() => {
                 if (window.prompt('Type DELETE to permanently remove this local encrypted profile:') === 'DELETE') { vault.deleteVault(); setNotice('This browser’s encrypted profile was deleted. Exported backups remain wherever you saved them.'); }
               }}>Delete local profile</button></div></div>

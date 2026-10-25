@@ -943,41 +943,8 @@
           ],
           "order": 58,
           "prev": "Countdown_Schedule_Thu_to_Mon.md",
-          "next": "Content_Writing_Guide.md",
-          "collection": "uploaded-note"
-        },
-        {
-          "id": "GUIDE",
-          "file": "Content_Writing_Guide.md",
-          "title": "Course writing and verification guide",
-          "category": "Editorial guide",
-          "tags": [
-            "writing",
-            "guide",
-            "sources",
-            "verification"
-          ],
-          "order": 59,
-          "prev": "IB_AAHL_SequencesSeriesCountingBinomial_MasterGuide.md",
-          "next": "FORMULA_BOOKLET_AUDIT.md",
-          "collection": "guide"
-        },
-        {
-          "id": "BOOKLET",
-          "file": "FORMULA_BOOKLET_AUDIT.md",
-          "title": "Supplied 2023 HL formula booklet cross-check",
-          "category": "Editorial guide",
-          "tags": [
-            "booklet",
-            "2023",
-            "version 1.0",
-            "printed pages",
-            "verification"
-          ],
-          "order": 60,
-          "prev": "Content_Writing_Guide.md",
           "next": null,
-          "collection": "guide"
+          "collection": "uploaded-note"
         }
       ]
     },

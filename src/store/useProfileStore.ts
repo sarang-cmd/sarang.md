@@ -11,8 +11,9 @@ export interface QuestionEvent {
   route: string;
   kind: QuestionProgress['kind'];
   paper?: 'P1' | 'P2' | 'P3';
-  event: 'answers' | 'attempt' | 'check' | 'reveal' | 'complete';
+  event: 'answers' | 'written' | 'attempt' | 'check' | 'reveal' | 'complete';
   answers?: string[];
+  writtenAnswer?: string;
   matched?: number;
   total?: number;
 }
@@ -36,6 +37,7 @@ interface ProfileState {
   setAvatar: (dataUri: string) => void;
   toggleBookmark: (id: string) => void;
   recordManualScore: (item: { id: string; title: string; paper: 'P1' | 'P2' | 'P3'; earned: number; available: number }) => void;
+  recordSelfMark: (item: { id: string; title: string; route: string; kind: QuestionProgress['kind']; paper?: 'P1' | 'P2' | 'P3'; earned: number; available: number }) => void;
   addAssessment: (entry: AssessmentRecord) => void;
   removeAssessment: (id: string) => void;
   recordNote: (id: string, title: string, route: string) => void;
@@ -201,6 +203,8 @@ export const useProfileStore = create<ProfileState>((set, get) => {
         `Notes visited: ${notes.length}`, `Notes marked studied: ${notes.filter((note) => note.studiedAt).length}`,
         `Questions attempted: ${questions.filter((question) => question.attempts > 0 || question.lastAnswers.some(Boolean)).length}`,
         `Questions marked complete: ${questions.filter((question) => question.completedAt).length}`,
+        `Questions with saved self-marks: ${questions.filter((question) => question.lastMarks !== undefined).length}`,
+        `Latest saved self-marks: ${questions.reduce((sum, question) => sum + (question.lastMarks ?? 0), 0)}`,
         `Best self-marked practice points: ${questions.reduce((sum, question) => sum + (question.bestMarks ?? 0), 0)}`,
         `Recorded assessments: ${profile.assessments.length}`,
         `Focus time: ${Math.round(profile.focusSessions.reduce((sum, session) => sum + session.seconds, 0) / 60)} minutes`, '',
@@ -238,13 +242,33 @@ export const useProfileStore = create<ProfileState>((set, get) => {
           id: item.id, title: item.title.slice(0, 180), route: `/practice?q=${encodeURIComponent(item.id)}`,
           kind: 'original', paper: item.paper,
           attempts: (before?.attempts ?? 0) + 1, matched: before?.matched ?? 0, total: before?.total ?? 0,
-          lastAnswers: before?.lastAnswers ?? [], updatedAt: now, markedAt: now,
+          lastAnswers: before?.lastAnswers ?? [], ...(before?.writtenAnswer !== undefined ? { writtenAnswer: before.writtenAnswer } : {}), updatedAt: now, markedAt: now,
           maximumMarks: item.available, lastMarks: item.earned, bestMarks: Math.max(before?.bestMarks ?? 0, item.earned),
           ...(before?.completedAt ? { completedAt: before.completedAt } : {}),
           ...(before?.revealedAt ? { revealedAt: before.revealedAt } : {}),
         };
         return { ...profile, questions: { ...profile.questions, [item.id]: entry },
           activity: activity(profile.activity, 'question', `Self-marked ${item.title}: ${item.earned}/${item.available}`, entry.route) };
+      });
+    },
+    recordSelfMark(item) {
+      if (!item.id || item.id.length >= 230 || !item.route.startsWith('/') || !Number.isInteger(item.earned) ||
+        !Number.isInteger(item.available) || item.available < 1 || item.available > 500 || item.earned < 0 || item.earned > item.available) return;
+      update((profile) => {
+        const before = profile.questions[item.id];
+        const now = stamp();
+        const entry: QuestionProgress = {
+          id: item.id, title: item.title.slice(0, 180), route: item.route.slice(0, 350), kind: item.kind,
+          ...(item.paper ? { paper: item.paper } : {}),
+          attempts: (before?.attempts ?? 0) + 1, matched: before?.matched ?? 0, total: before?.total ?? 0,
+          lastAnswers: before?.lastAnswers ?? [], ...(before?.writtenAnswer !== undefined ? { writtenAnswer: before.writtenAnswer } : {}),
+          updatedAt: now, markedAt: now, maximumMarks: item.available, lastMarks: item.earned,
+          bestMarks: Math.max(before?.bestMarks ?? 0, item.earned),
+          ...(before?.completedAt ? { completedAt: before.completedAt } : {}),
+          ...(before?.revealedAt ? { revealedAt: before.revealedAt } : {}),
+        };
+        return { ...profile, questions: { ...profile.questions, [item.id]: entry },
+          activity: activity(profile.activity, 'question', `Self-marked ${entry.title}: ${item.earned}/${item.available}`, entry.route) };
       });
     },
     addAssessment(entry) {
@@ -285,9 +309,11 @@ export const useProfileStore = create<ProfileState>((set, get) => {
         const now = stamp();
         const next: QuestionProgress = {
           id: item.id, title: item.title.slice(0, 180), route: item.route.slice(0, 350), kind: item.kind,
-          ...(item.paper ? { paper: item.paper } : {}), attempts: (previous?.attempts ?? 0) + (item.event === 'check' || item.event === 'attempt' ? 1 : 0),
+          ...(item.paper ? { paper: item.paper } : previous?.paper ? { paper: previous.paper } : {}),
+          attempts: (previous?.attempts ?? 0) + (item.event === 'check' || item.event === 'attempt' || (item.event === 'written' && !!item.writtenAnswer?.trim() && !previous?.writtenAnswer?.trim()) ? 1 : 0),
           matched: item.matched ?? previous?.matched ?? 0, total: item.total ?? previous?.total ?? 0,
-          lastAnswers: (item.answers ?? previous?.lastAnswers ?? []).slice(0, 30).map((answer) => answer.slice(0, 140)), updatedAt: now,
+          lastAnswers: (item.answers ?? previous?.lastAnswers ?? []).slice(0, 30).map((answer) => answer.slice(0, 140)),
+          ...(item.event === 'written' ? { writtenAnswer: (item.writtenAnswer ?? '').slice(0, 1600) } : previous?.writtenAnswer !== undefined ? { writtenAnswer: previous.writtenAnswer } : {}), updatedAt: now,
           ...(previous?.completedAt && item.event !== 'complete' ? { completedAt: previous.completedAt } : {}),
           ...(item.event === 'complete' && !previous?.completedAt ? { completedAt: now } : {}),
           ...(previous?.revealedAt || item.event === 'reveal' ? { revealedAt: previous?.revealedAt ?? now } : {}),
@@ -295,7 +321,8 @@ export const useProfileStore = create<ProfileState>((set, get) => {
           ...(previous?.bestMarks !== undefined ? { bestMarks: previous.bestMarks, lastMarks: previous.lastMarks, maximumMarks: previous.maximumMarks } : {}),
         };
         if (item.event === 'answers' && JSON.stringify(previous?.lastAnswers ?? []) === JSON.stringify(next.lastAnswers)) return null;
-        if (item.event === 'answers') return { ...profile, questions: { ...profile.questions, [item.id]: next } };
+        if (item.event === 'written' && (previous?.writtenAnswer ?? '') === (next.writtenAnswer ?? '')) return null;
+        if (item.event === 'answers' || item.event === 'written') return { ...profile, questions: { ...profile.questions, [item.id]: next } };
         const label = item.event === 'check' ? `Checked ${next.title}` : item.event === 'reveal' ? `Revealed ${next.title}` :
           item.event === 'complete' ? `${previous?.completedAt ? 'Reopened' : 'Completed'} ${next.title}` : `Attempted ${next.title}`;
         return { ...profile, questions: { ...profile.questions, [item.id]: next }, activity: activity(profile.activity, 'question', label, item.route) };
@@ -355,7 +382,7 @@ export const useProfileStore = create<ProfileState>((set, get) => {
 // Encrypted edits from another tab invalidate this tab's decrypted snapshot.
 // Lock instead of silently overwriting either tab's changes.
 if (typeof window !== 'undefined') window.addEventListener('storage', (event) => {
-  if (event.key !== PROFILE_STORAGE_KEY) return;
+  if (event.key !== PROFILE_STORAGE_KEY || event.storageArea !== localStorage || event.oldValue === event.newValue) return;
   generation++; latestRevision++;
   inMemoryKey = null; envelope = null;
   const status = event.newValue ? 'locked' : 'absent';

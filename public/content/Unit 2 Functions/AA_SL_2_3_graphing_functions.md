@@ -54,4 +54,6 @@ Vertex $(1,-9)$, $x$-intercepts $(-2,0)$ and $(4,0)$, and $y$-intercept $(0,-8)$
 
 ---
 
-[Functions master guide](/units/functions/master-guide) · [Course writing and verification guide](/units/number-and-algebra/content-writing-guide) · [Booklet cross-check](/units/number-and-algebra/formula-booklet-audit) · [Browse original paper practice](/practice)
+Verify conditions and your final value independently.
+
+[Functions master guide](/units/functions/master-guide) · [View formula booklet](/formula-booklet) · [Browse original paper practice](/practice)

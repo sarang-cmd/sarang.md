@@ -31,6 +31,8 @@ export interface QuestionProgress {
   matched: number;
   total: number;
   lastAnswers: string[];
+  /** Free-form work, encrypted with the rest of the profile. Numeric final checks remain separate. */
+  writtenAnswer?: string;
   updatedAt: string;
   completedAt?: string;
   revealedAt?: string;
@@ -186,6 +188,7 @@ export function validateProfile(raw: unknown): ProfileData {
         !Number.isInteger(value.matched) || (value.matched as number) < 0 || (value.matched as number) > 40 ||
         !Number.isInteger(value.total) || (value.total as number) < 0 || (value.total as number) > 40 ||
         !Array.isArray(value.lastAnswers) || value.lastAnswers.length > 30 || value.lastAnswers.some((item) => typeof item !== 'string' || item.length > 140) ||
+        (value.writtenAnswer !== undefined && (typeof value.writtenAnswer !== 'string' || value.writtenAnswer.length > 1600)) ||
         !safeDate(value.updatedAt) || (value.completedAt !== undefined && !safeDate(value.completedAt)) ||
         (value.revealedAt !== undefined && !safeDate(value.revealedAt)) || (value.paper !== undefined && !['P1', 'P2', 'P3'].includes(value.paper as string)) ||
         (value.markedAt !== undefined && !safeDate(value.markedAt)) ||

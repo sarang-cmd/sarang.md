@@ -4,6 +4,7 @@ import { useProfileStore } from '../store/useProfileStore';
 import { ambientSounds, emptySoundLevels, readSoundLevels, saveSoundLevels } from '../lib/ambientSounds';
 import type { AmbientSound, SoundLevels } from '../lib/ambientSounds';
 import { makeAmbientLayer } from '../lib/synthAmbient';
+import { notify } from '../components/ui/toast';
 import type { SynthLayer } from '../lib/synthAmbient';
 
 export type SoundPreset = 'Stillness' | 'Flow' | 'Rain' | 'Ocean' | 'Library' | 'Night';
@@ -129,6 +130,8 @@ export function FocusProvider({ children }: { children: ReactNode }) {
   const recordFocus = useProfileStore((state) => state.recordFocus);
 
   useEffect(() => { saveSoundLevels(soundLevels); }, [soundLevels]);
+  useEffect(() => { if (finished) notify({ title: 'Focus session complete', message: 'Sound paused. Actual playback time is saved if your profile was unlocked.', variant: 'success', id: 'focus-status' }); }, [finished]);
+  useEffect(() => { if (error) notify({ title: 'Sound unavailable', message: 'Start with a click or try a different browser.', variant: 'error', id: 'focus-status' }); }, [error]);
 
   // Count actual playback while the encrypted profile is unlocked. Pause, finish,
   // preset change, or leaving this session commits one bounded focus interval.

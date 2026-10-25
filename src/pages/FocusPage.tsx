@@ -7,6 +7,9 @@ import { useMovableWindow } from '../hooks/useMovableWindow';
 import { useVaultStore } from '../store/useVaultStore';
 import { FocusScience } from '../components/FocusScience';
 import { SoundMixer } from '../components/SoundMixer';
+import { notify } from '../components/ui/toast';
+import { StudyTimer } from '../components/StudyTimer';
+import { DownloadCard } from '../components/DownloadApp';
 import { PLAYLIST_KEY, SOURCE_PLAYLIST, defaultVideoPlaylist, parseVideoLink, readVideoPlaylist } from '../lib/videoPlaylist';
 import type { VideoItem } from '../lib/videoPlaylist';
 
@@ -35,7 +38,11 @@ export function FocusPage() {
   const setSoundWindowOpen = useVaultStore((state) => state.setSoundWindowOpen);
   const [url, setUrl] = useState('');
   const [title, setTitle] = useState('');
-  const [videoError, setVideoError] = useState('');
+  const [videoError, setVideoErrorState] = useState('');
+  function setVideoError(value: string) {
+    setVideoErrorState(value);
+    if (value) notify({ title: 'Video needs attention', message: value, variant: 'error', id: 'video-status' });
+  }
   const [index, setIndex] = useState(() => Math.min(controls.current.index, Math.max(0, readVideoPlaylist().length - 1)));
   const [videoPlaying, setVideoPlaying] = useState(false);
   const [muted, setMuted] = useState(controls.current.muted);
@@ -116,6 +123,7 @@ export function FocusPage() {
     if (playlist.length >= 30) { setVideoError('This playlist holds up to 30 videos. Remove one before adding more.'); return; }
     const item = { ...parsed, id: crypto.randomUUID(), title: title.trim().slice(0, 80) || (parsed.kind === 'youtube' ? `Video ${parsed.videoId}` : 'Direct video') };
     setPlaylist((previous) => [...previous, item]); setUrl(''); setTitle(''); setVideoError('');
+    notify({ title: 'Video added', message: 'The link is in your browser playlist.', variant: 'success', id: 'video-status' });
   }
   function addFiles(event: ChangeEvent<HTMLInputElement>) {
     const files = Array.from(event.currentTarget.files ?? []);
@@ -131,6 +139,7 @@ export function FocusPage() {
       return { id: crypto.randomUUID(), title: file.name, url: objectURL, kind: 'local' };
     });
     setPlaylist((previous) => [...previous, ...entries]);
+    if (entries.length) notify({ title: 'Local videos added', message: `${entries.length} file${entries.length === 1 ? '' : 's'} available until you close this visit.`, variant: 'success', id: 'video-status' });
   }
   function remove(at: number) {
     const entry = playlist[at];
@@ -138,6 +147,7 @@ export function FocusPage() {
     setPlaylist((previous) => previous.filter((_, pos) => pos !== at));
     if (at < index) setIndex((value) => value - 1);
     else if (at === index) { setIndex((value) => Math.min(value, Math.max(0, playlist.length - 2))); setVideoPlaying(false); }
+    notify({ title: 'Video removed', message: 'The playlist has been updated.', variant: 'success', id: 'video-status' });
   }
   function move(at: number, direction: number) {
     const target = at + direction;
@@ -189,11 +199,13 @@ export function FocusPage() {
         <div className="mt-3 flex flex-wrap items-center gap-2"><button type="button" disabled={!active} onClick={toggleVideo} className="inline-flex min-h-9 items-center gap-1.5 rounded-full bg-ink px-3.5 text-[11px] font-semibold text-canvas disabled:opacity-45">{videoPlaying ? <Pause size={13} /> : <Play size={13} />} {videoPlaying ? 'Pause playlist' : 'Play playlist'}</button><button type="button" disabled={!active} onClick={() => advance(-1)} aria-label="Previous video" className="flex h-9 w-9 items-center justify-center rounded-full border border-line disabled:opacity-40"><SkipBack size={15} /></button><button type="button" disabled={!active} onClick={() => advance(1)} aria-label="Next video" className="flex h-9 w-9 items-center justify-center rounded-full border border-line disabled:opacity-40"><SkipForward size={15} /></button><button type="button" disabled={!active} onClick={toggleMute} aria-label={muted ? 'Unmute video' : 'Mute video'} className="flex h-9 w-9 items-center justify-center rounded-full border border-line disabled:opacity-40">{muted ? <VolumeX size={15} /> : <Volume2 size={15} />}</button><label className="ml-auto inline-flex items-center gap-2 text-[11px] font-semibold"><input type="checkbox" checked={looping} onChange={(event) => setLooping(event.target.checked)} className="accent-ink" /> Loop</label></div>
         {active && <p className="mt-2 truncate text-[11px] text-muted">{index + 1} / {playlist.length} · {active.title}</p>}
         <div className="mt-7 border-t border-line pt-5"><h3 className="text-[13px] font-semibold">Add a video</h3><form onSubmit={addURL} className="mt-3 space-y-2.5"><label className="flex items-center gap-2 rounded-lg border border-line bg-canvas px-3"><Link2 size={15} className="shrink-0 text-muted" /><input type="url" required value={url} onChange={(event) => setUrl(event.target.value)} aria-label="YouTube or direct video URL" placeholder="YouTube or direct .mp4 link" className="h-10 w-full min-w-0 bg-transparent text-[11px] text-ink placeholder:text-faint" /></label><input type="text" maxLength={80} value={title} onChange={(event) => setTitle(event.target.value)} aria-label="Video title (optional)" placeholder="Give it a name (optional)" className="h-10 w-full rounded-lg border border-line bg-canvas px-3 text-[11px] text-ink placeholder:text-faint" /><div className="flex flex-wrap gap-2"><button type="submit" className="inline-flex min-h-9 items-center gap-1.5 rounded-full bg-ink px-3.5 text-[11px] font-semibold text-canvas"><Plus size={14} /> Add link</button><input ref={fileInput} type="file" accept="video/*" multiple onChange={addFiles} className="hidden" /><button type="button" onClick={() => fileInput.current?.click()} className="inline-flex min-h-9 items-center gap-1.5 rounded-full border border-line bg-canvas px-3.5 text-[11px] font-semibold hover:border-ink"><Upload size={14} /> Add local videos</button></div></form>{videoError && <p role="alert" className="mt-2 text-[11px]">{videoError}</p>}</div>
-        <div className="mt-7 border-t border-line pt-5"><div className="flex items-center justify-between"><h3 className="text-[13px] font-semibold">Your queue</h3><span className="font-mono text-[10px] text-muted">{playlist.length} / 30</span></div><div className="mt-2 flex flex-wrap items-center gap-3 text-[11px]"><a href={SOURCE_PLAYLIST} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 font-semibold underline">Your source playlist <ExternalLink size={12} /></a><button type="button" onClick={() => { if (window.confirm('Replace your current queue with the 10 default videos? Your custom links in this browser will be removed.')) { setPlaylist(defaultVideoPlaylist()); setIndex(0); setVideoPlaying(false); } }} className="font-semibold underline">Restore defaults</button></div>{playlist.length ? <ol className="mt-3 max-h-[260px] space-y-2 overflow-y-auto">{playlist.map((item, pos) => <li key={item.id} className={`flex min-w-0 items-center gap-1.5 rounded-lg border px-2 py-2 ${pos === index ? 'border-ink bg-canvas' : 'border-line'}`}><button type="button" onClick={() => { setIndex(pos); setVideoPlaying(true); }} className="flex h-8 w-7 shrink-0 items-center justify-center font-mono text-[10px] font-semibold" aria-label={`Play ${item.title}`}>{pos === index ? <Play size={12} /> : String(pos + 1).padStart(2, '0')}</button><input value={item.title} onChange={(event) => setPlaylist((previous) => previous.map((entry, n) => n === pos ? { ...entry, title: event.target.value.slice(0, 80) } : entry))} aria-label={`Name for video ${pos + 1}`} className="min-w-0 flex-1 bg-transparent text-[11px] font-medium text-ink" /><button type="button" disabled={pos === 0} onClick={() => move(pos, -1)} aria-label={`Move ${item.title} up`} className="text-muted disabled:opacity-30"><ArrowUp size={13} /></button><button type="button" disabled={pos === playlist.length - 1} onClick={() => move(pos, 1)} aria-label={`Move ${item.title} down`} className="text-muted disabled:opacity-30"><ArrowDown size={13} /></button><button type="button" onClick={() => remove(pos)} aria-label={`Remove ${item.title}`} className="text-muted hover:text-ink"><Trash2 size={14} /></button></li>)}</ol> : <p className="mt-3 text-[11px] text-muted">Your list is empty. Links are stored in this browser; local files last only for this visit.</p>}</div>
+        <div className="mt-7 border-t border-line pt-5"><div className="flex items-center justify-between"><h3 className="text-[13px] font-semibold">Your queue</h3><span className="font-mono text-[10px] text-muted">{playlist.length} / 30</span></div><div className="mt-2 flex flex-wrap items-center gap-3 text-[11px]"><a href={SOURCE_PLAYLIST} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 font-semibold underline">Your source playlist <ExternalLink size={12} /></a><button type="button" onClick={() => { if (window.confirm('Replace your current queue with the 10 default videos? Your custom links in this browser will be removed.')) { setPlaylist(defaultVideoPlaylist()); setIndex(0); setVideoPlaying(false); notify({ title: 'Default queue restored', message: 'Custom links were removed from the browser playlist.', variant: 'success', id: 'video-status' }); } }} className="font-semibold underline">Restore defaults</button></div>{playlist.length ? <ol className="mt-3 max-h-[260px] space-y-2 overflow-y-auto">{playlist.map((item, pos) => <li key={item.id} className={`flex min-w-0 items-center gap-1.5 rounded-lg border px-2 py-2 ${pos === index ? 'border-ink bg-canvas' : 'border-line'}`}><button type="button" onClick={() => { setIndex(pos); setVideoPlaying(true); }} className="flex h-8 w-7 shrink-0 items-center justify-center font-mono text-[10px] font-semibold" aria-label={`Play ${item.title}`}>{pos === index ? <Play size={12} /> : String(pos + 1).padStart(2, '0')}</button><input value={item.title} onChange={(event) => setPlaylist((previous) => previous.map((entry, n) => n === pos ? { ...entry, title: event.target.value.slice(0, 80) } : entry))} aria-label={`Name for video ${pos + 1}`} className="min-w-0 flex-1 bg-transparent text-[11px] font-medium text-ink" /><button type="button" disabled={pos === 0} onClick={() => move(pos, -1)} aria-label={`Move ${item.title} up`} className="text-muted disabled:opacity-30"><ArrowUp size={13} /></button><button type="button" disabled={pos === playlist.length - 1} onClick={() => move(pos, 1)} aria-label={`Move ${item.title} down`} className="text-muted disabled:opacity-30"><ArrowDown size={13} /></button><button type="button" onClick={() => remove(pos)} aria-label={`Remove ${item.title}`} className="text-muted hover:text-ink"><Trash2 size={14} /></button></li>)}</ol> : <p className="mt-3 text-[11px] text-muted">Your list is empty. Links are stored in this browser; local files last only for this visit.</p>}</div>
         <p className="mt-6 border-t border-line pt-4 text-[11px] leading-[1.7] text-muted"><FastForward size={13} className="mr-1 inline" /> Direct files auto-advance or loop. The embedded YouTube player receives play, pause and mute commands without changing its URL; selecting another video starts a new embed. YouTube may block automatic or unmuted playback even after a click, and individual videos may prohibit embedding. Use the native player controls if a command fails. Local files are never uploaded.</p>
       </section>
       </div>
     </div>
+    <StudyTimer />
     <FocusScience />
+    <DownloadCard />
   </div>;
 }
