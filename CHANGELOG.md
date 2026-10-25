@@ -2,6 +2,10 @@
 
 Newest first. Website version / desktop app version.
 
+## 1.3.2 (web only), 2026-10-25: the logo in browser notifications
+
+* New: study-timer notifications in the browser now carry the Sarang.md logo. The desktop app already showed its logo in system notifications, so there is no new desktop build.
+
 ## 1.3.1 / 1.2.1, 2026-10-25: the Ask orb buttons work
 
 * Fix: **the buttons in the Ask orb did not respond to real clicks.** The invisible answer card lay on top of the input and the send button, the full-width title row lay on top of the close button, and the "Ask another" button sat under the background. Each now lets clicks through. The earlier tests clicked by script, which hid the problem; the orb is now tested with real mouse events.

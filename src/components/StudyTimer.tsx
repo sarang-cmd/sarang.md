@@ -17,7 +17,7 @@ const clock = (seconds: number) => `${String(Math.floor(seconds / 60)).padStart(
 function ping(title: string, body: string) {
   notify({ title, message: body, variant: 'success', id: 'study-timer' });
   if (desktop) { desktop.notify(title, body); return; }
-  try { if ('Notification' in window && Notification.permission === 'granted' && document.hidden) new Notification(title, { body }); } catch { /* Notifications are optional. */ }
+  try { if ('Notification' in window && Notification.permission === 'granted' && document.hidden) new Notification(title, { body, icon: new URL('app-icon.png', document.baseURI).href, badge: new URL('app-icon.png', document.baseURI).href }); } catch { /* Notifications are optional. */ }
 }
 
 /** A plain study timer: work and rest blocks, the minutes you studied today, and a notice when a block ends. Nothing leaves the device. */
