@@ -1,0 +1,98 @@
+export const depth = {
+  'SL 2.1': {
+    skills: ['Calculate gradient from two points and identify vertical-line exceptions.', 'Form parallel or perpendicular lines through a given point.', 'Solve an intersection by substitution and check both line equations.'],
+    why: 'Gradient measures change in $y$ per unit change in $x$; reversing just one subtraction changes its sign incorrectly. For a vertical line the horizontal change is zero, so its gradient is undefined and it cannot be written as $y=mx+c$. Parallel nonvertical lines have equal gradients, while perpendicular nonvertical lines have gradients whose product is $-1$.',
+    edge: 'A line through $(1,3)$ and $(4,9)$ has gradient $2$ and equation $y=2x+1$. A perpendicular line through $(1,3)$ has gradient $-1/2$, so $y-3=-\\tfrac12(x-1)$. Substituting the point into both equations checks the intercept; substituting another point from the first line into the perpendicular line would usually fail.',
+    connection: 'A linear model predicts by extending constant rate of change, but extrapolation far outside measured data needs justification. If an equation is supplied in general form, rearrange carefully or use coefficients to test parallelism. Keep the coordinate pair visible throughout algebra so a correct gradient is not attached to the wrong line.',
+  },
+  'SL 2.2': {
+    skills: ['State a domain and range from a formula and any explicit restrictions.', 'Test whether a relation is one-to-one before finding an inverse.', 'Exchange input and output while transferring domain and range correctly.'],
+    why: 'A function assigns exactly one output to each allowed input, but different inputs may still share an output. An inverse function requires a one-to-one domain, often obtained by restricting a curve to one monotonic branch. Range of the original becomes domain of the inverse. Excluded denominator values and square-root inequalities remain binding after algebraic simplification.',
+    edge: 'For $f(x)=(x-2)^2$ on $x\\geq2$, the range is $[0,\\infty)$. Set $y=(x-2)^2$ and use $x-2\\geq0$ to get $f^{-1}(y)=2+\\sqrt y$, $y\\geq0$. Using the negative square root would invert the other branch, not the stated function. Check both compositions on their respective allowed domains.',
+    connection: 'A graph and its inverse reflect in $y=x$ when both are plotted with the correct restrictions. When a calculator offers two algebraic roots, the mathematical task is to choose the root compatible with the declared domain. Distinguish the inverse function $f^{-1}(x)$ from the reciprocal $1/f(x)$.',
+  },
+  'SL 2.3': {
+    skills: ['Create a useful value table and plot correct coordinates.', 'Locate intercepts and asymptotes before drawing a smooth curve.', 'Check end behavior, symmetry and scale rather than joining arbitrary dots.'],
+    why: 'A graph condenses input-output structure, not just a set of sampled points. Intercepts arise from setting one coordinate to zero when that input exists. An asymptote describes behavior near an excluded input or far from the origin; it is not automatically a barrier that can never be crossed. Technology produces pixels, while reasoning supplies domains and scale choices.',
+    edge: 'For $y=1/(x-2)+1$, $x=2$ is excluded and $y=1$ is not attained, giving asymptotes $x=2$ and $y=1$. At $x=0$ the intercept is $(0,1/2)$, while $y=0$ gives $x=1$. A sketch passing through $(2,1)$ would be false even if nearby sampled values seem smooth.',
+    connection: 'State the viewing window when describing a graph obtained with technology. A narrow window can hide distant roots; a wide one can flatten local features. Verify visually suggested solutions by substituting into the original equation and explaining any points where the formula is undefined.',
+  },
+  'SL 2.4': {
+    skills: ['Read intercepts, turning points, monotonic intervals and asymptotes.', 'Identify intersections of two functions rather than of one function with an axis.', 'Use technology to estimate features, then verify with algebra where possible.'],
+    why: 'An intersection solves $f(x)=g(x)$, whereas an $x$-intercept solves $f(x)=0$. A turning point is a local behavior statement and may not be the global extreme on a restricted domain. The number and location of solutions can depend on the viewing window; tabulate sign changes or calculate exact roots when the expressions allow it.',
+    edge: 'The line $y=x+1$ meets the parabola $y=x^2-1$ where $x^2-x-2=0$, giving $x=-1$ and $x=2$. Their coordinates are $(-1,0)$ and $(2,3)$. Merely reporting $x=-1,2$ omits the required points, and replacing the line by the $x$-axis would answer a different question.',
+    connection: 'Use a graph to frame a conjecture about roots or asymptotes, not as the sole proof of an exact identity. Mark open endpoints on a restricted domain and distinguish an included boundary maximum from an interior turning point. Report approximate coordinates with justified precision when a numerical solver is needed.',
+  },
+  'SL 2.5': {
+    skills: ['Compute $f\\circ g$ and $g\\circ f$ in the correct order.', 'Find inverse functions with transferred domain and range.', 'Use the identity composition as a check where inverses exist.'],
+    why: 'The output of the inner function becomes the input of the outer function. Consequently, the domain of $f\\circ g$ includes only inputs where $g$ is defined and $g(x)$ belongs to the domain of $f$. Reversing composition generally changes both formula and domain. Algebraic cancellation in $f(f^{-1}(x))=x$ is not enough without the matching allowed sets.',
+    edge: 'Let $f(x)=2x+1$ on the reals and $g(x)=\\sqrt x$ on $x\\geq0$. Then $(f\\circ g)(x)=2\\sqrt x+1$ for $x\\geq0$, while $(g\\circ f)(x)=\\sqrt{2x+1}$ requires $x\\geq-1/2$. The formulas and starting domains differ despite involving the same functions.',
+    connection: 'A practical composition may model two sequential conversions; ask which operation happens first. When an inverse is requested, solve for the previous input and check both directions with a test value and domain statement. Confusing $f^{-1}$ with $1/f$ produces an entirely different operation.',
+  },
+  'SL 2.6': {
+    skills: ['Convert among expanded, factorized and completed-square forms.', 'Locate the vertex and axis of symmetry.', 'Use the discriminant to predict the number of real roots.'],
+    why: 'Each algebraic form answers a different graph question efficiently. The factorized form exposes roots; the squared form exposes the vertex; the expanded form exposes the vertical intercept. Completing the square amounts to translating a basic parabola without altering its shape. The sign of the leading coefficient determines whether the vertex is a minimum or maximum.',
+    edge: 'For $f(x)=-2(x-1)^2+8$, the vertex is $(1,8)$ and the axis is $x=1$. Setting $f=0$ gives $(x-1)^2=4$, so $x=-1$ or $3$. Expanding gives $-2x^2+4x+6$, whose $y$-intercept is $6$. All three descriptions refer to the same curve.',
+    connection: 'When a quadratic models length or time, its mathematical roots may be outside the contextual domain. Give units for coordinates representing measurable quantities. Use symmetry to check two computed roots: their midpoint should match the axis, even when roots are irrational or found numerically.',
+  },
+  'SL 2.7': {
+    skills: ['Factor or complete the square to solve exact equations.', 'Use the quadratic formula and classify roots from the discriminant.', 'Build a sign chart for strict or inclusive quadratic inequalities.'],
+    why: 'The equation $ax^2+bx+c=0$ isolates zeroes, but an inequality asks where the expression has a particular sign. A positive leading coefficient makes the graph rise outside its two real roots; a negative leading coefficient reverses the signs. If the discriminant is negative, there are no real crossings, so the sign is constant.',
+    edge: 'Solve $-x^2+4x-3\\geq0$ by factoring $-(x-1)(x-3)\\geq0$. The parabola is nonnegative from $1$ through $3$, so $1\\leq x\\leq3$. Both endpoints are allowed because equality is included. A single test value such as $x=2$ establishes the sign between the roots.',
+    connection: 'The quadratic formula can return two numerical values, but never skip checking a model restriction such as $x>0$. For exact questions keep surds until the end. For inequality questions present an interval or union of intervals, not simply a list of roots.',
+  },
+  'SL 2.8': {
+    skills: ['Find domain and range of shifted reciprocal functions.', 'Identify vertical and horizontal asymptotes from a transformed form.', 'Solve a rational equation while rejecting denominator zeroes.'],
+    why: 'The formula $a/(x-h)+k$ comes from stretching and shifting $1/x$. The denominator restriction creates a missing input at $x=h$, while a nonzero numerator prevents the output from equaling $k$. Cross-multiplication is valid only after noting excluded values. A simplified expression can conceal a hole inherited from its original denominator.',
+    edge: 'For $f(x)=5/(x+2)-1$, exclude $x=-2$, and since the numerator is nonzero, exclude $y=-1$ from the range. To solve $f(x)=4$, write $5/(x+2)=5$ to get $x=-1$, which is allowed. Multiplying both sides by $x+2$ without first checking $x=-2$ can produce an illegal candidate in a different example.',
+    connection: 'As $x$ approaches a vertical asymptote from opposite sides the values can go toward different infinities. As $|x|$ grows, the reciprocal term tends to zero and the graph approaches its horizontal level. An asymptote describes a limit; it is not a substitute for stating the domain.',
+  },
+  'SL 2.9': {
+    skills: ['Describe the domain, range and asymptote of exponential and logarithmic graphs.', 'Solve a simple exponential or logarithmic equation.', 'Interpret shifts and growth parameters in a context.'],
+    why: 'For a positive base other than one, exponential outputs remain positive, so the inverse log needs positive inputs. Increasing bases above one grow; bases strictly between zero and one decay. Adding a constant outside the exponential changes the horizontal asymptote, while shifting an input inside the log changes its vertical asymptote and domain.',
+    edge: 'For $f(x)=2^x-3$, the range is $(-3,\\infty)$ and the horizontal asymptote is $y=-3$. The zero solves $2^x=3$, hence $x=\\log_2 3$. Its inverse satisfies $y=\\log_2(x+3)$ on $x>-3$. The shifted log domain is determined by $x+3>0$.',
+    connection: 'An exponential model assumes a constant multiplicative change per equal time step; a log transformation can linearize that idealized behavior. Check whether data really support that assumption. Use a calculator for an approximate inverse only after writing an exact log expression and its domain.',
+  },
+  'SL 2.10': {
+    skills: ['Transform a comparison $f(x)=g(x)$ into a root problem.', 'Distinguish exact algebraic roots from numerical estimates.', 'Bracket a numerical root and state the interval searched.'],
+    why: 'A graph can suggest how many intersections exist, but a plot is a finite-resolution picture. Rearranging to $h(x)=f(x)-g(x)$ makes sign changes and domain restrictions explicit. Continuous functions that have opposite signs at two valid endpoints have at least one root between them. That guarantee does not by itself show uniqueness.',
+    edge: 'The equation $x^2=2x+3$ gives $x^2-2x-3=(x-3)(x+1)=0$, so $x=-1$ or $3$. If instead the equation mixes $2^x$ and $x+3$, sample valid inputs, bracket a change of sign, and use a solver only within that interval. Substitute each numerical root back into the original expressions.',
+    connection: 'When technology reports a decimal answer, include a precision check such as a residual $|f(x)-g(x)|$. A rounded root need not make the residual exactly zero. If denominators or logarithms appear, form the common domain before using numerical iteration.',
+  },
+  'SL 2.11': {
+    skills: ['Track horizontal versus vertical changes to a base graph.', 'Describe reflections and stretches with accurate factors.', 'Find the new domain, range, intercepts and a transformed landmark.'],
+    why: 'Changing $f(x)$ outside the function changes its output directly. Changing the input to $f(bx+c)$ affects horizontal coordinates in the opposite apparent direction because the old input must be reconstructed. The safest approach is to transform a distinctive point: if $(u,v)$ is on $y=f(x)$, solve $bx+c=u$ for its new $x$-coordinate.',
+    edge: 'From $f(x)=x^2$, $g(x)=2f(x-3)+1=2(x-3)^2+1$ has vertex $(3,1)$, vertical stretch factor $2$ and range $[1,\\infty)$. Substituting $x=3$ checks the new vertex. If the input were $f(2x)$, the old point at $x=4$ would move to $x=2$, a horizontal compression.',
+    connection: 'List transformations in an order compatible with the expression; noncommuting shifts and stretches can produce different graphs. For a restricted original domain, apply the same input equation to map its endpoints. A graphing tool can verify a proposed transformation, but describe the coordinate map to justify it.',
+  },
+  'AHL 2.12': {
+    skills: ['Use $p(a)$ as the remainder on division by $x-a$.', 'Factor a polynomial after locating a rational root.', 'Relate coefficients to sums and products of roots with multiplicity.'],
+    why: 'Polynomial division writes $p(x)=(x-a)q(x)+r$ with constant remainder $r=p(a)$. Hence $p(a)=0$ is an if-and-only-if test for the factor $x-a$. Once a root is found, synthetic or long division reduces the degree; guessing more roots without checking the reduced polynomial can create false factors.',
+    edge: 'For $p(x)=x^3-2x^2-x+2$, $p(1)=0$ so $x-1$ divides it. Grouping gives $(x-2)(x-1)(x+1)$, with roots $2,1,-1$. Their sum is $2=-(-2)$, consistent with the coefficient of $x^2$, while the product is $-2=-2$ for this monic cubic.',
+    connection: 'A repeated root contributes multiple times to coefficient relations even though it appears at one coordinate on a graph. Write the polynomial degree and leading coefficient before applying Vieta. When a calculator gives an approximate root, test whether a nearby rational value is exact before asserting a symbolic factorization.',
+  },
+  'AHL 2.13': {
+    skills: ['Factor numerator and denominator to distinguish holes from poles.', 'Find horizontal or oblique end behavior from polynomial degrees.', 'Solve a rational equation on the original, not simplified, domain.'],
+    why: 'Canceling a common factor simplifies values only where the original expression existed. A canceled root gives a removable hole, while a denominator root that remains may create a vertical asymptote unless the behavior is further altered. Comparing degrees predicts long-run behavior, but local features require factorization and sign checks.',
+    edge: 'For $r(x)=(x^2-9)/(x-3)$, the domain excludes $3$ even though $r(x)=x+3$ elsewhere. Its graph is a line with a hole at $(3,6)$, not a pole. In contrast, $1/(x-3)$ becomes unbounded near $3$. These functions have the same excluded input but very different limits.',
+    connection: 'If the numerator degree is one higher than the denominator degree, divide polynomials to find a slant asymptote. For an equation, multiply through only after recording all excluded denominator values and then check candidates against the original expression. A plot alone can hide a small hole at a single pixel.',
+  },
+  'AHL 2.14': {
+    skills: ['Check evenness and oddness on a domain symmetric about zero.', 'Test self-inverse behavior with both compositions and domain conditions.', 'Restrict a many-to-one function to obtain an inverse.'],
+    why: 'The equations $f(-x)=f(x)$ and $f(-x)=-f(x)$ have meaning only when $x$ and $-x$ both belong to the domain. A self-inverse function satisfies $f(f(x))=x$, with each intermediate value in the allowed domain. A function can be neither even nor odd, and a one-sided restriction can destroy symmetry while enabling an inverse.',
+    edge: 'On the nonzero reals, $f(x)=2/x$ satisfies $f(f(x))=2/(2/x)=x$ and $f(-x)=-f(x)$. It is self-inverse and odd, but not even. On $x>0$ only, it remains self-inverse yet the usual oddness test is unavailable because $-x$ lies outside its domain.',
+    connection: 'The graph of an even function is symmetric about the vertical axis; an odd function is symmetric about the origin. A graph of a self-inverse relation reflects in $y=x$. Use algebra to verify those visual suggestions and never infer that an invertible function must also be odd or even.',
+  },
+  'AHL 2.15': {
+    skills: ['Place zeroes and denominator exclusions on a sign chart.', 'Solve strict or inclusive rational inequalities.', 'Treat an absolute-value inequality as a distance or split it into cases.'],
+    why: 'The sign of a rational expression can change at numerator zeroes and denominator zeroes. A numerator zero may be included under $\\leq$ or $\\geq$; a denominator zero is never included. Multiplying an inequality by an unknown-sign denominator without cases can reverse its direction unexpectedly. A sign chart avoids this trap.',
+    edge: 'For $(x-2)/(x+1)>0$, critical values are $-1$ and $2$. Testing $x=-2,0,3$ shows positive signs on $(-\\infty,-1)$ and $(2,\\infty)$. Exclude $-1$ because the expression is undefined and exclude $2$ because the inequality is strict. The interval $(-1,2)$ is negative, not positive.',
+    connection: 'A modulus inequality such as $|x-a|<r$ describes a radius-$r$ neighborhood around $a$ when $r>0$. When graphing the solution, hollow versus solid endpoints represent strict versus inclusive inequalities. Always verify one sample from each interval, especially after squaring or cross-multiplying.',
+  },
+  'AHL 2.16': {
+    skills: ['Break $|g(x)|$ into branches at the zeroes of $g$.', 'Solve modulus equations subject to each branch condition.', 'Interpret $|g(x)|<c$ and $|g(x)|>c$ as distance regions.'],
+    why: 'Absolute value folds negative outputs above the horizontal axis. This fold creates corners where the inside expression crosses zero, so a graph of $|g(x)|$ differs from the graph of $g(x)$ only on originally negative parts. An equation with a negative right-hand side has no solution; squaring both sides without that check can generate invalid candidates.',
+    edge: 'Solve $|2x-1|=3$: either $2x-1=3$, giving $x=2$, or $2x-1=-3$, giving $x=-1$. Both satisfy the original equation. By contrast $|2x-1|<3$ gives $-3<2x-1<3$ and $-1<x<2$. The equation has two boundary points; the inequality contains the interval between them.',
+    connection: 'If the right side also depends on $x$, mark where it is nonnegative before separating branches. On a sketch, intersections with a horizontal line correspond to solutions, but a graph alone cannot establish exact endpoints. Substitute each branch solution back into the original absolute-value statement.',
+  },
+};

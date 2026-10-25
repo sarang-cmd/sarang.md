@@ -1,0 +1,51 @@
+{
+  "name": "sarang-md-desktop",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Sarang.md for the desktop: IB Mathematics lessons, a question bank with mark schemes, a formula booklet, a tutor and a calm focus corner, in their own window.",
+  "scripts": {
+    "app": "node scripts/build-app.cjs",
+    "desktop": "electron . --no-sandbox",
+    "electron": "node scripts/build-app.cjs && electron . --no-sandbox",
+    "icons": "xvfb-run -a npx electron scripts/make-icons.cjs",
+    "dist:win": "node scripts/build-app.cjs && electron-builder --win --x64",
+    "dist:mac": "node scripts/build-app.cjs && electron-builder --mac --universal",
+    "checksum": "node scripts/checksum.cjs",
+    "sign": "node scripts/sign-exe.cjs",
+    "test": "node scripts/test-update.cjs && node scripts/test-installer.cjs",
+    "test:ui": "xvfb-run -a -s \"-screen 0 1500x1000x24\" sh -c \"node scripts/test-setup-ui.cjs && node scripts/test-shell.cjs\""
+  },
+  "devDependencies": {
+    "electron": "^41.7.1",
+    "electron-builder": "^26.15.3",
+    "playwright-core": "^1.63.0",
+    "resedit": "^3.1.0"
+  },
+  "author": { "name": "Sarang", "url": "https://github.com/sarang-cmd" },
+  "homepage": "https://sarang-md.vercel.app/",
+  "repository": { "type": "git", "url": "git+https://github.com/sarang-cmd/sarang.md.git" },
+  "bugs": { "url": "https://github.com/sarang-cmd/sarang.md/issues" },
+  "license": "UNLICENSED",
+  "main": "electron/main.cjs",
+  "smdUpdate": { "repo": "sarang-cmd/sarang.md" },
+  "build": {
+    "appId": "com.sarang.sarangmd",
+    "productName": "Sarang.md",
+    "copyright": "Copyright 2026 Sarang",
+    "directories": { "output": "release", "buildResources": "assets" },
+    "files": ["electron/**/*", "app/**/*", "assets/icon.svg", "assets/icon.png", "assets/icon.ico", "assets/tray*.png", "package.json"],
+    "asar": true,
+    "electronLanguages": ["en-US", "de"],
+    "compression": "normal",
+    "afterPack": "scripts/after-pack.cjs",
+    "protocols": [{ "name": "Sarang.md", "schemes": ["sarang-md"] }],
+    "win": { "target": [{ "target": "portable", "arch": ["x64"] }], "icon": "assets/icon.ico", "signAndEditExecutable": false, "requestedExecutionLevel": "asInvoker" },
+    "portable": { "artifactName": "Sarang-md-${version}.exe", "requestExecutionLevel": "user" },
+    "mac": {
+      "category": "public.app-category.education", "icon": "assets/icon.png",
+      "target": [{ "target": "dmg", "arch": ["universal"] }, { "target": "zip", "arch": ["universal"] }],
+      "hardenedRuntime": true, "gatekeeperAssess": false
+    },
+    "dmg": { "title": "Sarang.md", "artifactName": "Sarang-md-${version}-mac.${ext}" }
+  }
+}

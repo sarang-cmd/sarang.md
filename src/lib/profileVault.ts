@@ -21,14 +21,32 @@ export interface QuestionProgress {
   title: string;
   route: string;
   kind: 'original' | 'paper' | 'variant';
-  paper?: 'P1' | 'P2';
+  paper?: 'P1' | 'P2' | 'P3';
+  /** Self-reported marking only; bestMarks is not an externally graded result. */
+  bestMarks?: number;
+  lastMarks?: number;
+  maximumMarks?: number;
+  markedAt?: string;
   attempts: number;
   matched: number;
   total: number;
   lastAnswers: string[];
+  /** Free-form work, encrypted with the rest of the profile. Numeric final checks remain separate. */
+  writtenAnswer?: string;
   updatedAt: string;
   completedAt?: string;
   revealedAt?: string;
+}
+export interface AssessmentRecord {
+  id: string;
+  name: string;
+  paper: 'P1' | 'P2' | 'P3' | 'mixed' | 'IA';
+  source: 'manual' | 'mock';
+  earned: number;
+  available: number;
+  questionIds: string[];
+  completedAt: string;
+  seed?: number;
 }
 export interface FocusSession {
   id: string;
@@ -68,6 +86,11 @@ export interface PrivateDocument {
 export interface ProfileData {
   version: 1;
   displayName: string;
+  school: string;
+  /** Resized locally and encrypted in the vault, never sent as a public image. */
+  avatar: string;
+  bookmarks: string[];
+  assessments: AssessmentRecord[];
   createdAt: string;
   updatedAt: string;
   notes: Record<string, NoteProgress>;
@@ -118,7 +141,8 @@ export function supportsEncryptedProfiles(): boolean {
 
 export function emptyProfile(displayName: string): ProfileData {
   const now = new Date().toISOString();
-  return { version: 1, displayName: displayName.trim().slice(0, 80) || 'My study space', createdAt: now, updatedAt: now,
+  return { version: 1, displayName: displayName.trim().slice(0, 80) || 'My study space', school: '', avatar: '',
+    bookmarks: [], assessments: [], createdAt: now, updatedAt: now,
     notes: {}, questions: {}, focusSessions: [], activity: [], chats: [], documents: [], providers: {}, lastProvider: 'openai' };
 }
 
@@ -131,6 +155,23 @@ export function validateProfile(raw: unknown): ProfileData {
   }
   if (Object.keys(raw.notes).length > 2500 || Object.keys(raw.questions).length > 2500 || raw.documents.length > MAX_DOCUMENTS ||
       raw.focusSessions.length > 500 || raw.activity.length > 250 || raw.chats.length > 60) throw new Error('Profile contains too many entries.');
+  // Older version-1 encrypted profiles did not include these fields. Add defaults
+  // on decryption so importing an existing backup does not drop private data.
+  const school = raw.school ?? '';
+  const avatar = raw.avatar ?? '';
+  const bookmarks = raw.bookmarks ?? [];
+  const assessments = raw.assessments ?? [];
+  if (typeof school !== 'string' || school.length > 120 || /[\u0000-\u001f]/.test(school) ||
+      typeof avatar !== 'string' || avatar.length > 120_000 || (avatar !== '' && !/^data:image\/(?:png|jpeg|webp);base64,[A-Za-z0-9+/]+={0,2}$/.test(avatar)) ||
+      !Array.isArray(bookmarks) || bookmarks.length > 500 || bookmarks.some((id) => typeof id !== 'string' || !safeKey(id)) ||
+      !Array.isArray(assessments) || assessments.length > 200) throw new Error('Invalid study identity or assessments.');
+  for (const entry of assessments) if (!isObject(entry) || typeof entry.id !== 'string' || !safeKey(entry.id) ||
+    typeof entry.name !== 'string' || entry.name.length > 120 || !['P1', 'P2', 'P3', 'mixed', 'IA'].includes(entry.paper as string) ||
+    !['manual', 'mock'].includes(entry.source as string) || !Number.isInteger(entry.earned) || (entry.earned as number) < 0 ||
+    !Number.isInteger(entry.available) || (entry.available as number) < 1 || (entry.available as number) > 500 ||
+    (entry.earned as number) > (entry.available as number) || !safeDate(entry.completedAt) ||
+    !Array.isArray(entry.questionIds) || entry.questionIds.length > 40 || entry.questionIds.some((id: unknown) => typeof id !== 'string' || !safeKey(id)) ||
+    (entry.seed !== undefined && (!Number.isInteger(entry.seed) || (entry.seed as number) < 1 || (entry.seed as number) > 2147483647))) throw new Error('Invalid assessment record.');
   const notes: Record<string, NoteProgress> = {};
   const questions: Record<string, QuestionProgress> = {};
   const configs: Partial<Record<Provider, SavedConnection>> = {};
@@ -147,8 +188,13 @@ export function validateProfile(raw: unknown): ProfileData {
         !Number.isInteger(value.matched) || (value.matched as number) < 0 || (value.matched as number) > 40 ||
         !Number.isInteger(value.total) || (value.total as number) < 0 || (value.total as number) > 40 ||
         !Array.isArray(value.lastAnswers) || value.lastAnswers.length > 30 || value.lastAnswers.some((item) => typeof item !== 'string' || item.length > 140) ||
+        (value.writtenAnswer !== undefined && (typeof value.writtenAnswer !== 'string' || value.writtenAnswer.length > 1600)) ||
         !safeDate(value.updatedAt) || (value.completedAt !== undefined && !safeDate(value.completedAt)) ||
-        (value.revealedAt !== undefined && !safeDate(value.revealedAt)) || (value.paper !== undefined && !['P1', 'P2'].includes(value.paper as string))) {
+        (value.revealedAt !== undefined && !safeDate(value.revealedAt)) || (value.paper !== undefined && !['P1', 'P2', 'P3'].includes(value.paper as string)) ||
+        (value.markedAt !== undefined && !safeDate(value.markedAt)) ||
+        ['bestMarks', 'lastMarks', 'maximumMarks'].some((field) => value[field] !== undefined &&
+          (!Number.isInteger(value[field]) || (value[field] as number) < 0 || (value[field] as number) > 500)) ||
+        (typeof value.maximumMarks === 'number' && ((value.bestMarks as number) > value.maximumMarks || (value.lastMarks as number) > value.maximumMarks))) {
       throw new Error(`Invalid question progress: ${id.slice(0, 40)}`);
     }
     questions[id] = value as unknown as QuestionProgress;
@@ -178,7 +224,8 @@ export function validateProfile(raw: unknown): ProfileData {
   }
   if (totalText > 360000) throw new Error('Private documents exceed this browser storage limit.');
   return {
-    version: 1, displayName: raw.displayName, createdAt: raw.createdAt, updatedAt: raw.updatedAt,
+    version: 1, displayName: raw.displayName, school, avatar, bookmarks, assessments,
+    createdAt: raw.createdAt, updatedAt: raw.updatedAt,
     notes, questions, providers: configs, lastProvider: raw.lastProvider,
     focusSessions: raw.focusSessions, activity: raw.activity, chats: raw.chats, documents: raw.documents,
   } as ProfileData;

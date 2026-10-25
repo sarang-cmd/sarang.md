@@ -125,7 +125,8 @@ input[type="search"]::-webkit-search-cancel-button { -webkit-appearance: none; a
 .profile-page button.primary-button { background: rgb(var(--ink)); color: rgb(var(--canvas)); }
 .profile-page button.secondary-button { background: rgb(var(--canvas)); color: rgb(var(--ink)); }
 .profile-page button:is(.primary-button, .secondary-button):hover { opacity: .68; }
-.profile-page button:is(.primary-button, .secondary-button):disabled { opacity: .4; cursor: wait; }
+.profile-page button:is(.primary-button, .secondary-button):disabled { opacity: .4; cursor: not-allowed; }
+.profile-page button:is(.primary-button, .secondary-button)[aria-busy='true'] { cursor: wait; }
 .profile-page .text-button { display: inline-block; color: rgb(var(--ink)); font-size: 11px; font-weight: 600; text-decoration: underline; text-decoration-color: rgb(var(--faint)); text-underline-offset: 3px; }
 .profile-page .text-button:hover { opacity: .58; }
 .profile-page .text-button.danger { color: rgb(var(--muted)); }
@@ -140,6 +141,8 @@ input[type="search"]::-webkit-search-cancel-button { -webkit-appearance: none; a
 .profile-stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); margin: 20px 0 34px; border: 1px solid rgb(var(--line)); border-radius: 12px; }
 .profile-stat-grid > div { display: flex; flex-direction: column; gap: 8px; padding: 25px 28px; }
 .profile-stat-grid > div + div { border-left: 1px solid rgb(var(--line)); }
+.profile-stat-grid > div:nth-child(4n+1) { border-left: 0; }
+.profile-stat-grid > div:nth-child(n+5) { border-top: 1px solid rgb(var(--line)); }
 .profile-stat-grid strong { font-size: clamp(28px, 4vw, 45px); font-weight: 600; letter-spacing: -.07em; line-height: 1; }
 .profile-stat-grid strong small { color: rgb(var(--faint)); font-size: 17px; font-weight: 400; letter-spacing: -.04em; }
 .profile-stat-grid span { color: rgb(var(--muted)); font-size: 11px; }
@@ -211,14 +214,18 @@ input[type="search"]::-webkit-search-cancel-button { -webkit-appearance: none; a
   .profile-security .profile-grid > div + div { padding: 25px 0 0; border-left: 0; border-top: 1px solid rgb(var(--line)); }
 }
 
-/* A gentle entrance after an answer arrives. The complete response remains
-   visible and accessible at once; no per-character typing or network trickery. */
-@keyframes tutor-answer-enter {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.tutor-answer-fade { animation: tutor-answer-enter 850ms cubic-bezier(.19,1,.22,1) both; }
-@media (prefers-reduced-motion: reduce) { .tutor-answer-fade { animation: none; } }
+/* Show thinking dots during a real request and reveal returned text gently.
+   Reduce motion immediately when the learner requests it. */
+@keyframes tutor-answer-enter { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes tutor-dot-rise { 0%, 70%, 100% { transform: translateY(0); opacity: .38; } 35% { transform: translateY(-4px); opacity: 1; } }
+@keyframes tutor-cursor-blink { 50% { opacity: 0; } }
+.tutor-answer-fade { animation: tutor-answer-enter 450ms ease-out both; }
+.tutor-typing-dots { display: inline-flex; align-items: center; gap: 3px; }
+.tutor-typing-dots span { width: 4px; height: 4px; border-radius: 50%; background: rgb(var(--ink)); animation: tutor-dot-rise 950ms ease-in-out infinite; }
+.tutor-typing-dots span:nth-child(2) { animation-delay: 130ms; }
+.tutor-typing-dots span:nth-child(3) { animation-delay: 260ms; }
+.tutor-typing-cursor { margin-left: 2px; animation: tutor-cursor-blink 650ms step-end infinite; }
+@media (prefers-reduced-motion: reduce) { .tutor-answer-fade, .tutor-typing-dots span, .tutor-typing-cursor { animation: none; } }
 .profile-welcome .profile-edit-trigger { margin-left: 8px; color: rgb(var(--canvas) / .68); font-size: 10px; font-weight: 500; letter-spacing: 0; text-decoration: underline; text-underline-offset: 3px; vertical-align: middle; }
 .profile-name-edit { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
 .profile-name-edit input { max-width: 260px; min-height: 38px; padding: 7px 10px; border: 1px solid rgb(var(--canvas) / .65); border-radius: 7px; background: transparent; color: rgb(var(--canvas)); font-size: 16px; }
@@ -229,3 +236,135 @@ input[type="search"]::-webkit-search-cancel-button { -webkit-appearance: none; a
 .profile-migration-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: end; gap: 14px; }
 .profile-migration-form > button { justify-self: start; }
 @media (max-width: 680px) { .profile-migration-form { grid-template-columns: 1fr; } }
+
+/* The study dashboard uses four columns until the layout becomes compact. */
+.profile-stat-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.studio-button { display: inline-flex; min-height: 38px; align-items: center; justify-content: center; gap: 7px; border: 1px solid rgb(var(--line)); border-radius: 999px; background: rgb(var(--canvas)); padding: 7px 13px; color: rgb(var(--ink)); font-size: 11px; font-weight: 650; transition: background-color .18s ease, border-color .18s ease; }
+.studio-button:hover { border-color: rgb(var(--ink)); background: rgb(var(--raised)); }
+.exam-print-layout { display: none; }
+@media (max-width: 900px) {
+  .profile-stat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .profile-stat-grid > div:nth-child(odd) { border-left: 0; }
+  .profile-stat-grid > div:nth-child(even) { border-left: 1px solid rgb(var(--line)); }
+  .profile-stat-grid > div:nth-child(n+3) { border-top: 1px solid rgb(var(--line)); }
+}
+@media (max-width: 500px) { .profile-stat-grid > div { padding: 18px 14px; } }
+@media print {
+  @page { size: A4; margin: 17mm; }
+  body { color: #111 !important; background: #fff !important; }
+  body.practice-print * { visibility: hidden !important; }
+  body.practice-print .exam-print-layout, body.practice-print .exam-print-layout * { visibility: visible !important; }
+  body.practice-print .exam-print-layout { display: block !important; position: absolute; inset: 0 auto auto 0; width: 100%; color: #111; background: #fff; font: 11pt/1.5 Arial, sans-serif; }
+  body:not(.practice-print) header, body:not(.practice-print) #course-sidebar,
+  body:not(.practice-print) .movable-window, body:not(.practice-print) footer { display: none !important; }
+  .exam-print-layout h1 { margin-bottom: 14pt; font-size: 20pt; }
+  .exam-print-layout > p { margin-bottom: 12pt; }
+  .exam-print-question { break-inside: avoid; margin-top: 18pt; border-top: 1px solid #aaa; padding-top: 12pt; }
+  .exam-print-question h2 { font-size: 12pt; font-weight: 700; }
+  .exam-print-question .markdown { font-size: 10pt; }
+  .exam-write-space { min-height: 95pt; }
+}
+
+/* Calm, deliberately lightweight interaction polish. */
+.movable-handle { touch-action: none; user-select: none; }
+.movable-window { animation: quiet-arrive 180ms ease-out both; }
+.suggestion-appear { animation: quiet-arrive 280ms ease-out both; }
+@keyframes quiet-arrive { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: translateY(0); } }
+.context-menu-item { display: flex; width: 100%; min-height: 37px; align-items: center; gap: 10px; border-radius: 7px; padding: 7px 10px; text-align: left; font-size: 11px; font-weight: 600; }
+.context-menu-item:hover, .context-menu-item:focus-visible { background: rgb(var(--surface)); }
+.profile-card { transition: border-color 180ms ease; }
+.profile-card:hover { border-color: rgb(var(--muted) / .55); }
+@media (prefers-reduced-motion: reduce) { .movable-window, .suggestion-appear { animation: none !important; } }
+.profile-page #cloud-profile-heading { scroll-margin-top: 105px; }
+
+/* Cross-platform native select fallback. The principal bank filters use the
+   accessible custom selector above, so dark menus never rely on OS theming. */
+select option, select optgroup { background: rgb(var(--canvas)); color: rgb(var(--ink)); }
+:root select { color-scheme: light; }
+html.dark select { color-scheme: dark; }
+
+/* New interface is an original grayscale refinement. The Old setting leaves
+   the earlier design untouched; each main area can override the global style. */
+html[data-ui-global='new'] {
+  --canvas: 253 253 253; --surface: 248 248 248; --raised: 239 239 239;
+  --ink: 25 25 25; --muted: 89 89 89; --faint: 135 135 135; --line: 212 212 212;
+}
+html.dark[data-ui-global='new'] {
+  --canvas: 13 13 13; --surface: 24 24 24; --raised: 34 34 34;
+  --ink: 247 247 247; --muted: 184 184 184; --faint: 137 137 137; --line: 69 69 69;
+}
+html[data-ui-global='new'] header { border-bottom-width: 2px; }
+html[data-ui-global='new'] #course-sidebar { box-shadow: 5px 0 24px rgb(var(--ink) / .04); }
+html[data-ui-global='new'] .section-label { letter-spacing: .13em; }
+html[data-ui-global='new'] .studio-button { border-radius: 9px; font-weight: 700; }
+html[data-ui-global='new'] [data-ui-section-style='old'] { --canvas: 255 255 255; --surface: 250 250 250; --raised: 243 243 243; --ink: 22 22 22; --muted: 107 107 107; --faint: 153 153 153; --line: 226 226 226; background: rgb(var(--canvas)); }
+html.dark[data-ui-global='new'] [data-ui-section-style='old'] { --canvas: 11 11 11; --surface: 20 20 20; --raised: 31 31 31; --ink: 243 243 243; --muted: 165 165 165; --faint: 111 111 111; --line: 54 54 54; }
+main[data-ui-section-style='new'] { background: rgb(var(--surface) / .26); }
+main[data-ui-section-style='new'] .profile-card,
+main[data-ui-section-style='new'] .question-result-card,
+main[data-ui-section-style='new'] :is(section, article).rounded-xl {
+  border-radius: 15px; box-shadow: 0 5px 20px rgb(var(--ink) / .025);
+}
+main[data-ui-section-style='new'][data-ui-area='reading'] .markdown h2 { padding-left: 14px; border-left: 3px solid rgb(var(--ink)); border-bottom: none; }
+main[data-ui-section-style='new'][data-ui-area='reading'] .markdown blockquote { background: rgb(var(--surface)); padding: 13px 18px; border-radius: 0 10px 10px 0; }
+main[data-ui-section-style='new'][data-ui-area='profile'] .profile-hero { padding-bottom: 30px; }
+main[data-ui-section-style='new'][data-ui-area='profile'] .profile-card { background: rgb(var(--canvas)); }
+main[data-ui-section-style='new'][data-ui-area='tools'] .studio-button { min-height: 40px; }
+html[data-ui-density='compact'] main .profile-card { padding: 20px 23px; }
+html[data-ui-density='compact'] main .question-result-card { padding: 16px; }
+html[data-ui-density='compact'] main .markdown p { margin-top: .45rem; margin-bottom: .8rem; }
+html[data-ui-density='compact'] main .markdown { line-height: 1.6; }
+html[data-ui-density='compact'] main[data-ui-area='practice'] .bank-collection-nav a { padding: 12px; }
+
+/* A unified bank with topic-led organization, not another site's visual assets. */
+.bank-collection-nav a[aria-current='page'] { box-shadow: 0 6px 16px rgb(var(--ink) / .10); }
+.question-topic-rail, .archive-topic-rail { position: sticky; top: 136px; }
+.question-topic-rail button[aria-pressed='true']:not(.bg-ink), .archive-topic-rail button[aria-pressed='true']:not(.bg-ink) { font-weight: 700; }
+.question-bank-new .question-result-card { background: rgb(var(--canvas)); }
+.question-bank-new .question-result-card .markdown-compact { font-size: 14px; }
+@media (min-width: 1024px) {
+  .classic-new-layout { display: grid; grid-template-columns: minmax(205px,250px) minmax(0,1fr); gap: 17px; align-items: start; }
+  .classic-new-layout > div:first-child { position: sticky; top: 135px; }
+  .classic-new-layout > div:nth-child(2) > div:first-child { margin-top: 32px; }
+  .archive-new-grid { display: grid; grid-template-columns: minmax(205px,250px) minmax(0,1fr); gap: 17px; align-items: start; }
+}
+@media (max-width: 1023px) { .archive-topic-rail { position: static; } }
+
+/* Browser Fullscreen API plus a CSS fallback. In both cases controls stay in
+   the question workspace and Escape or the button returns to the regular app. */
+[data-question-workspace]:fullscreen, .question-focus-fallback {
+  width: 100vw; height: 100dvh; overflow-y: auto; background: rgb(var(--canvas));
+  color: rgb(var(--ink)); padding: clamp(12px, 2vw, 30px); box-sizing: border-box;
+}
+.question-focus-fallback { position: fixed; inset: 0; z-index: 170; }
+[data-question-workspace]:fullscreen .question-workspace-bar, .question-focus-fallback .question-workspace-bar { position: sticky; top: 0; z-index: 40; }
+[data-question-workspace]:fullscreen .question-topic-rail, .question-focus-fallback .question-topic-rail { top: 58px; }
+@media print { .question-workspace-bar { display: none !important; } }
+
+/* Page controls and reading progress. Motion marks a deliberate page change,
+   rather than distracting from every filter or keystroke. */
+.page-navigator { animation: reading-controls-enter 260ms cubic-bezier(.2,.8,.2,1) both; }
+.page-navigator-button { display: inline-flex; min-height: 40px; align-items: center; justify-content: center; border: 1px solid rgb(var(--line)); border-radius: 8px; background: rgb(var(--canvas)); padding: 6px 10px; color: rgb(var(--ink)); font-size: 11px; font-weight: 650; transition: border-color 160ms ease, background-color 160ms ease; }
+.page-navigator-number { display: inline-flex; width: 40px; min-height: 40px; align-items: center; justify-content: center; border-radius: 8px; font: 650 11px ui-monospace, monospace; transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease; }
+.page-navigator-button:not(:disabled):hover { border-color: rgb(var(--ink)); background: rgb(var(--raised)); }
+.page-navigator-number:not([aria-current='page']):hover { transform: translateY(-2px); }
+.page-navigator-number[aria-current='page'] { box-shadow: inset 0 0 0 1px rgb(var(--ink)); }
+.lesson-page-nav { animation: reading-controls-enter 320ms cubic-bezier(.2,.8,.2,1) both; }
+.lesson-progress { transition: width 380ms cubic-bezier(.25,.8,.25,1); }
+@keyframes reading-controls-enter { from { opacity: .35; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes question-page-enter { from { opacity: .25; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+#main-question-results .question-result-card,
+#classic-question-results section[id^='SS-'],
+#supplied-question-results article[id],
+#review-results ~ section { animation: question-page-enter 320ms cubic-bezier(.2,.8,.2,1) both; }
+@media (prefers-reduced-motion: reduce) {
+  .page-navigator, .lesson-page-nav, #main-question-results .question-result-card,
+  #classic-question-results section[id^='SS-'], #supplied-question-results article[id],
+  #review-results ~ section { animation: none !important; }
+  .lesson-progress, .page-navigator-button, .page-navigator-number { transition: none !important; }
+  .page-navigator-number:not([aria-current='page']):hover { transform: none; }
+}
+
+.studio-button-primary { border-color: rgb(var(--ink)); background: rgb(var(--ink)); color: rgb(var(--canvas)); }
+.studio-button-primary:hover { background: rgb(var(--ink)); opacity: .85; }
+.studio-button:disabled { opacity: .45; cursor: not-allowed; }

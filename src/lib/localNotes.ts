@@ -36,8 +36,13 @@ function titleFromFilename(filename: string): string {
 
 function directoryForFile(file: File): (typeof knownUnits)[number] {
   const path = file.webkitRelativePath || file.name;
-  const match = path.split(/[\\/]/).map((part) => part.match(UNIT_FOLDER)).find(Boolean);
-  const known = knownUnits.find((entry) => Number(entry.number) === Number(match?.[1]));
+  const folder = path.split(/[\\/]/).find((part) => UNIT_FOLDER.test(part));
+  const match = folder?.match(UNIT_FOLDER);
+  // Prefer the folder's descriptive name so an earlier "Unit 4 Calculus"
+  // import remains calculus after statistics was added as strand 4.
+  const suffix = folder?.replace(/^Unit\s*\d+\s*/i, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+  const byName = knownUnits.find((entry) => entry.title.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim() === suffix);
+  const known = byName ?? knownUnits.find((entry) => Number(entry.number) === Number(match?.[1]));
   return known ?? unit;
 }
 

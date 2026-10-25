@@ -1,18 +1,20 @@
+import { DownloadPill } from './DownloadApp';
 import { useEffect, useRef, useState } from 'react';
 import type { FormEvent, KeyboardEvent } from 'react';
-import { ArrowRight, CornerDownLeft, FolderOpen, Menu, Moon, PanelLeft, Search as SearchIcon, Sun, UserRound, Waves, X } from 'lucide-react';
+import { ArrowRight, BookOpen, CornerDownLeft, FolderOpen, Menu, Moon, PanelLeft, Search as SearchIcon, Sun, UserRound, Waves, X } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useCatalog } from '../context/CatalogContext';
 import { useTopicSearch } from '../hooks/useTopicSearch';
 import { topicPath, unitForTopic } from '../lib/catalog';
 import { useVaultStore } from '../store/useVaultStore';
 import { useProfileStore } from '../store/useProfileStore';
+import { notify } from './ui/toast';
 import type { Topic } from '../types';
 
 const tabs = [
   { label: 'Home', to: '/' },
   { label: 'All Units', to: '/units' },
-  { label: 'Practice', to: '/question-bank' },
+  { label: 'Question Bank', to: '/practice' },
   { label: 'Search', to: '/search' },
 ];
 
@@ -22,16 +24,18 @@ export function Header() {
   const navigate = useNavigate();
   const theme = useVaultStore((state) => state.theme);
   const profileStatus = useProfileStore((state) => state.status);
+  const avatar = useProfileStore((state) => state.status === 'unlocked' ? state.profile?.avatar : undefined);
   const sidebarOpen = useVaultStore((state) => state.sidebarOpen);
   const toggleSidebar = useVaultStore((state) => state.toggleSidebar);
   const toggleTheme = useVaultStore((state) => state.toggleTheme);
   const setLocalDialogOpen = useVaultStore((state) => state.setLocalDialogOpen);
   const [query, setQuery] = useState('');
   const [suggestionsOpen, setSuggestionsOpen] = useState(false);
+  const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
   const searchRef = useRef<HTMLFormElement>(null);
   const suggestions = useTopicSearch(topics, query, 7);
-  const activeTab = pathname === '/search' ? 3 : ['/question-bank', '/ib-papers'].includes(pathname) ? 2 : pathname.startsWith('/units') ? 1 : pathname === '/' ? 0 : -1;
+  const activeTab = pathname === '/search' ? 3 : ['/practice', '/question-bank', '/ib-papers'].includes(pathname) ? 2 : pathname.startsWith('/units') ? 1 : pathname === '/' ? 0 : -1;
   const showSuggestions = suggestionsOpen && query.trim().length > 0;
   const multipleUnits = units.filter((entry) => entry.topics.length > 0).length > 1;
 
@@ -43,7 +47,7 @@ export function Header() {
     return () => document.removeEventListener('mousedown', closeOnOutsideClick);
   }, []);
 
-  useEffect(() => { setSuggestionsOpen(false); }, [pathname]);
+  useEffect(() => { setSuggestionsOpen(false); setMobileSearchOpen(false); }, [pathname]);
 
   function openTopic(topic: Topic) {
     navigate(topicPath(topic));
@@ -76,7 +80,8 @@ export function Header() {
       event.preventDefault();
       setActiveIndex((previous) => Math.max(previous - 1, -1));
     } else if (event.key === 'Escape') {
-      setSuggestionsOpen(false);
+      setSuggestionsOpen(false); setMobileSearchOpen(false);
+      event.currentTarget.blur();
       setActiveIndex(-1);
     }
   }
@@ -97,6 +102,7 @@ export function Header() {
           <button
             type="button"
             aria-label={sidebarOpen ? 'Hide course outline' : 'Show course outline'}
+            data-tip={sidebarOpen ? 'Hide course outline' : 'Show course outline'}
             aria-controls="course-sidebar"
             aria-expanded={sidebarOpen}
             onClick={toggleSidebar}
@@ -107,7 +113,7 @@ export function Header() {
           </button>
         </div>
 
-        <nav aria-label="Main navigation" className="absolute left-1/2 hidden -translate-x-1/2 lg:block">
+        <nav aria-label="Main navigation" className="absolute left-1/2 hidden -translate-x-1/2 min-[1680px]:block">
           <div className="relative grid h-10 w-[352px] grid-cols-4 items-center rounded-full border border-line bg-raised p-1">
             <span
               aria-hidden="true"
@@ -128,7 +134,7 @@ export function Header() {
         </nav>
 
         <div className="flex min-w-0 items-center gap-1.5 sm:gap-2">
-          <form ref={searchRef} role="search" onSubmit={handleSubmit} className="relative w-[80px] min-[360px]:w-[100px] min-[390px]:w-[128px] sm:w-[180px] lg:w-[160px] xl:w-[220px] 2xl:w-[248px]">
+          <form ref={searchRef} role="search" onSubmit={handleSubmit} onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setMobileSearchOpen(false); }} className={`relative w-9 shrink-0 min-[360px]:w-[100px] min-[390px]:w-[128px] sm:w-[180px] lg:w-[160px] xl:w-[220px] 2xl:w-[248px] ${mobileSearchOpen ? 'max-sm:fixed max-sm:inset-x-3 max-sm:top-4 max-sm:z-[95] max-sm:!w-auto max-sm:shadow-float' : ''}`}>
             <div className="flex h-10 items-center gap-2 rounded-full border border-line bg-surface px-3 text-muted transition-colors duration-200 focus-within:border-muted focus-within:ring-2 focus-within:ring-ink/15 hover:border-muted/70 sm:px-3.5">
               <SearchIcon size={16} strokeWidth={1.9} className="shrink-0" aria-hidden="true" />
               <input
@@ -140,7 +146,7 @@ export function Header() {
                 type="search"
                 value={query}
                 onChange={(event) => { setQuery(event.target.value); setSuggestionsOpen(true); setActiveIndex(-1); }}
-                onFocus={() => setSuggestionsOpen(true)}
+                onFocus={() => { setSuggestionsOpen(true); setMobileSearchOpen(true); }}
                 onKeyDown={handleKeys}
                 placeholder="Search topics..."
                 className="w-full min-w-0 bg-transparent text-[12px] font-medium text-ink outline-none placeholder:font-normal placeholder:text-faint sm:text-[13px]"
@@ -148,7 +154,7 @@ export function Header() {
             </div>
 
             {showSuggestions && (
-              <div id="header-search-results" role="listbox" aria-label="Topic suggestions" className="absolute -right-[110px] top-[calc(100%+12px)] z-[90] w-[min(380px,calc(100vw-24px))] overflow-hidden rounded-xl border border-line bg-canvas p-2 shadow-float sm:right-0">
+              <div id="header-search-results" role="listbox" aria-label="Topic suggestions" className="absolute right-0 top-[calc(100%+12px)] z-[90] w-[min(380px,calc(100vw-24px))] overflow-hidden rounded-xl border border-line bg-canvas p-2 shadow-float">
                 <div className="flex items-center justify-between px-3 pb-2 pt-2 font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
                   <span>{suggestions.length ? 'Suggested topics' : status === 'loading' ? 'Loading index' : 'No matching topics'}</span>
                   <span>{suggestions.length ? `${suggestions.length} found` : ''}</span>
@@ -179,10 +185,12 @@ export function Header() {
             )}
           </form>
 
-          <Link to="/focus" aria-label="Focus studio" title="Focus studio" className="hidden h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line text-muted hover:border-ink hover:text-ink xl:inline-flex"><Waves size={16} strokeWidth={1.7} aria-hidden="true" /></Link>
-          <Link to="/profile" aria-label={`Study profile, ${profileStatus}`} aria-current={pathname === '/profile' ? 'page' : undefined} title={`Study profile (${profileStatus})`}
+          <DownloadPill />
+          <Link to="/focus" aria-label="Focus studio" data-tip="Focus studio" className="hidden h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line text-muted hover:border-ink hover:text-ink xl:inline-flex"><Waves size={16} strokeWidth={1.7} aria-hidden="true" /></Link>
+          <Link to="/formula-booklet" aria-label="Formula booklet" data-tip="Open formula booklet" aria-current={pathname === '/formula-booklet' ? 'page' : undefined} className="inline-flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full border border-line bg-canvas text-[11px] font-semibold text-muted hover:border-ink hover:text-ink xl:w-auto xl:px-3"><BookOpen size={16} aria-hidden="true" /><span className="hidden xl:inline">Booklet</span></Link>
+          <Link to="/profile" aria-label={`Study profile, ${profileStatus}`} aria-current={pathname === '/profile' ? 'page' : undefined} data-tip="Open study profile"
             className={`relative inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border transition-colors hover:border-ink hover:text-ink ${pathname === '/profile' ? 'border-ink bg-ink text-canvas' : 'border-line text-muted'}`}>
-            <UserRound size={16} strokeWidth={1.7} aria-hidden="true" />{profileStatus === 'unlocked' && <span className="absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full border-2 border-canvas bg-ink" aria-hidden="true" />}
+            {avatar ? <img src={avatar} alt="" className="h-full w-full rounded-full object-cover grayscale" /> : <UserRound size={16} strokeWidth={1.7} aria-hidden="true" />}{profileStatus === 'unlocked' && <span className="absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full border-2 border-canvas bg-ink" aria-hidden="true" />}
           </Link>
 
           <button
@@ -190,8 +198,8 @@ export function Header() {
             role="switch"
             aria-checked={theme === 'dark'}
             aria-label="Dark mode"
-            title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-            onClick={toggleTheme}
+            data-tip={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            onClick={() => { toggleTheme(); notify({ title: 'Theme changed', message: `${theme === 'dark' ? 'Light' : 'Dark'} mode is on.`, variant: 'success', id: 'theme-choice' }); }}
             className="relative h-[38px] w-[56px] shrink-0 rounded-full border border-[#363636] bg-[#1b1b1b] transition-colors duration-200 hover:bg-[#303030] dark:border-[#666666]"
           >
             <span className={`absolute left-[4px] top-[4px] flex h-[28px] w-[28px] items-center justify-center rounded-full bg-white text-[#1b1b1b] shadow-sm transition-transform duration-200 ease-out ${theme === 'dark' ? 'translate-x-[20px]' : 'translate-x-0'}`}>
@@ -202,9 +210,9 @@ export function Header() {
             type="button"
             aria-label="Local Files"
             aria-pressed={mode === 'local'}
-            title="Choose between included and local Markdown files"
+            data-tip="Choose included or local Markdown files"
             onClick={() => setLocalDialogOpen(true)}
-            className={`inline-flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full border text-[11px] font-semibold transition-colors duration-200 xl:w-auto xl:px-3.5 ${mode === 'local' ? 'border-ink bg-ink text-canvas' : 'border-line bg-canvas text-muted hover:border-muted hover:bg-surface hover:text-ink'}`}
+            className={`hidden h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full border text-[11px] font-semibold transition-colors duration-200 sm:inline-flex xl:w-auto xl:px-3.5 ${mode === 'local' ? 'border-ink bg-ink text-canvas' : 'border-line bg-canvas text-muted hover:border-muted hover:bg-surface hover:text-ink'}`}
           >
             <FolderOpen size={16} strokeWidth={1.8} aria-hidden="true" /><span className="hidden xl:inline">Local Files</span>
           </button>

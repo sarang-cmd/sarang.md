@@ -6,6 +6,26 @@ export interface VideoItem {
   videoId?: string;
 }
 export const PLAYLIST_KEY = 'sarang-focus-video-playlist';
+export const SOURCE_PLAYLIST = 'https://www.youtube.com/playlist?list=PLUh7Kk4TLS8E';
+
+// Order checked against the user's 10-video playlist. These are YouTube embeds,
+// not bundled video files. Titles are short descriptive labels, not licensing.
+const seeded: [string, string][] = [
+  ['74cOUSKXMz0', 'iCanStudy · 3-hour hyper-efficient study with me'],
+  ['sdhh7AYzsTY', 'iCanStudy · 1.5-hour deep-work session'],
+  ['382OExOIipQ', 'Justin Sung · 2-hour deep-work session'],
+  ['UXwJ9RwdyHs', 'Work With Paul · 3-hour hyperfocus'],
+  ['sa61rE36264', "Sora's Treehouse Study · rainy forest"],
+  ['IdjDjxNn9ws', 'StudyMD · sunset piano study'],
+  ['Q-rJe-jnpQw', 'Merve · rain sounds and background noise'],
+  ['eIoHJBA43lk', "Sora's Treehouse Study · forest rain"],
+  ['hSW0i79Db1o', 'tani study · five-hour lofi session'],
+  ['sUwD3GRPJos', 'Abao in Tokyo · Yokohama harbor sunset'],
+];
+export function defaultVideoPlaylist(): VideoItem[] {
+  return seeded.map(([videoId, title]) => ({ id: `default-${videoId}`, videoId, title,
+    url: `https://www.youtube.com/watch?v=${videoId}`, kind: 'youtube' }));
+}
 
 export function parseVideoLink(raw: string): Pick<VideoItem, 'url' | 'kind' | 'videoId'> | null {
   try {
@@ -25,12 +45,14 @@ export function parseVideoLink(raw: string): Pick<VideoItem, 'url' | 'kind' | 'v
 
 export function readVideoPlaylist(): VideoItem[] {
   try {
-    const stored: unknown = JSON.parse(localStorage.getItem(PLAYLIST_KEY) ?? '[]');
-    if (!Array.isArray(stored)) return [];
+    const raw = localStorage.getItem(PLAYLIST_KEY);
+    if (raw === null) return defaultVideoPlaylist();
+    const stored: unknown = JSON.parse(raw);
+    if (!Array.isArray(stored)) return defaultVideoPlaylist();
     return stored.slice(0, 30).flatMap((entry) => {
       if (!entry || typeof entry.id !== 'string' || typeof entry.url !== 'string' || typeof entry.title !== 'string') return [];
       const parsed = parseVideoLink(entry.url);
-      return parsed ? [{ id: entry.id, title: entry.title.slice(0, 80), ...parsed }] : [];
+      return parsed ? [{ id: entry.id.slice(0, 90), title: entry.title.slice(0, 80), ...parsed }] : [];
     });
-  } catch { return []; }
+  } catch { return defaultVideoPlaylist(); }
 }
