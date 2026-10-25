@@ -11,6 +11,7 @@ const MODE_KEY = 'sarang-vault-content-source';
 
 interface CatalogValue {
   topics: Topic[];
+  syllabusTopics: Topic[];
   bundledCount: number;
   units: CourseUnit[];
   status: CatalogStatus;
@@ -30,6 +31,25 @@ interface CatalogValue {
 
 const CatalogContext = createContext<CatalogValue | null>(null);
 let cachedManifest: Promise<Topic[]> | undefined;
+let cachedCourse: Promise<ProjectRecord[]> | undefined;
+
+function loadCourse(): Promise<ProjectRecord[]> {
+  if (!cachedCourse) cachedCourse = fetch(`${import.meta.env.BASE_URL}content/course-catalog.json`)
+    .then((response) => {
+      if (!response.ok) throw new Error(`Course catalog request failed (${response.status})`);
+      return response.json() as Promise<unknown>;
+    }).then((data) => {
+      if (!data || typeof data !== 'object' || !('units' in data) || !Array.isArray(data.units)) throw new Error('Invalid course catalog.');
+      const records = data.units as ProjectRecord[];
+      if (records.length !== 5 || records.some((record) => !record || typeof record.slug !== 'string' ||
+        typeof record.directory !== 'string' || !Array.isArray(record.topics) || record.topics.some((topic) =>
+          typeof topic.file !== 'string' || typeof topic.title !== 'string' || typeof topic.category !== 'string'))) {
+        throw new Error('The five course strands are incomplete.');
+      }
+      return records;
+    }).catch((error: unknown) => { cachedCourse = undefined; throw error; });
+  return cachedCourse;
+}
 
 function loadManifest(): Promise<Topic[]> {
   if (!cachedManifest) {
@@ -98,7 +118,7 @@ function saveMode(mode: ContentMode) {
 }
 
 export function CatalogProvider({ children }: { children: ReactNode }) {
-  const [bundledTopics, setBundledTopics] = useState<Topic[]>([]);
+  const [includedUnits, setIncludedUnits] = useState<CourseUnit[]>([]);
   const [projectUnits, setProjectUnits] = useState<CourseUnit[]>([]);
   const [browserLibrary, setBrowserLibrary] = useState<StoredLocalLibrary | null>(null);
   const [selectedMode, setSelectedMode] = useState<ContentMode>(initialMode);
@@ -108,10 +128,11 @@ export function CatalogProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     let mounted = true;
     setStatus('loading');
-    Promise.all([loadManifest(), loadProjectUnits(), readStoredLibrary().catch(() => null)]).then(
-      ([manifest, project, stored]) => {
+    Promise.all([loadManifest(), loadCourse(), loadProjectUnits(), readStoredLibrary().catch(() => null)]).then(
+      ([manifest, course, project, stored]) => {
         if (!mounted) return;
-        setBundledTopics(manifest.map((topic) => ({ ...topic, unitSlug: defaultUnit.slug })));
+        if (manifest.length !== 20) { setStatus('error'); return; }
+        setIncludedUnits(course.map((entry) => makeCourseUnit(entry, 'bundled')));
         setProjectUnits(project);
         setBrowserLibrary(stored);
         setStatus('ready');
@@ -137,12 +158,13 @@ export function CatalogProvider({ children }: { children: ReactNode }) {
   const units = useMemo(() => {
     const active = new Map<string, CourseUnit>();
     if (mode === 'local') for (const entry of localUnits) active.set(entry.slug, entry);
-    else active.set(defaultUnit.slug, makeCourseUnit({ ...defaultUnit, topics: bundledTopics }, 'bundled'));
+    else for (const entry of includedUnits) active.set(entry.slug, entry);
     const standard = knownUnits.map((entry) => active.get(entry.slug) ?? { ...entry, topics: [], origin: 'placeholder' as const });
     const custom = [...active.values()].filter((entry) => !knownUnits.some((known) => known.slug === entry.slug));
     return [...standard, ...custom];
-  }, [mode, localUnits, bundledTopics]);
+  }, [mode, localUnits, includedUnits]);
   const topics = useMemo(() => units.flatMap((entry) => entry.topics), [units]);
+  const syllabusTopics = useMemo(() => includedUnits.flatMap((entry) => entry.topics.filter((topic) => topic.collection === 'syllabus')), [includedUnits]);
   const revision = `${mode}:${browserLibrary?.importedAt ?? 'project'}`;
   const reload = useCallback(() => setAttempt((previous) => previous + 1), []);
   const setMode = useCallback((value: ContentMode) => {
@@ -191,9 +213,9 @@ export function CatalogProvider({ children }: { children: ReactNode }) {
   }, [units, browserLibrary, projectUnits]);
 
   const value = useMemo(() => ({
-    topics, bundledCount: bundledTopics.length, units, status, mode, revision, localUnits, projectUnits, importedUnits,
+    topics, syllabusTopics, bundledCount: includedUnits.reduce((sum, entry) => sum + entry.topics.length, 0), units, status, mode, revision, localUnits, projectUnits, importedUnits,
     importedAt: browserLibrary?.importedAt ?? null, hasLocal, reload, setMode, importLocalFiles, removeImportedFiles, getMarkdown,
-  }), [topics, bundledTopics, units, status, mode, revision, localUnits, projectUnits, importedUnits, browserLibrary, hasLocal, reload, setMode, importLocalFiles, removeImportedFiles, getMarkdown]);
+  }), [topics, syllabusTopics, includedUnits, units, status, mode, revision, localUnits, projectUnits, importedUnits, browserLibrary, hasLocal, reload, setMode, importLocalFiles, removeImportedFiles, getMarkdown]);
 
   return <CatalogContext.Provider value={value}>{children}</CatalogContext.Provider>;
 }

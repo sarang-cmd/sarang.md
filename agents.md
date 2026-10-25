@@ -25,16 +25,16 @@ Sarang.md is a quiet place to think. It is not a gamified classroom, a loud prod
 
 ## Privacy, persistence, and safety
 
-- This is a client-only, static-hostable site. Never ship a provider credential in source, build output, URL, documentation, or logs. Do not imply the app has a server or cloud account.
+- The reader, practice and local vault are client-only and static-hostable. Optional Supabase Auth and manually triggered ciphertext backups require a separately configured Supabase project; there is no app-owned server, automatic cross-device sync, or password recovery. Never ship a private provider credential, service-role key or vault password in source, build output, URLs, documentation or logs. The Supabase publishable key is public by design.
 - The optional profile lives in this browser's localStorage only as an AES-GCM encrypted envelope. Web Crypto derives its in-memory key from a user password with PBKDF2, SHA-256, and a random salt. The password is never stored. All profile mutations, including API keys, private document text, saved chats, and progress, pass through `src/store/useProfileStore.ts`.
-- Lock clears decrypted profile contents and tutor credentials from application state. An encrypted backup is the only supported way to transfer a complete profile to another browser. Plain summaries deliberately exclude keys and private file text.
+- Lock clears decrypted profile contents and tutor credentials from application state. An encrypted file backup or a manually uploaded Supabase copy can transfer a complete profile to another browser; cloud restore still requires the local vault password. Plain summaries deliberately exclude keys and private file text.
 - Browser-picked course Markdown is in a separate, existing IndexedDB library and is **not encrypted or included** in profile backups. Theme and focus video links also have separate unencrypted browser preferences. State this distinction wherever it could surprise a learner.
 - A model request sends a personal API key, prompt, chat, and selected document excerpt directly to the chosen provider. Browser CORS limitations and session exposure are real; do not promise otherwise or claim proof of neurological benefits from generated focus sound.
 - The verified repository link is `https://github.com/sarang-cmd/sarang.md`. Never imply a successful push or deployment without checking the remote state; the five mirror addresses do not prove deployment or ownership.
 
 ## Engineering touchpoints
 
-- Content: `public/content/manifest.json`, bundled Markdown files, `public/content/question-bank/`, and `scripts/build-ib-bank.mjs`. Use `npm run check:data` after touching authored or generated study data.
+- Content: `source-material/Full_Course_Outline.md`, `source-material/supplied-unit1/`, `source-material/lessons/`, `source-material/master-guides/`, `public/content/manifest.json`, `public/content/question-bank/`, `scripts/build-course.mjs`, and `scripts/build-ib-bank.mjs`. Use `npm run check:data` after touching authored or generated study data. A clean checkout must not depend on the ignored `uploads/` folder.
 - Profile: `src/lib/profileVault.ts` owns envelope validation and browser cryptography; `src/store/useProfileStore.ts` owns encrypted saves, import, export, and learning activity; `src/pages/ProfilePage.tsx` owns the learner-facing controls.
 - Math/tutor: `src/components/MarkdownArticle.tsx`, `src/lib/tutorApi.ts`, `src/components/TutorPanel.tsx`. Keep response animation in `src/index.css` and honor reduced-motion preferences.
 - Navigation: `src/App.tsx`, `src/components/Header.tsx`, and `src/components/Sidebar.tsx`. The hash router and relative Vite base allow static deployment under a path.

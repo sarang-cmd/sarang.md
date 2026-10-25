@@ -1,17 +1,22 @@
 import { useEffect, useMemo, useState } from 'react';
-import { ArrowUpRight, ChevronDown, FileQuestion, FolderOpen, NotebookPen, UserRound, Waves } from 'lucide-react';
+import { ArrowUpRight, BookOpen, ChevronDown, ClipboardCheck, FolderOpen, Grip, Maximize2, NotebookPen, Pin, Settings2, UserRound, Waves } from 'lucide-react';
+import { ExamModeControl } from './ExamControls';
+import { mainBank } from '../data/practiceInventory';
 import { Link, useLocation } from 'react-router-dom';
 import { useCatalog } from '../context/CatalogContext';
 import { availableUnits, groupTopics, topicPath, topicSlug } from '../lib/catalog';
 import { useVaultStore } from '../store/useVaultStore';
+import { useMovableWindow } from '../hooks/useMovableWindow';
 
 const quickLinks = [
   { label: 'Home', to: '/' },
   { label: 'All Units', to: '/units' },
-  { label: 'Practice', to: '/question-bank' },
-  { label: 'IB Papers', to: '/ib-papers' },
+  { label: 'Question Bank', to: '/practice' },
+  { label: 'Review all answers', to: '/review' },
+  { label: 'Formula booklet', to: '/formula-booklet' },
   { label: 'Focus studio', to: '/focus' },
   { label: 'Profile', to: '/profile' },
+  { label: 'Settings', to: '/settings' },
   { label: 'Mirrors', to: '/mirrors' },
   { label: 'Search', to: '/search' },
 ];
@@ -26,6 +31,13 @@ export function Sidebar() {
   const setLocalDialogOpen = useVaultStore((state) => state.setLocalDialogOpen);
   const available = useMemo(() => availableUnits(units), [units]);
   const [collapsed, setCollapsed] = useState<Set<string>>(() => new Set());
+  const [floating, setFloating] = useState(() => { try { return localStorage.getItem('sarang-sidebar-floating') === 'true'; } catch { return false; } });
+  const [desktop, setDesktop] = useState(() => window.innerWidth >= 1024);
+  const drag = useMovableWindow<HTMLElement>('sidebar', { x: 42, y: 98 });
+  const detached = floating && desktop;
+  useEffect(() => { if (detached) drag.fit(); }, [detached, drag.fit]);
+  useEffect(() => { const resize = () => setDesktop(window.innerWidth >= 1024); window.addEventListener('resize', resize); return () => window.removeEventListener('resize', resize); }, []);
+  useEffect(() => { try { localStorage.setItem('sarang-sidebar-floating', String(floating)); } catch { /* Keep the current session layout. */ } }, [floating]);
 
   useEffect(() => {
     const category = available.find((entry) => entry.slug === currentUnit)?.topics.find((topic) => topicSlug(topic) === currentTopic)?.category;
@@ -55,12 +67,15 @@ export function Sidebar() {
     <>
       {sidebarOpen && <button type="button" aria-label="Close course outline" onClick={() => setSidebarOpen(false)} className="fixed inset-x-0 bottom-0 top-[72px] z-[45] bg-black/45 lg:hidden" />}
       <aside
+        ref={drag.panel}
         id="course-sidebar"
         aria-label="Course outline"
         aria-hidden={!sidebarOpen}
-        className={`fixed bottom-0 left-0 top-[72px] z-[55] w-[min(306px,86vw)] shrink-0 border-r border-line bg-canvas transition-[transform,width,opacity] duration-200 ease-out lg:sticky lg:bottom-auto lg:top-[72px] lg:h-[calc(100dvh-72px)] ${sidebarOpen ? 'visible translate-x-0 lg:w-[282px] lg:opacity-100' : 'invisible -translate-x-full pointer-events-none lg:w-0 lg:translate-x-0 lg:border-r-0 lg:opacity-0'}`}
+        className={detached ? `movable-window fixed z-[78] h-[min(75vh,730px)] w-[min(306px,86vw)] rounded-2xl border border-line bg-canvas shadow-float ${sidebarOpen ? 'visible' : 'invisible pointer-events-none'}` : `fixed bottom-0 left-0 top-[72px] z-[55] w-[min(306px,86vw)] shrink-0 border-r border-line bg-canvas transition-[transform,width,opacity] duration-200 ease-out lg:sticky lg:bottom-auto lg:top-[72px] lg:h-[calc(100dvh-72px)] ${sidebarOpen ? 'visible translate-x-0 lg:w-[282px] lg:opacity-100' : 'invisible -translate-x-full pointer-events-none lg:w-0 lg:translate-x-0 lg:border-r-0 lg:opacity-0'}`}
+        style={detached ? { left: drag.position.x, top: drag.position.y } : undefined}
       >
-        <div className="h-full w-[min(306px,86vw)] overflow-y-auto px-4 pb-10 pt-7 lg:w-[282px] lg:px-5">
+        {detached && <div {...drag.handle} tabIndex={0} aria-label="Move whole sidebar. Drag here or use arrow keys." className="movable-handle flex cursor-grab items-center justify-between gap-2 rounded-t-2xl border-b border-line bg-surface px-4 py-3 active:cursor-grabbing"><span className="flex items-center gap-2 font-mono text-[10px] font-semibold uppercase tracking-wider"><Grip size={15} /> Course outline / move</span><button type="button" onClick={() => setFloating(false)} className="studio-button" aria-label="Dock course outline"><Pin size={13} /> Dock</button></div>}
+        <div className={`${detached ? 'h-[calc(100%-57px)] w-full pt-5' : 'h-full w-[min(306px,86vw)] pt-7 lg:w-[282px]'} overflow-y-auto px-4 pb-10 lg:px-5`}>
           <div className="mb-7 lg:hidden">
             <p className="section-label mb-3 px-2">Navigate</p>
             <nav aria-label="Mobile navigation" className="flex flex-col gap-1">
@@ -74,16 +89,19 @@ export function Sidebar() {
           </div>
 
           <div className="mb-5 px-2">
+            {!detached && <button type="button" onClick={() => setFloating(true)} className="studio-button mb-5 hidden lg:inline-flex"><Maximize2 size={13} /> Move sidebar</button>}
             <p className="section-label mb-2">Course outline</p>
             <p className="text-[12px] leading-relaxed text-muted">{mode === 'local' ? 'Your own Markdown, in reading order.' : 'A quiet way through the syllabus.'}</p>
           </div>
-          <Link to="/question-bank" onClick={navigateFromDrawer} className="group mb-2 flex items-center justify-between gap-3 rounded-lg border border-line bg-surface px-3 py-3 transition-colors hover:border-muted hover:bg-raised">
-            <span className="flex items-center gap-2.5"><NotebookPen size={16} strokeWidth={1.7} aria-hidden="true" /><span className="text-[12px] font-semibold">Question bank</span></span><ArrowUpRight size={14} className="text-muted transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
+          <Link to="/practice" onClick={navigateFromDrawer} className="group mb-2 flex items-center justify-between gap-3 rounded-lg border border-line bg-surface px-3 py-3 transition-colors hover:border-muted hover:bg-raised">
+            <span className="flex items-start gap-2.5"><NotebookPen size={16} strokeWidth={1.7} className="mt-0.5 shrink-0" aria-hidden="true" /><span><span className="block text-[12px] font-semibold">Question Bank</span><span className="mt-1 block text-[10px] leading-relaxed text-muted">Main {mainBank.questions} · Classic 16 · Supplied 50</span></span></span><ArrowUpRight size={14} className="text-muted transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
           </Link>
-
-          <Link to="/ib-papers" onClick={navigateFromDrawer} className="group mb-2 flex items-center justify-between gap-3 rounded-lg border border-line px-3 py-3 transition-colors hover:border-muted hover:bg-surface"><span className="flex items-center gap-2.5"><FileQuestion size={16} strokeWidth={1.7} aria-hidden="true" /><span className="text-[12px] font-semibold">IB paper bank</span></span><ArrowUpRight size={14} className="text-muted" aria-hidden="true" /></Link>
+          <ExamModeControl />
+          <Link to="/review" onClick={navigateFromDrawer} className="group mb-2 flex items-center justify-between gap-3 rounded-lg border border-line px-3 py-3 transition-colors hover:border-muted hover:bg-surface"><span className="flex items-center gap-2.5"><ClipboardCheck size={16} strokeWidth={1.7} aria-hidden="true" /><span className="text-[12px] font-semibold">Review all answers</span></span><ArrowUpRight size={14} className="text-muted" aria-hidden="true" /></Link>
+          <Link to="/formula-booklet" onClick={navigateFromDrawer} className="group mb-2 flex items-center justify-between gap-3 rounded-lg border border-line px-3 py-3 transition-colors hover:border-muted hover:bg-surface"><span className="flex items-center gap-2.5"><BookOpen size={16} strokeWidth={1.7} aria-hidden="true" /><span className="text-[12px] font-semibold">Formula booklet</span></span><ArrowUpRight size={14} className="text-muted" aria-hidden="true" /></Link>
           <Link to="/focus" onClick={navigateFromDrawer} className="group mb-2 flex items-center justify-between gap-3 rounded-lg border border-line px-3 py-3 transition-colors hover:border-muted hover:bg-surface"><span className="flex items-center gap-2.5"><Waves size={16} strokeWidth={1.7} aria-hidden="true" /><span className="text-[12px] font-semibold">Focus studio</span></span><ArrowUpRight size={14} className="text-muted" aria-hidden="true" /></Link>
-          <Link to="/profile" onClick={navigateFromDrawer} className="group mb-7 flex items-center justify-between gap-3 rounded-lg border border-line px-3 py-3 transition-colors hover:border-muted hover:bg-surface"><span className="flex items-center gap-2.5"><UserRound size={16} strokeWidth={1.7} aria-hidden="true" /><span className="text-[12px] font-semibold">Your profile</span></span><ArrowUpRight size={14} className="text-muted" aria-hidden="true" /></Link>
+          <Link to="/profile" onClick={navigateFromDrawer} className="group mb-2 flex items-center justify-between gap-3 rounded-lg border border-line px-3 py-3 transition-colors hover:border-muted hover:bg-surface"><span className="flex items-center gap-2.5"><UserRound size={16} strokeWidth={1.7} aria-hidden="true" /><span className="text-[12px] font-semibold">Your profile</span></span><ArrowUpRight size={14} className="text-muted" aria-hidden="true" /></Link>
+          <Link to="/settings" onClick={navigateFromDrawer} className="group mb-7 flex items-center justify-between gap-3 rounded-lg border border-line px-3 py-3 transition-colors hover:border-muted hover:bg-surface"><span className="flex items-center gap-2.5"><Settings2 size={16} strokeWidth={1.7} aria-hidden="true" /><span className="text-[12px] font-semibold">Settings · AI & interface</span></span><ArrowUpRight size={14} className="text-muted" aria-hidden="true" /></Link>
 
           {status === 'loading' && <p className="px-2 py-3 text-[12px] text-muted">Loading outline…</p>}
           <nav aria-label="Course topics">

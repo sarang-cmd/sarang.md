@@ -5,8 +5,9 @@ import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import { normalizeTexDelimiters, stripFrontmatter } from '../lib/content';
+import { Link } from 'react-router-dom';
 
-export function MarkdownArticle({ source, compact = false, scheme = false }: { source: string; compact?: boolean; scheme?: boolean }) {
+export function MarkdownArticle({ source, compact = false, scheme = false, resolveLink }: { source: string; compact?: boolean; scheme?: boolean; resolveLink?: (href: string) => string | undefined }) {
   const markdown = useMemo(() => normalizeTexDelimiters(stripFrontmatter(source)), [source]);
 
   return (
@@ -16,6 +17,12 @@ export function MarkdownArticle({ source, compact = false, scheme = false }: { s
         rehypePlugins={[rehypeKatex]}
         components={{
           table: ({ children }) => <div className="table-wrap"><table>{children}</table></div>,
+          a: ({ href, children }) => {
+            const route = href ? (resolveLink?.(href) ?? (href.startsWith('/') ? href : undefined)) : undefined;
+            if (route && route.startsWith('/') && !route.startsWith('//')) return <Link to={route}>{children}</Link>;
+            if (href?.match(/\.md(?:#.*)?$/i) || href?.endsWith('/index.html')) return <span title="This source link is not in the included library">{children}</span>;
+            return <a href={href} rel="noopener noreferrer" target={/^https?:\/\//i.test(href ?? '') ? '_blank' : undefined}>{children}</a>;
+          },
         }}
       >
         {markdown}

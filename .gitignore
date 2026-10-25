@@ -1,4 +1,4 @@
-node_modules/
+node_modules
 dist/
 *.local
 .DS_Store
@@ -29,3 +29,9 @@ dist/
 /.npm/
 /.sudo_as_admin_successful
 /uploads/
+
+# Desktop app build output (the exe goes to GitHub Releases, not into git).
+/desktop/app/
+/desktop/release/
+/signing/
+*.pfx

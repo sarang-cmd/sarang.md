@@ -9,6 +9,8 @@ export interface Topic {
   next: string | null;
   /** Added at runtime. The bundled manifest intentionally keeps its original shape. */
   unitSlug?: string;
+  /** Bundled provenance. Existing manifest files remain unmodified. */
+  collection?: 'syllabus' | 'original-note' | 'uploaded-note' | 'guide';
 }
 
 export interface TopicGroup {

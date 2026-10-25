@@ -18,6 +18,8 @@ interface VaultState {
   currentUnit: string | null;
   currentTopic: string | null;
   localDialogOpen: boolean;
+  soundWindowOpen: boolean;
+  setSoundWindowOpen: (open: boolean) => void;
   setLocalDialogOpen: (open: boolean) => void;
   toggleTheme: () => void;
   toggleSidebar: () => void;
@@ -31,6 +33,8 @@ export const useVaultStore = create<VaultState>((set) => ({
   currentUnit: null,
   currentTopic: null,
   localDialogOpen: false,
+  soundWindowOpen: false,
+  setSoundWindowOpen: (soundWindowOpen) => set({ soundWindowOpen }),
   setLocalDialogOpen: (localDialogOpen) => set({ localDialogOpen }),
   toggleTheme: () => set((state) => ({ theme: state.theme === 'light' ? 'dark' : 'light' })), 
   toggleSidebar: () => set((state) => ({ sidebarOpen: !state.sidebarOpen })),
