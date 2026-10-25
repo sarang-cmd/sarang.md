@@ -1,3 +1,4 @@
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { DesktopBridge } from './components/DesktopBridge';
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
@@ -156,5 +157,10 @@ function AppShell() {
 }
 
 export default function App() {
-  return <CatalogProvider><FocusProvider><AppShell /></FocusProvider></CatalogProvider>;
+  return (
+    <>
+      <CatalogProvider><FocusProvider><AppShell /></FocusProvider></CatalogProvider>
+      <SpeedInsights />
+    </>
+  );
 }
