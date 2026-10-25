@@ -4,6 +4,7 @@ import { desktop } from '../lib/desktop';
 import type { DesktopInfo } from '../lib/desktop';
 import { megabytes, updateApi, useUpdate } from '../lib/update';
 import { DownloadCard } from './DownloadApp';
+import { setSiteStats, siteStatsAvailable, siteStatsEnabled } from '../lib/siteStats';
 
 const ago = (time: number) => {
   if (!time) return 'not checked yet';
@@ -21,6 +22,15 @@ function Row({ label, hint, checked, disabled, onChange }: { label: string; hint
   </button>;
 }
 
+function StatsRow() {
+  const [on, setOn] = useState(siteStatsEnabled());
+  return <section className="mt-5 rounded-2xl border border-line bg-canvas p-6 sm:p-7">
+    <h2 className="text-[19px] font-semibold tracking-[-0.03em]">Site statistics</h2>
+    <p className="mt-2 text-[12px] leading-relaxed text-muted">This website counts anonymous page views and page speed with Vercel Analytics and Speed Insights. No account, nothing from the desktop app, and it is off when your browser sends Do Not Track. A change applies on the next load.</p>
+    <div className="mt-4"><Row label="Allow anonymous site statistics" hint="Turn this off to stop the two scripts from loading." checked={on} onChange={(value) => { setSiteStats(value); setOn(value); }} /></div>
+  </section>;
+}
+
 /** In a browser: the download card. In the desktop app: window behaviour and updates. */
 export function DesktopSettings() {
   const [info, setInfo] = useState<DesktopInfo | null>(null);
@@ -28,12 +38,12 @@ export function DesktopSettings() {
   const update = useUpdate();
   useEffect(() => { void desktop?.getInfo().then(setInfo); }, []);
   useEffect(() => { if (update) setRepo((value) => (value === '' ? update.repo : value)); }, [update?.repo]); // eslint-disable-line react-hooks/exhaustive-deps
-  if (!desktop) return <DownloadCard className="mt-5" />;
+  if (!desktop) return <>{siteStatsAvailable() && <StatsRow />}<DownloadCard className="mt-5" /></>;
   if (!info) return null;
   const set = async (patch: Partial<DesktopInfo['behavior']>) => { await desktop?.setBehavior(patch); setInfo({ ...info, behavior: { ...info.behavior, ...patch } }); };
   const busy = update?.status === 'checking' || update?.status === 'downloading' || update?.status === 'launching';
   const available = update?.status === 'available';
-  const line = !update ? '' : update.status === 'unconfigured' ? 'Enter the GitHub repository below to turn update checks on.'
+  const line = !update ? '' : update.status === 'unconfigured' ? 'Enter the update address below to turn update checks on.'
     : update.status === 'checking' ? 'Checking...'
     : update.status === 'uptodate' ? `You have the latest version (${update.current}). Checked ${ago(update.checkedAt)}.`
     : update.status === 'available' ? `Version ${update.latest} is available${update.size ? ` (${megabytes(update.size)})` : ''}.`
@@ -56,17 +66,17 @@ export function DesktopSettings() {
       <div className="mt-3 grid gap-3 lg:grid-cols-2">
         <Row label="Check in the background" hint="At start and every few hours. It only asks you; nothing installs without a click." checked={update.auto} disabled={!update.configured} onChange={(value) => void updateApi.setConfig({ auto: value })} />
         <label className="block rounded-xl border border-line bg-surface px-4 py-3">
-          <span className="block text-[12px] font-semibold">GitHub repository</span>
-          <span className="mt-0.5 block text-[10px] leading-snug text-muted">Written as owner/repository. The latest release needs <code>Sarang-md-x.y.z.exe</code> and a matching <code>.sha256</code> file.</span>
+          <span className="block text-[12px] font-semibold">Update address</span>
+          <span className="mt-0.5 block text-[10px] leading-snug text-muted">A https address on vercel.app that returns the update feed (a small JSON file with the version, the file and its SHA-256). Leave the built-in one unless you host your own.</span>
           <span className="mt-2 flex gap-2">
-            <input className="min-w-0 flex-1 rounded-lg border border-line bg-canvas px-3 py-2 text-[12px]" value={repo} onChange={(event) => setRepo(event.target.value)} placeholder="owner/repository" spellCheck={false} autoCapitalize="off" aria-label="GitHub repository" />
+            <input className="min-w-0 flex-1 rounded-lg border border-line bg-canvas px-3 py-2 text-[12px]" value={repo} onChange={(event) => setRepo(event.target.value)} placeholder="https://sarang-md.vercel.app/updates/latest.json" spellCheck={false} autoCapitalize="off" aria-label="Update address" />
             <button type="button" className="studio-button" disabled={repo.trim() === update.repo} onClick={() => void updateApi.setConfig({ repo: repo.trim() })}>Save</button>
           </span>
         </label>
       </div>
       <div className="mt-4 flex flex-wrap gap-2">
         <button type="button" className="studio-button" disabled={busy || !update.configured} onClick={() => void updateApi.check()}><RefreshCw size={13} className={update.status === 'checking' ? 'animate-spin' : ''} />Check now</button>
-        {available && <button type="button" className="studio-button studio-button-primary" disabled={busy} onClick={() => void updateApi.install()}><Download size={13} />{update.canUpdate ? `Update to ${update.latest}` : 'Open release page'}</button>}
+        {available && <button type="button" className="studio-button studio-button-primary" disabled={busy} onClick={() => void updateApi.install()}><Download size={13} />{update.canUpdate ? `Update to ${update.latest}` : 'Open download page'}</button>}
       </div>
       {!update.canSelfUpdate && <p className="mt-3 text-[10px] leading-relaxed text-muted">This copy was not installed with the setup, so it can tell you about updates but cannot replace itself. Run the new exe to install it.</p>}
     </div>}

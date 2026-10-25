@@ -1,4 +1,6 @@
 import { DesktopBridge } from './components/DesktopBridge';
+import { WebUpdatePrompt } from './components/WebUpdatePrompt';
+import { PasswordSetupDialog } from './components/PasswordSetupDialog';
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { Header } from './components/Header';
@@ -28,7 +30,7 @@ import { isExamActive, useExamStore } from './store/useExamStore';
 import { useProfileStore } from './store/useProfileStore';
 import { useDraftStore } from './store/useDraftStore';
 import { Link } from 'react-router-dom';
-import { Github } from 'lucide-react';
+import { SUITE } from './lib/suite';
 
 // The Markdown + KaTeX reader and question bank load only when opened.
 const TopicPage = lazy(() => import('./pages/TopicPage').then((module) => ({ default: module.TopicPage })));
@@ -138,7 +140,7 @@ function AppShell() {
             )}
           </div>
           <footer className="border-t border-line px-5 py-6 text-[11px] text-muted sm:px-9 lg:px-12 xl:px-16">
-            <div className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-between gap-2"><span className="font-semibold text-ink">Sarang.md <span className="font-normal text-faint">/ A space to think clearly.</span></span><span className="flex flex-wrap items-center gap-4"><Link to="/profile" className="hover:text-ink hover:underline">Profile</Link><Link to="/settings" className="hover:text-ink hover:underline">Settings</Link><Link to="/mirrors" className="hover:text-ink hover:underline">Mirrors</Link><a href="https://github.com/sarang-cmd/sarang.md" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:text-ink hover:underline"><Github size={13} aria-hidden="true" /> GitHub</a><span className="font-mono text-[10px] uppercase tracking-[0.1em] text-faint">Made for the love of learning</span></span></div>
+            <div className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-between gap-2"><span className="font-semibold text-ink">Sarang.md <span className="font-normal text-faint">/ A space to think clearly.</span></span><span className="flex flex-wrap items-center gap-4"><Link to="/profile" className="hover:text-ink hover:underline">Profile</Link><Link to="/settings" className="hover:text-ink hover:underline">Settings</Link><Link to="/mirrors" className="hover:text-ink hover:underline">Mirrors</Link><a href={SUITE.study.siteUrl} className="hover:text-ink hover:underline">Study with Sarang</a><a href={SUITE.md.downloadsUrl} className="hover:text-ink hover:underline">Downloads</a><span className="font-mono text-[10px] uppercase tracking-[0.1em] text-faint">Made for the love of learning</span></span></div>
           </footer>
         </main>
       </div>
@@ -150,6 +152,8 @@ function AppShell() {
       <TooltipOverlay />
       <Toaster />
       <DesktopBridge />
+      <WebUpdatePrompt />
+      <PasswordSetupDialog />
       {aiEnabled && !examActive && (tutorLoaded ? <Suspense fallback={<TutorLauncher />}><TutorPanel /></Suspense> : <TutorLauncher />)}
     </div>
   );

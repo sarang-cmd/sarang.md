@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { mkdtemp, readFile, rm } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -50,20 +51,36 @@ for (const unit of catalog.units) {
       }
     }
     if (topic.collection !== 'syllabus') continue;
-    const prose = content.replace(/\$[^$\n]+\$/g, ' formula ');
+    const isBook = existsSync(path.join(root, 'source-material/textbook', `${topic.id.replace(/\s+/g, '_')}.md`));
+    const bodyOnly = content.split('\n## Formula booklet')[0];
+    const prose = bodyOnly.replace(/\$\$[\s\S]+?\$\$/g, ' ').replace(/\$[^$\n]+\$/g, ' formula ');
     const proseWords = prose.match(/[\p{L}\p{N}][\p{L}\p{N}’'-]*/gu)?.length ?? 0;
+    if (isBook) {
+      // Textbook chapter: at least 2,000 words of prose (every inline formula counts as one word, display maths as none).
+      assert(proseWords >= 2000, `Textbook chapter ${topic.id} has only ${proseWords} prose words; the minimum is 2000`);
+      assert(!content.includes('—'), `Em dash in textbook chapter ${topic.id}`);
+      for (const heading of ['Learning objectives','Core ideas','Worked examples','Using your GDC','Common mistakes','Exam technique and command terms','Connections','Check your understanding','Answers','Summary']) {
+        assert(content.includes(`## ${heading}`) || content.includes(`### ${heading}`), `Missing textbook section ${heading}: ${topic.id}`);
+      }
+      assert(content.includes('not an IB publication'), `Textbook disclaimer missing: ${topic.id}`);
+      for (const match of content.matchAll(/\$\$([\s\S]+?)\$\$/g)) {
+        try { katex.renderToString(match[1], { displayMode: true, throwOnError: true, strict: 'ignore' }); renderedMath++; }
+        catch (error) { throw new Error(`Invalid display math in ${topic.id}: ${match[1].slice(0, 60)}: ${error.message}`); }
+      }
+    } else {
     assert(proseWords >= 400 && proseWords <= 500, `Lesson ${topic.id} has ${proseWords} words, outside the 400 to 500 word target`);
     assert(new Set(content.split(/\s+/)).size > 80, `Duplicated lesson ${topic.id}`);
     assert(!content.includes('—'), `Em dash in original lesson ${topic.id}`);
     for (const heading of ['Understand the idea','Formula, meaning and conditions','Worked example','Smaller skills within this topic','Why the method works','A contrasting worked route','Transfer and validation','Exam lens','A mistake worth catching','Try it yourself','Checked answer']) {
       assert(content.includes(`## ${heading}`), `Missing section ${heading}: ${topic.id}`);
     }
+    }
     assert(depth[topic.id]?.skills.length >= 3, `No smaller skills for ${topic.id}`);
     assert(content.includes(bookletEdition), `Edition not identified in ${topic.id}`);
     if (printedEntries[topic.id]) {
       assert(content.includes(`printed p. ${printedEntries[topic.id][0]} (PDF p. ${printedEntries[topic.id][0] + 2})`), `Booklet reference mismatch in ${topic.id}`);
     } else assert(content.includes('no dedicated printed row'), `Booklet disclaimer missing in ${topic.id}`);
-    for (const match of content.matchAll(/\$([^$\n]+)\$/g)) {
+    for (const match of content.replace(/\$\$[\s\S]+?\$\$/g, ' ').matchAll(/\$([^$\n]+)\$/g)) {
       try { katex.renderToString(match[1], { throwOnError: true, strict: 'ignore' }); renderedMath++; }
       catch (error) { throw new Error(`Invalid math in ${topic.id}: ${match[1]}: ${error.message}`); }
     }

@@ -1,4 +1,5 @@
 import { copyFile, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { lessons as number } from '../source-material/lessons/number.mjs';
@@ -59,7 +60,12 @@ for (const definition of definitions) {
     const extra = depth[code];
     if (!extra || extra.skills.length < 3 || !extra.why || !extra.edge || !extra.connection) throw new Error(`Missing expanded lesson pathways for ${code}`);
     const pathways = extra.skills.map((skill, index) => `${index + 1}. ${skill}`).join('\n');
-    const markdown = `# ${title}\n\n> **${code} · ${level}** · Original Sarang.md course lesson, not an IB publication.\n\n## Understand the idea\n\n${idea}\n\n## Formula, meaning and conditions\n\n${formula}\n\n${bookletNote(code)}\n\n## Worked example\n\n${worked}\n\n## Smaller skills within this topic\n\nPractise each skill separately, then combine them in problems:\n\n${pathways}\n\n## Why the method works\n\n${extra.why}\n\n## A contrasting worked route\n\n${extra.edge}\n\n## Transfer and validation\n\n${extra.connection}\n\n## Exam lens\n\n${exam} This is a practice lens, not a prediction of an examination question.\n\n## A mistake worth catching\n\n${mistake}\n\n## Try it yourself\n\n${check}\n\n## Checked answer\n\n${answer}\n\n---\n\nVerify conditions and your final value independently.\n\n[${definition.name} master guide](/units/${definition.slug}/master-guide) · [View formula booklet](/formula-booklet) · [Browse original paper practice](/practice)\n`;
+    const legacyMarkdown = `# ${title}\n\n> **${code} · ${level}** · Original Sarang.md course lesson, not an IB publication.\n\n## Understand the idea\n\n${idea}\n\n## Formula, meaning and conditions\n\n${formula}\n\n${bookletNote(code)}\n\n## Worked example\n\n${worked}\n\n## Smaller skills within this topic\n\nPractise each skill separately, then combine them in problems:\n\n${pathways}\n\n## Why the method works\n\n${extra.why}\n\n## A contrasting worked route\n\n${extra.edge}\n\n## Transfer and validation\n\n${extra.connection}\n\n## Exam lens\n\n${exam} This is a practice lens, not a prediction of an examination question.\n\n## A mistake worth catching\n\n${mistake}\n\n## Try it yourself\n\n${check}\n\n## Checked answer\n\n${answer}\n\n---\n\nVerify conditions and your final value independently.\n\n[${definition.name} master guide](/units/${definition.slug}/master-guide) · [View formula booklet](/formula-booklet) · [Browse original paper practice](/practice)\n`;
+    // A full textbook chapter (source-material/textbook/<code>.md) replaces the short lesson when it exists.
+    const bookFile = path.join(root, 'source-material/textbook', `${code.replace(/\s+/g, '_')}.md`);
+    const markdown = existsSync(bookFile)
+      ? `${(await readFile(bookFile, 'utf8')).trim()}\n\n## Formula booklet\n\n${bookletNote(code)}\n\n---\n\n[${definition.name} master guide](/units/${definition.slug}/master-guide) · [View formula booklet](/formula-booklet) · [Browse original paper practice](/practice)\n`
+      : legacyMarkdown;
     if (markdown.includes('—')) throw new Error(`New lesson contains an em dash: ${code}`);
     await writeFile(path.join(folder, file), markdown);
     topics.push({ id: code, file, title, category: code.startsWith('AHL') ? 'AA HL extension' : 'SL foundations',

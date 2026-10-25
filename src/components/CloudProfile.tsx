@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Session } from '@supabase/supabase-js';
 import { Cloud, CloudDownload, CloudUpload, Github, LogOut, Mail, ShieldCheck } from 'lucide-react';
 import { supabase } from '../lib/supabaseClient';
+import { sendReset, verifyResetCode } from '../lib/authSetup';
 import { useProfileStore } from '../store/useProfileStore';
 import type { VaultEnvelope } from '../lib/profileVault';
 import { notify } from './ui/toast';
@@ -28,6 +29,9 @@ export function CloudProfile() {
     notify({ title: success ? 'Cloud account updated' : 'Cloud action needs attention', message: value.slice(0, 200), variant: success ? 'success' : 'error', id: 'cloud-action' });
   }
   const [consent, setConsent] = useState(false);
+  const [resetting, setResetting] = useState(false);
+  const [resetSent, setResetSent] = useState(false);
+  const [resetCode, setResetCode] = useState('');
   const vaultStatus = useProfileStore((state) => state.status);
   const vault = useProfileStore();
   const uploadReason = busy ? 'Another cloud action is in progress.' : !loaded ? copyError ? 'Cloud copy check failed. Retry it below before uploading.' : 'Checking the cloud copy first.' :
@@ -79,6 +83,15 @@ export function CloudProfile() {
       setPassword('');
       setMessage(response.data.session ? 'Cloud account connected. Your local vault has not been uploaded.' : 'Account created. Check your email if this project requires confirmation, then sign in.');
     } catch (error) { setMessage(describe(error)); }
+    finally { setBusy(false); }
+  }
+  async function resetPassword() {
+    if (!email.trim() || !email.includes('@')) { setMessage('Enter your account email first.'); return; }
+    setMessage(''); setBusy(true);
+    try {
+      if (!resetSent) { await sendReset(email); setResetSent(true); setMessage('If this email has a cloud account, a reset link and a code are on its way. Use the link, or type the code below.'); }
+      else { await verifyResetCode(email, resetCode); setResetCode(''); setResetSent(false); setResetting(false); }
+    } catch (problem) { setMessage(describe(problem)); }
     finally { setBusy(false); }
   }
   async function sendEmailLink() {
@@ -141,10 +154,16 @@ export function CloudProfile() {
     <p>Connect an account, then explicitly upload or restore an <strong>AES-GCM encrypted</strong> local vault. Cloud login and local vault unlock are separate. Your vault password and decrypted contents never go to Supabase. Sync is manual so you can resolve conflicts rather than silently overwriting progress.</p>
     <p className="profile-fine">This feature needs the included RLS migration installed in your Supabase project. A public publishable key alone cannot create the table or confirm that RLS is active. Do not upload until policies have been installed and tested.</p>
     {message && <p role="status" className="mt-4 rounded-lg border border-line bg-surface p-3 text-[12px] leading-relaxed">{message}</p>}
-    {!session ? <form className="profile-form" onSubmit={(event) => { event.preventDefault(); void authenticate('signIn'); }}>
+    {!session && resetting ? <form className="profile-form" onSubmit={(event) => { event.preventDefault(); void resetPassword(); }}>
+      <h3 className="text-[14px] font-semibold">Reset your cloud account password</h3>
+      <label>Account email<input type="email" required autoComplete="email" value={email} onChange={(event) => setEmail(event.target.value)} /></label>
+      {resetSent && <label>Code from the email<input inputMode="numeric" autoComplete="one-time-code" required value={resetCode} onChange={(event) => setResetCode(event.target.value.replace(/\D/g, ''))} /></label>}
+      <div className="flex flex-wrap gap-2"><button type="submit" disabled={busy} className="primary-button">{resetSent ? 'Check the code' : 'Email me a reset link and code'}</button><button type="button" disabled={busy} onClick={() => { setResetting(false); setResetSent(false); }} className="secondary-button">Back to sign in</button></div>
+      <span className="profile-fine">This resets only the cloud account password. Your local vault password is never sent anywhere and cannot be reset this way.</span>
+    </form> : !session ? <form className="profile-form" onSubmit={(event) => { event.preventDefault(); void authenticate('signIn'); }}>
       <label>Account email<input type="email" required autoComplete="email" value={email} onChange={(event) => setEmail(event.target.value)} /></label>
       <label>Cloud account password<input type="password" required minLength={8} autoComplete="current-password" value={password} onChange={(event) => setPassword(event.target.value)} /></label>
-      <div className="flex flex-wrap gap-2"><button type="submit" disabled={busy} className="primary-button">Sign in</button><button type="button" disabled={busy} onClick={() => { if (email.includes('@')) void authenticate('signUp'); else setMessage('Enter an email before creating an account.'); }} className="secondary-button">Create cloud account</button><button type="button" disabled={busy} onClick={() => void sendEmailLink()} className="secondary-button"><Mail size={14} className="mr-2" /> Email a sign-in link</button></div>
+      <div className="flex flex-wrap gap-2"><button type="submit" disabled={busy} className="primary-button">Sign in</button><button type="button" disabled={busy} onClick={() => { if (email.includes('@')) void authenticate('signUp'); else setMessage('Enter an email before creating an account.'); }} className="secondary-button">Create cloud account</button><button type="button" disabled={busy} onClick={() => void sendEmailLink()} className="secondary-button"><Mail size={14} className="mr-2" /> Email a sign-in link</button><button type="button" data-testid="forgot-password" disabled={busy} onClick={() => { setResetting(true); setMessage(''); }} className="secondary-button">Forgot password?</button></div>
       <span className="profile-fine">The account password is sent to Supabase Auth over HTTPS. It is not your local vault password and is not saved inside the profile.</span>
       <div className="w-full border-t border-line pt-5"><p className="mb-3 text-[11px] font-semibold">Or use a connected sign-in provider</p><div className="flex flex-wrap gap-2"><button type="button" disabled={busy} onClick={() => void signInWithProvider('google')} className="secondary-button"><span aria-hidden="true" className="mr-2 inline-flex h-5 w-5 items-center justify-center rounded-full border border-line font-bold">G</span> Continue with Google</button><button type="button" disabled={busy} onClick={() => void signInWithProvider('github')} className="secondary-button"><Github size={15} className="mr-2" /> Continue with GitHub</button></div><p className="profile-fine mt-3 flex items-center gap-2"><Mail size={14} aria-hidden="true" /> Email sign-in is available above. These three methods authenticate a cloud account; none unlocks your separate local vault.</p></div>
     </form> : <div className="mt-5 space-y-5 text-[12px]">

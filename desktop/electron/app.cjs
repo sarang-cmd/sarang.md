@@ -179,13 +179,13 @@ function setupIpc() {
 }
 
 function setupUpdater() {
-  const test = !app.isPackaged && process.env.SMD_UPDATE_API ? { apiBase: process.env.SMD_UPDATE_API, allow: () => true } : {};
+  const test = !app.isPackaged && process.env.SMD_UPDATE_API ? { feed: `${process.env.SMD_UPDATE_API}/updates/latest.json`, allow: () => true } : {};
   updater = createUpdater({
-    version: app.getVersion(), store, net: test, defaultRepo: pkg.smdUpdate?.repo ?? '', disabled: Boolean(process.windowsStore),
+    version: app.getVersion(), store, net: test, defaultRepo: test.feed || pkg.smdUpdate?.feed || '', disabled: Boolean(process.windowsStore),
     send: (state) => { send('smd:update', state); refreshTray(); }, notify: (text) => toast(text, 'Open Sarang.md and choose Update now.'),
-    openExternal: (url) => { if (/^https:\/\/github\.com\//.test(url)) void shell.openExternal(url); },
+    openExternal: (url) => { if (/^https:\/\/[a-z0-9.-]+\.vercel\.app\//i.test(url) || (test.feed && url.startsWith(process.env.SMD_UPDATE_API))) void shell.openExternal(url); },
     installDir: () => (!app.isPackaged && process.env.SMD_UPDATE_FAKE_INSTALL) || (installed() ? path.dirname(process.execPath) : null),
-    canSelfUpdate: () => installed() && isWin && !process.windowsStore || Boolean(test.apiBase && process.env.SMD_UPDATE_FAKE_INSTALL),
+    canSelfUpdate: () => installed() && isWin && !process.windowsStore || Boolean(test.feed && process.env.SMD_UPDATE_FAKE_INSTALL),
     quit: () => { quitting = true; app.quit(); },
     spawn: process.env.SMD_UPDATE_SPAWN_LOG && !app.isPackaged
       ? (command, args) => { fs.appendFileSync(process.env.SMD_UPDATE_SPAWN_LOG, `${JSON.stringify([command, args])}\n`); return { unref() {}, on() {} }; }

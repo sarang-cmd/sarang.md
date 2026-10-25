@@ -12,7 +12,7 @@ const path = require('node:path');
 const { spawn } = require('node:child_process');
 if (process.platform === 'linux' && !process.env.DISPLAY) { console.log('Skipped: no display (use xvfb-run).'); process.exit(0); }
 const { _electron: electron } = require('playwright-core');
-const { startMockGithub } = require('./_mock-github.cjs');
+const { startMockFeed } = require('./_mock-feed.cjs');
 const root = path.join(__dirname, '..');
 const electronPath = require('electron');
 const shots = process.env.SMD_SHOTS || ''; if (shots) fs.mkdirSync(shots, { recursive: true });
@@ -21,7 +21,7 @@ const pass = (m) => console.log(`PASS ${m}`);
 
 (async () => {
   assert.ok(fs.existsSync(path.join(root, 'app', 'index.html')), 'run node scripts/build-app.cjs first');
-  const gh = await startMockGithub();
+  const gh = await startMockFeed();
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'smd-shell-'));
   const log = path.join(tmp, 'spawn.log'); const installDir = path.join(tmp, 'installed'); fs.mkdirSync(installDir);
   const env = { ...process.env, XDG_CONFIG_HOME: path.join(tmp, 'config'), ELECTRON_DISABLE_SECURITY_WARNINGS: '1', SMD_UPDATE_API: gh.url, SMD_UPDATE_FAKE_INSTALL: installDir, SMD_UPDATE_TMP: path.join(tmp, 'dl'), SMD_UPDATE_SPAWN_LOG: log, SMD_UPDATE_FIRST_MS: '900000' };
@@ -85,8 +85,8 @@ const pass = (m) => console.log(`PASS ${m}`);
   await card.getByRole('switch', { name: /Keep running in the tray/ }).click(); await sleep(300);
   pass('window settings take effect');
 
-  // 7. Updates against a stand-in for GitHub.
-  assert.equal(await card.getByLabel('GitHub repository').inputValue(), 'sarang-cmd/sarang.md');
+  // 7. Updates against a stand-in for the update feed.
+  assert.equal(await card.getByLabel('Update address').inputValue(), `${gh.url}/updates/latest.json`);
   await card.getByRole('button', { name: /Check now/ }).click();
   const dialog = page.getByRole('dialog', { name: /Version 9.9.9/ }); await dialog.waitFor({ timeout: 10000 });
   await shot('update-prompt');

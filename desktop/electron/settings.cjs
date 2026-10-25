@@ -10,7 +10,7 @@ const defaults = {
   dark: false,
   zoom: 0,              // Chromium zoom level, 0 is 100%
   bounds: null,         // { x, y, width, height, maximized }
-  updateRepo: '',       // "owner/repository"; empty uses the one built into the app
+  updateRepo: '',       // update feed address (https, vercel.app); empty uses the one built into the app
   updateAuto: true,
   updateSkip: '',
   trayHintShown: false,

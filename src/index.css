@@ -368,3 +368,7 @@ html[data-ui-density='compact'] main[data-ui-area='practice'] .bank-collection-n
 .studio-button-primary { border-color: rgb(var(--ink)); background: rgb(var(--ink)); color: rgb(var(--canvas)); }
 .studio-button-primary:hover { background: rgb(var(--ink)); opacity: .85; }
 .studio-button:disabled { opacity: .45; cursor: not-allowed; }
+
+/* No visible scrollbars anywhere. Scrolling by wheel, trackpad, touch and keyboard works as before. */
+html, body, * { scrollbar-width: none; -ms-overflow-style: none; }
+*::-webkit-scrollbar, *::-webkit-scrollbar-thumb, *::-webkit-scrollbar-track { display: none; width: 0; height: 0; background: transparent; }

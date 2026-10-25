@@ -2,7 +2,7 @@
 
 The Sarang.md website in its own window. It is the same React code as the site (`../src`), packed with Electron. No Python, no server, no account.
 
-* **Download:** [Sarang-md-Windows.exe](https://github.com/sarang-cmd/sarang.md/releases/latest/download/Sarang-md-Windows.exe) (always the newest release), or pick a version on the [releases page](https://github.com/sarang-cmd/sarang.md/releases).
+* **Download:** [Sarang-md-Windows.exe](https://sarang-md.vercel.app/downloads/Sarang-md-Windows.exe) (always the newest release), or see every version and its checksum on the [downloads page](https://sarang-md.vercel.app/downloads/).
 * **First run:** the single `.exe` is also the installer. It opens an animated setup (welcome, options, progress, done) that copies the app to `%LOCALAPPDATA%\Programs\Sarang.md` and, only if you tick them, creates Start menu and desktop shortcuts and "Open at login". "Run without installing" is also offered. Uninstall from Windows "Apps & features"; your profile and notes are kept unless you tick the box.
 * **SmartScreen:** the file is signed with a self-made certificate, which proves it was not changed after signing but is not trusted by Windows yet. Click "More info", then "Run anyway". Compare the SHA-256 on the release page if you want to be sure.
 
@@ -42,4 +42,4 @@ macOS: the same source builds with `npm run dist:mac` on a Mac. It is not publis
 
 1. Bump `version` in `package.json` (root) and `desktop/package.json`, update `CHANGELOG.md`.
 2. Build, sign, checksum (above). The file must be named `Sarang-md-x.y.z.exe`.
-3. Create a GitHub release `vX.Y.Z` and upload `Sarang-md-x.y.z.exe`, `Sarang-md-x.y.z.exe.sha256` and a copy named `Sarang-md-Windows.exe` (the stable download link). Installed apps pick it up within hours.
+3. Put the signed exe in an assets folder and run `node site/build.mjs` from the Study with Sarang repository (it writes the downloads page, the feed with the SHA-256 and the stable `Sarang-md-Windows.exe` link), then deploy with `vercel deploy --prebuilt --prod`. Installed apps pick it up within hours. See that repository's `docs/DEPLOYMENT_GUIDE.md`.

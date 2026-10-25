@@ -9,7 +9,7 @@ import { FocusScience } from '../components/FocusScience';
 import { SoundMixer } from '../components/SoundMixer';
 import { notify } from '../components/ui/toast';
 import { StudyTimer } from '../components/StudyTimer';
-import { DownloadCard } from '../components/DownloadApp';
+import { DownloadBanner, DownloadCard } from '../components/DownloadApp';
 import { PLAYLIST_KEY, SOURCE_PLAYLIST, defaultVideoPlaylist, parseVideoLink, readVideoPlaylist } from '../lib/videoPlaylist';
 import type { VideoItem } from '../lib/videoPlaylist';
 
@@ -174,6 +174,7 @@ export function FocusPage() {
 
   return <div className="mx-auto w-full max-w-[1160px] px-5 pb-28 pt-9 sm:px-9 sm:pt-12 lg:px-12 xl:px-16">
     <Breadcrumbs items={[{ label: 'Home', to: '/' }, { label: 'Focus studio' }]} />
+    <DownloadBanner className="mb-8" />
     <div className="flex flex-wrap items-end justify-between gap-5"><div><p className="section-label mb-5">Focus studio / audio and motion</p><h1 className="text-[clamp(3rem,6vw,5.2rem)] font-semibold leading-[1.06] tracking-[-0.07em]">A little space<br />to concentrate<span className="text-faint">.</span></h1><p className="mt-5 max-w-[600px] text-[14px] leading-[1.8] text-muted sm:text-[15px]">Original procedural ambience alongside the 10-video playlist you shared. Customize the queue, move the controls, and start playback when you choose.</p></div><div className="flex flex-wrap items-center gap-2"><button type="button" onClick={() => setStudioFloating((value) => !value)} className="studio-button">{studioFloating ? <Minimize2 size={15} /> : <Maximize2 size={15} />}{studioFloating ? 'Dock studio' : 'Move studio window'}</button><button type="button" onClick={() => setSoundWindowOpen(true)} className="studio-button"><Waves size={15} /> Pop out sound</button></div></div>
 
     <div ref={studioDrag.panel} className={studioFloating ? 'movable-window fixed z-[86] max-h-[min(82vh,900px)] w-[min(960px,calc(100vw-20px))] overflow-y-auto rounded-2xl border border-line bg-canvas p-3 shadow-float sm:p-5' : 'mt-12'} style={studioFloating ? { left: studioDrag.position.x, top: studioDrag.position.y } : undefined}>

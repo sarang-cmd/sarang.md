@@ -4,6 +4,8 @@
 
 Use [REQUESTS_VS_IMPLEMENTATION.md](REQUESTS_VS_IMPLEMENTATION.md) for the feature comparison and [NEXT_STEPS_AND_IDEAS.md](NEXT_STEPS_AND_IDEAS.md) for engineering work that an agent or developer *can* do.
 
+> **Update (Request 6):** hosting, downloads and app updates now live only on Vercel (see `docs/DEPLOYMENT_GUIDE.md` in the Study with Sarang repository). Section B below is the old GitHub route; it is optional now and only matters if you still keep the source on GitHub. The Pages workflow is archived in `docs/archive/`.
+
 ## A. Before making any site public
 
 - [ ] **Choose the destination and visibility.** Confirm which GitHub repository and branch you control, whether GitHub Pages, Vercel or another host will serve it, and the final HTTPS URL. The five addresses on the Mirrors page are references, not proof of deployment or ownership. No deployment was performed here.

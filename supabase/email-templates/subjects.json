@@ -1,0 +1,10 @@
+{
+  "confirmation": "Confirm your Sarang.md email",
+  "magic_link": "Your Sarang.md sign-in link",
+  "recovery": "Reset your Sarang.md password",
+  "email_change": "Confirm your new Sarang.md email address",
+  "invite": "You are invited to Sarang.md",
+  "reauthentication": "Your Sarang.md security code: {{ .Token }}",
+  "identity_linked_notification": "A sign-in method was linked to your Sarang.md account",
+  "identity_unlinked_notification": "A sign-in method was removed from your Sarang.md account"
+}

@@ -30,7 +30,7 @@ Sarang.md is a quiet place to think. It is not a gamified classroom, a loud prod
 - Lock clears decrypted profile contents and tutor credentials from application state. An encrypted file backup or a manually uploaded Supabase copy can transfer a complete profile to another browser; cloud restore still requires the local vault password. Plain summaries deliberately exclude keys and private file text.
 - Browser-picked course Markdown is in a separate, existing IndexedDB library and is **not encrypted or included** in profile backups. Theme and focus video links also have separate unencrypted browser preferences. State this distinction wherever it could surprise a learner.
 - A model request sends a personal API key, prompt, chat, and selected document excerpt directly to the chosen provider. Browser CORS limitations and session exposure are real; do not promise otherwise or claim proof of neurological benefits from generated focus sound.
-- The verified repository link is `https://github.com/sarang-cmd/sarang.md`. Never imply a successful push or deployment without checking the remote state; the five mirror addresses do not prove deployment or ownership.
+- Hosting, downloads and updates are on Vercel only (`https://sarang-md.vercel.app/`). The repository `https://github.com/sarang-cmd/sarang.md` is only a source backup. Never imply a successful push or deployment without checking the remote state; the five mirror addresses do not prove deployment or ownership.
 
 ## Engineering touchpoints
 

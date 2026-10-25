@@ -1,14 +1,14 @@
 # Sarang.md
 
-A grayscale, static-hostable Mathematics AA HL/SL study space with 83 original syllabus lessons of roughly 400 to 500 words, five 800+ word strand master guides, 1,003 original practice questions (90 longer curated tasks plus 913 parameterized skill variations), 20 preserved earlier notes, 22 bundled supplied notes, and a separate archive of 50 unverified transcriptions. Built with Vite, React, TypeScript, Tailwind, React Markdown/KaTeX, Fuse.js, and Zustand. Reading and practice need no account; optional Supabase Auth supports manual encrypted cloud backups.
+A grayscale, static-hostable Mathematics AA HL/SL study space with 83 original syllabus lessons (the 50 topics of Units 1 to 3 are full textbook chapters of 2,000 to 3,500 words; Units 4 and 5 are still short lessons of roughly 400 to 500 words), five 800+ word strand master guides, 1,003 original practice questions (90 longer curated tasks plus 913 parameterized skill variations), 20 preserved earlier notes, 22 bundled supplied notes, and a separate archive of 50 unverified transcriptions. Built with Vite, React, TypeScript, Tailwind, React Markdown/KaTeX, Fuse.js, and Zustand. Reading and practice need no account; optional Supabase Auth supports manual encrypted cloud backups.
 
 For a current scope audit, read [Requests vs implementation](REQUESTS_VS_IMPLEMENTATION.md). For actions only the project owner can take, use the [owner setup checklist](OWNER_SETUP_CHECKLIST.md). [Remaining steps and optional ideas](NEXT_STEPS_AND_IDEAS.md) separates release blockers from future enhancements.
 
 ## Download the desktop app (Windows)
 
-[![Download for Windows](https://img.shields.io/badge/Download-Sarang.md%20for%20Windows-171717?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/sarang-cmd/sarang.md/releases/latest/download/Sarang-md-Windows.exe)
+[![Download for Windows](https://img.shields.io/badge/Download-Sarang.md%20for%20Windows-171717?style=for-the-badge&logo=windows&logoColor=white)](https://sarang-md.vercel.app/downloads/Sarang-md-Windows.exe)
 
-One signed `.exe` with its own window: the whole course, the question bank, the formula booklet and the focus corner work offline, and your encrypted profile stays on your computer. Run it once and an animated setup offers a Start menu entry, a desktop shortcut and "Open at login" (all optional). An updater checks GitHub Releases, verifies the SHA-256 and asks before it installs anything. Windows SmartScreen may ask you to confirm once because the certificate is self-made (More info, then Run anyway). Details, build steps and the security model are in [desktop/README.md](desktop/README.md). The website and the app are the same code and get every update together.
+One signed `.exe` with its own window: the whole course, the question bank, the formula booklet and the focus corner work offline, and your encrypted profile stays on your computer. Run it once and an animated setup offers a Start menu entry, a desktop shortcut and "Open at login" (all optional). An updater reads a feed on the website (`sarang-md.vercel.app/updates/latest.json`), verifies the SHA-256 and asks before it installs anything. Windows SmartScreen may ask you to confirm once because the certificate is self-made (More info, then Run anyway). Details, build steps and the security model are in [desktop/README.md](desktop/README.md). The website and the app are the same code and get every update together.
 
 | | |
 | --- | --- |
@@ -19,7 +19,7 @@ One signed `.exe` with its own window: the whole course, the question bank, the 
 ### The Sarang suite
 
 * **Sarang.md** (this repo): IB Mathematics AA HL/SL lessons, question bank, mark schemes, formula booklet, tutor. [Website](https://sarang-md.vercel.app/)
-* **[Study with Sarang](https://github.com/sarang-cmd/study-with-sarang)**: ambient sound, goals, a floating timer and an assistant for any subject. [Landing page](https://sarang-cmd.github.io/study-with-sarang/)
+* **[Study with Sarang](https://sarang-md.vercel.app/study-with-sarang/)**: ambient sound, goals, a floating timer and an assistant for any subject. [Downloads](https://sarang-md.vercel.app/study-with-sarang/downloads/)
 
 Same grayscale design, same local-first privacy, same release process. Each has a website and a Windows app.
 
@@ -79,7 +79,7 @@ Files such as `02_Arithmetic_Sequences (2).md` work without renaming. A leading 
 
 ## Included five-strand course and original practice
 
-The included course covers **83 distinct supplied outline codes** in Number and Algebra (16), Functions (16), Geometry and Trigonometry (18), Statistics and Probability (14), and Calculus (19). It distinguishes AA SL foundations from AA HL extensions. Each strand begins with an original 800+ word master guide. Individual lessons now include a topic-specific second route, three or more smaller skills, method reasoning, edge cases and a separate checked self-test; they run 404 to 500 prose words each under the project's math-stripped word counter. The [course writing guide](CONTENT_WRITING_GUIDE.md) remains in the source archive, not the learner-facing course catalog.
+The included course covers **83 distinct supplied outline codes** in Number and Algebra (16), Functions (16), Geometry and Trigonometry (18), Statistics and Probability (14), and Calculus (19). It distinguishes AA SL foundations from AA HL extensions. Each strand begins with an original 800+ word master guide. In Units 1 to 3 (Number and Algebra, Functions, Geometry and Trigonometry) every topic is a full original textbook chapter with learning objectives, core ideas, worked examples with marks, GDC advice, common mistakes, exam technique, connections, ten check questions with answers and a summary; their source is `source-material/textbook/` and `npm run check:data` fails any chapter under 2,000 prose words. In Units 4 and 5 individual lessons still include a topic-specific second route, three or more smaller skills, method reasoning, edge cases and a separate checked self-test; they run 404 to 500 prose words each under the project's math-stripped word counter. The [course writing guide](CONTENT_WRITING_GUIDE.md) remains in the source archive, not the learner-facing course catalog.
 
 The learner's earlier supplied **IBO 2023 Version 1.0 AA HL formula booklet** was checked for printed section labels and page references. Lesson notes identify direct entries precisely and say when that edition has no dedicated row. See the source-only [formula booklet cross-check](FORMULA_BOOKLET_AUDIT.md), including corrections about permutations and distance versus displacement. The copyright PDF itself is not republished in this static archive. The new **Formula booklet** button opens an owner-provided Google Drive preview on request or a private PDF selected in your own browser; it does not put the PDF on our server. Google controls inside its own viewer cannot be removed by this app. The outline's 3,981 question figures are **quoted external counts**, not questions in this project or copied prompts.
 
@@ -99,9 +99,9 @@ Use the sidebar **Exam mode** switch to start a timed practice attempt of 5 to 3
 
 Every question accepts a typed answer. In **Review all answers**, compare your working with independent guides, see exact-value matches on supported numeric targets, and award your own marks. Written answers and self-marks are encrypted at rest when your local profile is unlocked; without one, they stay in memory in the current tab and disappear on refresh. The saved-answer view includes previous timed answers from an unlocked profile. AI critique is only an optional, explicitly confirmed request when AI is enabled and your own provider key is configured; it never supplies an official grade. Switch **AI features** off under `/#/settings` to remove the tutor and block AI calls. In those Settings, **Original / Old** or **Organized / New** switches the *whole app*; you can override questions, reading, profile or tools individually and adjust spacing or theme. Interface preferences are device-local and do not contain written answers.
 
-## Deploy to GitHub Pages or any static host
+## Deploy (Vercel, or any static host)
 
-Deploy the **contents of `dist/`**. The app uses hash URLs (`/#/units/...` and `/#/question-bank`) and a relative Vite base, so it works under `/` or `/your-repo/` without SPA rewrites. For GitHub Pages, push the project and select **Settings → Pages → Build and deployment → GitHub Actions**; `.github/workflows/deploy.yml` publishes on pushes to `master`. Browser-picked files are not bundled or deployed; each reader can choose their own folder in their browser.
+Deploy the **contents of `dist/`**. The app uses hash URLs (`/#/units/...` and `/#/question-bank`) and a relative Vite base, so it works under `/` or `/your-repo/` without SPA rewrites. The live site is the Vercel project `sarang.md` at `https://sarang-md.vercel.app/`, together with the downloads page (`/downloads/`), the update feed (`/updates/latest.json`) and the Study with Sarang path (`/study-with-sarang/`). The sites are generated and deployed with `site/build.mjs` in the Study with Sarang repository; its `docs/DEPLOYMENT_GUIDE.md` has the steps. The old GitHub Pages workflow is archived in `docs/archive/`. Browser-picked files are not bundled or deployed; each reader can choose their own folder in their browser.
 
 ## Navigation, notifications and component paths
 
