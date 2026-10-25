@@ -419,9 +419,10 @@ html, body, * { scrollbar-width: none; -ms-overflow-style: none; }
 .mo-send svg { width: 20px; height: 20px; }
 .mo-send[data-ready] { background: #fff; color: #111; }
 .mo-send:active { transform: scale(.94); }
-.mo-orb { position: absolute; left: 50%; top: 50%; width: 220px; height: 220px; inset: auto; margin: -110px 0 0 -110px; border-radius: 0; pointer-events: none; }
+.mo-orb { position: absolute; inset: auto; left: 50%; top: 50%; width: 220px; height: 220px; margin: -110px 0 0 -110px; border-radius: 0; pointer-events: none; }
 .mo-pulse { inset: auto; left: 50%; top: 50%; width: 132px; height: 132px; margin: -66px 0 0 -66px; border: 2px solid rgba(255, 255, 255, .6); border-radius: 50%; opacity: 0; pointer-events: none; }
-.mo-answer { display: flex; flex-direction: column; gap: 6px; padding: 14px 18px; opacity: var(--hOp); outline: none; overflow: hidden; }
+.mo-answer { display: flex; flex-direction: column; gap: 6px; padding: 14px 18px; opacity: var(--hOp); outline: none; overflow: hidden; pointer-events: none; }
+.mo-root[data-phase='answered'] .mo-answer { pointer-events: auto; user-select: text; }
 .mo-a-head { display: flex; align-items: center; gap: 8px; font-family: SFMono-Regular, Consolas, 'Liberation Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: .17em; text-transform: uppercase; color: rgba(255, 255, 255, .55); }
 .mo-a-dot { width: 8px; height: 8px; border-radius: 50%; background: #fff; transform: scale(var(--dotS)); }
 .mo-a-body { margin: 0; font-size: 13.5px; line-height: 1.45; color: #ededed; overflow: hidden; }
@@ -429,8 +430,8 @@ html, body, * { scrollbar-width: none; -ms-overflow-style: none; }
 
 .mo-status { --sOp: 0; --sTy: 6; position: absolute; left: 50%; top: calc(46% + 102px); width: 240px; height: 24px; margin-left: -120px; opacity: var(--sOp); transform: translateY(calc(var(--sTy) * 1px)); pointer-events: none; }
 .mo-lab { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 4px; font-size: 14px; letter-spacing: .01em; color: rgba(255, 255, 255, .75); }
-.mo-lab.mo-in { animation: mo-in .35s ease both; }
-.mo-lab.mo-out { animation: mo-out .35s ease both; }
+.mo-lab.mo-in { animation: mo-in .3s ease .16s both; }
+.mo-lab.mo-out { animation: mo-out .16s ease both; }
 .mo-lab-t { background: linear-gradient(100deg, rgba(255, 255, 255, .45) 30%, #fff 50%, rgba(255, 255, 255, .45) 70%); background-size: 250% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: mo-shimmer 1.8s linear infinite; }
 .mo-dots { display: inline-flex; gap: 3px; }
 .mo-dots i { width: 3px; height: 3px; border-radius: 50%; background: rgba(255, 255, 255, .8); animation: mo-dot 1.2s infinite; }

@@ -2,6 +2,11 @@
 
 Newest first. Website version / desktop app version.
 
+## 1.3.1 / 1.2.1, 2026-10-25: the Ask orb buttons work
+
+* Fix: **the buttons in the Ask orb did not respond to real clicks.** The invisible answer card lay on top of the input and the send button, the full-width title row lay on top of the close button, and the "Ask another" button sat under the background. Each now lets clicks through. The earlier tests clicked by script, which hid the problem; the orb is now tested with real mouse events.
+* Fix: **the orb was drawn off-centre** (a CSS ordering slip pushed it up and to the left of its frame) and the "Searching" and "Done" labels overlapped while they changed. The orb is centred and the old label now fades before the new one appears.
+
 ## 1.3.0 / 1.2.0, 2026-10-25: Units 4 and 5, long-form questions and the Ask orb
 
 * New: **33 full textbook chapters** for Statistics and Probability (SL 4.1 to AHL 4.14) and Calculus (SL 5.1 to AHL 5.19), in the same format as Units 1 to 3. All 83 chapters now run at least 2,000 prose words (about 211,000 words in total); the Units 4 and 5 numbers were checked with Python, SymPy or SciPy while writing.

@@ -109,10 +109,10 @@ export default function AskOrb({ onClose }: { onClose: () => void }) {
 
   return <div role="dialog" aria-modal="true" aria-label="Ask Sarang">
     <MorphOrb onSubmit={answer} minThinkMs={2200} copy={{ placeholder: history.current.length ? 'Ask a follow-up…' : 'Ask a maths question…', answerTitle: 'Your next step', reset: 'Ask another' }} />
-    <button type="button" onClick={onClose} aria-label="Close Ask Sarang" className="fixed right-4 top-4 z-[95] inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition-colors hover:bg-white/15"><X size={18} aria-hidden="true" /></button>
-    <div className="fixed left-0 right-0 top-5 z-[95] flex flex-col items-center gap-2 px-16">
+    <button type="button" onClick={onClose} aria-label="Close Ask Sarang" className="fixed right-4 top-4 z-[97] inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition-colors hover:bg-white/15"><X size={18} aria-hidden="true" /></button>
+    <div className="pointer-events-none fixed left-0 right-0 top-5 z-[95] flex flex-col items-center gap-2 px-16">
       <p className="pointer-events-none text-center font-mono text-[10px] font-semibold uppercase tracking-[0.17em] text-white/55">Ask Sarang · Socratic maths tutor · hints, not answers</p>
-      <div role="group" aria-label="Hint step" className="flex flex-wrap items-center justify-center gap-1">
+      <div role="group" aria-label="Hint step" className="pointer-events-auto flex flex-wrap items-center justify-center gap-1">
         {levels.map((option) => <button key={option.value} type="button" aria-pressed={level === option.value} title={option.detail} onClick={() => setLevel(option.value)}
           className={`rounded-full border px-2.5 py-1 text-[10.5px] font-semibold transition-colors ${level === option.value ? 'border-white bg-white text-[#111]' : 'border-white/20 text-white/70 hover:bg-white/10'}`}>{option.value} · {option.label}</button>)}
       </div>
