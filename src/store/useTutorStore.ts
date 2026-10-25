@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import type { MarkStep } from '../types';
-import type { Subject } from '../lib/tutorApi';
+import type { ChatMessage, Subject } from '../lib/tutorApi';
 import { useSettingsStore } from './useSettingsStore';
 import { isExamActive, useExamStore } from './useExamStore';
 
@@ -13,6 +13,8 @@ export interface StudyContext {
   sourceStatus?: string;
   /** Held in memory and sent to a provider only after deliberate reveal. */
   scheme?: MarkStep[];
+  /** Conversation carried over from the Ask orb, shown when no saved chat exists. */
+  seedMessages?: ChatMessage[];
 }
 
 interface TutorState {

@@ -1,7 +1,7 @@
 {
   "name": "sarang-md-desktop",
   "private": true,
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Sarang.md for the desktop: IB Mathematics lessons, a question bank with mark schemes, a formula booklet, a tutor and a calm focus corner, in their own window.",
   "scripts": {
     "app": "node scripts/build-app.cjs",

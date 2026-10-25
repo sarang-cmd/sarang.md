@@ -96,7 +96,7 @@ export function TutorPanel() {
     setBusy(false); setReveal(false); setError(''); setInput(''); setImage(null); setTyping(null);
     const chatId = `${context?.key ?? `general:${effectiveSubject}`}:hint`;
     const saved = profileStatus === 'unlocked' ? useProfileStore.getState().profile?.chats.find((item) => item.id === chatId) : null;
-    setMessages(saved?.messages ?? []);
+    setMessages(saved?.messages ?? context?.seedMessages ?? []);
     if (saved) setLevel(saved.guidanceLevel);
   }, [context?.key, context?.route, effectiveSubject, profileStatus]);
   useEffect(() => { conversationEnd.current?.scrollIntoView({ block: 'nearest' }); }, [messages, view, typing?.visible]);

@@ -2,11 +2,11 @@
 
 Newest first. Website version / desktop app version.
 
-## 1.3.0, 2026-10-25: Units 4 and 5, long-form questions and the Ask orb
+## 1.3.0 / 1.2.0, 2026-10-25: Units 4 and 5, long-form questions and the Ask orb
 
 * New: **33 full textbook chapters** for Statistics and Probability (SL 4.1 to AHL 4.14) and Calculus (SL 5.1 to AHL 5.19), in the same format as Units 1 to 3. All 83 chapters now run at least 2,000 prose words (about 211,000 words in total); the Units 4 and 5 numbers were checked with Python, SymPy or SciPy while writing.
 * New: **66 long-form practice questions**, two for each of the 33 Unit 4 and 5 codes (29 Paper 1 style, 37 Paper 2 style, 482 marks). Mark schemes use M, A, R and AG marks in the style of an examiner's guide. They are independently written, not IB mark schemes. `npm run build:long` recomputes every stated number from `source-material/practice/long/` and fails the build when a number, part mark total or TeX expression is wrong. The main bank now holds 1,069 questions (531 Paper 1, 528 Paper 2, 10 Paper 3).
-* New: the **Ask orb**, a MorphOrb-style thinking orb and input in the top bar (only when AI features are on and no exam is running). Without an API key in this wrapper it shows a local, honest hand-off and opens the tutor for the real answer.
+* New: the **Ask orb** is the front door of the AI Socratic tutor. Press Ask in the top bar (only when AI is on and no exam is running), type a maths question and watch the orb think. With an API key saved in your unlocked encrypted profile, the reply is live from your own provider at the hint step you choose (1 Orient to 5 Almost there), with follow-ups remembered. Without a key you get the same offline guiding question as the tutor panel. "Continue in the tutor" carries the whole conversation into the tutor panel. Hints only, never the solution; nothing is sent until you press send.
 * Not done: the 3,981 questions quoted in the outline are not reproduced, and the long-form set does not yet cover Units 1 to 3.
 
 ## 1.2.0 / 1.1.0, 2026-10-25: textbook chapters for Units 1 to 3
