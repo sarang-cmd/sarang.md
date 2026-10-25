@@ -4,12 +4,14 @@ import { p3 } from './questions/p3';
 import { coverageP1, coverageP2 } from './questions/coverage';
 import { assemble } from './questions/types';
 import expanded from './questions/expanded.json';
+import longForm from './questions/long.json';
 import type { AuthoredQuestion, ExamPaper } from './questions/types';
 
 export type { AuthoredQuestion, ExamPaper } from './questions/types';
 export const originalExamQuestions: AuthoredQuestion[] = [
   ...assemble('P1', [...p1, ...coverageP1]), ...assemble('P2', [...p2, ...coverageP2]), ...assemble('P3', p3),
   ...(expanded as AuthoredQuestion[]),
+  ...(longForm as AuthoredQuestion[]),
 ];
 if (new Set(originalExamQuestions.map((item) => item.id)).size !== originalExamQuestions.length) {
   throw new Error('Original paper question IDs must be unique.');

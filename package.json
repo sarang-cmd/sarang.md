@@ -1,7 +1,7 @@
 {
   "name": "sarang-md",
   "private": true,
-  "version": "1.2.0",
+  "version": "1.3.0",
   "type": "module",
   "scripts": {
     "sync:local": "node scripts/sync-local.mjs",
@@ -14,13 +14,14 @@
     "sync:ib": "node scripts/build-ib-bank.mjs",
     "sync:course": "node scripts/build-course.mjs",
     "sync:practice": "node scripts/build-practice.mjs",
-    "check:data": "node scripts/check-ib-bank.mjs && node scripts/check-course.mjs && node scripts/check-expanded-numerics.mjs && node scripts/check-inventory.mjs && node scripts/check-sql.mjs",
+    "check:data": "node scripts/build-long.mjs && node scripts/check-ib-bank.mjs && node scripts/check-course.mjs && node scripts/check-expanded-numerics.mjs && node scripts/check-inventory.mjs && node scripts/check-sql.mjs",
     "test:profile": "node --test scripts/test-profile.mjs",
     "test:tutor": "node --test scripts/test-tutor.mjs",
     "test:sounds": "node scripts/test-sounds.mjs",
     "test:invite": "node scripts/test-invite.mjs",
     "emails": "node scripts/build-email-templates.mjs",
-    "emails:check": "node scripts/build-email-templates.mjs --check"
+    "emails:check": "node scripts/build-email-templates.mjs --check",
+    "build:long": "node scripts/build-long.mjs"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.3.3",

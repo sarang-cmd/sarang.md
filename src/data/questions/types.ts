@@ -13,6 +13,8 @@ export interface AuthoredQuestion {
   scheme: MarkStep[];
   /** Generated from an original, code-specific worked practice family. */
   variant?: boolean;
+  /** Hand-written multi-part question with an M/A/R mark scheme (see scripts/build-long.mjs). */
+  long?: boolean;
 }
 export type Draft = {
   code: string | string[];

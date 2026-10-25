@@ -91,9 +91,10 @@ try {
   const file = path.join(temp, 'questions.mjs');
   await build({ entryPoints: ['src/data/originalExam.ts'], outfile: file, platform: 'node', format: 'esm', bundle: true });
   const { originalExamQuestions: bank, paperTotals } = await import(pathToFileURL(file).href);
-  assert.equal(bank.length, 1003, 'Expected 90 preserved originals plus 913 authored skill variations');
+  assert.equal(bank.length, 1069, 'Expected 90 preserved originals, 913 skill variations and 66 long-form questions');
   assert.equal(bank.filter((item) => item.variant).length, 913);
-  assert.equal(bank.filter((item) => !item.variant).length, 90);
+  assert.equal(bank.filter((item) => item.long).length, 66);
+  assert.equal(bank.filter((item) => !item.variant && !item.long).length, 90);
   assert.equal(new Set(bank.map((item) => item.id)).size, bank.length);
   assert.equal(new Set(bank.map((item) => item.prompt)).size, bank.length, 'Do not publish duplicate prompts');
   assert.deepEqual(new Set(bank.flatMap((item) => item.codes)), new Set(outlineCodes),

@@ -1,7 +1,7 @@
 import { DownloadPill } from './DownloadApp';
-import { useEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import type { FormEvent, KeyboardEvent } from 'react';
-import { ArrowRight, BookOpen, CornerDownLeft, FolderOpen, Menu, Moon, PanelLeft, Search as SearchIcon, Sun, UserRound, Waves, X } from 'lucide-react';
+import { ArrowRight, BookOpen, CornerDownLeft, FolderOpen, Menu, Moon, PanelLeft, Search as SearchIcon, Sparkles, Sun, UserRound, Waves, X } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useCatalog } from '../context/CatalogContext';
 import { useTopicSearch } from '../hooks/useTopicSearch';
@@ -10,6 +10,10 @@ import { useVaultStore } from '../store/useVaultStore';
 import { useProfileStore } from '../store/useProfileStore';
 import { notify } from './ui/toast';
 import type { Topic } from '../types';
+import { useSettingsStore } from '../store/useSettingsStore';
+import { isExamActive, useExamStore } from '../store/useExamStore';
+
+const AskOrb = lazy(() => import('./AskOrb'));
 
 const tabs = [
   { label: 'Home', to: '/' },
@@ -28,6 +32,9 @@ export function Header() {
   const sidebarOpen = useVaultStore((state) => state.sidebarOpen);
   const toggleSidebar = useVaultStore((state) => state.toggleSidebar);
   const toggleTheme = useVaultStore((state) => state.toggleTheme);
+  const aiEnabled = useSettingsStore((state) => state.aiEnabled);
+  const examActive = useExamStore((state) => isExamActive(state.attempt));
+  const [askOpen, setAskOpen] = useState(false);
   const setLocalDialogOpen = useVaultStore((state) => state.setLocalDialogOpen);
   const [query, setQuery] = useState('');
   const [suggestionsOpen, setSuggestionsOpen] = useState(false);
@@ -87,6 +94,7 @@ export function Header() {
   }
 
   return (
+    <>
     <header className="sticky top-0 z-[70] h-[72px] border-b border-line bg-canvas/95 backdrop-blur-xl">
       <div className="relative flex h-full w-full items-center justify-between gap-2 px-3 sm:gap-3 sm:px-6 lg:px-8">
         <div className="flex min-w-0 shrink-0 items-center gap-2 sm:gap-4">
@@ -187,6 +195,7 @@ export function Header() {
 
           <DownloadPill />
           <Link to="/focus" aria-label="Focus studio" data-tip="Focus studio" className="hidden h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line text-muted hover:border-ink hover:text-ink xl:inline-flex"><Waves size={16} strokeWidth={1.7} aria-hidden="true" /></Link>
+          {aiEnabled && !examActive && <button type="button" onClick={() => setAskOpen(true)} aria-label="Ask Sarang" data-tip="Ask a quick maths question" className="inline-flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full border border-line bg-canvas text-[11px] font-semibold text-muted hover:border-ink hover:text-ink xl:w-auto xl:px-3"><Sparkles size={16} aria-hidden="true" /><span className="hidden xl:inline">Ask</span></button>}
           <Link to="/formula-booklet" aria-label="Formula booklet" data-tip="Open formula booklet" aria-current={pathname === '/formula-booklet' ? 'page' : undefined} className="inline-flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full border border-line bg-canvas text-[11px] font-semibold text-muted hover:border-ink hover:text-ink xl:w-auto xl:px-3"><BookOpen size={16} aria-hidden="true" /><span className="hidden xl:inline">Booklet</span></Link>
           <Link to="/profile" aria-label={`Study profile, ${profileStatus}`} aria-current={pathname === '/profile' ? 'page' : undefined} data-tip="Open study profile"
             className={`relative inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border transition-colors hover:border-ink hover:text-ink ${pathname === '/profile' ? 'border-ink bg-ink text-canvas' : 'border-line text-muted'}`}>
@@ -219,5 +228,7 @@ export function Header() {
         </div>
       </div>
     </header>
+    {askOpen && <Suspense fallback={null}><AskOrb onClose={() => setAskOpen(false)} /></Suspense>}
+    </>
   );
 }
