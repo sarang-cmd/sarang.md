@@ -29,6 +29,7 @@ import { useProfileStore } from './store/useProfileStore';
 import { useDraftStore } from './store/useDraftStore';
 import { Link } from 'react-router-dom';
 import { Github } from 'lucide-react';
+import { Analytics } from '@vercel/analytics/react';
 
 // The Markdown + KaTeX reader and question bank load only when opened.
 const TopicPage = lazy(() => import('./pages/TopicPage').then((module) => ({ default: module.TopicPage })));
@@ -156,5 +157,10 @@ function AppShell() {
 }
 
 export default function App() {
-  return <CatalogProvider><FocusProvider><AppShell /></FocusProvider></CatalogProvider>;
+  return (
+    <>
+      <CatalogProvider><FocusProvider><AppShell /></FocusProvider></CatalogProvider>
+      <Analytics />
+    </>
+  );
 }
