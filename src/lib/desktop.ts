@@ -21,6 +21,8 @@ export interface DesktopBridge {
   setTheme(dark: boolean): void;
   notify(title: string, body: string): void;
   openExternal(url: string): void;
+  discordUpdate(payload: { config: { enabled: boolean; appId: string }; activity: unknown }): void;
+  onDiscordStatus(callback: (status: { status: string; detail: string }) => void): () => void;
   onRoute(callback: (path: string) => void): () => void;
   update: UpdateBridge;
 }

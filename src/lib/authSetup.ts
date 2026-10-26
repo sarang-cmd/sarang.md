@@ -1,5 +1,5 @@
 import { useSyncExternalStore } from 'react';
-import { supabase } from './supabaseClient';
+import { openedWith, supabase, supabaseForEmailLinks } from './supabaseClient';
 
 /**
  * Email links (invitation, password reset, confirmation, magic link, new address) and the password setup that two of them need.
@@ -22,6 +22,22 @@ const TYPES = new Set(['signup', 'invite', 'magiclink', 'recovery', 'email_chang
 /** Reads `?token_hash=&type=` from the address, removes it at once, and checks it. Returns null when the address has no email link. */
 export async function consumeEmailLink(): Promise<LinkResult | null> {
   if (typeof location === 'undefined') return null;
+  // Links made for any device arrive as `#access_token=...&refresh_token=...&type=recovery` (or `#error_code=otp_expired`).
+  const fromHash = new URLSearchParams(openedWith.slice(openedWith.indexOf('#') + 1).replace(/^\//, ''));
+  if (openedWith.includes('#') && (fromHash.get('error_code') || fromHash.get('error_description'))) {
+    const expired = /expired|invalid/i.test(`${fromHash.get('error_description') ?? ''} ${fromHash.get('error_code') ?? ''}`);
+    try { history.replaceState(null, '', `${location.pathname}#/profile`); } catch { /* Not critical. */ }
+    return { ok: false, title: 'That email link did not work', message: expired ? 'It may have expired or been opened already (some email programs open links ahead of you). Ask for a new email and open the link straight away.' : 'Ask for a new email and try again.' };
+  }
+  const access = fromHash.get('access_token'), refresh = fromHash.get('refresh_token'), kind = fromHash.get('type') ?? '';
+  if (openedWith.includes('#') && access && refresh && TYPES.has(kind)) {
+    try { history.replaceState(null, '', `${location.pathname}#/profile`); } catch { /* Not critical. */ }
+    const { data, error } = await supabase.auth.setSession({ access_token: access, refresh_token: refresh });
+    if (error || !data.session) return { ok: false, title: 'That email link did not work', message: 'It may have expired or been used already. Ask for a new email and try again.' };
+    const who = data.session.user.email ?? '';
+    if (kind === 'invite' || kind === 'recovery') { openSetup({ kind, email: who }); return { ok: true, title: kind === 'invite' ? 'Invitation accepted' : 'Link confirmed', message: 'Choose a password to finish.' }; }
+    return { ok: true, title: 'Done', message: kind === 'email_change' ? 'Your new email address is confirmed.' : 'Email confirmed. You are signed in.' };
+  }
   const params = new URLSearchParams(location.search);
   const tokenHash = params.get('token_hash'); const type = params.get('type') ?? '';
   if (!tokenHash || !TYPES.has(type)) return null;
@@ -43,8 +59,15 @@ export async function savePassword(password: string) {
 }
 
 /** Sends the reset email (a link and a code). The answer never reveals whether an address has an account. */
+export const HOSTED_URL = 'https://sarang-md.vercel.app/';
+/** Where an email link should land: this page on the website, or the website itself when this is the desktop app or a local preview (they cannot receive links). */
+export function linkTarget(): string {
+  const { protocol, hostname, origin, pathname } = location;
+  if (!/^https?:$/.test(protocol) || hostname === 'localhost' || hostname === '127.0.0.1' || hostname.endsWith('.localhost')) return HOSTED_URL;
+  return `${origin}${pathname}`;
+}
 export async function sendReset(email: string) {
-  const { error } = await supabase.auth.resetPasswordForEmail(email.trim(), { redirectTo: `${location.origin}${location.pathname}` });
+  const { error } = await supabaseForEmailLinks().auth.resetPasswordForEmail(email.trim(), { redirectTo: linkTarget() });
   if (error && !/not found/i.test(error.message)) throw error;
 }
 /** Checks the code from the reset email. On success the password setup opens. */

@@ -10,6 +10,7 @@ const common = require('./common.cjs');
 const { createStore } = require('./settings.cjs');
 const { createUpdater } = require('./updater.cjs');
 const { createTray } = require('./tray.cjs');
+const { createDiscord } = require('./discord.cjs');
 
 const { APP_NAME, HOST, ORIGIN, isWin, isMac } = common;
 const MIME = {
@@ -29,7 +30,7 @@ function cspFor(html) {
 }
 const FULL_DEFAULT = { width: 1360, height: 860 };
 
-let win = null; let store = null; let tray = null; let updater = null; let quitting = false;
+let win = null; let store = null; let tray = null; let updater = null; let discord = null; let quitting = false;
 let forceHidden = false;
 const pkg = (() => { try { return require('../package.json'); } catch { return {}; } })();
 const installed = () => app.isPackaged && fs.existsSync(path.join(path.dirname(process.execPath), 'install.json'));
@@ -170,6 +171,11 @@ function setupIpc() {
   ipcMain.on('smd:theme', (event, dark) => { if (!trusted(event)) return; nativeTheme.themeSource = dark ? 'dark' : 'light'; store.patch({ dark: dark === true }); win?.setBackgroundColor(dark ? '#0b0b0b' : '#ffffff'); });
   ipcMain.on('smd:notify', (event, title, body) => { if (trusted(event) && typeof title === 'string' && typeof body === 'string') toast(title, body, { onlyIfHidden: false }); });
   ipcMain.on('smd:open-external', (event, url) => { if (trusted(event) && /^https:\/\/[^\s]+$/i.test(String(url))) void shell.openExternal(String(url)); });
+  ipcMain.on('smd:discord-update', (event, payload) => {
+    if (!trusted(event) || !payload || typeof payload !== 'object') return;
+    const config = payload.config && typeof payload.config === 'object' ? { enabled: payload.config.enabled === true, appId: String(payload.config.appId ?? '').slice(0, 24) } : { enabled: false, appId: '' };
+    discord?.update(config, payload.activity);
+  });
   ipcMain.handle('smd:update-get', (event) => (trusted(event) ? updater.get() : null));
   ipcMain.handle('smd:update-check', (event) => (trusted(event) ? updater.check({ manual: true }) : null));
   ipcMain.handle('smd:update-install', (event) => (trusted(event) ? updater.install() : null));
@@ -216,6 +222,7 @@ function ready() {
   ses.setPermissionCheckHandler((wc, permission, origin) => (permission === 'fullscreen' || permission === 'clipboard-sanitized-write') && origin === ORIGIN);
   // YouTube embeds want to know who is asking; the protocol handler sends no referrer.
   ses.webRequest.onBeforeSendHeaders({ urls: ['https://www.youtube.com/*', 'https://www.youtube-nocookie.com/*'] }, (details, callback) => { details.requestHeaders.Referer = `${ORIGIN}/`; callback({ requestHeaders: details.requestHeaders }); });
+  discord = createDiscord({ onStatus: (status) => { try { win?.webContents.send('smd:discord-status', status); } catch { /* Window gone. */ } } });
   setupIpc(); setupUpdater();
   Menu.setApplicationMenu(null);
   try { tray = createTray({ run, getState: trayState }); tray.update(); } catch { tray = null; }
@@ -223,7 +230,7 @@ function ready() {
   forceHidden = hiddenStart && Boolean(tray);
   createWindow({ show: true });
   app.on('activate', () => showWindow());
-  app.on('before-quit', () => { quitting = true; store.flush(); });
+  app.on('before-quit', () => { quitting = true; discord?.stop(); store.flush(); });
   app.on('window-all-closed', () => { if (!isMac) app.quit(); });
   const cmd = process.argv.find((a) => a.startsWith('--cmd='));
   if (cmd) setTimeout(() => run(cmd.slice(6)), 500);

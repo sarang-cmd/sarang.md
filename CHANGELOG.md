@@ -2,6 +2,12 @@
 
 Newest first. Website version / desktop app version.
 
+## 1.4.0 / 1.3.0, 2026-10-26: Discord status, password reset fix, desktop settings on the website
+
+* New: **Discord status (desktop app, off by default).** Shows what you choose on your own Discord profile while you study: reading the textbook, practising, a mock exam, the formula booklet or a focus block, with a live timer and the Sarang.md logo. Seven switches decide what is shown (the chapter name stays private unless you allow it), and a Settings card shows the live connection state and a preview. It talks only to the Discord app on your computer. You supply the Application ID of a Discord application named Sarang.md (the card explains how).
+* Fix: **password reset links.** The page now understands the link Supabase sends (recovery, invite, sign-up and magic links, and expired-link errors), opens the new-password dialog, and sends you to your profile. The reset email asks for a link that works on any device. Supabase's own Site URL for this project still needs to be set to https://sarang-md.vercel.app in the dashboard (Authentication, URL Configuration).
+* New: the website's Settings now shows the desktop-only window and update settings and the Discord card, explained, with a download link, instead of hiding them.
+
 ## 1.3.2 (web only), 2026-10-25: the logo in browser notifications
 
 * New: study-timer notifications in the browser now carry the Sarang.md logo. The desktop app already showed its logo in system notifications, so there is no new desktop build.

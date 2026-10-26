@@ -1,7 +1,7 @@
 {
   "name": "sarang-md",
   "private": true,
-  "version": "1.3.2",
+  "version": "1.4.0",
   "type": "module",
   "scripts": {
     "sync:local": "node scripts/sync-local.mjs",
@@ -19,6 +19,7 @@
     "test:tutor": "node --test scripts/test-tutor.mjs",
     "test:sounds": "node scripts/test-sounds.mjs",
     "test:invite": "node scripts/test-invite.mjs",
+    "test:discord": "node scripts/test-discord.mjs",
     "emails": "node scripts/build-email-templates.mjs",
     "emails:check": "node scripts/build-email-templates.mjs --check",
     "build:long": "node scripts/build-long.mjs"

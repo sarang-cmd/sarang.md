@@ -14,6 +14,8 @@ contextBridge.exposeInMainWorld('sarangDesktop', {
   setBehavior: (patch) => ipcRenderer.invoke('smd:set-behavior', patch),
   setTheme: (dark) => ipcRenderer.send('smd:theme', dark === true),
   notify: (title, body) => ipcRenderer.send('smd:notify', String(title).slice(0, 120), String(body).slice(0, 300)),
+  discordUpdate: (payload) => ipcRenderer.send('smd:discord-update', payload),
+  onDiscordStatus: (callback) => on('smd:discord-status', callback),
   openExternal: (url) => ipcRenderer.send('smd:open-external', String(url).slice(0, 500)),
   onRoute: (callback) => on('smd:route', callback),
   update: {

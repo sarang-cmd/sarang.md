@@ -4,6 +4,7 @@ import { desktop } from '../lib/desktop';
 import type { DesktopInfo } from '../lib/desktop';
 import { megabytes, updateApi, useUpdate } from '../lib/update';
 import { DownloadCard } from './DownloadApp';
+import { DiscordCard } from './DiscordCard';
 import { setSiteStats, siteStatsAvailable, siteStatsEnabled } from '../lib/siteStats';
 
 const ago = (time: number) => {
@@ -38,7 +39,13 @@ export function DesktopSettings() {
   const update = useUpdate();
   useEffect(() => { void desktop?.getInfo().then(setInfo); }, []);
   useEffect(() => { if (update) setRepo((value) => (value === '' ? update.repo : value)); }, [update?.repo]); // eslint-disable-line react-hooks/exhaustive-deps
-  if (!desktop) return <>{siteStatsAvailable() && <StatsRow />}<DownloadCard className="mt-5" /></>;
+  if (!desktop) return <>{siteStatsAvailable() && <StatsRow />}
+    <section data-testid="desktop-only-window" className="mt-5 rounded-2xl border border-line bg-canvas p-6 sm:p-7">
+      <div className="flex items-center gap-2"><MonitorSmartphone size={19} /><h2 className="text-[19px] font-semibold">Window and updates</h2><span className="ml-auto rounded-full border border-line px-2 py-0.5 font-mono text-[10px] text-muted">Desktop app</span></div>
+      <p className="mt-2 max-w-[640px] text-[12px] leading-relaxed text-muted">These settings belong to the desktop app, because a web page cannot control its own window or start with your computer. Everything else on this website works the same as in the app.</p>
+      <ul className="mt-4 grid gap-2 text-[12px] text-muted sm:grid-cols-2">{['Keep running in the tray when you close the window', 'Always on top, handy next to a paper', 'Remember window size and position', 'Open at login, optionally hidden in the tray', 'Update checks with a SHA-256 verified installer', 'Discord status (below)'].map((item) => <li key={item} className="rounded-xl border border-line bg-surface px-3.5 py-2.5">{item}</li>)}</ul>
+      <p className="mt-3 text-[11px] text-muted">On this website, updates simply arrive when you reload the page.</p>
+    </section><DiscordCard /><DownloadCard className="mt-5" /></>;
   if (!info) return null;
   const set = async (patch: Partial<DesktopInfo['behavior']>) => { await desktop?.setBehavior(patch); setInfo({ ...info, behavior: { ...info.behavior, ...patch } }); };
   const busy = update?.status === 'checking' || update?.status === 'downloading' || update?.status === 'launching';
@@ -50,7 +57,7 @@ export function DesktopSettings() {
     : update.status === 'downloading' ? `Downloading and checking the file, ${update.progress}%`
     : update.status === 'launching' ? 'Starting the installer. The app closes and reopens by itself.'
     : update.status === 'error' ? update.error : `Version ${update.current}. Last checked ${ago(update.checkedAt)}.`;
-  return <section aria-labelledby="desktop-heading" data-testid="desktop-settings" className="mt-5 rounded-2xl border border-line bg-canvas p-6 sm:p-7">
+  return <><section aria-labelledby="desktop-heading" data-testid="desktop-settings" className="mt-5 rounded-2xl border border-line bg-canvas p-6 sm:p-7">
     <div className="flex items-center gap-2"><MonitorSmartphone size={19} /><h2 id="desktop-heading" className="text-[19px] font-semibold">Desktop app</h2><span className="ml-auto font-mono text-[10px] text-muted">v{info.version}</span></div>
     <p className="mt-2 max-w-[640px] text-[12px] leading-relaxed text-muted">How the window behaves on this computer. Everything is optional and nothing runs in the background unless you turn it on.</p>
     <div className="mt-5 grid gap-3 lg:grid-cols-2">
@@ -80,5 +87,5 @@ export function DesktopSettings() {
       </div>
       {!update.canSelfUpdate && <p className="mt-3 text-[10px] leading-relaxed text-muted">This copy was not installed with the setup, so it can tell you about updates but cannot replace itself. Run the new exe to install it.</p>}
     </div>}
-  </section>;
+  </section><DiscordCard /></>;
 }

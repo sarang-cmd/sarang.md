@@ -1,6 +1,7 @@
 import { Pause, Play, RotateCcw, Timer } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { desktop } from '../lib/desktop';
+import { publishClock } from '../lib/studyClock';
 import { notify } from './ui/toast';
 
 const KEY = 'sarang-md-study-timer-v1';
@@ -28,6 +29,8 @@ export function StudyTimer() {
   const [running, setRunning] = useState(false);
   const endsAt = useRef(0);
   const plan = plans[saved.plan];
+  useEffect(() => { publishClock({ running, phase, endsAt: running ? endsAt.current : 0 }); }, [running, phase]);
+  useEffect(() => () => publishClock({ running: false, phase: 'work', endsAt: 0 }), []);
   useEffect(() => { try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch { /* Storage can be full or blocked. */ } }, [saved]);
   useEffect(() => {
     if (!running) return;

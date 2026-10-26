@@ -1,4 +1,5 @@
 import { DesktopBridge } from './components/DesktopBridge';
+import { DiscordBridge } from './components/DiscordBridge';
 import { WebUpdatePrompt } from './components/WebUpdatePrompt';
 import { PasswordSetupDialog } from './components/PasswordSetupDialog';
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
@@ -152,6 +153,7 @@ function AppShell() {
       <TooltipOverlay />
       <Toaster />
       <DesktopBridge />
+      <DiscordBridge />
       <WebUpdatePrompt />
       <PasswordSetupDialog />
       {aiEnabled && !examActive && (tutorLoaded ? <Suspense fallback={<TutorLauncher />}><TutorPanel /></Suspense> : <TutorLauncher />)}

@@ -1,6 +1,7 @@
 import { KeyRound } from 'lucide-react';
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { closeSetup, consumeEmailLink, openSetup, savePassword, usePasswordSetup } from '../lib/authSetup';
+import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabaseClient';
 import { notify } from './ui/toast';
 
@@ -12,8 +13,9 @@ export function PasswordSetupDialog() {
   const [problem, setProblem] = useState('');
   const [busy, setBusy] = useState(false);
   const first = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
   useEffect(() => {
-    void consumeEmailLink().then((result) => { if (result) notify({ title: result.title, message: result.message, variant: result.ok ? 'success' : 'error', id: 'email-link' }); });
+    void consumeEmailLink().then((result) => { if (result) navigate('/profile', { replace: true }); if (result) notify({ title: result.title, message: result.message, variant: result.ok ? 'success' : 'error', id: 'email-link' }); });
     // A reset link opened in the browser that asked for it arrives as a recovery event instead.
     const { data } = supabase.auth.onAuthStateChange((event, session) => { if (event === 'PASSWORD_RECOVERY') openSetup({ kind: 'recovery', email: session?.user.email ?? '' }); });
     return () => data.subscription.unsubscribe();

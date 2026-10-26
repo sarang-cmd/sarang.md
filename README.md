@@ -23,6 +23,17 @@ One signed `.exe` with its own window: the whole course, the question bank, the 
 
 Same grayscale design, same local-first privacy, same release process. Each has a website and a Windows app.
 
+## Discord status (desktop app, off by default)
+
+The desktop app can show what you are doing on your own Discord profile: reading the textbook, practising, a mock exam, the formula booklet or a focus block, with a live timer and the Sarang.md logo. Nothing is sent anywhere except to the Discord app on the same computer.
+
+1. In the [Discord Developer Portal](https://discord.com/developers/applications) create an application named **Sarang.md** (that name is what Discord shows after "Playing").
+2. Upload `public/app-icon-512.png` as the application icon (App Information).
+3. Copy the Application ID, then in the app open Settings and paste it into the Discord card (or put it in `DEFAULT_APP_ID` in `src/lib/discord.ts` to ship it to everyone).
+4. Turn on **Show my study status on Discord**. Seven switches control what is shown; the chapter name stays private unless you allow it.
+
+A browser cannot reach Discord's local connection, so the website shows the card as a desktop-only feature with a download link. Test: `npm run test:discord` (and `node desktop/scripts/test-discord-ui.cjs` under `xvfb-run` for the real app).
+
 ## Run and build
 
 Requires Node.js 20+.

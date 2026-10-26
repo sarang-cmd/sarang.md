@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Session } from '@supabase/supabase-js';
 import { Cloud, CloudDownload, CloudUpload, Github, LogOut, Mail, ShieldCheck } from 'lucide-react';
 import { supabase } from '../lib/supabaseClient';
-import { sendReset, verifyResetCode } from '../lib/authSetup';
+import { linkTarget, sendReset, verifyResetCode } from '../lib/authSetup';
 import { useProfileStore } from '../store/useProfileStore';
 import type { VaultEnvelope } from '../lib/profileVault';
 import { notify } from './ui/toast';
@@ -78,7 +78,7 @@ export function CloudProfile() {
     try {
       if (password.length < 8) throw new Error('The cloud account password needs at least 8 characters. Use a different password from your local vault.');
       const response = mode === 'signIn' ? await supabase.auth.signInWithPassword({ email: email.trim(), password }) :
-        await supabase.auth.signUp({ email: email.trim(), password, options: { emailRedirectTo: `${location.origin}${location.pathname}#/profile` } });
+        await supabase.auth.signUp({ email: email.trim(), password, options: { emailRedirectTo: linkTarget() } });
       if (response.error) throw response.error;
       setPassword('');
       setMessage(response.data.session ? 'Cloud account connected. Your local vault has not been uploaded.' : 'Account created. Check your email if this project requires confirmation, then sign in.');
@@ -89,7 +89,7 @@ export function CloudProfile() {
     if (!email.trim() || !email.includes('@')) { setMessage('Enter your account email first.'); return; }
     setMessage(''); setBusy(true);
     try {
-      if (!resetSent) { await sendReset(email); setResetSent(true); setMessage('If this email has a cloud account, a reset link and a code are on its way. Use the link, or type the code below.'); }
+      if (!resetSent) { await sendReset(email); setResetSent(true); setMessage('If this email has a cloud account, a reset email is on its way. Open the link in it (it opens the website, where you choose a new password), or type the code below if the email shows one.'); }
       else { await verifyResetCode(email, resetCode); setResetCode(''); setResetSent(false); setResetting(false); }
     } catch (problem) { setMessage(describe(problem)); }
     finally { setBusy(false); }
@@ -99,7 +99,7 @@ export function CloudProfile() {
     setMessage(''); setBusy(true);
     try {
       const { error } = await supabase.auth.signInWithOtp({ email: email.trim(), options: {
-        emailRedirectTo: `${location.origin}${location.pathname}#/profile`, shouldCreateUser: false,
+        emailRedirectTo: linkTarget(), shouldCreateUser: false,
       } });
       if (error) throw error;
       setMessage('If this email has a cloud account, a sign-in link is on its way. Open it on this device.');
@@ -157,8 +157,8 @@ export function CloudProfile() {
     {!session && resetting ? <form className="profile-form" onSubmit={(event) => { event.preventDefault(); void resetPassword(); }}>
       <h3 className="text-[14px] font-semibold">Reset your cloud account password</h3>
       <label>Account email<input type="email" required autoComplete="email" value={email} onChange={(event) => setEmail(event.target.value)} /></label>
-      {resetSent && <label>Code from the email<input inputMode="numeric" autoComplete="one-time-code" required value={resetCode} onChange={(event) => setResetCode(event.target.value.replace(/\D/g, ''))} /></label>}
-      <div className="flex flex-wrap gap-2"><button type="submit" disabled={busy} className="primary-button">{resetSent ? 'Check the code' : 'Email me a reset link and code'}</button><button type="button" disabled={busy} onClick={() => { setResetting(false); setResetSent(false); }} className="secondary-button">Back to sign in</button></div>
+      {resetSent && <label>Code from the email (if it shows one)<input inputMode="numeric" autoComplete="one-time-code" required value={resetCode} onChange={(event) => setResetCode(event.target.value.replace(/\D/g, ''))} /></label>}
+      <div className="flex flex-wrap gap-2"><button type="submit" disabled={busy} className="primary-button">{resetSent ? 'Check the code' : 'Email me a reset link'}</button><button type="button" disabled={busy} onClick={() => { setResetting(false); setResetSent(false); }} className="secondary-button">Back to sign in</button></div>
       <span className="profile-fine">This resets only the cloud account password. Your local vault password is never sent anywhere and cannot be reset this way.</span>
     </form> : !session ? <form className="profile-form" onSubmit={(event) => { event.preventDefault(); void authenticate('signIn'); }}>
       <label>Account email<input type="email" required autoComplete="email" value={email} onChange={(event) => setEmail(event.target.value)} /></label>
