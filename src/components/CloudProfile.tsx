@@ -6,9 +6,10 @@ import { linkTarget, sendReset, verifyResetCode } from '../lib/authSetup';
 import { useProfileStore } from '../store/useProfileStore';
 import type { VaultEnvelope } from '../lib/profileVault';
 import { notify } from './ui/toast';
+import { CloudPasswordReset } from './CloudPasswordReset';
 
 type CloudCopy = { envelope: VaultEnvelope; revision: string; updated_at: string };
-const describe = (error: unknown) => error instanceof Error ? error.message : 'Could not complete the request.';
+const describe = (error: unknown) => error instanceof Error ? error.message : typeof (error as { message?: unknown })?.message === 'string' ? String((error as { message: string }).message) : 'Could not complete the request.';
 
 export function CloudProfile() {
   const [session, setSession] = useState<Session | null>(null);
@@ -171,6 +172,7 @@ export function CloudProfile() {
       {copyError && <div role="alert" className="rounded-lg border border-line bg-surface p-3"><p className="!mt-0 text-[11px] font-semibold">Cloud status could not be checked.</p><p className="break-words text-[11px]">{copyError}</p><button type="button" onClick={() => void refreshCopy(session.user.id)} className="secondary-button mt-3">Retry cloud check</button></div>}
       <div className="border-t border-line pt-5"><h3>Upload an encrypted copy</h3><p>Includes encrypted progress, provider keys, private document text, chats, school and avatar. Supabase receives only ciphertext, a random salt/IV and account-linked timestamps.</p><label className="mt-4 flex items-start gap-2 text-[11px] leading-relaxed"><input type="checkbox" checked={consent} onChange={(event) => setConsent(event.target.checked)} className="mt-1 accent-ink" /> I understand the encrypted vault includes my private profile, and this upload replaces an older cloud copy only after confirmation.</label><button type="button" disabled={!!uploadReason} title={uploadReason || 'Send the encrypted envelope to this cloud account'} onClick={() => void upload()} className="secondary-button mt-4"><CloudUpload size={14} className="mr-2" /> Upload encrypted vault</button><p role="status" className="profile-fine">{uploadReason || 'Ready to upload. A stored cloud copy will require confirmation before replacement.'}</p></div>
       <div className="border-t border-line pt-5"><h3>Restore from the cloud</h3><p>Enter your <strong>local vault password</strong>, not your cloud account password. Restoring replaces this browser's encrypted vault after confirmation.</p><label className="profile-form"><span className="text-[11px] font-semibold">Local vault password</span><input type="password" value={vaultPassword} onChange={(event) => setVaultPassword(event.target.value)} autoComplete="off" placeholder="Password used for your encrypted profile" /></label><button type="button" disabled={!!restoreReason} title={restoreReason || 'Decrypt the latest copy using your local password'} onClick={() => void download()} className="secondary-button mt-4"><CloudDownload size={14} className="mr-2" /> Restore encrypted copy</button><p role="status" className="profile-fine">{restoreReason || 'Ready to restore. You will confirm replacing any local vault.'}</p></div>
+      <CloudPasswordReset userId={session.user.id} copy={copy} disabled={busy} onChanged={(next) => { setCopy(next); setLoaded(true); }} />
     </div>}
   </section>;
 }

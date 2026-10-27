@@ -2,6 +2,13 @@
 
 Newest first. Website version / desktop app version.
 
+## 1.4.1 / 1.3.1, 2026-10-27: change the password of the encrypted cloud copy
+
+* New: **Change the password of the cloud copy** (Profile, Encrypted cloud copy). With the current vault password, the copy is decrypted on your device, locked again with a new password (12 to 256 characters) and uploaded; only ciphertext is sent, and the profile saved in this browser can be switched to the same password in one step. A wrong current password changes nothing.
+* New: **I forgot the password.** The password never leaves your device, so it cannot be reset by email and nobody can recover the copy. The page says so and offers the honest way out: keep any unlocked device open to change the password and upload again, or delete the cloud copy (type DELETE) and start a new profile. This needs the new database function in `supabase/migrations/202610270001_delete_private_vault.sql` (already installed on the live project).
+* Fix: cloud errors from Supabase now show their real message instead of "Could not complete the request".
+* Tests: `npm run test:vault-reset`, and `desktop/scripts/test-cloud-password-ui.cjs` drives the real page against a stand-in server.
+
 ## 1.4.0 / 1.3.0, 2026-10-26: Discord status, password reset fix, desktop settings on the website
 
 * New: **Discord status (desktop app, off by default).** Shows what you choose on your own Discord profile while you study: reading the textbook, practising, a mock exam, the formula booklet or a focus block, with a live timer and the Sarang.md logo. Seven switches decide what is shown (the chapter name stays private unless you allow it), and a Settings card shows the live connection state and a preview. It talks only to the Discord app on your computer. It ships with the Sarang.md Discord application, so nothing needs setting up (you can still paste your own Application ID).
