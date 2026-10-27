@@ -42,13 +42,9 @@ const pass = (m) => console.log(`PASS ${m}`);
   pass('off by default: no connection, no status');
 
   await flip('Show my study status on Discord');
-  assert.match(await page.locator('[data-testid=discord-status]').innerText(), /Needs an Application ID/);
-  assert.equal(frames.length, 0, 'without an application id nothing is sent');
-  await page.locator('[data-testid=discord-card] input[inputmode=numeric]').fill('123456789012345678');
-  await sleep(1500);
-  assert.equal(frames[0]?.data?.client_id, '123456789012345678', 'the handshake uses the application id');
   await page.waitForFunction(() => /Connected as tester/.test(document.querySelector('[data-testid=discord-status]').textContent), null, { timeout: 8000 });
-  pass('the Discord card connects with your application id');
+  assert.equal(frames[0]?.data?.client_id, '1564528957100134500', 'the built-in Sarang.md application is used without any setup');
+  pass('the Discord card connects with the built-in application id');
 
   await go('#/units'); await sleep(800);
   await go('#/formula-booklet'); await sleep(1200);

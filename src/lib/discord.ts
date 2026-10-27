@@ -16,7 +16,7 @@ export interface DiscordSettings {
   button: boolean;      // A button that links to the website (other people see it, you do not)
 }
 /** The Application ID built into the app. Create the application named "Sarang.md" in the Discord Developer Portal and put its ID here (it is public). */
-export const DEFAULT_APP_ID = '';
+export const DEFAULT_APP_ID = '1564528957100134500';
 export const DISCORD_LOGO = 'https://sarang-md.vercel.app/app-icon-512.png';
 export const defaultDiscord: DiscordSettings = { enabled: false, appId: '', showActivity: true, showTopic: false, showTimer: true, showBreaks: true, showIdle: false, button: false };
 
