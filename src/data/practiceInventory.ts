@@ -5,6 +5,6 @@ import { originalExamQuestions, paperTotals } from './originalExam';
 export const mainBank = { questions: originalExamQuestions.length, papers: paperTotals };
 export const classicBank = { questions: 16, marks: 91 };
 export const suppliedBank = {
-  questions: 50, marks: 309,
-  papers: { P1: { questions: 20, marks: 123 }, P2: { questions: 30, marks: 186 } },
+  questions: 77, marks: 519,
+  papers: { P1: { questions: 47, marks: 333 }, P2: { questions: 30, marks: 186 } },
 };

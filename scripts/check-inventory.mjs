@@ -20,6 +20,6 @@ try {
       questions: supplied.filter((item) => item.paper === paper).length,
       marks: supplied.filter((item) => item.paper === paper).reduce((total, item) => total + item.marks, 0),
     }])) });
-  assert.deepEqual(suppliedBank.papers, { P1: { questions: 20, marks: 123 }, P2: { questions: 30, marks: 186 } });
-  console.log('Verified selector totals: main 531/528/10, classic 16 questions/91 marks, supplied 20/123 + 30/186.');
+  assert.deepEqual(suppliedBank.papers, { P1: { questions: 47, marks: 333 }, P2: { questions: 30, marks: 186 } });
+  console.log(`Verified selector totals: main 531/528/10, classic 16 questions/91 marks, supplied ${supplied.length} questions/${supplied.reduce((total, item) => total + item.marks, 0)} marks.`);
 } finally { await rm(tmp, { recursive: true, force: true }); }

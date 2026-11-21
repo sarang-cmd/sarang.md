@@ -10,7 +10,7 @@ function loadArchive(): Promise<PaperQuestion[]> {
       return response.json() as Promise<unknown>;
     })
     .then((data) => {
-      if (!Array.isArray(data) || data.length !== 50 || !data.every((item) =>
+      if (!Array.isArray(data) || data.length < 50 || !data.every((item) =>
         item && typeof item.id === 'string' && (item.paper === 'P1' || item.paper === 'P2') &&
         typeof item.topic === 'string' && typeof item.prompt === 'string' &&
         typeof item.session === 'string' && typeof item.timeZone === 'string' &&

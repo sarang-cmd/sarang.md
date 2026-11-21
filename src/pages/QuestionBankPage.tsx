@@ -15,6 +15,7 @@ import { useSettingsStore, styleFor } from '../store/useSettingsStore';
 import { MarkdownArticle } from '../components/MarkdownArticle';
 import { StateView } from '../components/StateView';
 import { useQuestionBank } from '../hooks/useQuestionBank';
+import { searchable } from '../lib/search';
 import type { PracticeQuestion } from '../types';
 
 const levels = ['All levels', 'Core', 'Stretch'] as const;
@@ -98,7 +99,7 @@ export function QuestionBankPage() {
   const visible = useMemo(() => questions.filter((question) => {
     const matchesStrand = strand === 'All topics' || question.strand === strand;
     const matchesLevel = level === 'All levels' || question.level === level;
-    const haystack = `${question.id} ${question.topic} ${question.strand} ${question.prompt}`.toLowerCase();
+    const haystack = searchable(question.id, question.topic, question.strand, question.prompt);
     return matchesStrand && matchesLevel && haystack.includes(query.trim().toLowerCase());
   }), [questions, strand, level, query]);
   const totalMarks = questions.reduce((sum, question) => sum + question.marks, 0);

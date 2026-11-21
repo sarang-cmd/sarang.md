@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { ArrowUpRight, BookOpen, ChevronDown, ClipboardCheck, FolderOpen, Grip, Maximize2, NotebookPen, Pin, Settings2, UserRound, Waves } from 'lucide-react';
 import { ExamModeControl } from './ExamControls';
-import { mainBank } from '../data/practiceInventory';
+import { classicBank, mainBank, suppliedBank } from '../data/practiceInventory';
 import { Link, useLocation } from 'react-router-dom';
 import { useCatalog } from '../context/CatalogContext';
 import { availableUnits, groupTopics, topicPath, topicSlug } from '../lib/catalog';
@@ -94,7 +94,7 @@ export function Sidebar() {
             <p className="text-[12px] leading-relaxed text-muted">{mode === 'local' ? 'Your own Markdown, in reading order.' : 'A quiet way through the syllabus.'}</p>
           </div>
           <Link to="/practice" onClick={navigateFromDrawer} className="group mb-2 flex items-center justify-between gap-3 rounded-lg border border-line bg-surface px-3 py-3 transition-colors hover:border-muted hover:bg-raised">
-            <span className="flex items-start gap-2.5"><NotebookPen size={16} strokeWidth={1.7} className="mt-0.5 shrink-0" aria-hidden="true" /><span><span className="block text-[12px] font-semibold">Question Bank</span><span className="mt-1 block text-[10px] leading-relaxed text-muted">Main {mainBank.questions} · Classic 16 · Supplied 50</span></span></span><ArrowUpRight size={14} className="text-muted transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
+            <span className="flex items-start gap-2.5"><NotebookPen size={16} strokeWidth={1.7} className="mt-0.5 shrink-0" aria-hidden="true" /><span><span className="block text-[12px] font-semibold">Question Bank</span><span className="mt-1 block text-[10px] leading-relaxed text-muted">Main {mainBank.questions} · Classic {classicBank.questions} · Supplied {suppliedBank.questions}</span></span></span><ArrowUpRight size={14} className="text-muted transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
           </Link>
           <ExamModeControl />
           <Link to="/review" onClick={navigateFromDrawer} className="group mb-2 flex items-center justify-between gap-3 rounded-lg border border-line px-3 py-3 transition-colors hover:border-muted hover:bg-surface"><span className="flex items-center gap-2.5"><ClipboardCheck size={16} strokeWidth={1.7} aria-hidden="true" /><span className="text-[12px] font-semibold">Review all answers</span></span><ArrowUpRight size={14} className="text-muted" aria-hidden="true" /></Link>

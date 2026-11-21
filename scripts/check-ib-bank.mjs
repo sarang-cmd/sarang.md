@@ -8,9 +8,12 @@ const archive = await load('public/content/ib-bank/archive.json');
 const original = await load('public/content/question-bank/sequences-and-series.json');
 const notes = await load('public/content/manifest.json');
 const assert = (condition, message) => { if (!condition) throw new Error(message); };
-assert(archive.length === 50, 'The new archive must contain 50 transcribed questions.');
-assert(archive.filter((item) => item.paper === 'P1').length === 20, 'Expect 20 P1-labeled items.');
-assert(archive.filter((item) => item.paper === 'P2').length === 30, 'Expect 30 P2-labeled items.');
+// The first 50 come from the two paper attachments; the rest are the later supplied files.
+const preserved = archive.filter((item) => /^IB-[12]-\d\d$/.test(item.id));
+assert(preserved.length === 50, 'The original 50 transcribed questions must remain.');
+assert(preserved.filter((item) => item.paper === 'P1').length === 20, 'Expect 20 P1-labeled items in the original set.');
+assert(preserved.filter((item) => item.paper === 'P2').length === 30, 'Expect 30 P2-labeled items in the original set.');
+assert(archive.length >= 50, 'The archive must never shrink.');
 assert(new Set(archive.map((item) => item.id)).size === archive.length, 'Archive IDs must be unique.');
 assert(original.length === 16 && notes.length === 20, 'The 16 original questions and 20 notes must remain.');
 for (const entry of archive) {
@@ -22,6 +25,11 @@ for (const entry of archive) {
       try { katex.renderToString(match[1], { throwOnError: true, strict: 'ignore' }); }
       catch (problem) { throw new Error(`Invalid math in ${entry.id}: ${problem.message}`); }
     }
+    // Later supplied files use $...$ delimiters, so both forms are rendered here.
+    for (const match of text.matchAll(/\$([^$]+)\$/g)) {
+      try { katex.renderToString(match[1], { throwOnError: true, strict: 'ignore' }); }
+      catch (problem) { throw new Error(`Invalid $ math in ${entry.id}: ${problem.message}`); }
+    }
   }
 }
-console.log('Verified 50 transcriptions, 50 independent suggested schemes and final-value checks, 16 existing questions and 20 original notes.');
+console.log(`Verified ${archive.length} transcriptions, ${archive.length} independent suggested schemes and final-value checks, 16 existing questions and 20 original notes.`);

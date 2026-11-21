@@ -2249,5 +2249,1393 @@
       }
     ],
     "notices": []
+  },
+  {
+    "id": "IB-L-01",
+    "sourceQuestion": 1,
+    "sourceFile": "Logs and Proofs Past IB Questions.md",
+    "paper": "P1",
+    "topic": "Logarithms",
+    "marks": 6,
+    "session": "November 2006",
+    "timeZone": "Time Zone 0 (TZ0)",
+    "code": "N06/5/MATHL/HP1/ENG/TZ0/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Solve the equation \\(9\\log_5 x = 25\\log_x 5\\), expressing your answers in the form \\(5^{\\frac{p}{q}}\\), where \\(p, q \\in \\mathbb{Z}\\).",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "Write $t=\\log_5 x$. Then $\\log_x 5=\\frac{1}{t}$, so the equation becomes $9t=\\frac{25}{t}$.",
+        "marks": 2
+      },
+      {
+        "code": "M1",
+        "text": "Multiply by $t$: $9t^2=25$, so $t=\\pm\\frac{5}{3}$.",
+        "marks": 2
+      },
+      {
+        "code": "A1",
+        "text": "$x=5^{5/3}$ or $x=5^{-5/3}$. Both values are positive, so both satisfy the original equation.",
+        "marks": 2
+      }
+    ],
+    "checks": [
+      {
+        "label": "Exponent in the larger solution, as p/q",
+        "value": 1.6666666666666667,
+        "tolerance": 0.001
+      },
+      {
+        "label": "Exponent in the smaller solution, as p/q",
+        "value": -1.6666666666666667,
+        "tolerance": 0.001
+      }
+    ],
+    "notices": [
+      "The supplied file gives no topic; the topic shown was assigned by this app from the question content.",
+      "The supplied file does not state a mark total, so this app assigns 6 marks for its own guide."
+    ]
+  },
+  {
+    "id": "IB-L-02",
+    "sourceQuestion": 2,
+    "sourceFile": "Logs and Proofs Past IB Questions.md",
+    "paper": "P1",
+    "topic": "Logarithms",
+    "marks": 5,
+    "session": "November 2008",
+    "timeZone": "Time Zone 0 (TZ0)",
+    "code": "N08/5/MATHL/HP1/ENG/TZ0/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Write \\(\\ln(x^2-1) - 2\\ln(x+1) + \\ln(x^2+x)\\) as a single logarithm, in its simplest form.",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "Use the power law $2\\ln(x+1)=\\ln(x+1)^2$, then the sum and difference laws to form one logarithm.",
+        "marks": 2
+      },
+      {
+        "code": "A1",
+        "text": "$(x^2-1)(x^2+x)=x(x-1)(x+1)^2$, so the factor $(x+1)^2$ cancels against the denominator.",
+        "marks": 2
+      },
+      {
+        "code": "A1",
+        "text": "The expression is $\\ln\\left(x(x-1)\\right)$, valid for $x>1$.",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "ln 6, the simplified value at x = 3 (4 d.p.)",
+        "value": 1.791759,
+        "tolerance": 0.001
+      }
+    ],
+    "notices": [
+      "The supplied file gives no topic; the topic shown was assigned by this app from the question content."
+    ]
+  },
+  {
+    "id": "IB-L-03",
+    "sourceQuestion": 3,
+    "sourceFile": "Logs and Proofs Past IB Questions.md",
+    "paper": "P1",
+    "topic": "Exponential Equations",
+    "marks": 5,
+    "session": "May 2010",
+    "timeZone": "Time Zone 1 (TZ1)",
+    "code": "M10/5/MATHL/HP1/ENG/TZ1/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Solve the equation \\(4^{x-1} = 2^x + 8\\).",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "Write $4^{x-1}=\\frac{(2^x)^2}{4}$ and substitute $u=2^x$ to obtain $\\frac{u^2}{4}=u+8$.",
+        "marks": 2
+      },
+      {
+        "code": "M1",
+        "text": "Rearrange: $u^2-4u-32=0$, so $(u-8)(u+4)=0$ and $u=8$ or $u=-4$.",
+        "marks": 2
+      },
+      {
+        "code": "A1",
+        "text": "$2^x>0$ for every real $x$, so $u=-4$ is rejected. $2^x=8$ gives $x=3$.",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "x",
+        "value": 3
+      }
+    ],
+    "notices": [
+      "The supplied file gives no topic; the topic shown was assigned by this app from the question content."
+    ]
+  },
+  {
+    "id": "IB-L-04",
+    "sourceQuestion": 4,
+    "sourceFile": "Logs and Proofs Past IB Questions.md",
+    "paper": "P1",
+    "topic": "Exponential Equations",
+    "marks": 5,
+    "session": "May 2024",
+    "timeZone": "Time Zone 2 (TZ2)",
+    "code": "M24/5/MATHX/HP1/ENG/TZ2/XX/M",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Solve \\(3 \\times 9^x + 5 \\times 3^x - 2 = 0\\).",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "Let $u=3^x>0$. Since $9^x=u^2$, the equation becomes $3u^2+5u-2=0$.",
+        "marks": 2
+      },
+      {
+        "code": "M1",
+        "text": "Factorise: $(3u-1)(u+2)=0$, so $u=\\frac{1}{3}$ or $u=-2$.",
+        "marks": 2
+      },
+      {
+        "code": "A1",
+        "text": "Reject $u=-2$. $3^x=\\frac{1}{3}=3^{-1}$ gives $x=-1$.",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "x",
+        "value": -1
+      }
+    ],
+    "notices": [
+      "The supplied file gives no topic; the topic shown was assigned by this app from the question content."
+    ]
+  },
+  {
+    "id": "IB-L-05",
+    "sourceQuestion": 5,
+    "sourceFile": "Logs and Proofs Past IB Questions.md",
+    "paper": "P1",
+    "topic": "Exponential Equations",
+    "marks": 5,
+    "session": "May 2014",
+    "timeZone": "Time Zone 2 (TZ2)",
+    "code": "M14/5/MATHL/HP1/ENG/TZ2/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Solve the equation \\(8^{x-1} = 6^{3x}\\). Express your answer in terms of \\(\\ln 2\\) and \\(\\ln 3\\).",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "Take natural logarithms: $(x-1)\\ln 8=3x\\ln 6$.",
+        "marks": 2
+      },
+      {
+        "code": "M1",
+        "text": "Collect the $x$ terms: $x(\\ln 8-3\\ln 6)=\\ln 8$.",
+        "marks": 2
+      },
+      {
+        "code": "A1",
+        "text": "Using $\\ln 8=3\\ln 2$ and $\\ln 6=\\ln 2+\\ln 3$, the denominator is $-3\\ln 3$, so $x=-\\frac{\\ln 2}{\\ln 3}\\approx-0.631$.",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "x (4 d.p.)",
+        "value": -0.63093,
+        "tolerance": 0.001
+      }
+    ],
+    "notices": [
+      "The supplied file gives no topic; the topic shown was assigned by this app from the question content."
+    ]
+  },
+  {
+    "id": "IB-L-06",
+    "sourceQuestion": 6,
+    "sourceFile": "Logs and Proofs Past IB Questions.md",
+    "paper": "P1",
+    "topic": "Normal Distribution",
+    "marks": 4,
+    "session": "May 2006",
+    "timeZone": "Time Zone 0 (TZ0)",
+    "code": "M06/5/MATHL/HP1/ENG/TZ0/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "The weights in grams of bread loaves sold at a supermarket are normally distributed with mean \\(200 \\text{ g}\\). The weights of \\(88\\%\\) of the loaves are less than \\(220 \\text{ g}\\). Find the standard deviation.",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "Standardise: $P(X<220)=0.88$ corresponds to $z=\\Phi^{-1}(0.88)\\approx1.175$.",
+        "marks": 2
+      },
+      {
+        "code": "M1",
+        "text": "Set $\\frac{220-200}{\\sigma}=1.175$.",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "$\\sigma=\\frac{20}{1.175}\\approx17.0$ grams.",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "Standard deviation in grams (1 d.p.)",
+        "value": 17.021,
+        "tolerance": 0.05
+      }
+    ],
+    "notices": [
+      "The supplied file gives no topic; the topic shown was assigned by this app from the question content.",
+      "The supplied file does not state a mark total, so this app assigns 4 marks for its own guide."
+    ]
+  },
+  {
+    "id": "IB-L-07",
+    "sourceQuestion": 7,
+    "sourceFile": "Logs and Proofs Past IB Questions.md",
+    "paper": "P1",
+    "topic": "Proof by Induction",
+    "marks": 6,
+    "session": "May 2017",
+    "timeZone": "Time Zone 1 (TZ1)",
+    "code": "M17/5/MATHL/HP1/ENG/TZ1/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Use the method of mathematical induction to prove that \\(4^n + 15n - 1\\) is divisible by \\(9\\) for \\(n \\in \\mathbb{Z}^+\\).",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "Base case $n=1$: $4^1+15-1=18=9\\times2$, so the statement holds.",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "Assume $4^k+15k-1=9m$ for some integer $m$.",
+        "marks": 2
+      },
+      {
+        "code": "A1",
+        "text": "$4^{k+1}+15(k+1)-1=4\\left(4^k\\right)+15k+14=4\\left(4^k+15k-1\\right)-45k+18$.",
+        "marks": 2
+      },
+      {
+        "code": "R1",
+        "text": "Both parts are divisible by $9$, so the statement holds for $k+1$; with the base case, for all positive integers $n$.",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "Value of 4^n + 15n - 1 at n = 2",
+        "value": 45
+      }
+    ],
+    "notices": [
+      "The supplied file gives no topic; the topic shown was assigned by this app from the question content."
+    ]
+  },
+  {
+    "id": "IB-L-08",
+    "sourceQuestion": 8,
+    "sourceFile": "Logs and Proofs Past IB Questions.md",
+    "paper": "P1",
+    "topic": "Proof by Induction",
+    "marks": 7,
+    "session": "November 2023",
+    "timeZone": "Time Zone 0 (TZ0)",
+    "code": "N23/5/MATHX/HP1/ENG/TZ0/XX/M",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Prove by mathematical induction that \\(5^{2n} - 2^{2n}\\) is divisible by \\(17\\) for all \\(n \\in \\mathbb{Z}^+\\).",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "Corrected statement: price the claim for $5^{2n}-2^{3n}$ with $n=1$: $25-8=17=17\\times1$.",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "Assume $5^{2k}-2^{3k}=17m$ for some integer $m$.",
+        "marks": 2
+      },
+      {
+        "code": "A1",
+        "text": "$5^{2(k+1)}-2^{3(k+1)}=25\\left(5^{2k}\\right)-8\\left(2^{3k}\\right)=25\\left(5^{2k}-2^{3k}\\right)+17\\left(2^{3k}\\right)$.",
+        "marks": 3
+      },
+      {
+        "code": "R1",
+        "text": "This is $17\\left(25m+2^{3k}\\right)$, so divisibility passes from $k$ to $k+1$ and holds for all $n\\in\\mathbb{Z}^+$.",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "Value of 5^(2n) - 2^(3n) at n = 2",
+        "value": 561
+      }
+    ],
+    "notices": [
+      "As transcribed the claim is false: at n = 1 the expression 5^(2n) - 2^(2n) equals 21, which is not divisible by 17. The guide above proves the standard version of this question, 5^(2n) - 2^(3n), whose values are divisible by 17. Check the paper before relying on the transcribed version.",
+      "The supplied file gives no topic; the topic shown was assigned by this app from the question content."
+    ]
+  },
+  {
+    "id": "IB-L-09",
+    "sourceQuestion": 9,
+    "sourceFile": "Logs and Proofs Past IB Questions.md",
+    "paper": "P1",
+    "topic": "Proof by Induction",
+    "marks": 7,
+    "session": "May 2018",
+    "timeZone": "Time Zone 1 (TZ1)",
+    "code": "M18/5/MATHL/HP1/ENG/TZ1/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Use the principle of mathematical induction to prove that\n\\[\n 1 + 2\\left(\\frac{1}{2}\\right) + 3\\left(\\frac{1}{2}\\right)^2 + 4\\left(\\frac{1}{2}\\right)^3 + \\dots + n\\left(\\frac{1}{2}\\right)^{n-1} = 4 - \\frac{n+2}{2^{n-1}}, \\text{ where } n \\in \\mathbb{Z}^+. \n\\]",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "Base case $n=1$: $1=4-\\frac{1+2}{2^0}=4-3=1$.",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "Assume $1+2\\left(\\frac12\\right)+\\cdots+k\\left(\\frac12\\right)^{k-1}=4-\\frac{k+2}{2^{k-1}}$.",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "Add the next term: $4-\\frac{k+2}{2^{k-1}}+(k+1)\\left(\\frac12\\right)^{k}$.",
+        "marks": 2
+      },
+      {
+        "code": "A1",
+        "text": "Put over $2^k$: $4-\\frac{2(k+2)-(k+1)}{2^k}=4-\\frac{k+3}{2^k}=4-\\frac{(k+1)+2}{2^{(k+1)-1}}$.",
+        "marks": 2
+      },
+      {
+        "code": "R1",
+        "text": "The form required for $n=k+1$ is obtained, so the identity holds for all $n\\in\\mathbb{Z}^+$.",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "Left-hand side for n = 4",
+        "value": 3.25
+      }
+    ],
+    "notices": [
+      "The supplied file gives no topic; the topic shown was assigned by this app from the question content."
+    ]
+  },
+  {
+    "id": "IB-L-10",
+    "sourceQuestion": 10,
+    "sourceFile": "Logs and Proofs Past IB Questions.md",
+    "paper": "P1",
+    "topic": "Proof by Induction",
+    "marks": 7,
+    "session": "May 2024",
+    "timeZone": "Time Zone 1 (TZ1)",
+    "code": "M24/5/MATHX/HP1/ENG/TZ1/XX/M",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Using mathematical induction and the definition \\({}^nC_r = \\frac{n!}{r!(n-r)!}\\), prove that \\(\\sum_{r=1}^{n} {}^rC_1 = {}^{n+1}C_2\\) for all \\(n \\in \\mathbb{Z}^+\\).",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "Since $\\;{}^{r}C_1=r$, the claim is $\\sum_{r=1}^{n}r=\\frac{n(n+1)}{2}={}^{n+1}C_2$. Base case $n=1$: $1={}^2C_2=1$.",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "Assume $\\sum_{r=1}^{k}{}^rC_1={}^{k+1}C_2=\\frac{k(k+1)}{2}$.",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "The next sum is $\\frac{k(k+1)}{2}+(k+1)$, using $\\;{}^{k+1}C_1=k+1$.",
+        "marks": 2
+      },
+      {
+        "code": "A1",
+        "text": "$\\frac{k(k+1)+2(k+1)}{2}=\\frac{(k+1)(k+2)}{2}={}^{k+2}C_2$.",
+        "marks": 2
+      },
+      {
+        "code": "R1",
+        "text": "This is the required form for $n=k+1$, so the identity holds for all $n\\in\\mathbb{Z}^+$.",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "Sum for n = 5",
+        "value": 15
+      }
+    ],
+    "notices": [
+      "The supplied file gives no topic; the topic shown was assigned by this app from the question content."
+    ]
+  },
+  {
+    "id": "IB-L-11",
+    "sourceQuestion": 11,
+    "sourceFile": "Logs and Proofs Past IB Questions.md",
+    "paper": "P1",
+    "topic": "Proof by Induction",
+    "marks": 7,
+    "session": "November 2013",
+    "timeZone": "Time Zone 0 (TZ0)",
+    "code": "N13/5/MATHL/HP1/ENG/TZ0/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Prove by mathematical induction that \\(n^3 + 11n\\) is divisible by \\(3\\) for all \\(n \\in \\mathbb{Z}^+\\).",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "Base case $n=1$: $1+11=12=3\\times4$.",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "Assume $k^3+11k=3m$ for some integer $m$.",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "Expand $(k+1)^3+11(k+1)=k^3+3k^2+14k+12$.",
+        "marks": 2
+      },
+      {
+        "code": "A1",
+        "text": "Group as $\\left(k^3+11k\\right)+3\\left(k^2+k+4\\right)=3m+3\\left(k^2+k+4\\right)$.",
+        "marks": 2
+      },
+      {
+        "code": "R1",
+        "text": "The expression is a multiple of $3$ for $k+1$, so the claim holds for all $n\\in\\mathbb{Z}^+$.",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "Value of n^3 + 11n at n = 2",
+        "value": 30
+      }
+    ],
+    "notices": [
+      "The supplied file gives no topic; the topic shown was assigned by this app from the question content."
+    ]
+  },
+  {
+    "id": "IB-L-12",
+    "sourceQuestion": 12,
+    "sourceFile": "Logs and Proofs Past IB Questions.md",
+    "paper": "P1",
+    "topic": "Proof by Induction",
+    "marks": 7,
+    "session": "May 2023",
+    "timeZone": "Time Zone 2 (TZ2)",
+    "code": "M23/5/MATHX/HP1/ENG/TZ2/XX/M",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Use mathematical induction to prove that \\(\\sum_{r=1}^{n} \\frac{r}{(r+1)!} = 1 - \\frac{1}{(n+1)!}\\) for all integers \\(n \\ge 1\\).",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "Base case $n=1$: $\\frac{1}{2!}=\\frac12$ and $1-\\frac{1}{2!}=\\frac12$.",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "Assume $\\sum_{r=1}^{k}\\frac{r}{(r+1)!}=1-\\frac{1}{(k+1)!}$.",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "Add the next term: $1-\\frac{1}{(k+1)!}+\\frac{k+1}{(k+2)!}$.",
+        "marks": 2
+      },
+      {
+        "code": "A1",
+        "text": "Since $\\frac{1}{(k+1)!}=\\frac{k+2}{(k+2)!}$, the last two terms give $1-\\frac{(k+2)-(k+1)}{(k+2)!}=1-\\frac{1}{(k+2)!}$.",
+        "marks": 2
+      },
+      {
+        "code": "R1",
+        "text": "This is the required form for $n=k+1$, so the identity holds for every integer $n\\ge1$.",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "Sum for n = 3 (4 d.p.)",
+        "value": 0.958333,
+        "tolerance": 0.001
+      }
+    ],
+    "notices": [
+      "The supplied file gives no topic; the topic shown was assigned by this app from the question content.",
+      "The same question appears as question 4 of Collected Questions.md; it is listed once here."
+    ]
+  },
+  {
+    "id": "IB-L-13",
+    "sourceQuestion": 13,
+    "sourceFile": "Logs and Proofs Past IB Questions.md",
+    "paper": "P1",
+    "topic": "Logarithm Equations",
+    "marks": 7,
+    "session": "May 2019",
+    "timeZone": "Time Zone 2 (TZ2)",
+    "code": "M19/5/MATHL/HP1/ENG/TZ2/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Solve the simultaneous equations\n\\[\n \\log_2 6x = 1 + 2\\log_2 y \n\\]\n\\[\n 1 + \\log_5 x = \\log_5(15y - 25). \n\\]",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "First equation: $\\log_2 6x=\\log_2 2+\\log_2 y^2$, so $6x=2y^2$ and $3x=y^2$.",
+        "marks": 2
+      },
+      {
+        "code": "M1",
+        "text": "Second equation: $1+\\log_5 x=\\log_5 5x$, so $5x=15y-25$ and $x=3y-5$.",
+        "marks": 2
+      },
+      {
+        "code": "A1",
+        "text": "Substitute: $y^2=9y-15$, so $y^2-9y+15=0$ and $y=\\frac{9\\pm\\sqrt{21}}{2}$.",
+        "marks": 2
+      },
+      {
+        "code": "A1",
+        "text": "Both roots are positive, giving $x=3y-5$: $x\\approx15.37$ with $y\\approx6.791$, and $x\\approx1.63$ with $y\\approx2.209$.",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "Larger value of y (3 d.p.)",
+        "value": 6.791288,
+        "tolerance": 0.001
+      },
+      {
+        "label": "Smaller value of y (3 d.p.)",
+        "value": 2.208712,
+        "tolerance": 0.001
+      }
+    ],
+    "notices": [
+      "The supplied file gives no topic; the topic shown was assigned by this app from the question content."
+    ]
+  },
+  {
+    "id": "IB-L-14",
+    "sourceQuestion": 14,
+    "sourceFile": "Logs and Proofs Past IB Questions.md",
+    "paper": "P1",
+    "topic": "Proof by Induction",
+    "marks": 8,
+    "session": "May 2009",
+    "timeZone": "Time Zone 2 (TZ2)",
+    "code": "M09/5/MATHL/HP1/ENG/TZ2/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Prove by mathematical induction \\(\\sum_{r=1}^{n} r(r!) = (n+1)! - 1, n \\in \\mathbb{Z}^+\\).",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "Base case $n=1$: $1\\times1!=1$ and $(1+1)!-1=1$.",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "Assume $\\sum_{r=1}^{k}r\\,r!=(k+1)!-1$.",
+        "marks": 2
+      },
+      {
+        "code": "A1",
+        "text": "Add the next term: $(k+1)!-1+(k+1)(k+1)!$.",
+        "marks": 3
+      },
+      {
+        "code": "R1",
+        "text": "$(k+1)!\\left[1+(k+1)\\right]-1=(k+2)!-1$, the required form for $n=k+1$, so the identity holds for all $n\\in\\mathbb{Z}^+$.",
+        "marks": 2
+      }
+    ],
+    "checks": [
+      {
+        "label": "Sum for n = 4",
+        "value": 119
+      }
+    ],
+    "notices": [
+      "The supplied file gives no topic; the topic shown was assigned by this app from the question content."
+    ]
+  },
+  {
+    "id": "IB-L-15",
+    "sourceQuestion": 15,
+    "sourceFile": "Logs and Proofs Past IB Questions.md",
+    "paper": "P1",
+    "topic": "Proof by Induction",
+    "marks": 9,
+    "session": "May 2017",
+    "timeZone": "Time Zone 2 (TZ2)",
+    "code": "M17/5/MATHL/HP1/ENG/TZ2/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Prove by mathematical induction that \\(\\binom{2}{2} + \\binom{3}{2} + \\binom{4}{2} + \\dots + \\binom{n-1}{2} = \\binom{n}{3}\\), where \\(n \\in \\mathbb{Z}, n \\ge 3\\).",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "Base case $n=3$: $\\binom22=1$ and $\\binom33=1$.",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "Assume $\\binom22+\\binom32+\\cdots+\\binom{k-1}{2}=\\binom{k}{3}$.",
+        "marks": 2
+      },
+      {
+        "code": "M1",
+        "text": "When $n=k+1$ the last added term is $\\binom{k}{2}$, giving $\\binom{k}{3}+\\binom{k}{2}$.",
+        "marks": 2
+      },
+      {
+        "code": "A1",
+        "text": "Pascal's identity: $\\binom{k}{3}+\\binom{k}{2}=\\binom{k+1}{3}$, which is the required right-hand side.",
+        "marks": 2
+      },
+      {
+        "code": "R1",
+        "text": "The base case and the step from $k$ to $k+1$ prove the result for all integers $n\\ge3$.",
+        "marks": 2
+      }
+    ],
+    "checks": [
+      {
+        "label": "Sum for n = 6",
+        "value": 20
+      }
+    ],
+    "notices": [
+      "The supplied file gives no topic; the topic shown was assigned by this app from the question content."
+    ]
+  },
+  {
+    "id": "IB-L-16",
+    "sourceQuestion": 16,
+    "sourceFile": "Logs and Proofs Past IB Questions.md",
+    "paper": "P1",
+    "topic": "Geometric Series",
+    "marks": 10,
+    "session": "May 2008",
+    "timeZone": "Time Zone 2 (TZ2)",
+    "code": "M08/5/MATHL/HP1/ENG/TZ2/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "(a) Find the sum of the infinite geometric sequence \\(27, -9, 3, -1, \\dots\\). [3 marks]\n\n(b) Use mathematical induction to prove that for \\(n \\in \\mathbb{Z}^+\\),\n\\[\n a + ar + ar^2 + \\dots + ar^{n-1} = \\frac{a(1-r^n)}{1-r}. \n\\] [7 marks]",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "The ratio is $r=-\\frac13$ with $|r|<1$, so the sum is $\\frac{27}{1-\\left(-\\frac13\\right)}$.",
+        "marks": 2
+      },
+      {
+        "code": "A1",
+        "text": "$S_\\infty=\\frac{27}{4/3}=\\frac{81}{4}=20.25$.",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "Base case $n=1$: $a=\\frac{a(1-r)}{1-r}=a$, which holds for $r\\neq1$.",
+        "marks": 2
+      },
+      {
+        "code": "M1",
+        "text": "Assume $a+ar+\\cdots+ar^{k-1}=\\frac{a\\left(1-r^k\\right)}{1-r}$.",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "Add the next term: $\\frac{a\\left(1-r^k\\right)}{1-r}+ar^k=\\frac{a-a r^k+ar^k-ar^{k+1}}{1-r}=\\frac{a\\left(1-r^{k+1}\\right)}{1-r}$.",
+        "marks": 3
+      },
+      {
+        "code": "R1",
+        "text": "This is the required form, so the formula holds for all $n\\in\\mathbb{Z}^+$ when $r\\neq1$; for $r=1$ each side equals $na$.",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "Sum of the infinite series",
+        "value": 20.25
+      }
+    ],
+    "notices": [
+      "The supplied file gives no topic; the topic shown was assigned by this app from the question content."
+    ]
+  },
+  {
+    "id": "IB-L-17",
+    "sourceQuestion": 17,
+    "sourceFile": "Logs and Proofs Past IB Questions.md",
+    "paper": "P1",
+    "topic": "Arithmetic and Geometric Series",
+    "marks": 21,
+    "session": "November 2009",
+    "timeZone": "Time Zone 0 (TZ0)",
+    "code": "N09/5/MATHL/HP1/ENG/TZ0/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "(a) The sum of the first six terms of an arithmetic series is \\(81\\). The sum of its first eleven terms is \\(231\\). Find the first term and the common difference. [6 marks]\n\n(b) The sum of the first two terms of a geometric series is \\(1\\) and the sum of its first four terms is \\(5\\). If all of its terms are positive, find the first term and the common ratio. [5 marks]\n\n(c) The \\(r^{\\text{th}}\\) term of a new series is defined as the product of the \\(r^{\\text{th}}\\) term of the arithmetic series and the \\(r^{\\text{th}}\\) term of the geometric series above. Show that the \\(r^{\\text{th}}\\) term of this new series is \\((r+1)2^{r-1}\\). [3 marks]\n\n(d) Using mathematical induction, prove that\n\\[\n \\sum_{r=1}^{n} (r+1)2^{r-1} = n2^n, n \\in \\mathbb{Z}^+. \n\\] [7 marks]",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "$S_6=\\frac{6}{2}\\left(2u_1+5d\\right)=81$ gives $2u_1+5d=27$; $S_{11}=\\frac{11}{2}\\left(2u_1+10d\\right)=231$ gives $2u_1+10d=42$.",
+        "marks": 2
+      },
+      {
+        "code": "A1",
+        "text": "Subtract: $5d=15$, so $d=3$.",
+        "marks": 2
+      },
+      {
+        "code": "A1",
+        "text": "Then $2u_1+15=27$, so $u_1=6$.",
+        "marks": 2
+      },
+      {
+        "code": "M1",
+        "text": "$S_2=a(1+r)=1$ and $S_4=a(1+r)\\left(1+r^2\\right)=5$, so $1+r^2=5$.",
+        "marks": 2
+      },
+      {
+        "code": "A1",
+        "text": "$r^2=4$; all terms are positive so $r=2$.",
+        "marks": 2
+      },
+      {
+        "code": "A1",
+        "text": "$a(1+2)=1$ gives $a=\\frac13$.",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "$r$th term of the arithmetic series: $6+3(r-1)=3r+3=3(r+1)$.",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "$r$th term of the geometric series: $\\frac13\\cdot2^{r-1}$.",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "The product is $(r+1)2^{r-1}$, as required.",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "Base case $n=1$: $(1+1)2^0=2$ and $1\\cdot2^1=2$.",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "Assume $\\sum_{r=1}^{k}(r+1)2^{r-1}=k2^k$.",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "Add the next term: $k2^k+(k+2)2^{k}$.",
+        "marks": 2
+      },
+      {
+        "code": "A1",
+        "text": "$2^k\\left(k+k+2\\right)=2^{k+1}(k+1)$, the required form for $n=k+1$.",
+        "marks": 2
+      },
+      {
+        "code": "R1",
+        "text": "The base case and the step prove the identity for all $n\\in\\mathbb{Z}^+$.",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "First term of the arithmetic series",
+        "value": 6
+      },
+      {
+        "label": "Common difference",
+        "value": 3
+      },
+      {
+        "label": "First term of the geometric series (3 d.p.)",
+        "value": 0.333333,
+        "tolerance": 0.001
+      },
+      {
+        "label": "Common ratio of the geometric series",
+        "value": 2
+      }
+    ],
+    "notices": [
+      "The supplied file gives no topic; the topic shown was assigned by this app from the question content."
+    ]
+  },
+  {
+    "id": "IB-L-18",
+    "sourceQuestion": 18,
+    "sourceFile": "Logs and Proofs Past IB Questions.md",
+    "paper": "P1",
+    "topic": "Vectors and Planes",
+    "marks": 20,
+    "session": "May 2008",
+    "timeZone": "Time Zone 2 (TZ2)",
+    "code": "M08/5/MATHL/HP1/ENG/TZ2/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Consider the points A(1, -1, 4), B(2, -2, 5) and O(0, 0, 0).\n\n(a) Calculate the cosine of the angle between \\(\\vec{OA}\\) and \\(\\vec{AB}\\). [5 marks]\n\n(b) Find a vector equation of the line \\(L_1\\) which passes through A and B. [2 marks]\nThe line \\(L_2\\) has equation \\(\\mathbf{r} = 2\\mathbf{i} + 4\\mathbf{j} + 7\\mathbf{k} + t(2\\mathbf{i} + \\mathbf{j} + 3\\mathbf{k})\\), where \\(t \\in \\mathbb{R}\\).\n\n(c) Show that the lines \\(L_1\\) and \\(L_2\\) intersect and find the coordinates of their point of intersection. [7 marks]\n\n(d) Find the Cartesian equation of the plane which contains both the line \\(L_2\\) and the point A. [6 marks]",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "$\\vec{OA}=\\begin{pmatrix}1\\\\-1\\\\4\\end{pmatrix}$ and $\\vec{AB}=\\begin{pmatrix}1\\\\-1\\\\1\\end{pmatrix}$.",
+        "marks": 1
+      },
+      {
+        "code": "M1",
+        "text": "$\\vec{OA}\\cdot\\vec{AB}=1+1+4=6$; $|\\vec{OA}|=\\sqrt{18}$, $|\\vec{AB}|=\\sqrt3$.",
+        "marks": 2
+      },
+      {
+        "code": "A1",
+        "text": "$\\cos\\theta=\\frac{6}{\\sqrt{54}}=\\frac{\\sqrt6}{3}\\approx0.816$.",
+        "marks": 2
+      },
+      {
+        "code": "A1",
+        "text": "$L_1:\\ \\mathbf{r}=\\begin{pmatrix}1\\\\-1\\\\4\\end{pmatrix}+t\\begin{pmatrix}1\\\\-1\\\\1\\end{pmatrix}$.",
+        "marks": 2
+      },
+      {
+        "code": "M1",
+        "text": "Equate components with $L_2$: $1+t=2+2s$, $-1-t=4+s$, $4+t=7+3s$.",
+        "marks": 2
+      },
+      {
+        "code": "M1",
+        "text": "The first two give $t=1+2s$ and $-2-2s=4+s$, so $s=-2$ and $t=-3$.",
+        "marks": 2
+      },
+      {
+        "code": "A1",
+        "text": "The third equation is satisfied: $1=1$.",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "The point of intersection is $(-2,\\,2,\\,1)$.",
+        "marks": 2
+      },
+      {
+        "code": "M1",
+        "text": "The plane contains the direction $\\begin{pmatrix}2\\\\1\\\\3\\end{pmatrix}$ and the vector from $(2,4,7)$ to $A(1,-1,4)$, which is $\\begin{pmatrix}-1\\\\-5\\\\-3\\end{pmatrix}$.",
+        "marks": 2
+      },
+      {
+        "code": "M1",
+        "text": "Normal $\\begin{pmatrix}2\\\\1\\\\3\\end{pmatrix}\\times\\begin{pmatrix}-1\\\\-5\\\\-3\\end{pmatrix}=\\begin{pmatrix}12\\\\3\\\\-9\\end{pmatrix}$, so use $\\mathbf{n}=\\begin{pmatrix}4\\\\1\\\\-3\\end{pmatrix}$.",
+        "marks": 2
+      },
+      {
+        "code": "A1",
+        "text": "Through $A$: $4(x-1)+(y+1)-3(z-4)=0$, that is $4x+y-3z+9=0$.",
+        "marks": 2
+      }
+    ],
+    "checks": [
+      {
+        "label": "Cosine of the angle (3 d.p.)",
+        "value": 0.816497,
+        "tolerance": 0.001
+      },
+      {
+        "label": "x-coordinate of the intersection point",
+        "value": -2
+      },
+      {
+        "label": "z-coordinate of the intersection point",
+        "value": 1
+      },
+      {
+        "label": "Constant term in 4x + y - 3z + ... = 0",
+        "value": 9
+      }
+    ],
+    "notices": [
+      "The supplied file gives no topic; the topic shown was assigned by this app from the question content."
+    ]
+  },
+  {
+    "id": "IB-L-19",
+    "sourceQuestion": 19,
+    "sourceFile": "Logs and Proofs Past IB Questions.md",
+    "paper": "P1",
+    "topic": "Vectors and Planes",
+    "marks": 5,
+    "session": "May 2007",
+    "timeZone": "Time Zone 2 (TZ2)",
+    "code": "M07/5/MATHL/HP1/ENG/TZ2/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Find the cosine of the angle \\(\\theta\\) between the planes \\(\\pi_1\\) and \\(\\pi_2\\), where \\(\\pi_1\\) has equation \\(-2x + y - z = 2\\) and \\(\\pi_2\\) has equation \\(x + 2y - z = 6\\).",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "Normals: $\\mathbf{n}_1=\\begin{pmatrix}-2\\\\1\\\\-1\\end{pmatrix}$ and $\\mathbf{n}_2=\\begin{pmatrix}1\\\\2\\\\-1\\end{pmatrix}$.",
+        "marks": 2
+      },
+      {
+        "code": "M1",
+        "text": "$\\mathbf{n}_1\\cdot\\mathbf{n}_2=-2+2+1=1$, and $|\\mathbf{n}_1|=|\\mathbf{n}_2|=\\sqrt6$.",
+        "marks": 2
+      },
+      {
+        "code": "A1",
+        "text": "$\\cos\\theta=\\frac{1}{6}\\approx0.167$.",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "Cosine of the angle (4 d.p.)",
+        "value": 0.16666666666666666,
+        "tolerance": 0.001
+      }
+    ],
+    "notices": [
+      "The supplied file gives no topic; the topic shown was assigned by this app from the question content.",
+      "The supplied file does not state a mark total, so this app assigns 5 marks for its own guide."
+    ]
+  },
+  {
+    "id": "IB-L-20",
+    "sourceQuestion": 20,
+    "sourceFile": "Logs and Proofs Past IB Questions.md",
+    "paper": "P1",
+    "topic": "Logarithm Equations",
+    "marks": 5,
+    "session": "May 2007",
+    "timeZone": "Time Zone 2 (TZ2)",
+    "code": "M07/5/MATHL/HP1/ENG/TZ2/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Solve \\(2(\\ln x)^2 = 3\\ln x - 1\\) for \\(x\\). Give your answers in **exact** form.",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "Let $u=\\ln x$. Then $2u^2=3u-1$.",
+        "marks": 2
+      },
+      {
+        "code": "M1",
+        "text": "$2u^2-3u+1=0$, so $(2u-1)(u-1)=0$ and $u=\\frac12$ or $u=1$.",
+        "marks": 2
+      },
+      {
+        "code": "A1",
+        "text": "$x=e^{1/2}=\\sqrt{e}$ or $x=e$.",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "Smaller solution (4 d.p.)",
+        "value": 1.648721,
+        "tolerance": 0.001
+      },
+      {
+        "label": "Larger solution (4 d.p.)",
+        "value": 2.718282,
+        "tolerance": 0.001
+      }
+    ],
+    "notices": [
+      "The supplied file gives no topic; the topic shown was assigned by this app from the question content.",
+      "The supplied file does not state a mark total, so this app assigns 5 marks for its own guide."
+    ]
+  },
+  {
+    "id": "IB-L-21",
+    "sourceQuestion": 21,
+    "sourceFile": "Logs and Proofs Past IB Questions.md",
+    "paper": "P1",
+    "topic": "Logarithm Equations",
+    "marks": 5,
+    "session": "May 2006",
+    "timeZone": "Time Zone 0 (TZ0)",
+    "code": "M06/5/MATHL/HP1/ENG/TZ0/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Solve \\(|\\ln(x+3)| = 1\\). Give your answers in **exact** form.",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "$|\\ln(x+3)|=1$ means $\\ln(x+3)=1$ or $\\ln(x+3)=-1$.",
+        "marks": 2
+      },
+      {
+        "code": "A1",
+        "text": "$x+3=e$ gives $x=e-3\\approx-0.282$.",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "$x+3=e^{-1}$ gives $x=e^{-1}-3\\approx-2.632$. Both are greater than $-3$, so both are valid.",
+        "marks": 2
+      }
+    ],
+    "checks": [
+      {
+        "label": "Larger solution (3 d.p.)",
+        "value": -0.281718,
+        "tolerance": 0.001
+      },
+      {
+        "label": "Smaller solution (3 d.p.)",
+        "value": -2.632121,
+        "tolerance": 0.001
+      }
+    ],
+    "notices": [
+      "The supplied file gives no topic; the topic shown was assigned by this app from the question content.",
+      "The supplied file does not state a mark total, so this app assigns 5 marks for its own guide."
+    ]
+  },
+  {
+    "id": "IB-L-22",
+    "sourceQuestion": 22,
+    "sourceFile": "Logs and Proofs Past IB Questions.md",
+    "paper": "P1",
+    "topic": "Exponential Equations",
+    "marks": 6,
+    "session": "May 2007",
+    "timeZone": "Time Zone 1 (TZ1)",
+    "code": "M07/5/MATHL/HP1/ENG/TZ1/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "The solution of \\(2^{2x+3} = 2^{x+1} + 3\\) can be expressed in the form \\(a + \\log_2 b\\) where \\(a, b \\in \\mathbb{Z}\\). Find the value of \\(a\\) and of \\(b\\).",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "Write $2^{2x+3}=8\\left(2^x\\right)^2$ and $2^{x+1}=2\\left(2^x\\right)$, then set $u=2^x$: $8u^2=2u+3$.",
+        "marks": 2
+      },
+      {
+        "code": "M1",
+        "text": "$8u^2-2u-3=0$, so $(4u-3)(2u+1)=0$.",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "$u=\\frac34$ or $u=-\\frac12$; $u>0$ rejects the second.",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "$2^x=\\frac34$ gives $x=\\log_2 3-2$.",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "So $a=-2$ and $b=3$.",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "a",
+        "value": -2
+      },
+      {
+        "label": "b",
+        "value": 3
+      }
+    ],
+    "notices": [
+      "The supplied file gives no topic; the topic shown was assigned by this app from the question content.",
+      "The supplied file does not state a mark total, so this app assigns 6 marks for its own guide."
+    ]
+  },
+  {
+    "id": "IB-L-23",
+    "sourceQuestion": 23,
+    "sourceFile": "Logs and Proofs Past IB Questions.md",
+    "paper": "P1",
+    "topic": "Complex Numbers",
+    "marks": 5,
+    "session": "May 2003",
+    "timeZone": "Time Zone 1 (H1)",
+    "code": "M03/510/H(1)",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "The complex number \\(z\\) satisfies the equation\n\\[\n \\sqrt{z} = \\frac{2}{1-i} + 1 - 4i. \n\\]\nExpress \\(z\\) in the form \\(x + iy\\) where \\(x, y \\in \\mathbb{Z}\\).",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "$\\frac{2}{1-i}=\\frac{2(1+i)}{(1-i)(1+i)}=\\frac{2(1+i)}{2}=1+i$.",
+        "marks": 2
+      },
+      {
+        "code": "A1",
+        "text": "$\\sqrt{z}=(1+i)+1-4i=2-3i$.",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "$z=(2-3i)^2=4-12i+9i^2=-5-12i$.",
+        "marks": 2
+      }
+    ],
+    "checks": [
+      {
+        "label": "Real part of z",
+        "value": -5
+      },
+      {
+        "label": "Imaginary part of z",
+        "value": -12
+      }
+    ],
+    "notices": [
+      "The supplied file gives no topic; the topic shown was assigned by this app from the question content.",
+      "The supplied file does not state a mark total, so this app assigns 5 marks for its own guide."
+    ]
+  },
+  {
+    "id": "IB-L-24",
+    "sourceQuestion": 24,
+    "sourceFile": "Logs and Proofs Past IB Questions.md",
+    "paper": "P1",
+    "topic": "Exponential Equations",
+    "marks": 6,
+    "session": "May 2003",
+    "timeZone": "Time Zone 1 (H1)",
+    "code": "M03/510/H(1)",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Find the **exact** value of \\(x\\) satisfying the equation\n\\[\n (3^x)(4^{2x+1}) = 6^{x+2}. \n\\]\nGive your answer in the form \\(\\frac{\\ln a}{\\ln b}\\) where \\(a, b \\in \\mathbb{Z}\\).",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "Take logarithms: $x\\ln3+(2x+1)\\ln4=(x+2)\\ln6$.",
+        "marks": 2
+      },
+      {
+        "code": "M1",
+        "text": "Collect $x$: $x\\left(\\ln3+2\\ln4-\\ln6\\right)=2\\ln6-\\ln4$.",
+        "marks": 2
+      },
+      {
+        "code": "A1",
+        "text": "So $x=\\frac{\\ln(36/4)}{\\ln(48/6)}=\\frac{\\ln9}{\\ln8}$.",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "$a=9$ and $b=8$.",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "a",
+        "value": 9
+      },
+      {
+        "label": "b",
+        "value": 8
+      },
+      {
+        "label": "x (4 d.p.)",
+        "value": 1.056642,
+        "tolerance": 0.001
+      }
+    ],
+    "notices": [
+      "The supplied file gives no topic; the topic shown was assigned by this app from the question content.",
+      "The supplied file does not state a mark total, so this app assigns 6 marks for its own guide."
+    ]
+  },
+  {
+    "id": "IB-C-01",
+    "sourceQuestion": 1,
+    "sourceFile": "Collected Questions.md",
+    "paper": "P1",
+    "topic": "Proof by Deduction",
+    "marks": 9,
+    "session": "N/A (Practice worksheet)",
+    "timeZone": "N/A",
+    "code": "No paper code supplied",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Prove the following statements regarding even and odd numbers. (Note: The original document lists 9 separate short proofs; they are grouped here as one comprehensive set).\n\n1. Prove that the product of two even numbers is always even.\n2. Prove that the product of an even number and an odd number is always even.\n3. Prove that the sum of an even number and an odd number is always odd.\n4. Prove that the square of an even number is even.\n5. Prove that the square of an odd number is odd.\n6. Prove that the sum of two consecutive integers is always odd.\n7. Prove that the difference between two odd numbers is always even.\n8. Prove that the product of two odd numbers is always odd.\n9. Prove that the difference between the squares of two consecutive integers is always odd.",
+    "scheme": [
+      {
+        "code": "A1",
+        "text": "Two even numbers: $2a\\cdot2b=4ab=2(2ab)$, which is even.",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "Even times odd: $2a(2b+1)=2(2ab+a)$, which is even.",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "Even plus odd: $2a+(2b+1)=2(a+b)+1$, which is odd.",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "Square of an even number: $(2a)^2=4a^2=2\\left(2a^2\\right)$, which is even.",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "Square of an odd number: $(2a+1)^2=4a^2+4a+1=2\\left(2a^2+2a\\right)+1$, which is odd.",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "Consecutive integers: $n+(n+1)=2n+1$, which is odd.",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "Difference of two odd numbers: $(2a+1)-(2b+1)=2(a-b)$, which is even.",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "Product of two odd numbers: $(2a+1)(2b+1)=2\\left(2ab+a+b\\right)+1$, which is odd.",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "Consecutive squares: $(n+1)^2-n^2=2n+1$, which is odd.",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "Value of (n+1)^2 - n^2 for n = 7",
+        "value": 15
+      }
+    ],
+    "notices": [
+      "The supplied file gives no topic; the topic shown was assigned by this app from the question content.",
+      "The supplied file does not state a mark total, so this app assigns 9 marks for its own guide.",
+      "The supplied file gives no paper code. Filed under Paper 1 because the questions are non-technology style."
+    ]
+  },
+  {
+    "id": "IB-C-02",
+    "sourceQuestion": 2,
+    "sourceFile": "Collected Questions.md",
+    "paper": "P1",
+    "topic": "Logarithm Equations",
+    "marks": 18,
+    "session": "N/A (Practice worksheet)",
+    "timeZone": "N/A",
+    "code": "No paper code supplied",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "Solve the following logarithmic equations for \\(x > 0\\).\n\n**10.**\na) \\(\\log_9 x + \\log_9 2 = \\log_9 14\\)\nb) \\(\\log_9 x - \\log_9 3 = \\log_9 19\\)\nc) \\(\\log_9 x + 2 \\log_9 2 = \\log_9 24\\)\nd) \\(\\log_9 x + 2 \\log_9 5 = \\log_9 225\\)\ne) \\(\\log_9 x^2 + \\log_9 \\left(\\frac{1}{2}\\right) = \\log_9 32\\)\nf) \\(\\log_9 6 + \\log_9 x = \\log_9 1\\)\ng) \\(\\frac{1}{2} \\log_9 x + \\log_9 6 = \\log_9 30\\)\nh) \\(2 \\log_9 x - \\log_9 x = \\log_9 9\\)\n\n**11.**\na) \\(\\log_9(x + 2) + \\log_9(x - 1) = \\log_9 4\\)\nb) \\(\\log_9(x + 1) + \\log_9(x - 3) = 1\\)\nc) \\(\\log_4(3x - 1) - \\log_4(x - 1) = 1\\)\nd) \\(\\log_8(x^2 - 1) - \\log_8(x - 1) = 2\\)\ne) \\(\\log_{16}(x + 2) - \\log_{16}(x - 6) = \\frac{1}{2}\\)\nf) \\(\\log_7(2x + 5) - \\log_7(x - 5) = \\log_7\\left(\\frac{x}{2}\\right)\\)\n\n**12.**\na) \\(\\log_4 x + 5 \\log_4 4 = 6\\)\nb) \\(\\log_2 x - 6 \\log_2 2 = 1\\)\nc) \\(\\log_7 x - 12 \\log_7 7 = 4\\)\n\n**13.** Solve \\(\\log_9 x + 2 \\log_x 9 = 3\\).",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "Question 10, each solved by combining logarithms base 9: (a) $2x=14$, $x=7$; (b) $x/3=19$, $x=57$; (c) $4x=24$, $x=6$; (d) $25x=225$, $x=9$; (e) $x^2/2=32$, $x=8$; (f) $6x=1$, $x=\\frac16$; (g) $6\\sqrt{x}=30$, $x=25$; (h) $\\log_9 x=\\log_9 9$, $x=9$.",
+        "marks": 8
+      },
+      {
+        "code": "M1",
+        "text": "Question 11, combining then rejecting values outside the domain: (a) $(x+2)(x-1)=4$ gives $x=2$ ($x=-3$ rejected); (b) $(x+1)(x-3)=9$ gives $x=1+\\sqrt{13}$; (c) $\\frac{3x-1}{x-1}=4$ gives $x=3$; (d) $x+1=64$ gives $x=63$; (e) $\\frac{x+2}{x-6}=4$ gives $x=\\frac{26}{3}$; (f) $\\frac{2x+5}{x-5}=\\frac{x}{2}$ gives $x=10$.",
+        "marks": 6
+      },
+      {
+        "code": "M1",
+        "text": "Question 12: (a) $\\log_4 x=1$, $x=4$; (b) $\\log_2 x=7$, $x=128$; (c) $\\log_7 x=16$, $x=7^{16}$.",
+        "marks": 3
+      },
+      {
+        "code": "A1",
+        "text": "Question 13: with $t=\\log_9 x$, $t+\\frac{2}{t}=3$ gives $t=1$ or $t=2$, so $x=9$ or $x=81$.",
+        "marks": 1
+      }
+    ],
+    "checks": [
+      {
+        "label": "Answer to 10(a)",
+        "value": 7
+      },
+      {
+        "label": "Answer to 11(a)",
+        "value": 2
+      },
+      {
+        "label": "Answer to 12(b)",
+        "value": 128
+      },
+      {
+        "label": "Smaller answer to 13",
+        "value": 9
+      }
+    ],
+    "notices": [
+      "The supplied worksheet gives no mark allocation. This app assigns one mark per equation, which totals 18.",
+      "The supplied file gives no topic; the topic shown was assigned by this app from the question content.",
+      "The supplied file does not state a mark total, so this app assigns 18 marks for its own guide.",
+      "The supplied file gives no paper code. Filed under Paper 1 because the questions are non-technology style."
+    ]
+  },
+  {
+    "id": "IB-C-03",
+    "sourceQuestion": 3,
+    "sourceFile": "Collected Questions.md",
+    "paper": "P1",
+    "topic": "Arithmetic Sequences",
+    "marks": 5,
+    "session": "November 2020 (N20)",
+    "timeZone": "TZ0",
+    "code": "N20/5/MATHL/HP1/ENG/TZ0/XX",
+    "sourceStatus": "User-supplied transcription; not independently authenticated",
+    "prompt": "The first term in an arithmetic sequence is \\(4\\) and the fifth term is \\(\\log_2 625\\).\nFind the common difference of the sequence, expressing your answer in the form \\(\\log_2 p\\), where \\(p \\in \\mathbb{Q}\\).",
+    "scheme": [
+      {
+        "code": "M1",
+        "text": "$u_5=u_1+4d=4+4d$, and $u_5=\\log_2 625$.",
+        "marks": 2
+      },
+      {
+        "code": "M1",
+        "text": "$\\log_2 625=\\log_2\\left(5^4\\right)=4\\log_2 5$.",
+        "marks": 1
+      },
+      {
+        "code": "A1",
+        "text": "$4d=4\\log_2 5-4$, so $d=\\log_2 5-1=\\log_2\\frac52$, giving $p=\\frac52$.",
+        "marks": 2
+      }
+    ],
+    "checks": [
+      {
+        "label": "Value of p",
+        "value": 2.5,
+        "tolerance": 0
+      },
+      {
+        "label": "Common difference (4 d.p.)",
+        "value": 1.321928,
+        "tolerance": 0.001
+      }
+    ],
+    "notices": [
+      "The supplied file gives no topic; the topic shown was assigned by this app from the question content."
+    ]
   }
 ]

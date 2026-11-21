@@ -2,6 +2,15 @@
 
 Newest first. Website version / desktop app version.
 
+## 1.4.2 / 1.3.2, 2026-10-28: 27 more supplied questions, filed by topic
+
+* New: **27 more questions in the supplied archive** (Question Bank, Supplied transcriptions), from the two files you sent: 24 past-paper questions on logarithms, exponential equations, induction, series, vectors, planes, complex numbers and the normal distribution, and 3 items from the collected worksheet (nine even-and-odd proofs, 18 logarithm equations, one arithmetic sequence). Each is filed under its own paper and topic, so Paper 1 now holds 47 items and the archive 77.
+* New: each new question has an independently written working guide with the answer, method and accuracy points, and a final-value checker where a number can be checked. None of them is an official IB mark scheme. Every number was recomputed while writing (Python, SymPy, NumPy).
+* Source honesty: topics and any mark total the file does not give are assigned by the app and labelled as such. One transcribed claim is false as written (5^(2n) - 2^(2n) is not divisible by 17 at n = 1, the usual question is 5^(2n) - 2^(3n)); the guide proves the corrected statement and both the prompt and the note say so. A question that appears in both files is listed once, with a note.
+* Fix: searching the question banks now ignores mathematical markup, so "divisible by 17" finds a prompt written as "divisible by \\(17\\)".
+* Fix: the sidebar and the archive page counted a fixed 50 supplied questions; they now follow the archive, and each card names the file it came from.
+* Fix: the desktop package lock had been written while its dependencies were linked to the other project; it now resolves from the registry on its own.
+
 ## 1.4.1 / 1.3.1, 2026-10-27: change the password of the encrypted cloud copy
 
 * New: **Change the password of the cloud copy** (Profile, Encrypted cloud copy). With the current vault password, the copy is decrypted on your device, locked again with a new password (12 to 256 characters) and uploaded; only ciphertext is sent, and the profile saved in this browser can be switched to the same password in one step. A wrong current password changes nothing.
